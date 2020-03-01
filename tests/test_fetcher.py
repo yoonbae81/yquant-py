@@ -7,7 +7,7 @@ import pytest
 import backtester.fetcher as sut
 
 
-@pytest.mark.parametrize('ticks, expected', [
+@pytest.mark.parametrize('input, expected', [
     ('AAAAA 10000 10 1234512345', ('AAAAA', 10000.0, 10.0, 1234512345)),
     ('AAAAA 10000 10 12345123\n', ('AAAAA', 10000.0, 10.0, 12345123)),
     ('AAAAA 10.1 1.1 1234512345', ('AAAAA', 10.1, 1.1, 1234512345)),
@@ -17,12 +17,12 @@ def test_parse(input, expected):
     assert tick == expected
 
 
-@pytest.mark.parametrize('ticks', [
+@pytest.mark.parametrize('input', [
     ('\n'),
     ('WRONG'),
     ('WRONG WRONG'),
-    ('WRONG, 100, 10, 12345'),   # no comma
-    ('WRONG 100 10 1234512345.0'), # wrong timestamp format
+    ('WRONG, 100, 10, 12345'),  # no comma
+    ('WRONG 100 10 1234512345.0'),  # wrong timestamp format
     ('WRONG 100 10 1234512345 MORE'),
 ])
 def test_parse_error(input):
@@ -105,8 +105,9 @@ def test_route_3():
 def test_fetch(tick_file):
     config = {'ticks': tick_file}
     queues = [Queue() for _ in range(2)]
+    log_queue = Queue()
 
-    p = Process(target=sut.fetch, args=(config, queues))
+    p = Process(target=sut.run, args=(config, queues, log_queue))
     p.start()
     p.join()
 

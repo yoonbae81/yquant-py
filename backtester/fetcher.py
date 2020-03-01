@@ -71,8 +71,8 @@ def run(config, tick_queues, log_queue):
         queue.put(tick)
         count += 1
 
-    logger.info(f'Sent {count} ticks')
+    logger.info(f'Fetched {count} ticks')
     [queue.put(None) for queue in tick_queues]
 
-    time.sleep(1)
-    log_queue.put(None)
+    time.sleep(0.5)
+    log_queue.put_nowait(None)
