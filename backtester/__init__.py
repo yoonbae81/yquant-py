@@ -19,11 +19,10 @@ def run(config, strategy):
                          args=(config, order_queue, log_queue)),
                  Process(target=logger.run, args=(config, log_queue))]
 
-    for i, tick_queue in enumerate(tick_queues):
+    for i, tick_queue in enumerate(tick_queues, 1):
         p = Process(target=analyzer.run, name=f'Analyzer{i}',
                     args=(config, strategy, tick_queue, order_queue, log_queue))
         processes.append(p)
 
     [p.start() for p in processes]
     [p.join() for p in processes]
-
