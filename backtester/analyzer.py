@@ -86,10 +86,10 @@ def run(config, strategy, tick_queue, order_queue, log_queue):
         ticks = data[tick.symbol]
         ticks += tick
 
-        if strategy(ticks):
+        if strength := strategy(ticks) > config['threshold']:
             order = Order(tick.symbol,
                           tick.price,
-                          strategy(tick),
+                          strength,
                           tick.timestamp)
             order_queue.put(order)
 
