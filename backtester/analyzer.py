@@ -1,6 +1,6 @@
 from abc import ABC
 import time
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 
 import numpy as np
 import talib
@@ -18,7 +18,11 @@ class Ticks(object):
         self.prices = np.zeros(size, dtype=float)
         self.quantities = np.zeros(size, dtype=float)
 
-    def add(self, tick):
+    def __iadd__(self, tick):
+        self._add(tick)
+        return self
+
+    def _add(self, tick):
         if self.timestamp == tick.timestamp:
             i = self.watermark
             self.prices[i] = tick.price
@@ -74,15 +78,21 @@ class StrategyBase(ABC):
 
 def run(config, strategy, tick_queue, order_queue, log_queue):
     logger.config(log_queue)
+
+    data = defaultdict(Ticks)
+
     count = 0
-
     while tick := tick_queue.get():
-        order = Order(tick.symbol,
-                      tick.price,
-                      strategy(tick),
-                      tick.timestamp)
+        ticks = data[tick.symbol]
+        ticks += tick
 
-        order_queue.put(order)
+        if strategy(ticks):
+            order = Order(tick.symbol,
+                          tick.price,
+                          strategy(tick),
+                          tick.timestamp)
+            order_queue.put(order)
+
         count += 1
 
     logger.info(f'Analyzed {count} ticks')

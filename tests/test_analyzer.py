@@ -7,11 +7,11 @@ from backtester.fetcher import Tick
 def test_ticks_add():
     sut = Ticks()
 
-    sut.add(Tick('A', 1000, 10, 1))
+    sut += Tick('A', 1000, 10, 1)
     assert sut.prices[0] == 1000
     assert sut.quantities[0] == 10
 
-    sut.add(Tick('A', 2000, 20, 2))
+    sut += Tick('A', 2000, 20, 2)
     assert sut.prices[1] == 2000
     assert sut.quantities[1] == 20
 
@@ -22,8 +22,8 @@ def test_ticks_add():
 def test_ticks_add_same_timestamp():
     sut = Ticks()
 
-    sut.add(Tick('A', 1000, 10, 1))
-    sut.add(Tick('A', 1000, 10, 1))
+    sut += Tick('A', 1000, 10, 1)
+    sut += Tick('A', 1000, 10, 1)
 
     assert sut.prices[0] == 1000  # override price
     assert sut.quantities[0] == 20  # add quantity
@@ -34,8 +34,8 @@ def test_ticks_overflow():
     keep = 3
     sut = Ticks(size, keep)
 
-    [sut.add(Tick('A', i, i, i))
-     for i in range(1, size + keep)]
+    for i in range(1, size + keep):
+        sut += Tick('A', i, i, i)
 
     assert sut.prices[0] == 8  # keep value
     assert sut.prices[1] == 9  # keep value
