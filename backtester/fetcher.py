@@ -1,18 +1,16 @@
-import multiprocessing
 import time
 from collections import namedtuple
-import logging
 from os import listdir
 from os.path import exists, isfile, isdir, join, basename
 
 from backtester import logger
 
-Tick = namedtuple('Tick', 'symbol price quantity timestamp')
+Tick = namedtuple('Tick', 'symbol price volume timestamp')
 
 
 def _parse(line: str) -> Tick:
-    symbol, price, quantity, timestamp = line.split()
-    return Tick(symbol, float(price), float(quantity), int(timestamp))
+    symbol, price, volume, timestamp = line.split()
+    return Tick(symbol, float(price), float(volume), int(timestamp))
 
 
 def _list_dir(path: str):

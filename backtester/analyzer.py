@@ -3,66 +3,62 @@ import time
 from collections import namedtuple, defaultdict
 
 import numpy as np
+import pandas as pd
 import talib
 
 from backtester import logger
 
-Order = namedtuple('Order', 'symbol price strength timestamp')
+Order = namedtuple('Order', 'symbol price quantity strength timestamp')
 
 
-class Ticks(object):
+class Ticks(pd.DataFrame):
     def __init__(self, size=100, keep=30):
-        self.keep = keep
-        self.watermark = -1
-        self.timestamp = -1
-        self.prices = np.zeros(size, dtype=float)
-        self.quantities = np.zeros(size, dtype=float)
+        super().__init__({'price': np.zeros(size, dtype=float),
+                          'volume': np.zeros(size, dtype=float)})
+        self._keep = keep
+        self._watermark = -1
+        self._timestamp = -1
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'columns={[col for col in self.columns]}, '
+                f'length={len(self)}, '
+                f'watermark={self._watermark}'
+                f')')
+
+    @property
+    def _constructor(self):
+        return Ticks
 
     def __iadd__(self, tick):
-        self._add(tick)
+        if self._timestamp == tick.timestamp:
+            self._update(tick)
+        else:
+            self._add(tick)
+
         return self
 
+    def _update(self, tick):
+        i = self._watermark
+        self['price'][i] = tick.price
+        self['volume'][i] += tick.volume
+
     def _add(self, tick):
-        if self.timestamp == tick.timestamp:
-            i = self.watermark
-            self.prices[i] = tick.price
-            self.quantities[i] += tick.quantity
-            return
+        if len(self) == self._watermark + 1:
+            self._erase_old()
+            self._watermark = self._keep - 1
 
-        done = False
-        while not done:
-            try:
-                i = self.watermark + 1
-                self.prices[i] = tick.price
-                self.quantities[i] = tick.quantity
-                self.timestamp = tick.timestamp
-                self.watermark = i
-                done = True
+        i = self._watermark + 1
+        self['price'][i] = tick.price
+        self['volume'][i] = tick.volume
+        self._timestamp = tick.timestamp
+        self._watermark = i
 
-            except IndexError:  # array is full
-                self._erase_old(self.prices, self.keep)
-                self._erase_old(self.quantities, self.keep)
-                self.watermark = self.keep - 1
-
-    @staticmethod
-    def _erase_old(arr, keep):
-        """ Erases old values and keep the recent ones when the array is full
-
-        Args:
-            arr:
-                an array which is full
-
-        Returns:
-            lowered watermark
-        """
-
-        # copy the recent values into the beginning of array
-        for i in range(keep):
-            arr[i] = arr[arr.size - keep + i]
-
-        # delete the remaining parts of array
-        for i in range(keep, arr.size):
-            arr[i] = 0
+    def _erase_old(self):
+        for name in self.columns:
+            arr = self[name]
+            arr[:self._keep] = arr[-self._keep:]  # bring forward the given number of back items
+            arr[self._keep:] = 0  # then make zero the remaining
 
 
 class StrategyBase(ABC):
@@ -76,7 +72,7 @@ class StrategyBase(ABC):
         pass
 
 
-def run(config, strategy, tick_queue, order_queue, log_queue):
+def run(config, strategy, cash, holdings, tick_queue, order_queue, log_queue):
     logger.config(log_queue)
 
     data = defaultdict(Ticks)
@@ -86,7 +82,7 @@ def run(config, strategy, tick_queue, order_queue, log_queue):
         ticks = data[tick.symbol]
         ticks += tick
 
-        if strength := strategy(ticks) > config['threshold']:
+        if strength := strategy(ticks) >= config['threshold']:
             order = Order(tick.symbol,
                           tick.price,
                           strength,
