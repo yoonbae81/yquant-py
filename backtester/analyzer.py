@@ -1,6 +1,7 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 import time
 from collections import namedtuple, defaultdict
+from dataclasses import dataclass
 
 import numpy as np
 import pandas as pd
@@ -8,7 +9,15 @@ import talib
 
 from backtester import logger
 
-Order = namedtuple('Order', 'symbol price quantity strength timestamp')
+Order = namedtuple('Order', 'symbol price quantity timestamp')
+
+
+@dataclass
+class Holding:
+    quantity: float = 0
+    bought: float = 0
+    current: float = 0
+    stoploss: float = 0
 
 
 class Ticks(pd.DataFrame):
@@ -18,13 +27,6 @@ class Ticks(pd.DataFrame):
         self._keep = keep
         self._watermark = -1
         self._timestamp = -1
-
-    def __repr__(self):
-        return (f'{self.__class__.__name__}('
-                f'columns={[col for col in self.columns]}, '
-                f'length={len(self)}, '
-                f'watermark={self._watermark}'
-                f')')
 
     @property
     def _constructor(self):
@@ -60,8 +62,16 @@ class Ticks(pd.DataFrame):
             arr[:self._keep] = arr[-self._keep:]  # bring forward the given number of back items
             arr[self._keep:] = 0  # then make zero the remaining
 
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'columns={[col for col in self.columns]}, '
+                f'length={len(self)}, '
+                f'watermark={self._watermark}'
+                f')')
+
 
 class StrategyBase(ABC):
+
     def _calc_strength(self):
         pass
 
@@ -72,20 +82,20 @@ class StrategyBase(ABC):
         pass
 
 
-def run(config, strategy, cash, holdings, tick_queue, order_queue, log_queue):
+def run(config, strategy, cash, holding_dict, tick_queue, order_queue, log_queue):
     logger.config(log_queue)
 
-    data = defaultdict(Ticks)
+    ticks_dict = defaultdict(Ticks)
 
     count = 0
     while tick := tick_queue.get():
-        ticks = data[tick.symbol]
+        ticks = ticks_dict[tick.symbol]
         ticks += tick
 
         if strength := strategy(ticks) >= config['threshold']:
             order = Order(tick.symbol,
                           tick.price,
-                          strength,
+                          1,
                           tick.timestamp)
             order_queue.put(order)
 
