@@ -4,8 +4,7 @@ from os import listdir
 from os.path import exists, isfile, isdir, join, basename
 
 from backtester import logger
-
-Tick = namedtuple('Tick', 'symbol price volume timestamp')
+from backtester.data import Tick
 
 
 def _parse(line: str) -> Tick:
@@ -64,7 +63,7 @@ def run(config, tick_queues, log_queue):
     route = _get_router(tick_queues)
 
     count = 0
-    for tick in _get_tick(config['ticks']):
+    for tick in _get_tick(config['ticks_dir']):
         queue = route(tick.symbol)
         queue.put(tick)
         count += 1
@@ -73,4 +72,4 @@ def run(config, tick_queues, log_queue):
     [queue.put(None) for queue in tick_queues]
 
     time.sleep(0.5)
-    log_queue.put_nowait(None)
+    log_queue.put(None)

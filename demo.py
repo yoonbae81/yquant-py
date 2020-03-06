@@ -1,18 +1,30 @@
 import logging
+from collections import defaultdict
 
 import backtester
+from backtester.data import History, Order, Tick
 
 config = {
     'cash': 100_000,
-    'ticks': 'ticks/',
+    'ticks_dir': 'ticks/',
     'output': 'output.txt',
     'threshold': 5,
+    'market': ['KOSPI', 'KOSDAQ'],
 }
 
 
-def strategy(ticks):
-    logging.debug('Calculating...')
-    return config['threshold']
+def calc_quantity(cash, quantity, history):
+    return 1
+
+
+def calc_stoploss(history: History):
+    return 1
+
+
+def strategy(cash: float, quantity: float, stoploss: float, history: History):
+    quantity = calc_quantity(cash, quantity, history)
+    stoploss = calc_stoploss(history)
+    return quantity, stoploss
 
 
 if __name__ == '__main__':

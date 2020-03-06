@@ -1,3 +1,4 @@
+from collections import defaultdict
 from multiprocessing import cpu_count, Manager, Process, Queue, Value
 
 import backtester.fetcher
@@ -5,15 +6,15 @@ import backtester.analyzer
 import backtester.broker
 import backtester.logger
 
+NUM_ANALYZER = max(1, cpu_count() - 1)
+
 
 def run(config, strategy):
-    num_analyzer = max(1, cpu_count() - 1)
-
     manager = Manager()
     cash = manager.Value(float, config['cash'])
-    holding_dict = manager.dict()
+    quantity_dict = manager.dict()
 
-    tick_queues = [Queue() for _ in range(num_analyzer)]
+    tick_queues = [Queue() for _ in range(NUM_ANALYZER)]
     order_queue = Queue()
     log_queue = Queue()
 
@@ -21,13 +22,13 @@ def run(config, strategy):
         Process(target=fetcher.run, name='Fetcher',
                 args=(config, tick_queues, log_queue)),
         Process(target=broker.run, name='Broker',
-                args=(config, cash, holding_dict, order_queue, log_queue)),
+                args=(config, cash, quantity_dict, order_queue, log_queue)),
         Process(target=logger.run, args=(config, log_queue)),
     ]
 
     for i, tick_queue in enumerate(tick_queues, 1):
         p = Process(target=analyzer.run, name=f'Analyzer{i}',
-                    args=(config, strategy, cash, holding_dict,
+                    args=(config, strategy, cash, quantity_dict,
                           tick_queue, order_queue, log_queue))
         processes.append(p)
 
