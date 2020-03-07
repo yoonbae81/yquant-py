@@ -1,17 +1,15 @@
-import numpy as np
-
-from backtester.analyzer import History
+from backtester.data import Dataset
 from backtester.fetcher import Tick
 
 
-def test_history_size():
+def test_size():
     size = 10
-    sut = History(size)
+    sut = Dataset(size)
     assert len(sut) == size
 
 
-def test_history_add():
-    sut = History()
+def test_add():
+    sut = Dataset()
 
     sut += Tick('A', 1000, 10, 1)
     assert sut['price'][0] == 1000
@@ -25,8 +23,8 @@ def test_history_add():
     assert sut['price'][2] == 0
 
 
-def test_history_add_same_timestamp():
-    sut = History()
+def test_add_same_timestamp():
+    sut = Dataset()
 
     sut += Tick('A', 1000, 10, 1)
     sut += Tick('A', 1000, 10, 1)
@@ -35,10 +33,10 @@ def test_history_add_same_timestamp():
     assert sut['volume'][0] == 20  # add quantity
 
 
-def test_history_overflow():
+def test_overflow():
     size = 10
     keep = 3
-    sut = History(size, keep)
+    sut = Dataset(size, keep)
 
     for i in range(1, size + keep):
         sut += Tick('A', i, i, i)

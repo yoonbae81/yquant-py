@@ -13,7 +13,7 @@ NUM_ANALYZER = max(1, cpu_count() - 1)
 def run(config, strategy):
     manager = Manager()
     cash = manager.Value(float, config['cash'])
-    quantity_dict = manager.dict()
+    holding_dict = manager.dict()
 
     tick_queues = [Queue() for _ in range(NUM_ANALYZER)]
     order_queue = Queue()
@@ -23,7 +23,7 @@ def run(config, strategy):
         Process(target=fetcher.run, name='Fetcher',
                 args=(config, tick_queues, log_queue)),
         Process(target=broker.run, name='Broker',
-                args=(config, cash, quantity_dict, order_queue, log_queue)),
+                args=(config, cash, holding_dict, order_queue, log_queue)),
     ]
 
     threads = [
@@ -32,7 +32,7 @@ def run(config, strategy):
 
     for i, tick_queue in enumerate(tick_queues, 1):
         p = Process(target=analyzer.run, name=f'Analyzer{i}',
-                    args=(config, strategy, cash, quantity_dict,
+                    args=(config, strategy, cash, holding_dict,
                           tick_queue, order_queue, log_queue))
         processes.append(p)
 

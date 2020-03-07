@@ -9,7 +9,7 @@ Tick = namedtuple('Tick', 'symbol price volume timestamp')
 Order = namedtuple('Order', 'symbol price quantity timestamp')
 
 
-class History(pd.DataFrame):
+class Dataset(pd.DataFrame):
     def __init__(self, size=100, keep=30):
         super().__init__({'price': np.zeros(size, dtype=float),
                           'volume': np.zeros(size, dtype=float)})
@@ -19,7 +19,7 @@ class History(pd.DataFrame):
 
     @property
     def _constructor(self):
-        return History
+        return Dataset
 
     def __iadd__(self, tick):
         if self._timestamp == tick.timestamp:

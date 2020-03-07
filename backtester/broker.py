@@ -32,7 +32,7 @@ def _get_filepath(dir: str, dt: datetime):
     return join(dir, f'{dt:%Y%m%d%H%M%S}.jsonl')
 
 
-def run(config, cash, quantity_dict, order_queue, log_queue):
+def run(config, cash, holding_dict, order_queue, log_queue):
     logger.config(log_queue)
 
     logger.debug("TODO open a file")
@@ -45,7 +45,7 @@ def run(config, cash, quantity_dict, order_queue, log_queue):
         logger.info(order)
 
         fn = buy if order.quantity >= 0 else sell
-        fn(order, cash, quantity_dict)
+        fn(order, cash, holding_dict)
 
         ''' TODO
         example of record
@@ -66,4 +66,4 @@ def run(config, cash, quantity_dict, order_queue, log_queue):
     logger.info(f'Processed {count} orders')
     logger.info(f'Remaining cash: {cash.value}')
     logger.info(f'Wrote {count:,d} records to {filepath}')
-    logger.info(quantity_dict)
+    logger.info(holding_dict)

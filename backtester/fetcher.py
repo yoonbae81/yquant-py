@@ -1,5 +1,4 @@
 import time
-from collections import namedtuple
 from os import listdir
 from os.path import exists, isfile, isdir, join, basename
 
