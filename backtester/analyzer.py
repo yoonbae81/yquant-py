@@ -2,28 +2,32 @@ import time
 from collections import defaultdict
 
 from backtester import logger
-from backtester.data import History, Order
+from backtester.data import Dataset, Order
 
 
-def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue):
+def run(config, strategy, cash, holding_dict, tick_queue, order_queue, log_queue):
     logger.config(log_queue)
-    history_dict = defaultdict(History)
+    dataset_dict = defaultdict(Dataset)
     stoploss_dict = defaultdict(float)
 
     count = 0
-    while tick := tick_queue.get():
-        stoploss = stoploss_dict[tick.symbol]
-        quantity = 0.0 if tick.symbol is not quantity_dict else quantity_dict[tick.symbol]
-        history = history_dict[tick.symbol]
-        history += tick
-        quantity_new, stoploss_new = strategy(cash.value, quantity, stoploss, history)
+    while t := tick_queue.get():
+        holding = 0 if t.symbol is not holding_dict else holding_dict[t.symbol]
+        stoploss = stoploss_dict[t.symbol]
+        dataset = dataset_dict[t.symbol]
+        dataset += t
 
-        if quantity_new:
-            order = Order(tick.symbol, tick.price, quantity_new, tick.timestamp)
+        if holding > 0 and t.price < stoploss:
+            quantity = strategy.calc_quantity_to_sell(holding, dataset)
+        else:
+            quantity = strategy.calc_quantity_to_buy(config['initial_cash'], cash.value, holding, dataset)
+
+        if abs(quantity) > 0:
+            order = Order(t.symbol, t.price, quantity, t.timestamp)
             order_queue.put(order)
 
-        if stoploss_new:
-            stoploss_dict[tick.symbol] = stoploss_new
+        if quantity > 0 or holding > 0:
+            stoploss_dict[t.symbol] = strategy.calc_stoploss(stoploss, dataset)
 
         count += 1
 
