@@ -12,7 +12,7 @@ NUM_ANALYZER = max(1, cpu_count() - 1)
 
 def run(config, strategy):
     manager = Manager()
-    cash = manager.Value(float, config['cash'])
+    cash = manager.Value(float, config['initial_cash'])
     holding_dict = manager.dict()
 
     tick_queues = [Queue() for _ in range(NUM_ANALYZER)]

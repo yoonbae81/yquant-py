@@ -1,5 +1,4 @@
 import json
-from collections import defaultdict
 from datetime import datetime
 from multiprocessing import Value
 from os.path import join
@@ -11,16 +10,27 @@ from backtester.data import Order
 from backtester.market import kosdaq, kospi
 
 
-def buy(order: Order, cash: Value, quantity_dict: dict):
+def buy(order: Order, cash: Value, holding_dict: dict):
+    # TODO get market corresponding order.symbol
     tax = kosdaq.calc_tax(order)
     commission = kosdaq.calc_commission(order)
 
-    if order.symbol not in quantity_dict:
-        quantity_dict[order.symbol] = 0
+    if order.symbol not in holding_dict:
+        holding_dict[order.symbol] = 0
 
-    quantity_dict[order.symbol] += order.quantity
+    holding_dict[order.symbol] += order.quantity
     cash.value -= order.price * order.quantity + tax + commission
     assert cash.value >= 0
+
+    record = {'timestamp': order.timestamp,
+              'symbol': order.symbol,
+              'price': order.price,
+              'quantity': order.quantity,
+              'tax': tax,
+              'commission': commission,
+              'slippage': 500.0}
+
+    return record
 
 
 def sell(order: Order, cash: Value, quantity_dict: dict):
@@ -45,20 +55,10 @@ def run(config, cash, holding_dict, order_queue, log_queue):
         logger.info(order)
 
         fn = buy if order.quantity >= 0 else sell
-        fn(order, cash, holding_dict)
+        record = fn(order, cash, holding_dict)
 
-        ''' TODO
-        example of record
-            record = {'timestamp': 1,
-                      'symbol': '015760',
-                      'price': 20000.0,
-                      'quantity': 4,
-                      'cost': 221,
-                      'slippage': 500.0}
-        '''
-
-        logger.debug('Ledger: ' + json.dumps(order._asdict()))
-        print(json.dumps(order._asdict()), file=ledger)
+        logger.debug('Ledger: ' + json.dumps(record))
+        print(json.dumps(record), file=ledger)
 
         count += 1
 
