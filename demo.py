@@ -7,7 +7,7 @@ from backtester.data import History, Order, Tick
 config = {
     'cash': 100_000,
     'ticks_dir': 'ticks/',
-    'output': 'output.txt',
+    'ledger_dir': 'ledger/',
     'threshold': 5,
     'market': ['KOSPI', 'KOSDAQ'],
 }
