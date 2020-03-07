@@ -1,5 +1,6 @@
 from collections import defaultdict
 from multiprocessing import cpu_count, Manager, Process, Queue, Value
+from threading import Thread
 
 import backtester.fetcher
 import backtester.analyzer
@@ -23,7 +24,10 @@ def run(config, strategy):
                 args=(config, tick_queues, log_queue)),
         Process(target=broker.run, name='Broker',
                 args=(config, cash, quantity_dict, order_queue, log_queue)),
-        Process(target=logger.run, args=(config, log_queue)),
+    ]
+
+    threads = [
+        Thread(target=logger.run, args=(config, log_queue)),
     ]
 
     for i, tick_queue in enumerate(tick_queues, 1):
@@ -32,5 +36,7 @@ def run(config, strategy):
                           tick_queue, order_queue, log_queue))
         processes.append(p)
 
+    [t.start() for t in threads]
     [p.start() for p in processes]
     [p.join() for p in processes]
+    [t.join() for t in threads]

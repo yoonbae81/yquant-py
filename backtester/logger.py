@@ -1,7 +1,7 @@
 import logging
 import logging.handlers
 
-FORMAT = '%(asctime)s %(processName)-10s %(levelname)-8s %(message)s'
+FORMAT = '%(asctime)s %(processName)-9s %(levelname)-8s %(message)s'
 
 # Aliases
 critical = logging.getLogger().critical
