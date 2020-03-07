@@ -1,12 +1,11 @@
 from collections import namedtuple, defaultdict
-from dataclasses import dataclass
 
 import numpy as np
 import pandas as pd
 
 Tick = namedtuple('Tick', 'symbol price volume timestamp')
-
 Order = namedtuple('Order', 'symbol price quantity timestamp')
+Filled = namedtuple('Filled', 'timestamp symbol quantity price commission tax slippage')
 
 
 class Dataset(pd.DataFrame):
