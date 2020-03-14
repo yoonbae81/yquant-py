@@ -43,5 +43,5 @@ def test_get_unit_price(input, expected):
     (Order('A', 10000, 10, 1), range(9750, 10250 + 1, 50)),
 ])
 def test_simulate_market_price(input, expected):
-    actual = sut.simulate_market_price(input)
+    actual = sut.simulate_market_price(input, 0.7)
     assert actual in expected

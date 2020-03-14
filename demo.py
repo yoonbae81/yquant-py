@@ -1,16 +1,13 @@
-import logging
-from collections import defaultdict
 from types import SimpleNamespace
 
 import backtester
-from backtester.data import Dataset, Order, Tick
 
 config = {
     'initial_cash': 100_000,
+    'symbols_json': 'symbols.json',
     'ticks_dir': 'ticks/',
     'ledger_dir': 'ledger/',
-    'threshold': 5,
-    'market': ['KOSPI', 'KOSDAQ'],
+    'slippage_stdev': 0.7,
 }
 
 
@@ -19,7 +16,7 @@ def calc_quantity_to_buy(initial_cash, current_cash, holding, dataset):
 
 
 def calc_quantity_to_sell(holding, dataset):
-    return holding
+    return 1
 
 
 def calc_stoploss(stoploss, dataset):

@@ -33,7 +33,8 @@ def _get_unit_price(price: float):
     return UNIT_PRICE_MAX
 
 
-def simulate_market_price(order: Order):
+def simulate_market_price(order: Order, slippage_stdev: float):
+    mean = 0.5 if order.quantity > 0 else -0.5
+    offset = round(np.random.normal(mean, slippage_stdev))
     unit_price = _get_unit_price(order.price)
-    deviation = round(np.random.normal(0, 1))
-    return order.price + unit_price * deviation
+    return order.price + unit_price * offset
