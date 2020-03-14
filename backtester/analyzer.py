@@ -1,8 +1,8 @@
 import time
 from collections import defaultdict
 
-from backtester import logger
-from backtester.data import Dataset, Order
+from . import logger
+from .data import Dataset, Order
 
 
 def run(config, strategy, cash, holding_dict, tick_queue, order_queue, log_queue):

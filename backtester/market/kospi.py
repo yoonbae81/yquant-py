@@ -1,6 +1,6 @@
 import numpy as np
 
-from backtester.data import Order
+from ..data import Order
 
 COMMISSION_RATE = 0.015 / 100
 TAX_RATE = 0.25 / 100

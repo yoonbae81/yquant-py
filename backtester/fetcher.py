@@ -2,8 +2,8 @@ import time
 from os import listdir
 from os.path import exists, isfile, isdir, join, basename
 
-from backtester import logger
-from backtester.data import Tick
+from . import logger
+from .data import Tick
 
 
 def _parse(line: str) -> Tick:
