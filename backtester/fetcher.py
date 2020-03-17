@@ -6,12 +6,37 @@ from . import logger
 from .data import Tick
 
 
+def run(config, tick_queues, log_queue):
+    logger.config(log_queue)
+
+    count = 0
+    route = _get_router(tick_queues)
+    for t in _get_tick(config['ticks_dir']):
+        queue = route(t.symbol)
+        queue.put(t)
+        count += 1
+
+    logger.info(f'Fetched {count} ticks')
+
+    time.sleep(0.5)
+    [queue.put(None) for queue in tick_queues]
+
+    time.sleep(0.5)
+    log_queue.put(None)
+
+
 def _parse(line: str) -> Tick:
     symbol, price, volume, timestamp = line.split()
-    return Tick(symbol, float(price), float(volume), int(timestamp))
+
+    return Tick(
+        symbol,
+        float(price),
+        float(volume),
+        int(timestamp)
+    )
 
 
-def _list_dir(path: str):
+def _list_dir(path: str) -> []:
     assert isdir(path)
 
     result = []
@@ -55,20 +80,3 @@ def _get_router(queues):
         return queue
 
     return fn
-
-
-def run(config, tick_queues, log_queue):
-    logger.config(log_queue)
-    route = _get_router(tick_queues)
-
-    count = 0
-    for tick in _get_tick(config['ticks_dir']):
-        queue = route(tick.symbol)
-        queue.put(tick)
-        count += 1
-
-    logger.info(f'Fetched {count} ticks')
-    [queue.put(None) for queue in tick_queues]
-
-    time.sleep(0.5)
-    log_queue.put(None)

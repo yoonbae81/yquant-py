@@ -1,13 +1,15 @@
+from multiprocessing import cpu_count
 from types import SimpleNamespace
 
 import backtester
 
-config = {
+CONFIG = {
     'initial_cash': 100_000,
     'symbols_json': 'symbols.json',
     'ticks_dir': 'ticks/',
     'ledger_dir': 'ledger/',
     'slippage_stdev': 0.7,
+    'num_analyzer': max(1, cpu_count() - 1),
 }
 
 
@@ -29,4 +31,4 @@ strategy = SimpleNamespace(
     calc_stoploss=calc_stoploss)
 
 if __name__ == '__main__':
-    backtester.run(config, strategy)
+    backtester.run(CONFIG, strategy)
