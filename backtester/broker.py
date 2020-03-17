@@ -9,7 +9,7 @@ from .data import Order, Filled
 from .market import kosdaq, kospi
 
 
-def run(config, cash, holding_dict, order_queue, log_queue):
+def run(config, cash, quantity_dict, order_queue, log_queue):
     logger.config(log_queue)
 
     ledger = _get_ledger(config['ledger_dir'])
@@ -20,11 +20,11 @@ def run(config, cash, holding_dict, order_queue, log_queue):
         market_dict = json.load(f)
 
     count = 0
-    while order := order_queue.get():
-        market = _get_market(market_dict, order.symbol)
-        filled = _get_filled(config, market, order)
+    while o := order_queue.get():
+        market = _get_market(market_dict, o.symbol)
+        filled = _get_filled(config, market, o)
 
-        _update_holding(holding_dict, filled)
+        _update_quantity(quantity_dict, filled)
         _update_cash(cash, filled)
 
         print(json.dumps(filled), file=ledger)
@@ -44,7 +44,9 @@ def _get_ledger(dir):
 
 
 def _get_market(market_dict, symbol):
-    return kospi if market_dict.get(symbol, None) == 'KOSPI' else kosdaq
+    return (kospi
+            if market_dict.get(symbol, None) == 'KOSPI'
+            else kosdaq)
 
 
 def _get_filled(config, market, order) -> Filled:
@@ -65,11 +67,11 @@ def _get_filled(config, market, order) -> Filled:
     return filled
 
 
-def _update_holding(holding_dict, filled: Filled):
-    holding_dict.setdefault(filled.symbol, 0)
-    holding_dict[filled.symbol] += filled.quantity
+def _update_quantity(quantity_dict, filled: Filled):
+    quantity_dict.setdefault(filled.symbol, 0)
+    quantity_dict[filled.symbol] += filled.quantity
 
-    assert holding_dict[filled.symbol] >= 0
+    assert quantity_dict[filled.symbol] >= 0
 
 
 def _update_cash(cash: Value, filled: Filled):

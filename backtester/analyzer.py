@@ -5,14 +5,14 @@ from . import logger
 from .data import Dataset, Order
 
 
-def run(config, strategy, cash, holding_dict, tick_queue, order_queue, log_queue):
+def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue):
     logger.config(log_queue)
     dataset_dict = defaultdict(Dataset)
     stoploss_dict = defaultdict(float)
 
     count = 0
     while t := tick_queue.get():
-        holding = 0 if t.symbol is not holding_dict else holding_dict[t.symbol]
+        holding = quantity_dict.get(t.symbol, 0)
         stoploss = stoploss_dict[t.symbol]
         dataset = dataset_dict[t.symbol]
         dataset += t
