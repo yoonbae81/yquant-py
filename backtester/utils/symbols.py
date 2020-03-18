@@ -34,7 +34,7 @@ def run():
 
 
 if __name__ == '__main__':
-    with open('symbols.json', 'wt') as f:
+    with open('config/symbols.json', 'wt') as f:
         json.dump(run(), f, indent=4, sort_keys=True)
 
 """ Codelet for debug
