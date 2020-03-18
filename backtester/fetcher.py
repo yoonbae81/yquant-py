@@ -6,10 +6,10 @@ from os.path import exists, isfile, isdir, join, basename
 
 from .data import Tick
 
+logger = logging.getLogger('fetcher')
+
 
 def run(config, tick_queues):
-    logger = logging.getLogger('fetcher')
-
     count = 0
     route = _get_router(tick_queues)
     for t in _get_tick(config['fetcher']['ticks_dir']):
@@ -21,9 +21,6 @@ def run(config, tick_queues):
 
     time.sleep(0.5)
     [queue.put(None) for queue in tick_queues]
-
-    time.sleep(0.5)
-    # log_queue.put(None)
 
 
 def _parse(line: str) -> Tick:
@@ -62,7 +59,6 @@ def _get_tick(path: str) -> Tick:
                     yield _parse(line)
                 except ValueError:
                     logger.error(f'{basename(file)} line {i} [{line.strip()}]')
-                    # continue
 
 
 def _get_router(queues):

@@ -8,6 +8,8 @@ from logging.handlers import QueueHandler
 
 from .data import Dataset, Order
 
+logger = logging.getLogger('analyzer')
+
 
 def fork(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue):
     logging_config = json.load(open('config/logging.json'))
@@ -19,8 +21,6 @@ def fork(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_que
 
 
 def run(config, strategy, cash, quantity_dict, tick_queue, order_queue):
-    logger = logging.getLogger('analyzer')
-
     dataset_dict = defaultdict(Dataset)
     stoploss_dict = defaultdict(float)
 

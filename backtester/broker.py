@@ -8,10 +8,10 @@ from pathlib import Path
 from .data import Filled
 from .market import kosdaq, kospi
 
+logger = logging.getLogger('broker')
+
 
 def run(config, cash, quantity_dict, order_queue):
-    logger = logging.getLogger('broker')
-
     ledger = _get_ledger(config['broker']['ledger_dir'])
     print(json.dumps({'cash': cash.value}), file=ledger)
 
