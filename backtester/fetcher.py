@@ -1,17 +1,18 @@
+import logging
+import logging.config
 import time
 from os import listdir
 from os.path import exists, isfile, isdir, join, basename
 
-from . import logger
 from .data import Tick
 
 
-def run(config, tick_queues, log_queue):
-    logger.config(log_queue)
+def run(config, tick_queues):
+    logger = logging.getLogger('fetcher')
 
     count = 0
     route = _get_router(tick_queues)
-    for t in _get_tick(config['ticks_dir']):
+    for t in _get_tick(config['fetcher']['ticks_dir']):
         queue = route(t.symbol)
         queue.put(t)
         count += 1
@@ -22,7 +23,7 @@ def run(config, tick_queues, log_queue):
     [queue.put(None) for queue in tick_queues]
 
     time.sleep(0.5)
-    log_queue.put(None)
+    # log_queue.put(None)
 
 
 def _parse(line: str) -> Tick:

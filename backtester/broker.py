@@ -1,18 +1,18 @@
 import json
+import logging
 from datetime import datetime
 from multiprocessing import Value
 from os.path import join
 from pathlib import Path
 
-from . import logger
-from .data import Order, Filled
+from .data import Filled
 from .market import kosdaq, kospi
 
 
-def run(config, cash, quantity_dict, order_queue, log_queue):
-    logger.config(log_queue)
+def run(config, cash, quantity_dict, order_queue):
+    logger = logging.getLogger('broker')
 
-    ledger = _get_ledger(config['ledger_dir'])
+    ledger = _get_ledger(config['broker']['ledger_dir'])
     print(json.dumps({'cash': cash.value}), file=ledger)
 
     logger.info('Loading symbols list from ' + config['symbols_json'])
@@ -50,7 +50,7 @@ def _get_market(market_dict, symbol):
 
 
 def _get_filled(config, market, order) -> Filled:
-    price = market.simulate_market_price(order, config['slippage_stdev'])
+    price = market.simulate_market_price(order, config['broker']['slippage_stdev'])
     commission = market.calc_commission(order)
     tax = market.calc_tax(order)
 

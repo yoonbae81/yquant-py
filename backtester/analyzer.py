@@ -1,12 +1,26 @@
+import json
 import time
-from collections import defaultdict
+import logging
+import logging.config
 
-from . import logger
+from collections import defaultdict
+from logging.handlers import QueueHandler
+
 from .data import Dataset, Order
 
 
-def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue):
-    logger.config(log_queue)
+def fork(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue):
+    logging_config = json.load(open('config/logging.json'))
+    logging.config.dictConfig(logging_config)
+    logger = logging.getLogger('analyzer')
+    logger.addHandler(QueueHandler(log_queue))
+
+    run(config, strategy, cash, quantity_dict, tick_queue, order_queue)
+
+
+def run(config, strategy, cash, quantity_dict, tick_queue, order_queue):
+    logger = logging.getLogger('analyzer')
+
     dataset_dict = defaultdict(Dataset)
     stoploss_dict = defaultdict(float)
 

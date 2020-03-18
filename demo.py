@@ -1,3 +1,4 @@
+import logging
 from multiprocessing import cpu_count
 from types import SimpleNamespace
 
@@ -5,11 +6,17 @@ import backtester
 
 CONFIG = {
     'initial_cash': 100_000,
-    'symbols_json': 'symbols.json',
-    'ticks_dir': 'ticks/',
-    'ledger_dir': 'ledger/',
-    'slippage_stdev': 0.7,
-    'num_analyzer': max(1, cpu_count() - 1),
+    'symbols_json': 'config/symbols.json',
+    'fetcher': {
+        'ticks_dir': 'ticks/',
+    },
+    'broker': {
+        'ledger_dir': 'ledger/',
+        'slippage_stdev': 0.7,
+    },
+    'analyzer': {
+        'workers': max(1, cpu_count() - 1),
+    }
 }
 
 

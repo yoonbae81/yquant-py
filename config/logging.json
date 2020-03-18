@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "disable_existing_loggers": true,
+  "formatters": {
+    "thread": {
+      "format": "%(asctime)s %(threadName)-9s %(levelname)-8s %(message)s"
+    },
+    "process": {
+      "format": "%(asctime)s %(processName)-9s %(levelname)-8s %(message)s"
+    }
+  },
+  "handlers": {
+    "console_thread": {
+      "class": "logging.StreamHandler",
+      "level": "DEBUG",
+      "formatter": "thread"
+    },
+    "console_process": {
+      "class": "logging.StreamHandler",
+      "level": "DEBUG",
+      "formatter": "process"
+    }
+  },
+  "loggers": {
+    "fetcher": {
+      "level": "DEBUG",
+      "handlers": [
+        "console_thread"
+      ]
+    },
+    "analyzer": {
+      "level": "DEBUG",
+      "handlers": [
+        "console_process"
+      ]
+    },
+    "broker": {
+      "level": "DEBUG",
+      "handlers": [
+        "console_thread"
+      ]
+    }
+  }
+}
