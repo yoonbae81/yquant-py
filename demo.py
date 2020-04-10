@@ -8,7 +8,7 @@ CONFIG = {
     'initial_cash': 100_000,
     'symbols_json': 'config/symbols.json',
     'fetcher': {
-        'ticks_dir': 'ticks/',
+        'ticks_path': 'ticks/',
     },
     'broker': {
         'ledger_dir': 'ledger/',

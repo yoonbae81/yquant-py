@@ -103,11 +103,9 @@ def test_route_3():
 
 
 def test_fetch(tick_file):
-    config = {'ticks_dir': tick_file}
     queues = [Queue() for _ in range(2)]
-    log_queue = Queue()
 
-    p = Process(target=sut.run, args=(config, queues, log_queue))
+    p = Process(target=sut.run, args=(tick_file, queues))
     p.start()
     p.join()
 
