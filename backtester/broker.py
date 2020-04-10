@@ -1,7 +1,8 @@
 import json
 import logging
+import queue
 from datetime import datetime
-from multiprocessing import Value
+from multiprocessing import Value, Event
 from os.path import join
 from pathlib import Path
 
@@ -11,7 +12,7 @@ from .market import kosdaq, kospi
 logger = logging.getLogger('broker')
 
 
-def run(config, cash, quantity_dict, order_queue):
+def run(config, cash, quantity_dict, order_queue, done: Event):
     ledger = _get_ledger(config['broker']['ledger_dir'])
     print(json.dumps({'cash': cash.value}), file=ledger)
 
@@ -20,7 +21,12 @@ def run(config, cash, quantity_dict, order_queue):
         market_dict = json.load(f)
 
     count = 0
-    while o := order_queue.get():
+    while not done.is_set():
+        try:
+            o = order_queue.get(block=True, timeout=1)
+        except queue.Empty:
+            continue
+
         market = _get_market(market_dict, o.symbol)
         filled = _get_filled(config, market, o)
 

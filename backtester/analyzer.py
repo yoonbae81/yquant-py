@@ -1,31 +1,38 @@
 import json
+import queue
 import time
 import logging
 import logging.config
 
 from collections import defaultdict
 from logging.handlers import QueueHandler
+from multiprocessing import Event
 
 from .data import Dataset, Order
 
 logger = logging.getLogger('analyzer')
 
 
-def fork(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue):
+def _init_logger(log_queue):
     logging_config = json.load(open('config/logging.json'))
     logging.config.dictConfig(logging_config)
     logger = logging.getLogger('analyzer')
     logger.addHandler(QueueHandler(log_queue))
 
-    run(config, strategy, cash, quantity_dict, tick_queue, order_queue)
 
+def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue, done: Event):
+    _init_logger(log_queue)
 
-def run(config, strategy, cash, quantity_dict, tick_queue, order_queue):
     dataset_dict = defaultdict(Dataset)
     stoploss_dict = defaultdict(float)
 
     count = 0
-    while t := tick_queue.get():
+    while not done.is_set():
+        try:
+            t = tick_queue.get(block=True, timeout=0.1)
+        except queue.Empty:
+            continue
+
         holding = quantity_dict.get(t.symbol, 0)
         stoploss = stoploss_dict[t.symbol]
         dataset = dataset_dict[t.symbol]
@@ -46,6 +53,3 @@ def run(config, strategy, cash, quantity_dict, tick_queue, order_queue):
         count += 1
 
     logger.info(f'Analyzed {count} ticks')
-
-    time.sleep(0.1)
-    order_queue.put(None)
