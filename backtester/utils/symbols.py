@@ -2,8 +2,10 @@ import json
 import requests
 import sys
 
-URLS = {'KOSPI': 'https://finance.daum.net/api/quotes/stocks?market=KOSPI',
-        'KOSDAQ': 'https://finance.daum.net/api/quotes/stocks?market=KOSDAQ'}
+URLS = {
+    'KOSPI': 'https://finance.daum.net/api/quotes/stocks?market=KOSPI',
+    'KOSDAQ': 'https://finance.daum.net/api/quotes/stocks?market=KOSDAQ'
+}
 
 HEADERS = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36',
@@ -33,13 +35,21 @@ def run():
     return d
 
 
+def save(data, filename):
+    with open(filename, 'wt') as f:
+        json.dump(data, f, indent=4, sort_keys=True)
+
+
 if __name__ == '__main__':
-    with open('config/symbols.json', 'wt') as f:
-        json.dump(run(), f, indent=4, sort_keys=True)
+    data = run()
+    print(data)
+
+    filename = 'config/symbols.json'
+    save(data, filename)
+    print(f'Saved in {filename}')
 
 """ Codelet for debug
-res = requests.get(URLS['kospi'], headers=HEADERS)
+res = requests.get(URLS['KOSPI'], headers=HEADERS)
 res.status_code == 200
-data = json.loads(res.text)['data']
-item = data[0]
+res.text
 """

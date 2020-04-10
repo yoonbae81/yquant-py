@@ -1,7 +1,6 @@
 # Project specific
 ledger/
 ticks/
-config/symbols.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
