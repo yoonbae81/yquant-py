@@ -1,3 +1,5 @@
+import numpy as np
+
 from backtester.data import Stock
 from backtester.fetcher import Tick
 
@@ -51,3 +53,11 @@ def test_overflow():
     assert sut['volume'][1] == 9  # keep value
     assert sut['volume'][2] == 10  # keep value
     assert sut['volume'][3] == 11  # new value
+
+
+def test_add_timeseries():
+    sut = Stock()
+
+    sut['new']  # add new time series data
+    assert type(sut['new']) == np.ndarray
+    assert len(sut['new']) == sut._size

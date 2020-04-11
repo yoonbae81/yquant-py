@@ -12,20 +12,24 @@ Filled = namedtuple('Filled',
 
 class Stock:
     def __init__(self, size=100, keep=30):
+        self.stoploss = None
+
         self._size = size
         self._keep = keep
         self._watermark = -1
         self._timestamp = -1
+        self._timeseries = {'price': np.zeros(size, dtype=float),
+                            'volume': np.zeros(size, dtype=float)}
 
-        self.stoploss = None
-        self.columns = {'price': np.zeros(size, dtype=float),
-                        'volume': np.zeros(size, dtype=float)}
+    def __getitem__(self, key):
+        try:
+            return self._timeseries[key]
+        except KeyError:
+            self._timeseries[key] = np.zeros(self._size, dtype=float)
+            return self._timeseries[key]
 
     def __len__(self):
         return self._size
-
-    def __getitem__(self, item):
-        return self.columns[item]
 
     def __iadd__(self, tick):
         if self._timestamp == tick.timestamp:
@@ -52,14 +56,14 @@ class Stock:
         self._watermark = i
 
     def _erase_old(self):
-        for name in self.columns.keys():
-            arr = self.columns[name]
+        for key in self._timeseries.keys():
+            arr = self._timeseries[key]
             arr[:self._keep] = arr[-self._keep:]  # bring forward the given number of back items
             arr[self._keep:] = 0  # then make zero the remaining
 
     def __repr__(self):
         return (f'{self.__class__.__name__}('
-                f'columns={[col for col in self.columns]}, '
+                f'columns={[key for key in self._timeseries]}, '
                 f'length={len(self)}, '
                 f'watermark={self._watermark}, '
                 f'stoploss={self.stoploss}'
