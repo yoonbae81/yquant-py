@@ -18,7 +18,7 @@ def run(ticks_dir: str, tick_queues: [], done: Event):
         count += 1
 
     logger.info(f'Fetched {count} ticks')
-    time.sleep(1)
+    time.sleep(2)
     done.set()
 
 

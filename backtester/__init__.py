@@ -1,7 +1,7 @@
 import json
 import logging
-from multiprocessing import Manager, Process, Queue, Event
 from threading import Thread
+from multiprocessing import Manager, Process, Queue, Event
 
 from . import analyzer
 from . import broker

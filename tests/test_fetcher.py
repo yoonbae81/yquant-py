@@ -1,4 +1,4 @@
-from multiprocessing import Process, Queue
+from multiprocessing import Process, Queue, Event
 from os import remove
 from tempfile import TemporaryDirectory, NamedTemporaryFile
 
@@ -105,7 +105,7 @@ def test_route_3():
 def test_fetch(tick_file):
     queues = [Queue() for _ in range(2)]
 
-    p = Process(target=sut.run, args=(tick_file, queues))
+    p = Process(target=sut.run, args=(tick_file, queues, Event()))
     p.start()
     p.join()
 

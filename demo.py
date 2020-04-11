@@ -1,4 +1,3 @@
-import logging
 from multiprocessing import cpu_count
 from types import SimpleNamespace
 
@@ -20,16 +19,16 @@ CONFIG = {
 }
 
 
-def calc_quantity_to_buy(initial_cash, current_cash, holding, dataset):
+def calc_quantity_to_buy(initial_cash, current_cash, holding, stock):
     return 1
 
 
-def calc_quantity_to_sell(holding, dataset):
+def calc_quantity_to_sell(holding, stock):
     return 1
 
 
-def calc_stoploss(stoploss, dataset):
-    return stoploss
+def calc_stoploss(stock):
+    return 1
 
 
 strategy = SimpleNamespace(

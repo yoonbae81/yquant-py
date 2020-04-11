@@ -1,15 +1,16 @@
-from backtester.data import Dataset
+from backtester.data import Stock
 from backtester.fetcher import Tick
 
 
 def test_size():
     size = 10
-    sut = Dataset(size)
+    sut = Stock(size)
+
     assert len(sut) == size
 
 
 def test_add():
-    sut = Dataset()
+    sut = Stock()
 
     sut += Tick('A', 1000, 10, 1)
     assert sut['price'][0] == 1000
@@ -24,7 +25,7 @@ def test_add():
 
 
 def test_add_same_timestamp():
-    sut = Dataset()
+    sut = Stock()
 
     sut += Tick('A', 1000, 10, 1)
     sut += Tick('A', 1000, 10, 1)
@@ -36,7 +37,7 @@ def test_add_same_timestamp():
 def test_overflow():
     size = 10
     keep = 3
-    sut = Dataset(size, keep)
+    sut = Stock(size, keep)
 
     for i in range(1, size + keep):
         sut += Tick('A', i, i, i)
