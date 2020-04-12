@@ -2,7 +2,7 @@ import json
 import logging
 import queue
 from datetime import datetime
-from multiprocessing import Value, Event
+from multiprocessing import Value, Event, Queue
 from os.path import join
 from pathlib import Path
 
@@ -13,12 +13,10 @@ logger = logging.getLogger('broker')
 
 
 def run(config, cash, quantity_dict, order_queue, done: Event):
-    ledger = _get_ledger(config['broker']['ledger_dir'])
-    print(json.dumps({'cash': cash.value}), file=ledger)
+    symbols = _load_symbols(config['symbols_json'])
+    ledger = _prepare_ledger(config['broker']['ledger_dir'])
 
-    logger.info('Loading symbols list from ' + config['symbols_json'])
-    with open(config['symbols_json'], 'rt') as f:
-        market_dict = json.load(f)
+    print(json.dumps({'cash': cash.value}), file=ledger)
 
     count = 0
     while not done.is_set():
@@ -27,14 +25,14 @@ def run(config, cash, quantity_dict, order_queue, done: Event):
         except queue.Empty:
             continue
 
-        market = _get_market(market_dict, o.symbol)
+        market = (kospi if symbols.get(o.symbol, None) == 'KOSPI' else kosdaq)
         filled = _get_filled(config, market, o)
 
         _update_quantity(quantity_dict, filled)
-        _update_cash(cash, filled)
+        cash.value -= filled.total_cost()
 
-        print(json.dumps(filled), file=ledger)
-        logger.debug('Ledger: ' + json.dumps(filled))
+        print(filled.as_json(), file=ledger)
+        logger.debug('Wrote ' + repr(filled))
 
         count += 1
 
@@ -42,17 +40,19 @@ def run(config, cash, quantity_dict, order_queue, done: Event):
     logger.info(f'Processed {count} orders and wrote to {ledger.name}')
 
 
-def _get_ledger(dir):
+def _prepare_ledger(dir):
     Path(dir).mkdir(parents=True, exist_ok=True)
     name = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
 
     return open(join(dir, name), 'wt')
 
 
-def _get_market(market_dict, symbol):
-    return (kospi
-            if market_dict.get(symbol, None) == 'KOSPI'
-            else kosdaq)
+def _load_symbols(filepath):
+    logger.info('Loading symbols list from ' + filepath)
+    with open(filepath, 'rt') as f:
+        symbols = json.load(f)
+
+    return symbols
 
 
 def _get_filled(config, market, order) -> Filled:
@@ -61,13 +61,13 @@ def _get_filled(config, market, order) -> Filled:
     tax = market.calc_tax(order)
 
     filled = Filled(
-        order.timestamp,
         order.symbol,
         order.quantity,
         price,
         commission,
         tax,
         order.price - price,
+        order.timestamp,
     )
 
     return filled
@@ -78,11 +78,3 @@ def _update_quantity(quantity_dict, filled: Filled):
     quantity_dict[filled.symbol] += filled.quantity
 
     assert quantity_dict[filled.symbol] >= 0
-
-
-def _update_cash(cash: Value, filled: Filled):
-    cash.value -= filled.quantity * filled.price \
-                  + filled.commission \
-                  + filled.tax
-
-    assert cash.value >= 0

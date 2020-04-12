@@ -1,4 +1,7 @@
+from json import dumps
+from math import copysign
 from collections import namedtuple
+from dataclasses import dataclass, asdict
 
 import numpy as np
 
@@ -6,8 +9,30 @@ Tick = namedtuple('Tick',
                   'symbol price volume timestamp')
 Order = namedtuple('Order',
                    'symbol price quantity timestamp')
-Filled = namedtuple('Filled',
-                    'timestamp symbol quantity price commission tax slippage')
+
+
+@dataclass
+class Filled:
+    symbol: str
+    quantity: float
+    price: float
+    commission: float
+    tax: float
+    slippage: float
+    timestamp: int
+
+    def total_cost(self):
+        return copysign(1, self.quantity) \
+               * (abs(self.quantity)
+                  * self.price
+                  + self.commission
+                  + self.tax)
+
+    def as_dict(self):
+        return asdict(self)
+
+    def as_json(self):
+        return dumps(asdict(self))
 
 
 class Stock:

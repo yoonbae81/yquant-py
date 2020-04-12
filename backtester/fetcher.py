@@ -35,6 +35,7 @@ def _get_tick(path: str) -> Tick:
                     yield _parse(line)
                 except ValueError:
                     logger.error(f'{basename(file)} line {i} [{line.strip()}]')
+                    continue
 
 
 def _list_dir(path: str) -> []:

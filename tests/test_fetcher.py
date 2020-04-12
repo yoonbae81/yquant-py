@@ -27,7 +27,7 @@ def test_parse(input, expected):
 ])
 def test_parse_error(input):
     with pytest.raises(ValueError):
-        tick = sut._parse(input)
+        sut._parse(input)
 
 
 @pytest.fixture(scope='session')
