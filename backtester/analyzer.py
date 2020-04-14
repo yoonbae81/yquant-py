@@ -13,7 +13,7 @@ logger = logging.getLogger('analyzer')
 
 
 def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue, done: Event):
-    _init_logger(log_queue)
+    _init_logger(config, log_queue)
 
     stock_dict = defaultdict(Stock)
 
@@ -21,13 +21,14 @@ def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queu
     while not done.is_set():
         try:
             t = tick_queue.get(block=True, timeout=1)
+            count += 1
         except queue.Empty:
             continue
 
-        holding = quantity_dict.get(t.symbol, 0)
         stock = stock_dict[t.symbol]
         stock += t
 
+        holding = quantity_dict.get(t.symbol, 0)
         if holding > 0 and t.price < stock.stoploss:
             quantity = strategy.calc_quantity_to_sell(holding, stock)
         else:
@@ -40,13 +41,10 @@ def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queu
         if quantity > 0 or holding > 0:
             stock.stoploss = strategy.calc_stoploss(stock)
 
-        count += 1
-
     logger.info(f'Analyzed {count} ticks')
 
 
-def _init_logger(log_queue):
-    logging_config = json.load(open('config/logging.json'))
+def _init_logger(config, log_queue):
+    logging_config = json.load(open(config['files']['logging']))
     logging.config.dictConfig(logging_config)
-    logger = logging.getLogger('analyzer')
-    logger.addHandler(QueueHandler(log_queue))
+    logging.getLogger('analyzer').addHandler(QueueHandler(log_queue))

@@ -10,8 +10,9 @@ logger = logging.getLogger('fetcher')
 
 
 def run(ticks_dir: str, tick_queues: [], done: Event):
-    count = 0
     route = _get_router(tick_queues)
+
+    count = 0
     for t in _get_tick(ticks_dir):
         queue = route(t.symbol)
         queue.put(t)
