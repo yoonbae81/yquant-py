@@ -46,12 +46,11 @@ class Stock:
         self._timeseries = {'price': np.zeros(size, dtype=float),
                             'volume': np.zeros(size, dtype=float)}
 
+    def add_timeseries(self, key):
+        self._timeseries[key] = np.zeros(self._size, dtype=float)
+
     def __getitem__(self, key):
-        try:
-            return self._timeseries[key]
-        except KeyError:
-            self._timeseries[key] = np.zeros(self._size, dtype=float)
-            return self._timeseries[key]
+        return self._timeseries[key]
 
     def __len__(self):
         return self._size
