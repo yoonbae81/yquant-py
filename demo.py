@@ -1,3 +1,4 @@
+import json
 from multiprocessing import cpu_count
 from types import SimpleNamespace
 
@@ -5,7 +6,6 @@ import backtester
 
 CONFIG = {
     'initial_cash': 100_000,
-    'symbols_json': 'config/symbols.json',
     'fetcher': {
         'ticks_path': 'ticks/',
     },
@@ -15,6 +15,10 @@ CONFIG = {
     },
     'analyzer': {
         'workers': max(1, cpu_count() - 1),
+    },
+    'files': {
+        'logging': 'config/logging.json',
+        'symbols': 'config/symbols.json',
     }
 }
 
@@ -37,4 +41,8 @@ strategy = SimpleNamespace(
     calc_stoploss=calc_stoploss)
 
 if __name__ == '__main__':
+    symbols_path = CONFIG['files']['symbols']
+    with open(symbols_path, 'rt') as f:
+        CONFIG['symbols'] = json.load(f)
+
     backtester.run(CONFIG, strategy)

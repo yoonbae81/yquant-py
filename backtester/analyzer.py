@@ -7,7 +7,6 @@ from collections import defaultdict
 from logging.handlers import QueueHandler
 from multiprocessing import Event
 
-# from .data import Dataset, Order
 from .data import Stock, Order
 
 logger = logging.getLogger('analyzer')
