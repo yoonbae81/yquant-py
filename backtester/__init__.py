@@ -9,8 +9,7 @@ from . import fetcher
 
 
 def run(config, strategy):
-    logging_config = json.load(open(config['files']['logging']))
-    logging.config.dictConfig(logging_config)
+    logging.config.dictConfig(config['logging'])
 
     manager = Manager()
     cash = manager.Value(float, config['initial_cash'])

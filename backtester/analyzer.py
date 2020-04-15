@@ -45,6 +45,5 @@ def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queu
 
 
 def _init_logger(config, log_queue):
-    logging_config = json.load(open(config['files']['logging']))
-    logging.config.dictConfig(logging_config)
+    logging.config.dictConfig(config['logging'])
     logging.getLogger('analyzer').addHandler(QueueHandler(log_queue))
