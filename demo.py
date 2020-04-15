@@ -5,7 +5,8 @@ from types import SimpleNamespace
 import backtester
 
 CONFIG = {
-    'initial_cash': 100_000,
+    'initial_cash':
+        100_000,
     'fetcher': {
         'ticks_path': 'ticks/',
     },
@@ -18,7 +19,8 @@ CONFIG = {
     },
     'files': {
         'logging': 'config/logging.json',
-        'symbols': 'config/symbols.json',
+        'symbol': 'config/symbol.json',
+        'market': 'config/market.json',
     }
 }
 
@@ -41,8 +43,8 @@ strategy = SimpleNamespace(
     calc_stoploss=calc_stoploss)
 
 if __name__ == '__main__':
-    symbols_path = CONFIG['files']['symbols']
-    with open(symbols_path, 'rt') as f:
-        CONFIG['symbols'] = json.load(f)
+    for key, filepath in CONFIG['files'].items():
+        with open(filepath, 'rt') as f:
+            CONFIG[key] = json.load(f)
 
     backtester.run(CONFIG, strategy)

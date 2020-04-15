@@ -14,6 +14,7 @@ Order = namedtuple('Order',
 @dataclass
 class Filled:
     symbol: str
+    market: str
     quantity: float
     price: float
     commission: float

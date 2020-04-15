@@ -6,8 +6,9 @@ from multiprocessing import Value, Event, Queue
 from os.path import join
 from pathlib import Path
 
+import numpy as np
+
 from .data import Filled
-from .market import kosdaq, kospi
 
 logger = logging.getLogger('broker')
 
@@ -44,16 +45,14 @@ def _prepare_ledger(dir):
 
 
 def _get_filled(config, order) -> Filled:
-    market = (kospi
-              if config['symbols'].get(order.symbol, None) == 'KOSPI'
-              else kosdaq)
-
-    price = market.simulate_market_price(order, config['broker']['slippage_stdev'])
-    commission = market.calc_commission(order)
-    tax = market.calc_tax(order)
+    market = config['symbol'].get(order.symbol, 'KOSPI')
+    price = _simulate_market_price(config, market, order.price, order.quantity)
+    commission = _calc_commission(config, market, price, order.quantity)
+    tax = _calc_tax(config, market, price, order.quantity)
 
     return Filled(
         order.symbol,
+        market,
         order.quantity,
         price,
         commission,
@@ -61,3 +60,36 @@ def _get_filled(config, order) -> Filled:
         order.price - price,
         order.timestamp,
     )
+
+
+def _calc_commission(config, market, price, quantity) -> float:
+    trade = 'buy' if quantity > 0 else 'sell'
+    rate = config['market'][market]['commission'][trade]
+
+    return round(price * abs(quantity) * rate)
+
+
+def _calc_tax(config, market, price, quantity) -> float:
+    trade = 'buy' if quantity > 0 else 'sell'
+    rate = config['market'][market]['tax'][trade]
+
+    return round(price * abs(quantity) * rate)
+
+
+def _simulate_market_price(config, market, price, quantity) -> float:
+    mean = 0.5 if quantity > 0 else -0.5,
+    stdev = config['broker']['slippage_stdev']
+    offset = int(np.random.normal(mean, stdev))
+
+    price_unit = _get_price_unit(config, market, price)
+
+    return price + offset * price_unit
+
+
+def _get_price_unit(config, market, price) -> float:
+    price_units = config['market'][market]['price_units']
+    for item in price_units:
+        if price < item['price']:
+            return item['unit']
+
+    return price_units[-1]['unit']
