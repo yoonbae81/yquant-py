@@ -1,0 +1,8474 @@
+{
+    "000020": {
+        "market": "KOSPI"
+    },
+    "000040": {
+        "market": "KOSPI"
+    },
+    "000050": {
+        "market": "KOSPI"
+    },
+    "000055": {
+        "market": "KOSDAQ"
+    },
+    "000057": {
+        "market": "KOSDAQ"
+    },
+    "000060": {
+        "market": "KOSPI"
+    },
+    "000070": {
+        "market": "KOSPI"
+    },
+    "000071": {
+        "market": "KOSPI"
+    },
+    "000080": {
+        "market": "KOSPI"
+    },
+    "000082": {
+        "market": "KOSPI"
+    },
+    "000100": {
+        "market": "KOSPI"
+    },
+    "000101": {
+        "market": "KOSPI"
+    },
+    "000120": {
+        "market": "KOSPI"
+    },
+    "000140": {
+        "market": "KOSPI"
+    },
+    "000141": {
+        "market": "KOSPI"
+    },
+    "000150": {
+        "market": "KOSPI"
+    },
+    "000151": {
+        "market": "KOSPI"
+    },
+    "000152": {
+        "market": "KOSPI"
+    },
+    "000180": {
+        "market": "KOSPI"
+    },
+    "000210": {
+        "market": "KOSPI"
+    },
+    "000211": {
+        "market": "KOSPI"
+    },
+    "000214": {
+        "market": "KOSDAQ"
+    },
+    "000220": {
+        "market": "KOSPI"
+    },
+    "000221": {
+        "market": "KOSPI"
+    },
+    "000222": {
+        "market": "KOSPI"
+    },
+    "000230": {
+        "market": "KOSPI"
+    },
+    "000240": {
+        "market": "KOSPI"
+    },
+    "000250": {
+        "market": "KOSDAQ"
+    },
+    "000270": {
+        "market": "KOSPI"
+    },
+    "000295": {
+        "market": "KOSDAQ"
+    },
+    "000300": {
+        "market": "KOSPI"
+    },
+    "000307": {
+        "market": "KOSDAQ"
+    },
+    "000312": {
+        "market": "KOSDAQ"
+    },
+    "000320": {
+        "market": "KOSPI"
+    },
+    "000321": {
+        "market": "KOSPI"
+    },
+    "000341": {
+        "market": "KOSDAQ"
+    },
+    "000370": {
+        "market": "KOSPI"
+    },
+    "000390": {
+        "market": "KOSPI"
+    },
+    "000400": {
+        "market": "KOSPI"
+    },
+    "000430": {
+        "market": "KOSPI"
+    },
+    "000440": {
+        "market": "KOSDAQ"
+    },
+    "000449": {
+        "market": "KOSDAQ"
+    },
+    "000480": {
+        "market": "KOSPI"
+    },
+    "000490": {
+        "market": "KOSPI"
+    },
+    "000500": {
+        "market": "KOSPI"
+    },
+    "000520": {
+        "market": "KOSPI"
+    },
+    "000540": {
+        "market": "KOSPI"
+    },
+    "000541": {
+        "market": "KOSPI"
+    },
+    "000542": {
+        "market": "KOSPI"
+    },
+    "000590": {
+        "market": "KOSPI"
+    },
+    "000640": {
+        "market": "KOSPI"
+    },
+    "000650": {
+        "market": "KOSPI"
+    },
+    "000660": {
+        "market": "KOSPI"
+    },
+    "000670": {
+        "market": "KOSPI"
+    },
+    "000680": {
+        "market": "KOSPI"
+    },
+    "000700": {
+        "market": "KOSPI"
+    },
+    "000720": {
+        "market": "KOSPI"
+    },
+    "000721": {
+        "market": "KOSPI"
+    },
+    "000760": {
+        "market": "KOSPI"
+    },
+    "000810": {
+        "market": "KOSPI"
+    },
+    "000811": {
+        "market": "KOSPI"
+    },
+    "000850": {
+        "market": "KOSPI"
+    },
+    "000860": {
+        "market": "KOSPI"
+    },
+    "000880": {
+        "market": "KOSPI"
+    },
+    "000881": {
+        "market": "KOSPI"
+    },
+    "00088K": {
+        "market": "KOSPI"
+    },
+    "000890": {
+        "market": "KOSPI"
+    },
+    "000910": {
+        "market": "KOSPI"
+    },
+    "000950": {
+        "market": "KOSPI"
+    },
+    "000970": {
+        "market": "KOSPI"
+    },
+    "000990": {
+        "market": "KOSPI"
+    },
+    "000991": {
+        "market": "KOSPI"
+    },
+    "001000": {
+        "market": "KOSDAQ"
+    },
+    "001020": {
+        "market": "KOSPI"
+    },
+    "001040": {
+        "market": "KOSPI"
+    },
+    "001041": {
+        "market": "KOSPI"
+    },
+    "00104K": {
+        "market": "KOSPI"
+    },
+    "001060": {
+        "market": "KOSPI"
+    },
+    "001061": {
+        "market": "KOSPI"
+    },
+    "001062": {
+        "market": "KOSPI"
+    },
+    "001070": {
+        "market": "KOSPI"
+    },
+    "001080": {
+        "market": "KOSPI"
+    },
+    "001120": {
+        "market": "KOSPI"
+    },
+    "001130": {
+        "market": "KOSPI"
+    },
+    "001140": {
+        "market": "KOSPI"
+    },
+    "001200": {
+        "market": "KOSPI"
+    },
+    "001210": {
+        "market": "KOSPI"
+    },
+    "001230": {
+        "market": "KOSPI"
+    },
+    "001250": {
+        "market": "KOSPI"
+    },
+    "001260": {
+        "market": "KOSPI"
+    },
+    "001270": {
+        "market": "KOSPI"
+    },
+    "001271": {
+        "market": "KOSPI"
+    },
+    "001290": {
+        "market": "KOSPI"
+    },
+    "001340": {
+        "market": "KOSPI"
+    },
+    "001360": {
+        "market": "KOSPI"
+    },
+    "001380": {
+        "market": "KOSPI"
+    },
+    "001390": {
+        "market": "KOSPI"
+    },
+    "001420": {
+        "market": "KOSPI"
+    },
+    "001430": {
+        "market": "KOSPI"
+    },
+    "001440": {
+        "market": "KOSPI"
+    },
+    "001450": {
+        "market": "KOSPI"
+    },
+    "001460": {
+        "market": "KOSPI"
+    },
+    "001461": {
+        "market": "KOSPI"
+    },
+    "001470": {
+        "market": "KOSPI"
+    },
+    "001500": {
+        "market": "KOSPI"
+    },
+    "001510": {
+        "market": "KOSPI"
+    },
+    "001511": {
+        "market": "KOSPI"
+    },
+    "001520": {
+        "market": "KOSPI"
+    },
+    "001521": {
+        "market": "KOSPI"
+    },
+    "001522": {
+        "market": "KOSPI"
+    },
+    "001523": {
+        "market": "KOSPI"
+    },
+    "001530": {
+        "market": "KOSPI"
+    },
+    "001540": {
+        "market": "KOSDAQ"
+    },
+    "001550": {
+        "market": "KOSPI"
+    },
+    "001560": {
+        "market": "KOSPI"
+    },
+    "001570": {
+        "market": "KOSPI"
+    },
+    "001620": {
+        "market": "KOSPI"
+    },
+    "001630": {
+        "market": "KOSPI"
+    },
+    "001680": {
+        "market": "KOSPI"
+    },
+    "001681": {
+        "market": "KOSPI"
+    },
+    "001720": {
+        "market": "KOSPI"
+    },
+    "001721": {
+        "market": "KOSPI"
+    },
+    "001740": {
+        "market": "KOSPI"
+    },
+    "001741": {
+        "market": "KOSPI"
+    },
+    "001750": {
+        "market": "KOSPI"
+    },
+    "001751": {
+        "market": "KOSPI"
+    },
+    "001770": {
+        "market": "KOSPI"
+    },
+    "001780": {
+        "market": "KOSPI"
+    },
+    "001790": {
+        "market": "KOSPI"
+    },
+    "001791": {
+        "market": "KOSPI"
+    },
+    "001800": {
+        "market": "KOSPI"
+    },
+    "001810": {
+        "market": "KOSDAQ"
+    },
+    "001820": {
+        "market": "KOSPI"
+    },
+    "001840": {
+        "market": "KOSDAQ"
+    },
+    "001880": {
+        "market": "KOSPI"
+    },
+    "001940": {
+        "market": "KOSPI"
+    },
+    "002020": {
+        "market": "KOSPI"
+    },
+    "002021": {
+        "market": "KOSPI"
+    },
+    "002030": {
+        "market": "KOSPI"
+    },
+    "002070": {
+        "market": "KOSPI"
+    },
+    "002100": {
+        "market": "KOSPI"
+    },
+    "002140": {
+        "market": "KOSPI"
+    },
+    "002150": {
+        "market": "KOSPI"
+    },
+    "002170": {
+        "market": "KOSPI"
+    },
+    "002200": {
+        "market": "KOSPI"
+    },
+    "002210": {
+        "market": "KOSPI"
+    },
+    "002220": {
+        "market": "KOSPI"
+    },
+    "002230": {
+        "market": "KOSDAQ"
+    },
+    "002240": {
+        "market": "KOSPI"
+    },
+    "002270": {
+        "market": "KOSPI"
+    },
+    "002290": {
+        "market": "KOSDAQ"
+    },
+    "002300": {
+        "market": "KOSPI"
+    },
+    "002310": {
+        "market": "KOSPI"
+    },
+    "002320": {
+        "market": "KOSPI"
+    },
+    "002350": {
+        "market": "KOSPI"
+    },
+    "002351": {
+        "market": "KOSPI"
+    },
+    "002360": {
+        "market": "KOSPI"
+    },
+    "002380": {
+        "market": "KOSPI"
+    },
+    "002390": {
+        "market": "KOSPI"
+    },
+    "002410": {
+        "market": "KOSPI"
+    },
+    "002420": {
+        "market": "KOSPI"
+    },
+    "002450": {
+        "market": "KOSPI"
+    },
+    "002460": {
+        "market": "KOSPI"
+    },
+    "002600": {
+        "market": "KOSPI"
+    },
+    "002620": {
+        "market": "KOSPI"
+    },
+    "002630": {
+        "market": "KOSPI"
+    },
+    "002680": {
+        "market": "KOSDAQ"
+    },
+    "002690": {
+        "market": "KOSPI"
+    },
+    "002700": {
+        "market": "KOSPI"
+    },
+    "002710": {
+        "market": "KOSPI"
+    },
+    "002720": {
+        "market": "KOSPI"
+    },
+    "002760": {
+        "market": "KOSPI"
+    },
+    "002780": {
+        "market": "KOSPI"
+    },
+    "002781": {
+        "market": "KOSPI"
+    },
+    "002782": {
+        "market": "KOSPI"
+    },
+    "002790": {
+        "market": "KOSPI"
+    },
+    "002791": {
+        "market": "KOSPI"
+    },
+    "00279K": {
+        "market": "KOSPI"
+    },
+    "002800": {
+        "market": "KOSDAQ"
+    },
+    "002810": {
+        "market": "KOSPI"
+    },
+    "002820": {
+        "market": "KOSPI"
+    },
+    "002840": {
+        "market": "KOSPI"
+    },
+    "002870": {
+        "market": "KOSPI"
+    },
+    "002880": {
+        "market": "KOSPI"
+    },
+    "002900": {
+        "market": "KOSPI"
+    },
+    "002920": {
+        "market": "KOSPI"
+    },
+    "002960": {
+        "market": "KOSPI"
+    },
+    "002990": {
+        "market": "KOSPI"
+    },
+    "002991": {
+        "market": "KOSPI"
+    },
+    "003000": {
+        "market": "KOSPI"
+    },
+    "003010": {
+        "market": "KOSPI"
+    },
+    "003030": {
+        "market": "KOSPI"
+    },
+    "003060": {
+        "market": "KOSPI"
+    },
+    "003070": {
+        "market": "KOSPI"
+    },
+    "003071": {
+        "market": "KOSPI"
+    },
+    "003080": {
+        "market": "KOSPI"
+    },
+    "003090": {
+        "market": "KOSPI"
+    },
+    "003100": {
+        "market": "KOSDAQ"
+    },
+    "003120": {
+        "market": "KOSPI"
+    },
+    "003160": {
+        "market": "KOSPI"
+    },
+    "003200": {
+        "market": "KOSPI"
+    },
+    "003220": {
+        "market": "KOSPI"
+    },
+    "003230": {
+        "market": "KOSPI"
+    },
+    "003240": {
+        "market": "KOSPI"
+    },
+    "003280": {
+        "market": "KOSPI"
+    },
+    "003300": {
+        "market": "KOSPI"
+    },
+    "003310": {
+        "market": "KOSDAQ"
+    },
+    "003350": {
+        "market": "KOSPI"
+    },
+    "003380": {
+        "market": "KOSDAQ"
+    },
+    "003410": {
+        "market": "KOSPI"
+    },
+    "003411": {
+        "market": "KOSPI"
+    },
+    "003460": {
+        "market": "KOSPI"
+    },
+    "003461": {
+        "market": "KOSPI"
+    },
+    "003470": {
+        "market": "KOSPI"
+    },
+    "003471": {
+        "market": "KOSPI"
+    },
+    "003480": {
+        "market": "KOSPI"
+    },
+    "003490": {
+        "market": "KOSPI"
+    },
+    "003491": {
+        "market": "KOSPI"
+    },
+    "003520": {
+        "market": "KOSPI"
+    },
+    "003530": {
+        "market": "KOSPI"
+    },
+    "003531": {
+        "market": "KOSPI"
+    },
+    "003540": {
+        "market": "KOSPI"
+    },
+    "003541": {
+        "market": "KOSPI"
+    },
+    "003542": {
+        "market": "KOSPI"
+    },
+    "003550": {
+        "market": "KOSPI"
+    },
+    "003551": {
+        "market": "KOSPI"
+    },
+    "003560": {
+        "market": "KOSPI"
+    },
+    "003570": {
+        "market": "KOSPI"
+    },
+    "003580": {
+        "market": "KOSPI"
+    },
+    "003610": {
+        "market": "KOSPI"
+    },
+    "003620": {
+        "market": "KOSPI"
+    },
+    "003650": {
+        "market": "KOSPI"
+    },
+    "003670": {
+        "market": "KOSPI"
+    },
+    "003680": {
+        "market": "KOSPI"
+    },
+    "003690": {
+        "market": "KOSPI"
+    },
+    "003720": {
+        "market": "KOSPI"
+    },
+    "003780": {
+        "market": "KOSPI"
+    },
+    "003800": {
+        "market": "KOSDAQ"
+    },
+    "003830": {
+        "market": "KOSPI"
+    },
+    "003850": {
+        "market": "KOSPI"
+    },
+    "003920": {
+        "market": "KOSPI"
+    },
+    "003921": {
+        "market": "KOSPI"
+    },
+    "003960": {
+        "market": "KOSPI"
+    },
+    "004000": {
+        "market": "KOSPI"
+    },
+    "004020": {
+        "market": "KOSPI"
+    },
+    "004060": {
+        "market": "KOSPI"
+    },
+    "004080": {
+        "market": "KOSPI"
+    },
+    "004090": {
+        "market": "KOSPI"
+    },
+    "004100": {
+        "market": "KOSPI"
+    },
+    "004101": {
+        "market": "KOSPI"
+    },
+    "004140": {
+        "market": "KOSPI"
+    },
+    "004150": {
+        "market": "KOSPI"
+    },
+    "004170": {
+        "market": "KOSPI"
+    },
+    "004200": {
+        "market": "KOSPI"
+    },
+    "004250": {
+        "market": "KOSPI"
+    },
+    "004251": {
+        "market": "KOSPI"
+    },
+    "004270": {
+        "market": "KOSPI"
+    },
+    "004310": {
+        "market": "KOSPI"
+    },
+    "004360": {
+        "market": "KOSPI"
+    },
+    "004361": {
+        "market": "KOSPI"
+    },
+    "004370": {
+        "market": "KOSPI"
+    },
+    "004380": {
+        "market": "KOSPI"
+    },
+    "004410": {
+        "market": "KOSPI"
+    },
+    "004411": {
+        "market": "KOSPI"
+    },
+    "004430": {
+        "market": "KOSPI"
+    },
+    "004440": {
+        "market": "KOSPI"
+    },
+    "004450": {
+        "market": "KOSPI"
+    },
+    "004490": {
+        "market": "KOSPI"
+    },
+    "004540": {
+        "market": "KOSPI"
+    },
+    "004541": {
+        "market": "KOSPI"
+    },
+    "004560": {
+        "market": "KOSPI"
+    },
+    "004561": {
+        "market": "KOSPI"
+    },
+    "004590": {
+        "market": "KOSDAQ"
+    },
+    "004650": {
+        "market": "KOSDAQ"
+    },
+    "004690": {
+        "market": "KOSPI"
+    },
+    "004700": {
+        "market": "KOSPI"
+    },
+    "004710": {
+        "market": "KOSPI"
+    },
+    "004720": {
+        "market": "KOSPI"
+    },
+    "004770": {
+        "market": "KOSPI"
+    },
+    "004780": {
+        "market": "KOSDAQ"
+    },
+    "004800": {
+        "market": "KOSPI"
+    },
+    "004830": {
+        "market": "KOSPI"
+    },
+    "004831": {
+        "market": "KOSPI"
+    },
+    "004840": {
+        "market": "KOSPI"
+    },
+    "004870": {
+        "market": "KOSPI"
+    },
+    "004890": {
+        "market": "KOSPI"
+    },
+    "004910": {
+        "market": "KOSPI"
+    },
+    "004920": {
+        "market": "KOSPI"
+    },
+    "004960": {
+        "market": "KOSPI"
+    },
+    "004970": {
+        "market": "KOSPI"
+    },
+    "004980": {
+        "market": "KOSPI"
+    },
+    "004981": {
+        "market": "KOSPI"
+    },
+    "004990": {
+        "market": "KOSPI"
+    },
+    "00499K": {
+        "market": "KOSPI"
+    },
+    "005010": {
+        "market": "KOSPI"
+    },
+    "005030": {
+        "market": "KOSPI"
+    },
+    "005070": {
+        "market": "KOSPI"
+    },
+    "005090": {
+        "market": "KOSPI"
+    },
+    "005110": {
+        "market": "KOSPI"
+    },
+    "005160": {
+        "market": "KOSDAQ"
+    },
+    "005180": {
+        "market": "KOSPI"
+    },
+    "005190": {
+        "market": "KOSPI"
+    },
+    "005250": {
+        "market": "KOSPI"
+    },
+    "005252": {
+        "market": "KOSPI"
+    },
+    "005290": {
+        "market": "KOSDAQ"
+    },
+    "005300": {
+        "market": "KOSPI"
+    },
+    "005301": {
+        "market": "KOSPI"
+    },
+    "005320": {
+        "market": "KOSPI"
+    },
+    "005360": {
+        "market": "KOSPI"
+    },
+    "005380": {
+        "market": "KOSPI"
+    },
+    "005381": {
+        "market": "KOSPI"
+    },
+    "005382": {
+        "market": "KOSPI"
+    },
+    "005383": {
+        "market": "KOSPI"
+    },
+    "005390": {
+        "market": "KOSPI"
+    },
+    "005420": {
+        "market": "KOSPI"
+    },
+    "005430": {
+        "market": "KOSPI"
+    },
+    "005440": {
+        "market": "KOSPI"
+    },
+    "005450": {
+        "market": "KOSPI"
+    },
+    "005490": {
+        "market": "KOSPI"
+    },
+    "005500": {
+        "market": "KOSPI"
+    },
+    "005610": {
+        "market": "KOSPI"
+    },
+    "005670": {
+        "market": "KOSDAQ"
+    },
+    "005680": {
+        "market": "KOSPI"
+    },
+    "005690": {
+        "market": "KOSPI"
+    },
+    "005710": {
+        "market": "KOSDAQ"
+    },
+    "005720": {
+        "market": "KOSPI"
+    },
+    "005721": {
+        "market": "KOSPI"
+    },
+    "005740": {
+        "market": "KOSPI"
+    },
+    "005741": {
+        "market": "KOSPI"
+    },
+    "005750": {
+        "market": "KOSPI"
+    },
+    "005800": {
+        "market": "KOSPI"
+    },
+    "005810": {
+        "market": "KOSPI"
+    },
+    "005820": {
+        "market": "KOSPI"
+    },
+    "005830": {
+        "market": "KOSPI"
+    },
+    "005850": {
+        "market": "KOSPI"
+    },
+    "005860": {
+        "market": "KOSDAQ"
+    },
+    "005870": {
+        "market": "KOSPI"
+    },
+    "005880": {
+        "market": "KOSPI"
+    },
+    "005930": {
+        "market": "KOSPI"
+    },
+    "005931": {
+        "market": "KOSPI"
+    },
+    "005940": {
+        "market": "KOSPI"
+    },
+    "005941": {
+        "market": "KOSPI"
+    },
+    "005950": {
+        "market": "KOSPI"
+    },
+    "005960": {
+        "market": "KOSPI"
+    },
+    "005961": {
+        "market": "KOSPI"
+    },
+    "005990": {
+        "market": "KOSDAQ"
+    },
+    "006040": {
+        "market": "KOSPI"
+    },
+    "006050": {
+        "market": "KOSDAQ"
+    },
+    "006060": {
+        "market": "KOSPI"
+    },
+    "006090": {
+        "market": "KOSPI"
+    },
+    "006110": {
+        "market": "KOSPI"
+    },
+    "006120": {
+        "market": "KOSPI"
+    },
+    "006121": {
+        "market": "KOSPI"
+    },
+    "006140": {
+        "market": "KOSDAQ"
+    },
+    "006200": {
+        "market": "KOSPI"
+    },
+    "006220": {
+        "market": "KOSPI"
+    },
+    "006260": {
+        "market": "KOSPI"
+    },
+    "006280": {
+        "market": "KOSPI"
+    },
+    "006340": {
+        "market": "KOSPI"
+    },
+    "006341": {
+        "market": "KOSPI"
+    },
+    "006360": {
+        "market": "KOSPI"
+    },
+    "006370": {
+        "market": "KOSPI"
+    },
+    "006380": {
+        "market": "KOSPI"
+    },
+    "006390": {
+        "market": "KOSPI"
+    },
+    "006400": {
+        "market": "KOSPI"
+    },
+    "006401": {
+        "market": "KOSPI"
+    },
+    "006490": {
+        "market": "KOSPI"
+    },
+    "006570": {
+        "market": "KOSPI"
+    },
+    "006580": {
+        "market": "KOSDAQ"
+    },
+    "006620": {
+        "market": "KOSDAQ"
+    },
+    "006650": {
+        "market": "KOSPI"
+    },
+    "006660": {
+        "market": "KOSPI"
+    },
+    "006730": {
+        "market": "KOSDAQ"
+    },
+    "006740": {
+        "market": "KOSPI"
+    },
+    "006800": {
+        "market": "KOSPI"
+    },
+    "006801": {
+        "market": "KOSPI"
+    },
+    "00680K": {
+        "market": "KOSPI"
+    },
+    "006840": {
+        "market": "KOSPI"
+    },
+    "006880": {
+        "market": "KOSPI"
+    },
+    "006890": {
+        "market": "KOSPI"
+    },
+    "006910": {
+        "market": "KOSDAQ"
+    },
+    "006920": {
+        "market": "KOSDAQ"
+    },
+    "006980": {
+        "market": "KOSPI"
+    },
+    "007070": {
+        "market": "KOSPI"
+    },
+    "007110": {
+        "market": "KOSPI"
+    },
+    "007120": {
+        "market": "KOSPI"
+    },
+    "007160": {
+        "market": "KOSPI"
+    },
+    "007210": {
+        "market": "KOSPI"
+    },
+    "007280": {
+        "market": "KOSPI"
+    },
+    "007310": {
+        "market": "KOSPI"
+    },
+    "007330": {
+        "market": "KOSDAQ"
+    },
+    "007340": {
+        "market": "KOSPI"
+    },
+    "007370": {
+        "market": "KOSDAQ"
+    },
+    "007390": {
+        "market": "KOSDAQ"
+    },
+    "007460": {
+        "market": "KOSPI"
+    },
+    "007530": {
+        "market": "KOSDAQ"
+    },
+    "007540": {
+        "market": "KOSPI"
+    },
+    "007570": {
+        "market": "KOSPI"
+    },
+    "007571": {
+        "market": "KOSPI"
+    },
+    "007590": {
+        "market": "KOSPI"
+    },
+    "007610": {
+        "market": "KOSPI"
+    },
+    "007630": {
+        "market": "KOSPI"
+    },
+    "007660": {
+        "market": "KOSPI"
+    },
+    "007680": {
+        "market": "KOSDAQ"
+    },
+    "007690": {
+        "market": "KOSPI"
+    },
+    "007700": {
+        "market": "KOSPI"
+    },
+    "007720": {
+        "market": "KOSDAQ"
+    },
+    "007770": {
+        "market": "KOSDAQ"
+    },
+    "007810": {
+        "market": "KOSPI"
+    },
+    "007811": {
+        "market": "KOSPI"
+    },
+    "00781K": {
+        "market": "KOSPI"
+    },
+    "007820": {
+        "market": "KOSDAQ"
+    },
+    "007860": {
+        "market": "KOSPI"
+    },
+    "007980": {
+        "market": "KOSPI"
+    },
+    "008040": {
+        "market": "KOSPI"
+    },
+    "008060": {
+        "market": "KOSPI"
+    },
+    "00806K": {
+        "market": "KOSPI"
+    },
+    "008110": {
+        "market": "KOSPI"
+    },
+    "008250": {
+        "market": "KOSPI"
+    },
+    "008260": {
+        "market": "KOSPI"
+    },
+    "008290": {
+        "market": "KOSDAQ"
+    },
+    "008350": {
+        "market": "KOSPI"
+    },
+    "008351": {
+        "market": "KOSPI"
+    },
+    "008370": {
+        "market": "KOSDAQ"
+    },
+    "008420": {
+        "market": "KOSPI"
+    },
+    "008470": {
+        "market": "KOSDAQ"
+    },
+    "008490": {
+        "market": "KOSPI"
+    },
+    "008500": {
+        "market": "KOSPI"
+    },
+    "008560": {
+        "market": "KOSPI"
+    },
+    "008600": {
+        "market": "KOSPI"
+    },
+    "008700": {
+        "market": "KOSPI"
+    },
+    "008730": {
+        "market": "KOSPI"
+    },
+    "008770": {
+        "market": "KOSPI"
+    },
+    "008771": {
+        "market": "KOSPI"
+    },
+    "008800": {
+        "market": "KOSDAQ"
+    },
+    "008830": {
+        "market": "KOSDAQ"
+    },
+    "008870": {
+        "market": "KOSPI"
+    },
+    "008930": {
+        "market": "KOSPI"
+    },
+    "008970": {
+        "market": "KOSPI"
+    },
+    "009070": {
+        "market": "KOSPI"
+    },
+    "009140": {
+        "market": "KOSPI"
+    },
+    "009150": {
+        "market": "KOSPI"
+    },
+    "009151": {
+        "market": "KOSPI"
+    },
+    "009160": {
+        "market": "KOSPI"
+    },
+    "009180": {
+        "market": "KOSPI"
+    },
+    "009190": {
+        "market": "KOSPI"
+    },
+    "009200": {
+        "market": "KOSPI"
+    },
+    "009240": {
+        "market": "KOSPI"
+    },
+    "009270": {
+        "market": "KOSPI"
+    },
+    "009271": {
+        "market": "KOSPI"
+    },
+    "009290": {
+        "market": "KOSPI"
+    },
+    "009300": {
+        "market": "KOSDAQ"
+    },
+    "009310": {
+        "market": "KOSPI"
+    },
+    "009320": {
+        "market": "KOSPI"
+    },
+    "009410": {
+        "market": "KOSPI"
+    },
+    "009411": {
+        "market": "KOSPI"
+    },
+    "009420": {
+        "market": "KOSPI"
+    },
+    "009440": {
+        "market": "KOSPI"
+    },
+    "009450": {
+        "market": "KOSPI"
+    },
+    "009460": {
+        "market": "KOSPI"
+    },
+    "009470": {
+        "market": "KOSPI"
+    },
+    "009520": {
+        "market": "KOSDAQ"
+    },
+    "009540": {
+        "market": "KOSPI"
+    },
+    "009580": {
+        "market": "KOSPI"
+    },
+    "009620": {
+        "market": "KOSDAQ"
+    },
+    "009680": {
+        "market": "KOSPI"
+    },
+    "009730": {
+        "market": "KOSDAQ"
+    },
+    "009770": {
+        "market": "KOSPI"
+    },
+    "009780": {
+        "market": "KOSDAQ"
+    },
+    "009810": {
+        "market": "KOSPI"
+    },
+    "009830": {
+        "market": "KOSPI"
+    },
+    "009831": {
+        "market": "KOSPI"
+    },
+    "009970": {
+        "market": "KOSPI"
+    },
+    "010040": {
+        "market": "KOSPI"
+    },
+    "010050": {
+        "market": "KOSPI"
+    },
+    "010060": {
+        "market": "KOSPI"
+    },
+    "010100": {
+        "market": "KOSPI"
+    },
+    "010120": {
+        "market": "KOSPI"
+    },
+    "010130": {
+        "market": "KOSPI"
+    },
+    "010140": {
+        "market": "KOSPI"
+    },
+    "010141": {
+        "market": "KOSPI"
+    },
+    "010170": {
+        "market": "KOSDAQ"
+    },
+    "010240": {
+        "market": "KOSDAQ"
+    },
+    "010280": {
+        "market": "KOSDAQ"
+    },
+    "010400": {
+        "market": "KOSPI"
+    },
+    "010420": {
+        "market": "KOSPI"
+    },
+    "010470": {
+        "market": "KOSDAQ"
+    },
+    "010580": {
+        "market": "KOSPI"
+    },
+    "010600": {
+        "market": "KOSPI"
+    },
+    "010620": {
+        "market": "KOSPI"
+    },
+    "010640": {
+        "market": "KOSPI"
+    },
+    "010660": {
+        "market": "KOSPI"
+    },
+    "010690": {
+        "market": "KOSPI"
+    },
+    "010770": {
+        "market": "KOSPI"
+    },
+    "010780": {
+        "market": "KOSPI"
+    },
+    "010820": {
+        "market": "KOSPI"
+    },
+    "010950": {
+        "market": "KOSPI"
+    },
+    "010951": {
+        "market": "KOSPI"
+    },
+    "010960": {
+        "market": "KOSPI"
+    },
+    "011000": {
+        "market": "KOSPI"
+    },
+    "011040": {
+        "market": "KOSDAQ"
+    },
+    "011070": {
+        "market": "KOSPI"
+    },
+    "011080": {
+        "market": "KOSDAQ"
+    },
+    "011090": {
+        "market": "KOSPI"
+    },
+    "011150": {
+        "market": "KOSPI"
+    },
+    "011151": {
+        "market": "KOSPI"
+    },
+    "011170": {
+        "market": "KOSPI"
+    },
+    "011200": {
+        "market": "KOSPI"
+    },
+    "011210": {
+        "market": "KOSPI"
+    },
+    "011230": {
+        "market": "KOSPI"
+    },
+    "011280": {
+        "market": "KOSPI"
+    },
+    "011300": {
+        "market": "KOSPI"
+    },
+    "011320": {
+        "market": "KOSDAQ"
+    },
+    "011330": {
+        "market": "KOSPI"
+    },
+    "011370": {
+        "market": "KOSDAQ"
+    },
+    "011390": {
+        "market": "KOSPI"
+    },
+    "011420": {
+        "market": "KOSPI"
+    },
+    "011500": {
+        "market": "KOSPI"
+    },
+    "011560": {
+        "market": "KOSDAQ"
+    },
+    "011690": {
+        "market": "KOSPI"
+    },
+    "011700": {
+        "market": "KOSPI"
+    },
+    "011760": {
+        "market": "KOSPI"
+    },
+    "011780": {
+        "market": "KOSPI"
+    },
+    "011781": {
+        "market": "KOSPI"
+    },
+    "011790": {
+        "market": "KOSPI"
+    },
+    "011810": {
+        "market": "KOSPI"
+    },
+    "011930": {
+        "market": "KOSPI"
+    },
+    "012030": {
+        "market": "KOSPI"
+    },
+    "012160": {
+        "market": "KOSPI"
+    },
+    "012170": {
+        "market": "KOSPI"
+    },
+    "012200": {
+        "market": "KOSPI"
+    },
+    "012201": {
+        "market": "KOSPI"
+    },
+    "012280": {
+        "market": "KOSPI"
+    },
+    "012320": {
+        "market": "KOSPI"
+    },
+    "012330": {
+        "market": "KOSPI"
+    },
+    "012340": {
+        "market": "KOSDAQ"
+    },
+    "012450": {
+        "market": "KOSPI"
+    },
+    "012510": {
+        "market": "KOSPI"
+    },
+    "012600": {
+        "market": "KOSPI"
+    },
+    "012610": {
+        "market": "KOSPI"
+    },
+    "012620": {
+        "market": "KOSDAQ"
+    },
+    "012630": {
+        "market": "KOSPI"
+    },
+    "012690": {
+        "market": "KOSPI"
+    },
+    "012700": {
+        "market": "KOSDAQ"
+    },
+    "012750": {
+        "market": "KOSPI"
+    },
+    "012790": {
+        "market": "KOSDAQ"
+    },
+    "012800": {
+        "market": "KOSPI"
+    },
+    "012860": {
+        "market": "KOSDAQ"
+    },
+    "013000": {
+        "market": "KOSPI"
+    },
+    "013030": {
+        "market": "KOSDAQ"
+    },
+    "013120": {
+        "market": "KOSDAQ"
+    },
+    "013310": {
+        "market": "KOSDAQ"
+    },
+    "013360": {
+        "market": "KOSPI"
+    },
+    "013520": {
+        "market": "KOSPI"
+    },
+    "013570": {
+        "market": "KOSPI"
+    },
+    "013580": {
+        "market": "KOSPI"
+    },
+    "013700": {
+        "market": "KOSPI"
+    },
+    "013720": {
+        "market": "KOSDAQ"
+    },
+    "013810": {
+        "market": "KOSDAQ"
+    },
+    "013870": {
+        "market": "KOSPI"
+    },
+    "013890": {
+        "market": "KOSPI"
+    },
+    "013990": {
+        "market": "KOSDAQ"
+    },
+    "014100": {
+        "market": "KOSDAQ"
+    },
+    "014130": {
+        "market": "KOSPI"
+    },
+    "014160": {
+        "market": "KOSPI"
+    },
+    "014190": {
+        "market": "KOSDAQ"
+    },
+    "014200": {
+        "market": "KOSDAQ"
+    },
+    "014280": {
+        "market": "KOSPI"
+    },
+    "014281": {
+        "market": "KOSPI"
+    },
+    "014440": {
+        "market": "KOSPI"
+    },
+    "014470": {
+        "market": "KOSDAQ"
+    },
+    "014530": {
+        "market": "KOSPI"
+    },
+    "014570": {
+        "market": "KOSDAQ"
+    },
+    "014580": {
+        "market": "KOSPI"
+    },
+    "014620": {
+        "market": "KOSDAQ"
+    },
+    "014680": {
+        "market": "KOSPI"
+    },
+    "014710": {
+        "market": "KOSPI"
+    },
+    "014790": {
+        "market": "KOSPI"
+    },
+    "014820": {
+        "market": "KOSPI"
+    },
+    "014821": {
+        "market": "KOSPI"
+    },
+    "014830": {
+        "market": "KOSPI"
+    },
+    "014910": {
+        "market": "KOSPI"
+    },
+    "014911": {
+        "market": "KOSPI"
+    },
+    "014940": {
+        "market": "KOSDAQ"
+    },
+    "014970": {
+        "market": "KOSDAQ"
+    },
+    "014990": {
+        "market": "KOSPI"
+    },
+    "015020": {
+        "market": "KOSPI"
+    },
+    "015230": {
+        "market": "KOSPI"
+    },
+    "015260": {
+        "market": "KOSPI"
+    },
+    "015350": {
+        "market": "KOSPI"
+    },
+    "015360": {
+        "market": "KOSPI"
+    },
+    "015540": {
+        "market": "KOSPI"
+    },
+    "015590": {
+        "market": "KOSPI"
+    },
+    "015710": {
+        "market": "KOSDAQ"
+    },
+    "015750": {
+        "market": "KOSDAQ"
+    },
+    "015760": {
+        "market": "KOSPI"
+    },
+    "015860": {
+        "market": "KOSPI"
+    },
+    "015890": {
+        "market": "KOSPI"
+    },
+    "016090": {
+        "market": "KOSPI"
+    },
+    "016100": {
+        "market": "KOSDAQ"
+    },
+    "016250": {
+        "market": "KOSDAQ"
+    },
+    "016360": {
+        "market": "KOSPI"
+    },
+    "016380": {
+        "market": "KOSPI"
+    },
+    "016381": {
+        "market": "KOSPI"
+    },
+    "016450": {
+        "market": "KOSPI"
+    },
+    "016580": {
+        "market": "KOSPI"
+    },
+    "016590": {
+        "market": "KOSPI"
+    },
+    "016600": {
+        "market": "KOSDAQ"
+    },
+    "016610": {
+        "market": "KOSPI"
+    },
+    "016670": {
+        "market": "KOSDAQ"
+    },
+    "016710": {
+        "market": "KOSPI"
+    },
+    "016740": {
+        "market": "KOSPI"
+    },
+    "016790": {
+        "market": "KOSDAQ"
+    },
+    "016800": {
+        "market": "KOSPI"
+    },
+    "016880": {
+        "market": "KOSPI"
+    },
+    "016920": {
+        "market": "KOSDAQ"
+    },
+    "017000": {
+        "market": "KOSDAQ"
+    },
+    "017040": {
+        "market": "KOSPI"
+    },
+    "017180": {
+        "market": "KOSPI"
+    },
+    "017250": {
+        "market": "KOSDAQ"
+    },
+    "017370": {
+        "market": "KOSPI"
+    },
+    "017390": {
+        "market": "KOSPI"
+    },
+    "017480": {
+        "market": "KOSDAQ"
+    },
+    "017510": {
+        "market": "KOSDAQ"
+    },
+    "017550": {
+        "market": "KOSPI"
+    },
+    "017650": {
+        "market": "KOSDAQ"
+    },
+    "017670": {
+        "market": "KOSPI"
+    },
+    "017800": {
+        "market": "KOSPI"
+    },
+    "017810": {
+        "market": "KOSPI"
+    },
+    "017890": {
+        "market": "KOSDAQ"
+    },
+    "017900": {
+        "market": "KOSPI"
+    },
+    "017940": {
+        "market": "KOSPI"
+    },
+    "017960": {
+        "market": "KOSPI"
+    },
+    "018000": {
+        "market": "KOSDAQ"
+    },
+    "018120": {
+        "market": "KOSDAQ"
+    },
+    "018250": {
+        "market": "KOSPI"
+    },
+    "018260": {
+        "market": "KOSPI"
+    },
+    "018290": {
+        "market": "KOSDAQ"
+    },
+    "018310": {
+        "market": "KOSDAQ"
+    },
+    "018470": {
+        "market": "KOSPI"
+    },
+    "018500": {
+        "market": "KOSPI"
+    },
+    "018620": {
+        "market": "KOSDAQ"
+    },
+    "018670": {
+        "market": "KOSPI"
+    },
+    "018680": {
+        "market": "KOSDAQ"
+    },
+    "018700": {
+        "market": "KOSDAQ"
+    },
+    "018880": {
+        "market": "KOSPI"
+    },
+    "019010": {
+        "market": "KOSDAQ"
+    },
+    "019170": {
+        "market": "KOSPI"
+    },
+    "019171": {
+        "market": "KOSPI"
+    },
+    "019180": {
+        "market": "KOSPI"
+    },
+    "019210": {
+        "market": "KOSDAQ"
+    },
+    "019440": {
+        "market": "KOSPI"
+    },
+    "019490": {
+        "market": "KOSPI"
+    },
+    "019540": {
+        "market": "KOSDAQ"
+    },
+    "019550": {
+        "market": "KOSDAQ"
+    },
+    "019570": {
+        "market": "KOSDAQ"
+    },
+    "019590": {
+        "market": "KOSDAQ"
+    },
+    "019660": {
+        "market": "KOSDAQ"
+    },
+    "019680": {
+        "market": "KOSPI"
+    },
+    "019681": {
+        "market": "KOSPI"
+    },
+    "019770": {
+        "market": "KOSDAQ"
+    },
+    "019990": {
+        "market": "KOSDAQ"
+    },
+    "020000": {
+        "market": "KOSPI"
+    },
+    "020120": {
+        "market": "KOSPI"
+    },
+    "020150": {
+        "market": "KOSPI"
+    },
+    "020180": {
+        "market": "KOSDAQ"
+    },
+    "020400": {
+        "market": "KOSDAQ"
+    },
+    "020560": {
+        "market": "KOSPI"
+    },
+    "020710": {
+        "market": "KOSDAQ"
+    },
+    "020760": {
+        "market": "KOSPI"
+    },
+    "021040": {
+        "market": "KOSDAQ"
+    },
+    "021041": {
+        "market": "KOSDAQ"
+    },
+    "021050": {
+        "market": "KOSPI"
+    },
+    "021080": {
+        "market": "KOSDAQ"
+    },
+    "021240": {
+        "market": "KOSPI"
+    },
+    "021320": {
+        "market": "KOSDAQ"
+    },
+    "021650": {
+        "market": "KOSDAQ"
+    },
+    "021820": {
+        "market": "KOSPI"
+    },
+    "021880": {
+        "market": "KOSDAQ"
+    },
+    "022100": {
+        "market": "KOSDAQ"
+    },
+    "022220": {
+        "market": "KOSDAQ"
+    },
+    "023000": {
+        "market": "KOSPI"
+    },
+    "023150": {
+        "market": "KOSPI"
+    },
+    "023160": {
+        "market": "KOSDAQ"
+    },
+    "023350": {
+        "market": "KOSPI"
+    },
+    "023410": {
+        "market": "KOSDAQ"
+    },
+    "023440": {
+        "market": "KOSDAQ"
+    },
+    "023450": {
+        "market": "KOSPI"
+    },
+    "023460": {
+        "market": "KOSDAQ"
+    },
+    "023530": {
+        "market": "KOSPI"
+    },
+    "023590": {
+        "market": "KOSPI"
+    },
+    "023600": {
+        "market": "KOSDAQ"
+    },
+    "023760": {
+        "market": "KOSDAQ"
+    },
+    "023770": {
+        "market": "KOSDAQ"
+    },
+    "023790": {
+        "market": "KOSDAQ"
+    },
+    "023800": {
+        "market": "KOSPI"
+    },
+    "023810": {
+        "market": "KOSPI"
+    },
+    "023890": {
+        "market": "KOSDAQ"
+    },
+    "023900": {
+        "market": "KOSDAQ"
+    },
+    "023910": {
+        "market": "KOSDAQ"
+    },
+    "023960": {
+        "market": "KOSPI"
+    },
+    "024060": {
+        "market": "KOSDAQ"
+    },
+    "024070": {
+        "market": "KOSPI"
+    },
+    "024090": {
+        "market": "KOSPI"
+    },
+    "024110": {
+        "market": "KOSPI"
+    },
+    "024120": {
+        "market": "KOSDAQ"
+    },
+    "024720": {
+        "market": "KOSPI"
+    },
+    "024740": {
+        "market": "KOSDAQ"
+    },
+    "024800": {
+        "market": "KOSDAQ"
+    },
+    "024810": {
+        "market": "KOSDAQ"
+    },
+    "024830": {
+        "market": "KOSDAQ"
+    },
+    "024840": {
+        "market": "KOSDAQ"
+    },
+    "024850": {
+        "market": "KOSDAQ"
+    },
+    "024880": {
+        "market": "KOSDAQ"
+    },
+    "024890": {
+        "market": "KOSPI"
+    },
+    "024900": {
+        "market": "KOSPI"
+    },
+    "024910": {
+        "market": "KOSDAQ"
+    },
+    "024940": {
+        "market": "KOSDAQ"
+    },
+    "024950": {
+        "market": "KOSDAQ"
+    },
+    "025000": {
+        "market": "KOSPI"
+    },
+    "025320": {
+        "market": "KOSDAQ"
+    },
+    "025440": {
+        "market": "KOSDAQ"
+    },
+    "025530": {
+        "market": "KOSPI"
+    },
+    "025540": {
+        "market": "KOSPI"
+    },
+    "025550": {
+        "market": "KOSDAQ"
+    },
+    "025560": {
+        "market": "KOSPI"
+    },
+    "025620": {
+        "market": "KOSPI"
+    },
+    "025750": {
+        "market": "KOSPI"
+    },
+    "025770": {
+        "market": "KOSDAQ"
+    },
+    "025820": {
+        "market": "KOSPI"
+    },
+    "025860": {
+        "market": "KOSPI"
+    },
+    "025870": {
+        "market": "KOSDAQ"
+    },
+    "025880": {
+        "market": "KOSDAQ"
+    },
+    "025890": {
+        "market": "KOSPI"
+    },
+    "025900": {
+        "market": "KOSDAQ"
+    },
+    "025950": {
+        "market": "KOSDAQ"
+    },
+    "025980": {
+        "market": "KOSDAQ"
+    },
+    "026040": {
+        "market": "KOSDAQ"
+    },
+    "026150": {
+        "market": "KOSDAQ"
+    },
+    "026890": {
+        "market": "KOSPI"
+    },
+    "026910": {
+        "market": "KOSDAQ"
+    },
+    "026940": {
+        "market": "KOSPI"
+    },
+    "026960": {
+        "market": "KOSPI"
+    },
+    "027040": {
+        "market": "KOSDAQ"
+    },
+    "027050": {
+        "market": "KOSDAQ"
+    },
+    "027360": {
+        "market": "KOSDAQ"
+    },
+    "027390": {
+        "market": "KOSPI"
+    },
+    "027410": {
+        "market": "KOSPI"
+    },
+    "027580": {
+        "market": "KOSDAQ"
+    },
+    "027710": {
+        "market": "KOSDAQ"
+    },
+    "027740": {
+        "market": "KOSPI"
+    },
+    "027830": {
+        "market": "KOSDAQ"
+    },
+    "027970": {
+        "market": "KOSPI"
+    },
+    "028040": {
+        "market": "KOSDAQ"
+    },
+    "028050": {
+        "market": "KOSPI"
+    },
+    "028080": {
+        "market": "KOSDAQ"
+    },
+    "028100": {
+        "market": "KOSPI"
+    },
+    "028150": {
+        "market": "KOSDAQ"
+    },
+    "028260": {
+        "market": "KOSPI"
+    },
+    "02826K": {
+        "market": "KOSPI"
+    },
+    "028300": {
+        "market": "KOSDAQ"
+    },
+    "028670": {
+        "market": "KOSPI"
+    },
+    "029460": {
+        "market": "KOSPI"
+    },
+    "029480": {
+        "market": "KOSDAQ"
+    },
+    "029530": {
+        "market": "KOSPI"
+    },
+    "029780": {
+        "market": "KOSPI"
+    },
+    "029960": {
+        "market": "KOSDAQ"
+    },
+    "030000": {
+        "market": "KOSPI"
+    },
+    "030190": {
+        "market": "KOSDAQ"
+    },
+    "030200": {
+        "market": "KOSPI"
+    },
+    "030210": {
+        "market": "KOSPI"
+    },
+    "030270": {
+        "market": "KOSDAQ"
+    },
+    "030350": {
+        "market": "KOSDAQ"
+    },
+    "030520": {
+        "market": "KOSDAQ"
+    },
+    "030530": {
+        "market": "KOSDAQ"
+    },
+    "030610": {
+        "market": "KOSPI"
+    },
+    "030720": {
+        "market": "KOSPI"
+    },
+    "030790": {
+        "market": "KOSPI"
+    },
+    "030960": {
+        "market": "KOSDAQ"
+    },
+    "031310": {
+        "market": "KOSDAQ"
+    },
+    "031330": {
+        "market": "KOSDAQ"
+    },
+    "031390": {
+        "market": "KOSDAQ"
+    },
+    "031430": {
+        "market": "KOSPI"
+    },
+    "031440": {
+        "market": "KOSPI"
+    },
+    "031510": {
+        "market": "KOSDAQ"
+    },
+    "031820": {
+        "market": "KOSPI"
+    },
+    "031860": {
+        "market": "KOSDAQ"
+    },
+    "031980": {
+        "market": "KOSDAQ"
+    },
+    "032080": {
+        "market": "KOSDAQ"
+    },
+    "032190": {
+        "market": "KOSDAQ"
+    },
+    "032280": {
+        "market": "KOSDAQ"
+    },
+    "032350": {
+        "market": "KOSPI"
+    },
+    "032500": {
+        "market": "KOSDAQ"
+    },
+    "032540": {
+        "market": "KOSDAQ"
+    },
+    "032560": {
+        "market": "KOSPI"
+    },
+    "032580": {
+        "market": "KOSDAQ"
+    },
+    "032620": {
+        "market": "KOSDAQ"
+    },
+    "032640": {
+        "market": "KOSPI"
+    },
+    "032680": {
+        "market": "KOSDAQ"
+    },
+    "032681": {
+        "market": "KOSDAQ"
+    },
+    "032750": {
+        "market": "KOSDAQ"
+    },
+    "032790": {
+        "market": "KOSDAQ"
+    },
+    "032800": {
+        "market": "KOSDAQ"
+    },
+    "032820": {
+        "market": "KOSDAQ"
+    },
+    "032830": {
+        "market": "KOSPI"
+    },
+    "032850": {
+        "market": "KOSDAQ"
+    },
+    "032860": {
+        "market": "KOSDAQ"
+    },
+    "032940": {
+        "market": "KOSDAQ"
+    },
+    "032960": {
+        "market": "KOSDAQ"
+    },
+    "032980": {
+        "market": "KOSDAQ"
+    },
+    "033050": {
+        "market": "KOSDAQ"
+    },
+    "033100": {
+        "market": "KOSDAQ"
+    },
+    "033110": {
+        "market": "KOSDAQ"
+    },
+    "033130": {
+        "market": "KOSDAQ"
+    },
+    "033160": {
+        "market": "KOSDAQ"
+    },
+    "033170": {
+        "market": "KOSDAQ"
+    },
+    "033180": {
+        "market": "KOSPI"
+    },
+    "033200": {
+        "market": "KOSDAQ"
+    },
+    "033230": {
+        "market": "KOSDAQ"
+    },
+    "033240": {
+        "market": "KOSPI"
+    },
+    "033250": {
+        "market": "KOSPI"
+    },
+    "033270": {
+        "market": "KOSPI"
+    },
+    "033290": {
+        "market": "KOSDAQ"
+    },
+    "033310": {
+        "market": "KOSDAQ"
+    },
+    "033320": {
+        "market": "KOSDAQ"
+    },
+    "033340": {
+        "market": "KOSDAQ"
+    },
+    "033430": {
+        "market": "KOSDAQ"
+    },
+    "033500": {
+        "market": "KOSDAQ"
+    },
+    "033530": {
+        "market": "KOSPI"
+    },
+    "033540": {
+        "market": "KOSDAQ"
+    },
+    "033560": {
+        "market": "KOSDAQ"
+    },
+    "033600": {
+        "market": "KOSDAQ"
+    },
+    "033640": {
+        "market": "KOSDAQ"
+    },
+    "033660": {
+        "market": "KOSPI"
+    },
+    "033780": {
+        "market": "KOSPI"
+    },
+    "033790": {
+        "market": "KOSDAQ"
+    },
+    "033830": {
+        "market": "KOSDAQ"
+    },
+    "033920": {
+        "market": "KOSPI"
+    },
+    "034020": {
+        "market": "KOSPI"
+    },
+    "034120": {
+        "market": "KOSPI"
+    },
+    "034220": {
+        "market": "KOSPI"
+    },
+    "034230": {
+        "market": "KOSDAQ"
+    },
+    "034300": {
+        "market": "KOSPI"
+    },
+    "034310": {
+        "market": "KOSPI"
+    },
+    "034590": {
+        "market": "KOSPI"
+    },
+    "034730": {
+        "market": "KOSPI"
+    },
+    "03473K": {
+        "market": "KOSPI"
+    },
+    "034810": {
+        "market": "KOSDAQ"
+    },
+    "034830": {
+        "market": "KOSPI"
+    },
+    "034940": {
+        "market": "KOSDAQ"
+    },
+    "034950": {
+        "market": "KOSDAQ"
+    },
+    "035000": {
+        "market": "KOSPI"
+    },
+    "035080": {
+        "market": "KOSDAQ"
+    },
+    "035150": {
+        "market": "KOSPI"
+    },
+    "035200": {
+        "market": "KOSDAQ"
+    },
+    "035250": {
+        "market": "KOSPI"
+    },
+    "035290": {
+        "market": "KOSDAQ"
+    },
+    "035420": {
+        "market": "KOSPI"
+    },
+    "035460": {
+        "market": "KOSDAQ"
+    },
+    "035510": {
+        "market": "KOSPI"
+    },
+    "035600": {
+        "market": "KOSDAQ"
+    },
+    "035610": {
+        "market": "KOSDAQ"
+    },
+    "035620": {
+        "market": "KOSDAQ"
+    },
+    "035720": {
+        "market": "KOSPI"
+    },
+    "035760": {
+        "market": "KOSDAQ"
+    },
+    "035810": {
+        "market": "KOSDAQ"
+    },
+    "035890": {
+        "market": "KOSDAQ"
+    },
+    "035900": {
+        "market": "KOSDAQ"
+    },
+    "036000": {
+        "market": "KOSDAQ"
+    },
+    "036010": {
+        "market": "KOSDAQ"
+    },
+    "036030": {
+        "market": "KOSDAQ"
+    },
+    "036090": {
+        "market": "KOSDAQ"
+    },
+    "036120": {
+        "market": "KOSDAQ"
+    },
+    "036170": {
+        "market": "KOSDAQ"
+    },
+    "036180": {
+        "market": "KOSDAQ"
+    },
+    "036190": {
+        "market": "KOSDAQ"
+    },
+    "036200": {
+        "market": "KOSDAQ"
+    },
+    "036260": {
+        "market": "KOSDAQ"
+    },
+    "036420": {
+        "market": "KOSPI"
+    },
+    "036460": {
+        "market": "KOSPI"
+    },
+    "036480": {
+        "market": "KOSDAQ"
+    },
+    "036490": {
+        "market": "KOSDAQ"
+    },
+    "036530": {
+        "market": "KOSPI"
+    },
+    "036540": {
+        "market": "KOSDAQ"
+    },
+    "036560": {
+        "market": "KOSDAQ"
+    },
+    "036570": {
+        "market": "KOSPI"
+    },
+    "036580": {
+        "market": "KOSPI"
+    },
+    "036620": {
+        "market": "KOSDAQ"
+    },
+    "036630": {
+        "market": "KOSDAQ"
+    },
+    "036640": {
+        "market": "KOSDAQ"
+    },
+    "036670": {
+        "market": "KOSDAQ"
+    },
+    "036690": {
+        "market": "KOSDAQ"
+    },
+    "036710": {
+        "market": "KOSDAQ"
+    },
+    "036800": {
+        "market": "KOSDAQ"
+    },
+    "036810": {
+        "market": "KOSDAQ"
+    },
+    "036830": {
+        "market": "KOSDAQ"
+    },
+    "036890": {
+        "market": "KOSDAQ"
+    },
+    "036930": {
+        "market": "KOSDAQ"
+    },
+    "037030": {
+        "market": "KOSDAQ"
+    },
+    "037070": {
+        "market": "KOSDAQ"
+    },
+    "037230": {
+        "market": "KOSDAQ"
+    },
+    "037270": {
+        "market": "KOSPI"
+    },
+    "037330": {
+        "market": "KOSDAQ"
+    },
+    "037350": {
+        "market": "KOSDAQ"
+    },
+    "037370": {
+        "market": "KOSDAQ"
+    },
+    "037400": {
+        "market": "KOSDAQ"
+    },
+    "037440": {
+        "market": "KOSDAQ"
+    },
+    "037460": {
+        "market": "KOSDAQ"
+    },
+    "037560": {
+        "market": "KOSPI"
+    },
+    "037710": {
+        "market": "KOSPI"
+    },
+    "037760": {
+        "market": "KOSDAQ"
+    },
+    "037950": {
+        "market": "KOSDAQ"
+    },
+    "038010": {
+        "market": "KOSDAQ"
+    },
+    "038060": {
+        "market": "KOSDAQ"
+    },
+    "038070": {
+        "market": "KOSDAQ"
+    },
+    "038110": {
+        "market": "KOSDAQ"
+    },
+    "038160": {
+        "market": "KOSDAQ"
+    },
+    "038290": {
+        "market": "KOSDAQ"
+    },
+    "038340": {
+        "market": "KOSDAQ"
+    },
+    "038390": {
+        "market": "KOSDAQ"
+    },
+    "038460": {
+        "market": "KOSDAQ"
+    },
+    "038500": {
+        "market": "KOSDAQ"
+    },
+    "038530": {
+        "market": "KOSDAQ"
+    },
+    "038540": {
+        "market": "KOSDAQ"
+    },
+    "038620": {
+        "market": "KOSDAQ"
+    },
+    "038680": {
+        "market": "KOSDAQ"
+    },
+    "038870": {
+        "market": "KOSDAQ"
+    },
+    "038880": {
+        "market": "KOSDAQ"
+    },
+    "038950": {
+        "market": "KOSDAQ"
+    },
+    "039010": {
+        "market": "KOSDAQ"
+    },
+    "039020": {
+        "market": "KOSDAQ"
+    },
+    "039030": {
+        "market": "KOSDAQ"
+    },
+    "039130": {
+        "market": "KOSPI"
+    },
+    "039200": {
+        "market": "KOSDAQ"
+    },
+    "039230": {
+        "market": "KOSDAQ"
+    },
+    "039240": {
+        "market": "KOSDAQ"
+    },
+    "039290": {
+        "market": "KOSDAQ"
+    },
+    "039310": {
+        "market": "KOSDAQ"
+    },
+    "039340": {
+        "market": "KOSDAQ"
+    },
+    "039420": {
+        "market": "KOSDAQ"
+    },
+    "039440": {
+        "market": "KOSDAQ"
+    },
+    "039490": {
+        "market": "KOSPI"
+    },
+    "039560": {
+        "market": "KOSDAQ"
+    },
+    "039570": {
+        "market": "KOSPI"
+    },
+    "039610": {
+        "market": "KOSDAQ"
+    },
+    "039670": {
+        "market": "KOSDAQ"
+    },
+    "039740": {
+        "market": "KOSDAQ"
+    },
+    "039830": {
+        "market": "KOSDAQ"
+    },
+    "039840": {
+        "market": "KOSDAQ"
+    },
+    "039860": {
+        "market": "KOSDAQ"
+    },
+    "039980": {
+        "market": "KOSDAQ"
+    },
+    "040160": {
+        "market": "KOSDAQ"
+    },
+    "040300": {
+        "market": "KOSDAQ"
+    },
+    "040350": {
+        "market": "KOSDAQ"
+    },
+    "040420": {
+        "market": "KOSDAQ"
+    },
+    "040610": {
+        "market": "KOSDAQ"
+    },
+    "040910": {
+        "market": "KOSDAQ"
+    },
+    "041020": {
+        "market": "KOSDAQ"
+    },
+    "041140": {
+        "market": "KOSDAQ"
+    },
+    "041190": {
+        "market": "KOSDAQ"
+    },
+    "041440": {
+        "market": "KOSDAQ"
+    },
+    "041460": {
+        "market": "KOSDAQ"
+    },
+    "041510": {
+        "market": "KOSDAQ"
+    },
+    "041520": {
+        "market": "KOSDAQ"
+    },
+    "041590": {
+        "market": "KOSDAQ"
+    },
+    "041650": {
+        "market": "KOSPI"
+    },
+    "041830": {
+        "market": "KOSDAQ"
+    },
+    "041910": {
+        "market": "KOSDAQ"
+    },
+    "041920": {
+        "market": "KOSDAQ"
+    },
+    "041930": {
+        "market": "KOSDAQ"
+    },
+    "041960": {
+        "market": "KOSDAQ"
+    },
+    "042000": {
+        "market": "KOSDAQ"
+    },
+    "042040": {
+        "market": "KOSDAQ"
+    },
+    "042110": {
+        "market": "KOSDAQ"
+    },
+    "042370": {
+        "market": "KOSDAQ"
+    },
+    "042420": {
+        "market": "KOSDAQ"
+    },
+    "042500": {
+        "market": "KOSDAQ"
+    },
+    "042510": {
+        "market": "KOSDAQ"
+    },
+    "042520": {
+        "market": "KOSDAQ"
+    },
+    "042600": {
+        "market": "KOSDAQ"
+    },
+    "042660": {
+        "market": "KOSPI"
+    },
+    "042670": {
+        "market": "KOSPI"
+    },
+    "042700": {
+        "market": "KOSPI"
+    },
+    "042940": {
+        "market": "KOSDAQ"
+    },
+    "043090": {
+        "market": "KOSDAQ"
+    },
+    "043100": {
+        "market": "KOSDAQ"
+    },
+    "043150": {
+        "market": "KOSDAQ"
+    },
+    "043200": {
+        "market": "KOSDAQ"
+    },
+    "043220": {
+        "market": "KOSDAQ"
+    },
+    "043260": {
+        "market": "KOSDAQ"
+    },
+    "043290": {
+        "market": "KOSDAQ"
+    },
+    "043340": {
+        "market": "KOSDAQ"
+    },
+    "043360": {
+        "market": "KOSDAQ"
+    },
+    "043370": {
+        "market": "KOSDAQ"
+    },
+    "043590": {
+        "market": "KOSDAQ"
+    },
+    "043610": {
+        "market": "KOSDAQ"
+    },
+    "043650": {
+        "market": "KOSDAQ"
+    },
+    "043710": {
+        "market": "KOSDAQ"
+    },
+    "043910": {
+        "market": "KOSDAQ"
+    },
+    "044060": {
+        "market": "KOSDAQ"
+    },
+    "044180": {
+        "market": "KOSDAQ"
+    },
+    "044340": {
+        "market": "KOSDAQ"
+    },
+    "044380": {
+        "market": "KOSPI"
+    },
+    "044450": {
+        "market": "KOSPI"
+    },
+    "044480": {
+        "market": "KOSDAQ"
+    },
+    "044490": {
+        "market": "KOSDAQ"
+    },
+    "044780": {
+        "market": "KOSDAQ"
+    },
+    "044820": {
+        "market": "KOSPI"
+    },
+    "044960": {
+        "market": "KOSDAQ"
+    },
+    "045060": {
+        "market": "KOSDAQ"
+    },
+    "045100": {
+        "market": "KOSDAQ"
+    },
+    "045300": {
+        "market": "KOSDAQ"
+    },
+    "045340": {
+        "market": "KOSDAQ"
+    },
+    "045390": {
+        "market": "KOSDAQ"
+    },
+    "045510": {
+        "market": "KOSDAQ"
+    },
+    "045520": {
+        "market": "KOSDAQ"
+    },
+    "045660": {
+        "market": "KOSDAQ"
+    },
+    "045890": {
+        "market": "KOSDAQ"
+    },
+    "045970": {
+        "market": "KOSDAQ"
+    },
+    "046070": {
+        "market": "KOSDAQ"
+    },
+    "046110": {
+        "market": "KOSDAQ"
+    },
+    "046120": {
+        "market": "KOSDAQ"
+    },
+    "046140": {
+        "market": "KOSDAQ"
+    },
+    "046210": {
+        "market": "KOSDAQ"
+    },
+    "046310": {
+        "market": "KOSDAQ"
+    },
+    "046390": {
+        "market": "KOSDAQ"
+    },
+    "046440": {
+        "market": "KOSDAQ"
+    },
+    "046890": {
+        "market": "KOSDAQ"
+    },
+    "046940": {
+        "market": "KOSDAQ"
+    },
+    "046970": {
+        "market": "KOSDAQ"
+    },
+    "047040": {
+        "market": "KOSPI"
+    },
+    "047050": {
+        "market": "KOSPI"
+    },
+    "047080": {
+        "market": "KOSDAQ"
+    },
+    "047310": {
+        "market": "KOSDAQ"
+    },
+    "047400": {
+        "market": "KOSPI"
+    },
+    "047560": {
+        "market": "KOSDAQ"
+    },
+    "047770": {
+        "market": "KOSDAQ"
+    },
+    "047810": {
+        "market": "KOSPI"
+    },
+    "047820": {
+        "market": "KOSDAQ"
+    },
+    "047920": {
+        "market": "KOSDAQ"
+    },
+    "048260": {
+        "market": "KOSDAQ"
+    },
+    "048410": {
+        "market": "KOSDAQ"
+    },
+    "048430": {
+        "market": "KOSDAQ"
+    },
+    "048470": {
+        "market": "KOSDAQ"
+    },
+    "048530": {
+        "market": "KOSDAQ"
+    },
+    "048550": {
+        "market": "KOSDAQ"
+    },
+    "048770": {
+        "market": "KOSDAQ"
+    },
+    "048830": {
+        "market": "KOSDAQ"
+    },
+    "048870": {
+        "market": "KOSDAQ"
+    },
+    "048910": {
+        "market": "KOSDAQ"
+    },
+    "049070": {
+        "market": "KOSDAQ"
+    },
+    "049080": {
+        "market": "KOSDAQ"
+    },
+    "049120": {
+        "market": "KOSDAQ"
+    },
+    "049180": {
+        "market": "KOSDAQ"
+    },
+    "049430": {
+        "market": "KOSDAQ"
+    },
+    "049470": {
+        "market": "KOSDAQ"
+    },
+    "049480": {
+        "market": "KOSDAQ"
+    },
+    "049520": {
+        "market": "KOSDAQ"
+    },
+    "049550": {
+        "market": "KOSDAQ"
+    },
+    "049630": {
+        "market": "KOSDAQ"
+    },
+    "049720": {
+        "market": "KOSDAQ"
+    },
+    "049770": {
+        "market": "KOSPI"
+    },
+    "049800": {
+        "market": "KOSPI"
+    },
+    "049830": {
+        "market": "KOSDAQ"
+    },
+    "049950": {
+        "market": "KOSDAQ"
+    },
+    "049960": {
+        "market": "KOSDAQ"
+    },
+    "050090": {
+        "market": "KOSDAQ"
+    },
+    "050110": {
+        "market": "KOSDAQ"
+    },
+    "050120": {
+        "market": "KOSDAQ"
+    },
+    "050320": {
+        "market": "KOSDAQ"
+    },
+    "050540": {
+        "market": "KOSDAQ"
+    },
+    "050760": {
+        "market": "KOSDAQ"
+    },
+    "050860": {
+        "market": "KOSDAQ"
+    },
+    "050890": {
+        "market": "KOSDAQ"
+    },
+    "050960": {
+        "market": "KOSDAQ"
+    },
+    "051160": {
+        "market": "KOSDAQ"
+    },
+    "051360": {
+        "market": "KOSDAQ"
+    },
+    "051370": {
+        "market": "KOSDAQ"
+    },
+    "051380": {
+        "market": "KOSDAQ"
+    },
+    "051390": {
+        "market": "KOSDAQ"
+    },
+    "051490": {
+        "market": "KOSDAQ"
+    },
+    "051500": {
+        "market": "KOSDAQ"
+    },
+    "051600": {
+        "market": "KOSPI"
+    },
+    "051630": {
+        "market": "KOSPI"
+    },
+    "051780": {
+        "market": "KOSDAQ"
+    },
+    "051900": {
+        "market": "KOSPI"
+    },
+    "051901": {
+        "market": "KOSPI"
+    },
+    "051910": {
+        "market": "KOSPI"
+    },
+    "051911": {
+        "market": "KOSPI"
+    },
+    "051980": {
+        "market": "KOSDAQ"
+    },
+    "052020": {
+        "market": "KOSDAQ"
+    },
+    "052190": {
+        "market": "KOSDAQ"
+    },
+    "052220": {
+        "market": "KOSDAQ"
+    },
+    "052260": {
+        "market": "KOSDAQ"
+    },
+    "052300": {
+        "market": "KOSDAQ"
+    },
+    "052330": {
+        "market": "KOSDAQ"
+    },
+    "052400": {
+        "market": "KOSDAQ"
+    },
+    "052420": {
+        "market": "KOSDAQ"
+    },
+    "052460": {
+        "market": "KOSDAQ"
+    },
+    "052600": {
+        "market": "KOSDAQ"
+    },
+    "052670": {
+        "market": "KOSDAQ"
+    },
+    "052690": {
+        "market": "KOSPI"
+    },
+    "052710": {
+        "market": "KOSDAQ"
+    },
+    "052770": {
+        "market": "KOSDAQ"
+    },
+    "052790": {
+        "market": "KOSDAQ"
+    },
+    "052860": {
+        "market": "KOSDAQ"
+    },
+    "052900": {
+        "market": "KOSDAQ"
+    },
+    "053030": {
+        "market": "KOSDAQ"
+    },
+    "053050": {
+        "market": "KOSDAQ"
+    },
+    "053060": {
+        "market": "KOSDAQ"
+    },
+    "053110": {
+        "market": "KOSDAQ"
+    },
+    "053160": {
+        "market": "KOSDAQ"
+    },
+    "053210": {
+        "market": "KOSPI"
+    },
+    "053260": {
+        "market": "KOSDAQ"
+    },
+    "053270": {
+        "market": "KOSDAQ"
+    },
+    "053280": {
+        "market": "KOSDAQ"
+    },
+    "053290": {
+        "market": "KOSDAQ"
+    },
+    "053300": {
+        "market": "KOSDAQ"
+    },
+    "053350": {
+        "market": "KOSDAQ"
+    },
+    "053450": {
+        "market": "KOSDAQ"
+    },
+    "053580": {
+        "market": "KOSDAQ"
+    },
+    "053590": {
+        "market": "KOSDAQ"
+    },
+    "053610": {
+        "market": "KOSDAQ"
+    },
+    "053620": {
+        "market": "KOSDAQ"
+    },
+    "053660": {
+        "market": "KOSDAQ"
+    },
+    "053690": {
+        "market": "KOSPI"
+    },
+    "053700": {
+        "market": "KOSDAQ"
+    },
+    "053800": {
+        "market": "KOSDAQ"
+    },
+    "053950": {
+        "market": "KOSDAQ"
+    },
+    "053980": {
+        "market": "KOSDAQ"
+    },
+    "054040": {
+        "market": "KOSDAQ"
+    },
+    "054050": {
+        "market": "KOSDAQ"
+    },
+    "054090": {
+        "market": "KOSDAQ"
+    },
+    "054180": {
+        "market": "KOSDAQ"
+    },
+    "054210": {
+        "market": "KOSDAQ"
+    },
+    "054220": {
+        "market": "KOSDAQ"
+    },
+    "054300": {
+        "market": "KOSDAQ"
+    },
+    "054340": {
+        "market": "KOSDAQ"
+    },
+    "054410": {
+        "market": "KOSDAQ"
+    },
+    "054450": {
+        "market": "KOSDAQ"
+    },
+    "054540": {
+        "market": "KOSDAQ"
+    },
+    "054620": {
+        "market": "KOSDAQ"
+    },
+    "054630": {
+        "market": "KOSDAQ"
+    },
+    "054670": {
+        "market": "KOSDAQ"
+    },
+    "054780": {
+        "market": "KOSDAQ"
+    },
+    "054800": {
+        "market": "KOSDAQ"
+    },
+    "054920": {
+        "market": "KOSDAQ"
+    },
+    "054930": {
+        "market": "KOSDAQ"
+    },
+    "054940": {
+        "market": "KOSDAQ"
+    },
+    "054950": {
+        "market": "KOSDAQ"
+    },
+    "055490": {
+        "market": "KOSPI"
+    },
+    "055550": {
+        "market": "KOSPI"
+    },
+    "056000": {
+        "market": "KOSDAQ"
+    },
+    "056080": {
+        "market": "KOSDAQ"
+    },
+    "056090": {
+        "market": "KOSDAQ"
+    },
+    "056190": {
+        "market": "KOSDAQ"
+    },
+    "056360": {
+        "market": "KOSDAQ"
+    },
+    "056700": {
+        "market": "KOSDAQ"
+    },
+    "056730": {
+        "market": "KOSDAQ"
+    },
+    "057030": {
+        "market": "KOSDAQ"
+    },
+    "057050": {
+        "market": "KOSPI"
+    },
+    "057500": {
+        "market": "KOSDAQ"
+    },
+    "057540": {
+        "market": "KOSDAQ"
+    },
+    "057680": {
+        "market": "KOSDAQ"
+    },
+    "057880": {
+        "market": "KOSDAQ"
+    },
+    "058110": {
+        "market": "KOSDAQ"
+    },
+    "058220": {
+        "market": "KOSDAQ"
+    },
+    "058400": {
+        "market": "KOSDAQ"
+    },
+    "058420": {
+        "market": "KOSDAQ"
+    },
+    "058430": {
+        "market": "KOSPI"
+    },
+    "058450": {
+        "market": "KOSDAQ"
+    },
+    "058470": {
+        "market": "KOSDAQ"
+    },
+    "058530": {
+        "market": "KOSDAQ"
+    },
+    "058610": {
+        "market": "KOSDAQ"
+    },
+    "058630": {
+        "market": "KOSDAQ"
+    },
+    "058650": {
+        "market": "KOSPI"
+    },
+    "058730": {
+        "market": "KOSPI"
+    },
+    "058820": {
+        "market": "KOSDAQ"
+    },
+    "058850": {
+        "market": "KOSPI"
+    },
+    "058860": {
+        "market": "KOSPI"
+    },
+    "059090": {
+        "market": "KOSDAQ"
+    },
+    "059100": {
+        "market": "KOSDAQ"
+    },
+    "059120": {
+        "market": "KOSDAQ"
+    },
+    "059210": {
+        "market": "KOSDAQ"
+    },
+    "060150": {
+        "market": "KOSDAQ"
+    },
+    "060230": {
+        "market": "KOSDAQ"
+    },
+    "060240": {
+        "market": "KOSDAQ"
+    },
+    "060250": {
+        "market": "KOSDAQ"
+    },
+    "060260": {
+        "market": "KOSDAQ"
+    },
+    "060280": {
+        "market": "KOSDAQ"
+    },
+    "060300": {
+        "market": "KOSDAQ"
+    },
+    "060310": {
+        "market": "KOSDAQ"
+    },
+    "060370": {
+        "market": "KOSDAQ"
+    },
+    "060380": {
+        "market": "KOSDAQ"
+    },
+    "060480": {
+        "market": "KOSDAQ"
+    },
+    "060540": {
+        "market": "KOSDAQ"
+    },
+    "060560": {
+        "market": "KOSDAQ"
+    },
+    "060570": {
+        "market": "KOSDAQ"
+    },
+    "060590": {
+        "market": "KOSDAQ"
+    },
+    "060720": {
+        "market": "KOSDAQ"
+    },
+    "060900": {
+        "market": "KOSDAQ"
+    },
+    "060980": {
+        "market": "KOSPI"
+    },
+    "061040": {
+        "market": "KOSDAQ"
+    },
+    "061250": {
+        "market": "KOSDAQ"
+    },
+    "061970": {
+        "market": "KOSDAQ"
+    },
+    "062860": {
+        "market": "KOSDAQ"
+    },
+    "062970": {
+        "market": "KOSDAQ"
+    },
+    "063080": {
+        "market": "KOSDAQ"
+    },
+    "063160": {
+        "market": "KOSPI"
+    },
+    "063170": {
+        "market": "KOSDAQ"
+    },
+    "063440": {
+        "market": "KOSDAQ"
+    },
+    "063570": {
+        "market": "KOSDAQ"
+    },
+    "063760": {
+        "market": "KOSDAQ"
+    },
+    "064090": {
+        "market": "KOSDAQ"
+    },
+    "064240": {
+        "market": "KOSDAQ"
+    },
+    "064260": {
+        "market": "KOSDAQ"
+    },
+    "064290": {
+        "market": "KOSDAQ"
+    },
+    "064350": {
+        "market": "KOSPI"
+    },
+    "064480": {
+        "market": "KOSDAQ"
+    },
+    "064510": {
+        "market": "KOSDAQ"
+    },
+    "064520": {
+        "market": "KOSDAQ"
+    },
+    "064550": {
+        "market": "KOSDAQ"
+    },
+    "064760": {
+        "market": "KOSDAQ"
+    },
+    "064800": {
+        "market": "KOSDAQ"
+    },
+    "064820": {
+        "market": "KOSDAQ"
+    },
+    "064960": {
+        "market": "KOSPI"
+    },
+    "065060": {
+        "market": "KOSDAQ"
+    },
+    "065130": {
+        "market": "KOSDAQ"
+    },
+    "065150": {
+        "market": "KOSDAQ"
+    },
+    "065170": {
+        "market": "KOSDAQ"
+    },
+    "065350": {
+        "market": "KOSDAQ"
+    },
+    "065370": {
+        "market": "KOSDAQ"
+    },
+    "065420": {
+        "market": "KOSDAQ"
+    },
+    "065440": {
+        "market": "KOSDAQ"
+    },
+    "065450": {
+        "market": "KOSDAQ"
+    },
+    "065500": {
+        "market": "KOSDAQ"
+    },
+    "065510": {
+        "market": "KOSDAQ"
+    },
+    "065530": {
+        "market": "KOSDAQ"
+    },
+    "065560": {
+        "market": "KOSDAQ"
+    },
+    "065570": {
+        "market": "KOSDAQ"
+    },
+    "065620": {
+        "market": "KOSDAQ"
+    },
+    "065650": {
+        "market": "KOSDAQ"
+    },
+    "065660": {
+        "market": "KOSDAQ"
+    },
+    "065680": {
+        "market": "KOSDAQ"
+    },
+    "065690": {
+        "market": "KOSDAQ"
+    },
+    "065710": {
+        "market": "KOSDAQ"
+    },
+    "065770": {
+        "market": "KOSDAQ"
+    },
+    "065940": {
+        "market": "KOSDAQ"
+    },
+    "065950": {
+        "market": "KOSDAQ"
+    },
+    "066110": {
+        "market": "KOSDAQ"
+    },
+    "066130": {
+        "market": "KOSDAQ"
+    },
+    "066310": {
+        "market": "KOSDAQ"
+    },
+    "066360": {
+        "market": "KOSDAQ"
+    },
+    "066410": {
+        "market": "KOSDAQ"
+    },
+    "066430": {
+        "market": "KOSDAQ"
+    },
+    "066570": {
+        "market": "KOSPI"
+    },
+    "066571": {
+        "market": "KOSPI"
+    },
+    "066590": {
+        "market": "KOSDAQ"
+    },
+    "066620": {
+        "market": "KOSDAQ"
+    },
+    "066670": {
+        "market": "KOSDAQ"
+    },
+    "066700": {
+        "market": "KOSDAQ"
+    },
+    "066790": {
+        "market": "KOSDAQ"
+    },
+    "066900": {
+        "market": "KOSDAQ"
+    },
+    "066910": {
+        "market": "KOSDAQ"
+    },
+    "066970": {
+        "market": "KOSDAQ"
+    },
+    "066980": {
+        "market": "KOSDAQ"
+    },
+    "067000": {
+        "market": "KOSDAQ"
+    },
+    "067010": {
+        "market": "KOSDAQ"
+    },
+    "067080": {
+        "market": "KOSDAQ"
+    },
+    "067160": {
+        "market": "KOSDAQ"
+    },
+    "067170": {
+        "market": "KOSDAQ"
+    },
+    "067280": {
+        "market": "KOSDAQ"
+    },
+    "067290": {
+        "market": "KOSDAQ"
+    },
+    "067310": {
+        "market": "KOSDAQ"
+    },
+    "067390": {
+        "market": "KOSDAQ"
+    },
+    "067570": {
+        "market": "KOSDAQ"
+    },
+    "067630": {
+        "market": "KOSDAQ"
+    },
+    "067730": {
+        "market": "KOSDAQ"
+    },
+    "067770": {
+        "market": "KOSDAQ"
+    },
+    "067830": {
+        "market": "KOSPI"
+    },
+    "067900": {
+        "market": "KOSDAQ"
+    },
+    "067920": {
+        "market": "KOSDAQ"
+    },
+    "067990": {
+        "market": "KOSDAQ"
+    },
+    "068050": {
+        "market": "KOSDAQ"
+    },
+    "068240": {
+        "market": "KOSDAQ"
+    },
+    "068270": {
+        "market": "KOSPI"
+    },
+    "068290": {
+        "market": "KOSPI"
+    },
+    "068330": {
+        "market": "KOSDAQ"
+    },
+    "068400": {
+        "market": "KOSPI"
+    },
+    "068760": {
+        "market": "KOSDAQ"
+    },
+    "068790": {
+        "market": "KOSDAQ"
+    },
+    "068930": {
+        "market": "KOSDAQ"
+    },
+    "068940": {
+        "market": "KOSDAQ"
+    },
+    "069080": {
+        "market": "KOSDAQ"
+    },
+    "069110": {
+        "market": "KOSDAQ"
+    },
+    "069140": {
+        "market": "KOSDAQ"
+    },
+    "069260": {
+        "market": "KOSPI"
+    },
+    "069330": {
+        "market": "KOSDAQ"
+    },
+    "069410": {
+        "market": "KOSDAQ"
+    },
+    "069460": {
+        "market": "KOSPI"
+    },
+    "069500": {
+        "market": "KOSPI"
+    },
+    "069510": {
+        "market": "KOSDAQ"
+    },
+    "069540": {
+        "market": "KOSDAQ"
+    },
+    "069620": {
+        "market": "KOSPI"
+    },
+    "069640": {
+        "market": "KOSPI"
+    },
+    "069660": {
+        "market": "KOSPI"
+    },
+    "069730": {
+        "market": "KOSPI"
+    },
+    "069920": {
+        "market": "KOSDAQ"
+    },
+    "069960": {
+        "market": "KOSPI"
+    },
+    "070300": {
+        "market": "KOSDAQ"
+    },
+    "070590": {
+        "market": "KOSDAQ"
+    },
+    "070960": {
+        "market": "KOSPI"
+    },
+    "071050": {
+        "market": "KOSPI"
+    },
+    "071051": {
+        "market": "KOSPI"
+    },
+    "071090": {
+        "market": "KOSPI"
+    },
+    "071200": {
+        "market": "KOSDAQ"
+    },
+    "071280": {
+        "market": "KOSDAQ"
+    },
+    "071320": {
+        "market": "KOSPI"
+    },
+    "071460": {
+        "market": "KOSDAQ"
+    },
+    "071670": {
+        "market": "KOSDAQ"
+    },
+    "071840": {
+        "market": "KOSPI"
+    },
+    "071850": {
+        "market": "KOSDAQ"
+    },
+    "071950": {
+        "market": "KOSPI"
+    },
+    "071970": {
+        "market": "KOSPI"
+    },
+    "072020": {
+        "market": "KOSDAQ"
+    },
+    "072130": {
+        "market": "KOSPI"
+    },
+    "072470": {
+        "market": "KOSDAQ"
+    },
+    "072520": {
+        "market": "KOSDAQ"
+    },
+    "072710": {
+        "market": "KOSPI"
+    },
+    "072770": {
+        "market": "KOSDAQ"
+    },
+    "072870": {
+        "market": "KOSDAQ"
+    },
+    "072950": {
+        "market": "KOSDAQ"
+    },
+    "072990": {
+        "market": "KOSDAQ"
+    },
+    "073010": {
+        "market": "KOSDAQ"
+    },
+    "073070": {
+        "market": "KOSDAQ"
+    },
+    "073110": {
+        "market": "KOSDAQ"
+    },
+    "073190": {
+        "market": "KOSDAQ"
+    },
+    "073240": {
+        "market": "KOSPI"
+    },
+    "073490": {
+        "market": "KOSDAQ"
+    },
+    "073540": {
+        "market": "KOSDAQ"
+    },
+    "073560": {
+        "market": "KOSDAQ"
+    },
+    "073570": {
+        "market": "KOSDAQ"
+    },
+    "073640": {
+        "market": "KOSDAQ"
+    },
+    "074430": {
+        "market": "KOSDAQ"
+    },
+    "074600": {
+        "market": "KOSDAQ"
+    },
+    "074610": {
+        "market": "KOSPI"
+    },
+    "075130": {
+        "market": "KOSDAQ"
+    },
+    "075180": {
+        "market": "KOSPI"
+    },
+    "075580": {
+        "market": "KOSPI"
+    },
+    "075970": {
+        "market": "KOSDAQ"
+    },
+    "076080": {
+        "market": "KOSDAQ"
+    },
+    "076610": {
+        "market": "KOSDAQ"
+    },
+    "077360": {
+        "market": "KOSDAQ"
+    },
+    "077500": {
+        "market": "KOSPI"
+    },
+    "077970": {
+        "market": "KOSPI"
+    },
+    "078000": {
+        "market": "KOSPI"
+    },
+    "078020": {
+        "market": "KOSDAQ"
+    },
+    "078070": {
+        "market": "KOSDAQ"
+    },
+    "078130": {
+        "market": "KOSDAQ"
+    },
+    "078140": {
+        "market": "KOSDAQ"
+    },
+    "078150": {
+        "market": "KOSDAQ"
+    },
+    "078160": {
+        "market": "KOSDAQ"
+    },
+    "078340": {
+        "market": "KOSDAQ"
+    },
+    "078350": {
+        "market": "KOSDAQ"
+    },
+    "078520": {
+        "market": "KOSPI"
+    },
+    "078590": {
+        "market": "KOSDAQ"
+    },
+    "078600": {
+        "market": "KOSDAQ"
+    },
+    "078650": {
+        "market": "KOSDAQ"
+    },
+    "078860": {
+        "market": "KOSDAQ"
+    },
+    "078890": {
+        "market": "KOSDAQ"
+    },
+    "078930": {
+        "market": "KOSPI"
+    },
+    "078931": {
+        "market": "KOSPI"
+    },
+    "078940": {
+        "market": "KOSDAQ"
+    },
+    "079000": {
+        "market": "KOSDAQ"
+    },
+    "079160": {
+        "market": "KOSPI"
+    },
+    "079170": {
+        "market": "KOSDAQ"
+    },
+    "079190": {
+        "market": "KOSDAQ"
+    },
+    "079370": {
+        "market": "KOSDAQ"
+    },
+    "079430": {
+        "market": "KOSPI"
+    },
+    "079550": {
+        "market": "KOSPI"
+    },
+    "079650": {
+        "market": "KOSDAQ"
+    },
+    "079810": {
+        "market": "KOSDAQ"
+    },
+    "079940": {
+        "market": "KOSDAQ"
+    },
+    "079950": {
+        "market": "KOSDAQ"
+    },
+    "079960": {
+        "market": "KOSDAQ"
+    },
+    "079970": {
+        "market": "KOSDAQ"
+    },
+    "079980": {
+        "market": "KOSPI"
+    },
+    "080000": {
+        "market": "KOSDAQ"
+    },
+    "080010": {
+        "market": "KOSDAQ"
+    },
+    "080160": {
+        "market": "KOSDAQ"
+    },
+    "080220": {
+        "market": "KOSDAQ"
+    },
+    "080420": {
+        "market": "KOSDAQ"
+    },
+    "080440": {
+        "market": "KOSDAQ"
+    },
+    "080470": {
+        "market": "KOSDAQ"
+    },
+    "080520": {
+        "market": "KOSDAQ"
+    },
+    "080530": {
+        "market": "KOSDAQ"
+    },
+    "080580": {
+        "market": "KOSDAQ"
+    },
+    "080720": {
+        "market": "KOSDAQ"
+    },
+    "081000": {
+        "market": "KOSPI"
+    },
+    "081150": {
+        "market": "KOSDAQ"
+    },
+    "081580": {
+        "market": "KOSDAQ"
+    },
+    "081660": {
+        "market": "KOSPI"
+    },
+    "082210": {
+        "market": "KOSDAQ"
+    },
+    "082270": {
+        "market": "KOSDAQ"
+    },
+    "082640": {
+        "market": "KOSPI"
+    },
+    "082660": {
+        "market": "KOSDAQ"
+    },
+    "082740": {
+        "market": "KOSPI"
+    },
+    "082800": {
+        "market": "KOSDAQ"
+    },
+    "082850": {
+        "market": "KOSDAQ"
+    },
+    "082920": {
+        "market": "KOSDAQ"
+    },
+    "083310": {
+        "market": "KOSDAQ"
+    },
+    "083370": {
+        "market": "KOSPI"
+    },
+    "083380": {
+        "market": "KOSPI"
+    },
+    "083420": {
+        "market": "KOSPI"
+    },
+    "083450": {
+        "market": "KOSDAQ"
+    },
+    "083470": {
+        "market": "KOSDAQ"
+    },
+    "083500": {
+        "market": "KOSDAQ"
+    },
+    "083550": {
+        "market": "KOSDAQ"
+    },
+    "083640": {
+        "market": "KOSDAQ"
+    },
+    "083650": {
+        "market": "KOSDAQ"
+    },
+    "083660": {
+        "market": "KOSDAQ"
+    },
+    "083790": {
+        "market": "KOSDAQ"
+    },
+    "083930": {
+        "market": "KOSDAQ"
+    },
+    "084010": {
+        "market": "KOSPI"
+    },
+    "084110": {
+        "market": "KOSDAQ"
+    },
+    "084180": {
+        "market": "KOSDAQ"
+    },
+    "084370": {
+        "market": "KOSDAQ"
+    },
+    "084650": {
+        "market": "KOSDAQ"
+    },
+    "084670": {
+        "market": "KOSPI"
+    },
+    "084680": {
+        "market": "KOSPI"
+    },
+    "084690": {
+        "market": "KOSPI"
+    },
+    "084691": {
+        "market": "KOSPI"
+    },
+    "084730": {
+        "market": "KOSDAQ"
+    },
+    "084850": {
+        "market": "KOSDAQ"
+    },
+    "084870": {
+        "market": "KOSPI"
+    },
+    "084990": {
+        "market": "KOSDAQ"
+    },
+    "085310": {
+        "market": "KOSPI"
+    },
+    "085370": {
+        "market": "KOSDAQ"
+    },
+    "08537K": {
+        "market": "KOSDAQ"
+    },
+    "085620": {
+        "market": "KOSPI"
+    },
+    "085660": {
+        "market": "KOSDAQ"
+    },
+    "085670": {
+        "market": "KOSDAQ"
+    },
+    "085810": {
+        "market": "KOSDAQ"
+    },
+    "085910": {
+        "market": "KOSDAQ"
+    },
+    "086040": {
+        "market": "KOSDAQ"
+    },
+    "086060": {
+        "market": "KOSDAQ"
+    },
+    "086250": {
+        "market": "KOSDAQ"
+    },
+    "086280": {
+        "market": "KOSPI"
+    },
+    "086390": {
+        "market": "KOSDAQ"
+    },
+    "086450": {
+        "market": "KOSDAQ"
+    },
+    "086520": {
+        "market": "KOSDAQ"
+    },
+    "086670": {
+        "market": "KOSDAQ"
+    },
+    "086790": {
+        "market": "KOSPI"
+    },
+    "086820": {
+        "market": "KOSDAQ"
+    },
+    "086890": {
+        "market": "KOSDAQ"
+    },
+    "086900": {
+        "market": "KOSDAQ"
+    },
+    "086960": {
+        "market": "KOSDAQ"
+    },
+    "086980": {
+        "market": "KOSDAQ"
+    },
+    "087010": {
+        "market": "KOSDAQ"
+    },
+    "087260": {
+        "market": "KOSDAQ"
+    },
+    "087600": {
+        "market": "KOSDAQ"
+    },
+    "087730": {
+        "market": "KOSDAQ"
+    },
+    "088130": {
+        "market": "KOSDAQ"
+    },
+    "088260": {
+        "market": "KOSPI"
+    },
+    "088290": {
+        "market": "KOSDAQ"
+    },
+    "088350": {
+        "market": "KOSPI"
+    },
+    "088390": {
+        "market": "KOSDAQ"
+    },
+    "088790": {
+        "market": "KOSPI"
+    },
+    "088800": {
+        "market": "KOSDAQ"
+    },
+    "088910": {
+        "market": "KOSDAQ"
+    },
+    "088980": {
+        "market": "KOSPI"
+    },
+    "089010": {
+        "market": "KOSDAQ"
+    },
+    "089030": {
+        "market": "KOSDAQ"
+    },
+    "089140": {
+        "market": "KOSDAQ"
+    },
+    "089150": {
+        "market": "KOSDAQ"
+    },
+    "089230": {
+        "market": "KOSDAQ"
+    },
+    "089470": {
+        "market": "KOSPI"
+    },
+    "089530": {
+        "market": "KOSDAQ"
+    },
+    "089590": {
+        "market": "KOSPI"
+    },
+    "089600": {
+        "market": "KOSDAQ"
+    },
+    "089790": {
+        "market": "KOSDAQ"
+    },
+    "089850": {
+        "market": "KOSDAQ"
+    },
+    "089890": {
+        "market": "KOSDAQ"
+    },
+    "089970": {
+        "market": "KOSDAQ"
+    },
+    "089980": {
+        "market": "KOSDAQ"
+    },
+    "090080": {
+        "market": "KOSPI"
+    },
+    "090150": {
+        "market": "KOSDAQ"
+    },
+    "090350": {
+        "market": "KOSPI"
+    },
+    "090351": {
+        "market": "KOSPI"
+    },
+    "090360": {
+        "market": "KOSDAQ"
+    },
+    "090370": {
+        "market": "KOSPI"
+    },
+    "090410": {
+        "market": "KOSDAQ"
+    },
+    "090430": {
+        "market": "KOSPI"
+    },
+    "090431": {
+        "market": "KOSPI"
+    },
+    "090460": {
+        "market": "KOSDAQ"
+    },
+    "090470": {
+        "market": "KOSDAQ"
+    },
+    "090710": {
+        "market": "KOSDAQ"
+    },
+    "090740": {
+        "market": "KOSDAQ"
+    },
+    "090850": {
+        "market": "KOSDAQ"
+    },
+    "091090": {
+        "market": "KOSPI"
+    },
+    "091120": {
+        "market": "KOSDAQ"
+    },
+    "091160": {
+        "market": "KOSPI"
+    },
+    "091170": {
+        "market": "KOSPI"
+    },
+    "091180": {
+        "market": "KOSPI"
+    },
+    "091220": {
+        "market": "KOSPI"
+    },
+    "091230": {
+        "market": "KOSPI"
+    },
+    "091340": {
+        "market": "KOSDAQ"
+    },
+    "091440": {
+        "market": "KOSDAQ"
+    },
+    "091580": {
+        "market": "KOSDAQ"
+    },
+    "091590": {
+        "market": "KOSDAQ"
+    },
+    "091700": {
+        "market": "KOSDAQ"
+    },
+    "091810": {
+        "market": "KOSPI"
+    },
+    "091970": {
+        "market": "KOSDAQ"
+    },
+    "091990": {
+        "market": "KOSDAQ"
+    },
+    "092040": {
+        "market": "KOSDAQ"
+    },
+    "092070": {
+        "market": "KOSDAQ"
+    },
+    "092130": {
+        "market": "KOSDAQ"
+    },
+    "092190": {
+        "market": "KOSDAQ"
+    },
+    "092200": {
+        "market": "KOSPI"
+    },
+    "092220": {
+        "market": "KOSPI"
+    },
+    "092230": {
+        "market": "KOSPI"
+    },
+    "092300": {
+        "market": "KOSDAQ"
+    },
+    "092440": {
+        "market": "KOSPI"
+    },
+    "092460": {
+        "market": "KOSDAQ"
+    },
+    "092600": {
+        "market": "KOSDAQ"
+    },
+    "092730": {
+        "market": "KOSDAQ"
+    },
+    "092780": {
+        "market": "KOSPI"
+    },
+    "092870": {
+        "market": "KOSDAQ"
+    },
+    "093050": {
+        "market": "KOSPI"
+    },
+    "093190": {
+        "market": "KOSDAQ"
+    },
+    "093230": {
+        "market": "KOSPI"
+    },
+    "093240": {
+        "market": "KOSPI"
+    },
+    "093320": {
+        "market": "KOSDAQ"
+    },
+    "093370": {
+        "market": "KOSPI"
+    },
+    "093380": {
+        "market": "KOSDAQ"
+    },
+    "093520": {
+        "market": "KOSDAQ"
+    },
+    "093640": {
+        "market": "KOSDAQ"
+    },
+    "093920": {
+        "market": "KOSDAQ"
+    },
+    "094170": {
+        "market": "KOSDAQ"
+    },
+    "094190": {
+        "market": "KOSDAQ"
+    },
+    "094280": {
+        "market": "KOSPI"
+    },
+    "094360": {
+        "market": "KOSDAQ"
+    },
+    "094480": {
+        "market": "KOSDAQ"
+    },
+    "094800": {
+        "market": "KOSPI"
+    },
+    "094820": {
+        "market": "KOSDAQ"
+    },
+    "094840": {
+        "market": "KOSDAQ"
+    },
+    "094850": {
+        "market": "KOSDAQ"
+    },
+    "094860": {
+        "market": "KOSDAQ"
+    },
+    "094940": {
+        "market": "KOSDAQ"
+    },
+    "094970": {
+        "market": "KOSDAQ"
+    },
+    "095190": {
+        "market": "KOSDAQ"
+    },
+    "095270": {
+        "market": "KOSDAQ"
+    },
+    "095340": {
+        "market": "KOSDAQ"
+    },
+    "095500": {
+        "market": "KOSDAQ"
+    },
+    "095570": {
+        "market": "KOSPI"
+    },
+    "095610": {
+        "market": "KOSDAQ"
+    },
+    "095660": {
+        "market": "KOSDAQ"
+    },
+    "095700": {
+        "market": "KOSDAQ"
+    },
+    "095720": {
+        "market": "KOSPI"
+    },
+    "095910": {
+        "market": "KOSDAQ"
+    },
+    "096040": {
+        "market": "KOSDAQ"
+    },
+    "096240": {
+        "market": "KOSDAQ"
+    },
+    "096300": {
+        "market": "KOSPI"
+    },
+    "096350": {
+        "market": "KOSDAQ"
+    },
+    "096530": {
+        "market": "KOSDAQ"
+    },
+    "096610": {
+        "market": "KOSDAQ"
+    },
+    "096630": {
+        "market": "KOSDAQ"
+    },
+    "096640": {
+        "market": "KOSDAQ"
+    },
+    "096690": {
+        "market": "KOSDAQ"
+    },
+    "096760": {
+        "market": "KOSPI"
+    },
+    "096770": {
+        "market": "KOSPI"
+    },
+    "096771": {
+        "market": "KOSPI"
+    },
+    "096870": {
+        "market": "KOSDAQ"
+    },
+    "097230": {
+        "market": "KOSPI"
+    },
+    "097520": {
+        "market": "KOSDAQ"
+    },
+    "097750": {
+        "market": "KOSPI"
+    },
+    "097780": {
+        "market": "KOSDAQ"
+    },
+    "097800": {
+        "market": "KOSDAQ"
+    },
+    "097870": {
+        "market": "KOSDAQ"
+    },
+    "097950": {
+        "market": "KOSPI"
+    },
+    "097951": {
+        "market": "KOSPI"
+    },
+    "098120": {
+        "market": "KOSDAQ"
+    },
+    "098460": {
+        "market": "KOSDAQ"
+    },
+    "098560": {
+        "market": "KOSPI"
+    },
+    "098660": {
+        "market": "KOSDAQ"
+    },
+    "099140": {
+        "market": "KOSPI"
+    },
+    "099190": {
+        "market": "KOSDAQ"
+    },
+    "099220": {
+        "market": "KOSDAQ"
+    },
+    "099320": {
+        "market": "KOSDAQ"
+    },
+    "099340": {
+        "market": "KOSPI"
+    },
+    "099350": {
+        "market": "KOSPI"
+    },
+    "099410": {
+        "market": "KOSDAQ"
+    },
+    "099440": {
+        "market": "KOSDAQ"
+    },
+    "099520": {
+        "market": "KOSDAQ"
+    },
+    "099750": {
+        "market": "KOSDAQ"
+    },
+    "100030": {
+        "market": "KOSDAQ"
+    },
+    "100090": {
+        "market": "KOSDAQ"
+    },
+    "100120": {
+        "market": "KOSDAQ"
+    },
+    "100130": {
+        "market": "KOSDAQ"
+    },
+    "100220": {
+        "market": "KOSPI"
+    },
+    "100250": {
+        "market": "KOSPI"
+    },
+    "100590": {
+        "market": "KOSDAQ"
+    },
+    "100660": {
+        "market": "KOSDAQ"
+    },
+    "100700": {
+        "market": "KOSDAQ"
+    },
+    "100790": {
+        "market": "KOSDAQ"
+    },
+    "100840": {
+        "market": "KOSPI"
+    },
+    "100910": {
+        "market": "KOSPI"
+    },
+    "101000": {
+        "market": "KOSDAQ"
+    },
+    "101060": {
+        "market": "KOSPI"
+    },
+    "101140": {
+        "market": "KOSPI"
+    },
+    "101160": {
+        "market": "KOSDAQ"
+    },
+    "101170": {
+        "market": "KOSDAQ"
+    },
+    "101240": {
+        "market": "KOSDAQ"
+    },
+    "101280": {
+        "market": "KOSPI"
+    },
+    "101330": {
+        "market": "KOSDAQ"
+    },
+    "101390": {
+        "market": "KOSDAQ"
+    },
+    "101400": {
+        "market": "KOSDAQ"
+    },
+    "101490": {
+        "market": "KOSDAQ"
+    },
+    "101530": {
+        "market": "KOSPI"
+    },
+    "101670": {
+        "market": "KOSDAQ"
+    },
+    "101680": {
+        "market": "KOSDAQ"
+    },
+    "101730": {
+        "market": "KOSDAQ"
+    },
+    "101930": {
+        "market": "KOSDAQ"
+    },
+    "102110": {
+        "market": "KOSPI"
+    },
+    "102120": {
+        "market": "KOSDAQ"
+    },
+    "102210": {
+        "market": "KOSDAQ"
+    },
+    "102260": {
+        "market": "KOSPI"
+    },
+    "102280": {
+        "market": "KOSPI"
+    },
+    "102460": {
+        "market": "KOSPI"
+    },
+    "102710": {
+        "market": "KOSDAQ"
+    },
+    "102780": {
+        "market": "KOSPI"
+    },
+    "102940": {
+        "market": "KOSDAQ"
+    },
+    "102960": {
+        "market": "KOSPI"
+    },
+    "102970": {
+        "market": "KOSPI"
+    },
+    "103130": {
+        "market": "KOSPI"
+    },
+    "103140": {
+        "market": "KOSPI"
+    },
+    "103230": {
+        "market": "KOSDAQ"
+    },
+    "103590": {
+        "market": "KOSPI"
+    },
+    "103840": {
+        "market": "KOSDAQ"
+    },
+    "104040": {
+        "market": "KOSDAQ"
+    },
+    "104200": {
+        "market": "KOSDAQ"
+    },
+    "104460": {
+        "market": "KOSDAQ"
+    },
+    "104480": {
+        "market": "KOSDAQ"
+    },
+    "104520": {
+        "market": "KOSPI"
+    },
+    "104530": {
+        "market": "KOSPI"
+    },
+    "104540": {
+        "market": "KOSDAQ"
+    },
+    "104620": {
+        "market": "KOSDAQ"
+    },
+    "104700": {
+        "market": "KOSPI"
+    },
+    "104830": {
+        "market": "KOSDAQ"
+    },
+    "105010": {
+        "market": "KOSPI"
+    },
+    "105190": {
+        "market": "KOSPI"
+    },
+    "105330": {
+        "market": "KOSDAQ"
+    },
+    "105550": {
+        "market": "KOSDAQ"
+    },
+    "105560": {
+        "market": "KOSPI"
+    },
+    "105630": {
+        "market": "KOSPI"
+    },
+    "105740": {
+        "market": "KOSDAQ"
+    },
+    "105780": {
+        "market": "KOSPI"
+    },
+    "105840": {
+        "market": "KOSPI"
+    },
+    "106080": {
+        "market": "KOSDAQ"
+    },
+    "106190": {
+        "market": "KOSDAQ"
+    },
+    "106240": {
+        "market": "KOSDAQ"
+    },
+    "106520": {
+        "market": "KOSDAQ"
+    },
+    "107590": {
+        "market": "KOSPI"
+    },
+    "108230": {
+        "market": "KOSDAQ"
+    },
+    "108320": {
+        "market": "KOSDAQ"
+    },
+    "108380": {
+        "market": "KOSDAQ"
+    },
+    "108450": {
+        "market": "KOSPI"
+    },
+    "108490": {
+        "market": "KOSDAQ"
+    },
+    "108590": {
+        "market": "KOSPI"
+    },
+    "108670": {
+        "market": "KOSPI"
+    },
+    "108671": {
+        "market": "KOSPI"
+    },
+    "108790": {
+        "market": "KOSDAQ"
+    },
+    "108860": {
+        "market": "KOSDAQ"
+    },
+    "109070": {
+        "market": "KOSPI"
+    },
+    "109080": {
+        "market": "KOSDAQ"
+    },
+    "109610": {
+        "market": "KOSDAQ"
+    },
+    "109740": {
+        "market": "KOSDAQ"
+    },
+    "109820": {
+        "market": "KOSDAQ"
+    },
+    "109860": {
+        "market": "KOSDAQ"
+    },
+    "109960": {
+        "market": "KOSDAQ"
+    },
+    "110020": {
+        "market": "KOSDAQ"
+    },
+    "110790": {
+        "market": "KOSDAQ"
+    },
+    "110990": {
+        "market": "KOSDAQ"
+    },
+    "111110": {
+        "market": "KOSPI"
+    },
+    "111710": {
+        "market": "KOSDAQ"
+    },
+    "111770": {
+        "market": "KOSPI"
+    },
+    "111820": {
+        "market": "KOSDAQ"
+    },
+    "111870": {
+        "market": "KOSDAQ"
+    },
+    "112040": {
+        "market": "KOSDAQ"
+    },
+    "112240": {
+        "market": "KOSDAQ"
+    },
+    "112610": {
+        "market": "KOSPI"
+    },
+    "113810": {
+        "market": "KOSDAQ"
+    },
+    "114090": {
+        "market": "KOSPI"
+    },
+    "114100": {
+        "market": "KOSPI"
+    },
+    "114120": {
+        "market": "KOSDAQ"
+    },
+    "114190": {
+        "market": "KOSDAQ"
+    },
+    "114260": {
+        "market": "KOSPI"
+    },
+    "114450": {
+        "market": "KOSDAQ"
+    },
+    "114460": {
+        "market": "KOSPI"
+    },
+    "114470": {
+        "market": "KOSPI"
+    },
+    "114570": {
+        "market": "KOSDAQ"
+    },
+    "114630": {
+        "market": "KOSDAQ"
+    },
+    "114800": {
+        "market": "KOSPI"
+    },
+    "114810": {
+        "market": "KOSDAQ"
+    },
+    "114820": {
+        "market": "KOSPI"
+    },
+    "115160": {
+        "market": "KOSDAQ"
+    },
+    "115180": {
+        "market": "KOSDAQ"
+    },
+    "115310": {
+        "market": "KOSDAQ"
+    },
+    "115390": {
+        "market": "KOSPI"
+    },
+    "115440": {
+        "market": "KOSDAQ"
+    },
+    "115450": {
+        "market": "KOSDAQ"
+    },
+    "115480": {
+        "market": "KOSDAQ"
+    },
+    "115500": {
+        "market": "KOSDAQ"
+    },
+    "115530": {
+        "market": "KOSDAQ"
+    },
+    "115570": {
+        "market": "KOSDAQ"
+    },
+    "115610": {
+        "market": "KOSDAQ"
+    },
+    "115960": {
+        "market": "KOSDAQ"
+    },
+    "117460": {
+        "market": "KOSPI"
+    },
+    "117580": {
+        "market": "KOSPI"
+    },
+    "117670": {
+        "market": "KOSDAQ"
+    },
+    "117680": {
+        "market": "KOSPI"
+    },
+    "117690": {
+        "market": "KOSPI"
+    },
+    "117700": {
+        "market": "KOSPI"
+    },
+    "117730": {
+        "market": "KOSDAQ"
+    },
+    "118000": {
+        "market": "KOSPI"
+    },
+    "118990": {
+        "market": "KOSDAQ"
+    },
+    "119500": {
+        "market": "KOSDAQ"
+    },
+    "119610": {
+        "market": "KOSDAQ"
+    },
+    "119650": {
+        "market": "KOSPI"
+    },
+    "119830": {
+        "market": "KOSDAQ"
+    },
+    "119850": {
+        "market": "KOSDAQ"
+    },
+    "119860": {
+        "market": "KOSDAQ"
+    },
+    "120030": {
+        "market": "KOSPI"
+    },
+    "120110": {
+        "market": "KOSPI"
+    },
+    "120111": {
+        "market": "KOSPI"
+    },
+    "120240": {
+        "market": "KOSDAQ"
+    },
+    "121440": {
+        "market": "KOSDAQ"
+    },
+    "121600": {
+        "market": "KOSDAQ"
+    },
+    "121800": {
+        "market": "KOSDAQ"
+    },
+    "121850": {
+        "market": "KOSDAQ"
+    },
+    "121890": {
+        "market": "KOSDAQ"
+    },
+    "122090": {
+        "market": "KOSPI"
+    },
+    "122260": {
+        "market": "KOSPI"
+    },
+    "122310": {
+        "market": "KOSDAQ"
+    },
+    "122350": {
+        "market": "KOSDAQ"
+    },
+    "122450": {
+        "market": "KOSDAQ"
+    },
+    "122630": {
+        "market": "KOSPI"
+    },
+    "122640": {
+        "market": "KOSDAQ"
+    },
+    "122690": {
+        "market": "KOSDAQ"
+    },
+    "122870": {
+        "market": "KOSDAQ"
+    },
+    "122900": {
+        "market": "KOSPI"
+    },
+    "122990": {
+        "market": "KOSDAQ"
+    },
+    "123010": {
+        "market": "KOSDAQ"
+    },
+    "123040": {
+        "market": "KOSDAQ"
+    },
+    "123310": {
+        "market": "KOSPI"
+    },
+    "123320": {
+        "market": "KOSPI"
+    },
+    "123330": {
+        "market": "KOSDAQ"
+    },
+    "123410": {
+        "market": "KOSDAQ"
+    },
+    "123420": {
+        "market": "KOSDAQ"
+    },
+    "123570": {
+        "market": "KOSDAQ"
+    },
+    "123690": {
+        "market": "KOSPI"
+    },
+    "123700": {
+        "market": "KOSPI"
+    },
+    "123750": {
+        "market": "KOSDAQ"
+    },
+    "123840": {
+        "market": "KOSDAQ"
+    },
+    "123860": {
+        "market": "KOSDAQ"
+    },
+    "123890": {
+        "market": "KOSPI"
+    },
+    "124500": {
+        "market": "KOSDAQ"
+    },
+    "124560": {
+        "market": "KOSDAQ"
+    },
+    "125210": {
+        "market": "KOSDAQ"
+    },
+    "126560": {
+        "market": "KOSPI"
+    },
+    "126600": {
+        "market": "KOSDAQ"
+    },
+    "126640": {
+        "market": "KOSDAQ"
+    },
+    "126700": {
+        "market": "KOSDAQ"
+    },
+    "126870": {
+        "market": "KOSDAQ"
+    },
+    "126880": {
+        "market": "KOSDAQ"
+    },
+    "127120": {
+        "market": "KOSDAQ"
+    },
+    "127160": {
+        "market": "KOSDAQ"
+    },
+    "127710": {
+        "market": "KOSDAQ"
+    },
+    "128540": {
+        "market": "KOSDAQ"
+    },
+    "128660": {
+        "market": "KOSDAQ"
+    },
+    "128820": {
+        "market": "KOSPI"
+    },
+    "128940": {
+        "market": "KOSPI"
+    },
+    "129260": {
+        "market": "KOSPI"
+    },
+    "130500": {
+        "market": "KOSDAQ"
+    },
+    "130580": {
+        "market": "KOSDAQ"
+    },
+    "130660": {
+        "market": "KOSPI"
+    },
+    "130680": {
+        "market": "KOSPI"
+    },
+    "130730": {
+        "market": "KOSPI"
+    },
+    "130740": {
+        "market": "KOSDAQ"
+    },
+    "131030": {
+        "market": "KOSDAQ"
+    },
+    "131090": {
+        "market": "KOSDAQ"
+    },
+    "131100": {
+        "market": "KOSDAQ"
+    },
+    "131180": {
+        "market": "KOSDAQ"
+    },
+    "131220": {
+        "market": "KOSDAQ"
+    },
+    "131290": {
+        "market": "KOSDAQ"
+    },
+    "131370": {
+        "market": "KOSDAQ"
+    },
+    "131390": {
+        "market": "KOSDAQ"
+    },
+    "131400": {
+        "market": "KOSDAQ"
+    },
+    "131760": {
+        "market": "KOSDAQ"
+    },
+    "131890": {
+        "market": "KOSPI"
+    },
+    "131970": {
+        "market": "KOSDAQ"
+    },
+    "132030": {
+        "market": "KOSPI"
+    },
+    "133690": {
+        "market": "KOSPI"
+    },
+    "133750": {
+        "market": "KOSDAQ"
+    },
+    "133820": {
+        "market": "KOSPI"
+    },
+    "134060": {
+        "market": "KOSDAQ"
+    },
+    "134380": {
+        "market": "KOSPI"
+    },
+    "134580": {
+        "market": "KOSDAQ"
+    },
+    "134780": {
+        "market": "KOSDAQ"
+    },
+    "134790": {
+        "market": "KOSPI"
+    },
+    "136340": {
+        "market": "KOSPI"
+    },
+    "136480": {
+        "market": "KOSDAQ"
+    },
+    "136490": {
+        "market": "KOSPI"
+    },
+    "136510": {
+        "market": "KOSDAQ"
+    },
+    "136540": {
+        "market": "KOSDAQ"
+    },
+    "137400": {
+        "market": "KOSDAQ"
+    },
+    "137610": {
+        "market": "KOSPI"
+    },
+    "137930": {
+        "market": "KOSPI"
+    },
+    "137940": {
+        "market": "KOSDAQ"
+    },
+    "137950": {
+        "market": "KOSDAQ"
+    },
+    "138040": {
+        "market": "KOSPI"
+    },
+    "138070": {
+        "market": "KOSDAQ"
+    },
+    "138080": {
+        "market": "KOSDAQ"
+    },
+    "138230": {
+        "market": "KOSPI"
+    },
+    "138250": {
+        "market": "KOSPI"
+    },
+    "138360": {
+        "market": "KOSDAQ"
+    },
+    "138490": {
+        "market": "KOSPI"
+    },
+    "138520": {
+        "market": "KOSPI"
+    },
+    "138530": {
+        "market": "KOSPI"
+    },
+    "138540": {
+        "market": "KOSPI"
+    },
+    "138580": {
+        "market": "KOSDAQ"
+    },
+    "138610": {
+        "market": "KOSDAQ"
+    },
+    "138690": {
+        "market": "KOSDAQ"
+    },
+    "138910": {
+        "market": "KOSPI"
+    },
+    "138920": {
+        "market": "KOSPI"
+    },
+    "138930": {
+        "market": "KOSPI"
+    },
+    "139050": {
+        "market": "KOSDAQ"
+    },
+    "139130": {
+        "market": "KOSPI"
+    },
+    "139220": {
+        "market": "KOSPI"
+    },
+    "139230": {
+        "market": "KOSPI"
+    },
+    "139240": {
+        "market": "KOSPI"
+    },
+    "139250": {
+        "market": "KOSPI"
+    },
+    "139260": {
+        "market": "KOSPI"
+    },
+    "139270": {
+        "market": "KOSPI"
+    },
+    "139280": {
+        "market": "KOSPI"
+    },
+    "139290": {
+        "market": "KOSPI"
+    },
+    "139310": {
+        "market": "KOSPI"
+    },
+    "139320": {
+        "market": "KOSPI"
+    },
+    "139480": {
+        "market": "KOSPI"
+    },
+    "139660": {
+        "market": "KOSPI"
+    },
+    "139670": {
+        "market": "KOSDAQ"
+    },
+    "140070": {
+        "market": "KOSDAQ"
+    },
+    "140410": {
+        "market": "KOSDAQ"
+    },
+    "140520": {
+        "market": "KOSDAQ"
+    },
+    "140570": {
+        "market": "KOSPI"
+    },
+    "140580": {
+        "market": "KOSPI"
+    },
+    "140670": {
+        "market": "KOSDAQ"
+    },
+    "140700": {
+        "market": "KOSPI"
+    },
+    "140710": {
+        "market": "KOSPI"
+    },
+    "140860": {
+        "market": "KOSDAQ"
+    },
+    "140910": {
+        "market": "KOSPI"
+    },
+    "140950": {
+        "market": "KOSPI"
+    },
+    "141000": {
+        "market": "KOSDAQ"
+    },
+    "141020": {
+        "market": "KOSDAQ"
+    },
+    "141070": {
+        "market": "KOSDAQ"
+    },
+    "141080": {
+        "market": "KOSDAQ"
+    },
+    "142210": {
+        "market": "KOSDAQ"
+    },
+    "142280": {
+        "market": "KOSDAQ"
+    },
+    "142760": {
+        "market": "KOSDAQ"
+    },
+    "143160": {
+        "market": "KOSDAQ"
+    },
+    "143210": {
+        "market": "KOSPI"
+    },
+    "143240": {
+        "market": "KOSDAQ"
+    },
+    "143460": {
+        "market": "KOSPI"
+    },
+    "143540": {
+        "market": "KOSDAQ"
+    },
+    "143850": {
+        "market": "KOSPI"
+    },
+    "143860": {
+        "market": "KOSPI"
+    },
+    "144510": {
+        "market": "KOSDAQ"
+    },
+    "144600": {
+        "market": "KOSPI"
+    },
+    "144620": {
+        "market": "KOSPI"
+    },
+    "144960": {
+        "market": "KOSDAQ"
+    },
+    "145020": {
+        "market": "KOSDAQ"
+    },
+    "145210": {
+        "market": "KOSPI"
+    },
+    "145270": {
+        "market": "KOSPI"
+    },
+    "145670": {
+        "market": "KOSPI"
+    },
+    "145720": {
+        "market": "KOSPI"
+    },
+    "145850": {
+        "market": "KOSPI"
+    },
+    "145990": {
+        "market": "KOSPI"
+    },
+    "145991": {
+        "market": "KOSPI"
+    },
+    "147760": {
+        "market": "KOSDAQ"
+    },
+    "147830": {
+        "market": "KOSDAQ"
+    },
+    "147970": {
+        "market": "KOSPI"
+    },
+    "148020": {
+        "market": "KOSPI"
+    },
+    "148070": {
+        "market": "KOSPI"
+    },
+    "148140": {
+        "market": "KOSDAQ"
+    },
+    "148150": {
+        "market": "KOSDAQ"
+    },
+    "148250": {
+        "market": "KOSDAQ"
+    },
+    "149940": {
+        "market": "KOSDAQ"
+    },
+    "149950": {
+        "market": "KOSDAQ"
+    },
+    "149980": {
+        "market": "KOSDAQ"
+    },
+    "150460": {
+        "market": "KOSPI"
+    },
+    "150840": {
+        "market": "KOSDAQ"
+    },
+    "150900": {
+        "market": "KOSDAQ"
+    },
+    "151860": {
+        "market": "KOSDAQ"
+    },
+    "151910": {
+        "market": "KOSDAQ"
+    },
+    "152100": {
+        "market": "KOSPI"
+    },
+    "152280": {
+        "market": "KOSPI"
+    },
+    "152330": {
+        "market": "KOSPI"
+    },
+    "152380": {
+        "market": "KOSPI"
+    },
+    "152500": {
+        "market": "KOSPI"
+    },
+    "152550": {
+        "market": "KOSPI"
+    },
+    "152870": {
+        "market": "KOSPI"
+    },
+    "153130": {
+        "market": "KOSPI"
+    },
+    "153270": {
+        "market": "KOSPI"
+    },
+    "153360": {
+        "market": "KOSPI"
+    },
+    "153460": {
+        "market": "KOSDAQ"
+    },
+    "153490": {
+        "market": "KOSDAQ"
+    },
+    "153710": {
+        "market": "KOSDAQ"
+    },
+    "154030": {
+        "market": "KOSDAQ"
+    },
+    "154040": {
+        "market": "KOSDAQ"
+    },
+    "155650": {
+        "market": "KOSDAQ"
+    },
+    "155660": {
+        "market": "KOSPI"
+    },
+    "155900": {
+        "market": "KOSPI"
+    },
+    "156080": {
+        "market": "KOSPI"
+    },
+    "156100": {
+        "market": "KOSDAQ"
+    },
+    "157450": {
+        "market": "KOSPI"
+    },
+    "157490": {
+        "market": "KOSPI"
+    },
+    "157500": {
+        "market": "KOSPI"
+    },
+    "158310": {
+        "market": "KOSDAQ"
+    },
+    "158430": {
+        "market": "KOSDAQ"
+    },
+    "159580": {
+        "market": "KOSDAQ"
+    },
+    "159650": {
+        "market": "KOSPI"
+    },
+    "159800": {
+        "market": "KOSPI"
+    },
+    "159910": {
+        "market": "KOSDAQ"
+    },
+    "160550": {
+        "market": "KOSDAQ"
+    },
+    "160580": {
+        "market": "KOSPI"
+    },
+    "160600": {
+        "market": "KOSDAQ"
+    },
+    "160980": {
+        "market": "KOSDAQ"
+    },
+    "161000": {
+        "market": "KOSPI"
+    },
+    "161390": {
+        "market": "KOSPI"
+    },
+    "161510": {
+        "market": "KOSPI"
+    },
+    "161570": {
+        "market": "KOSDAQ"
+    },
+    "161580": {
+        "market": "KOSDAQ"
+    },
+    "161890": {
+        "market": "KOSPI"
+    },
+    "163560": {
+        "market": "KOSPI"
+    },
+    "166090": {
+        "market": "KOSDAQ"
+    },
+    "166400": {
+        "market": "KOSPI"
+    },
+    "166480": {
+        "market": "KOSDAQ"
+    },
+    "167860": {
+        "market": "KOSPI"
+    },
+    "168300": {
+        "market": "KOSPI"
+    },
+    "168330": {
+        "market": "KOSDAQ"
+    },
+    "168490": {
+        "market": "KOSPI"
+    },
+    "168580": {
+        "market": "KOSPI"
+    },
+    "169950": {
+        "market": "KOSPI"
+    },
+    "170030": {
+        "market": "KOSDAQ"
+    },
+    "170350": {
+        "market": "KOSPI"
+    },
+    "170790": {
+        "market": "KOSDAQ"
+    },
+    "170900": {
+        "market": "KOSPI"
+    },
+    "170920": {
+        "market": "KOSDAQ"
+    },
+    "171010": {
+        "market": "KOSDAQ"
+    },
+    "171090": {
+        "market": "KOSDAQ"
+    },
+    "171120": {
+        "market": "KOSDAQ"
+    },
+    "172580": {
+        "market": "KOSPI"
+    },
+    "173130": {
+        "market": "KOSDAQ"
+    },
+    "173940": {
+        "market": "KOSDAQ"
+    },
+    "174350": {
+        "market": "KOSPI"
+    },
+    "174360": {
+        "market": "KOSPI"
+    },
+    "174880": {
+        "market": "KOSDAQ"
+    },
+    "174900": {
+        "market": "KOSDAQ"
+    },
+    "175140": {
+        "market": "KOSDAQ"
+    },
+    "175250": {
+        "market": "KOSDAQ"
+    },
+    "175330": {
+        "market": "KOSPI"
+    },
+    "176440": {
+        "market": "KOSDAQ"
+    },
+    "176710": {
+        "market": "KOSPI"
+    },
+    "176950": {
+        "market": "KOSPI"
+    },
+    "177350": {
+        "market": "KOSDAQ"
+    },
+    "177830": {
+        "market": "KOSDAQ"
+    },
+    "178320": {
+        "market": "KOSDAQ"
+    },
+    "178780": {
+        "market": "KOSDAQ"
+    },
+    "178920": {
+        "market": "KOSDAQ"
+    },
+    "179290": {
+        "market": "KOSDAQ"
+    },
+    "179900": {
+        "market": "KOSDAQ"
+    },
+    "180400": {
+        "market": "KOSDAQ"
+    },
+    "180640": {
+        "market": "KOSPI"
+    },
+    "18064K": {
+        "market": "KOSPI"
+    },
+    "181340": {
+        "market": "KOSDAQ"
+    },
+    "181480": {
+        "market": "KOSPI"
+    },
+    "181710": {
+        "market": "KOSPI"
+    },
+    "182360": {
+        "market": "KOSDAQ"
+    },
+    "182400": {
+        "market": "KOSDAQ"
+    },
+    "182480": {
+        "market": "KOSPI"
+    },
+    "182490": {
+        "market": "KOSPI"
+    },
+    "182690": {
+        "market": "KOSDAQ"
+    },
+    "183190": {
+        "market": "KOSPI"
+    },
+    "183300": {
+        "market": "KOSDAQ"
+    },
+    "183490": {
+        "market": "KOSDAQ"
+    },
+    "183700": {
+        "market": "KOSPI"
+    },
+    "183710": {
+        "market": "KOSPI"
+    },
+    "184230": {
+        "market": "KOSDAQ"
+    },
+    "185490": {
+        "market": "KOSDAQ"
+    },
+    "185680": {
+        "market": "KOSPI"
+    },
+    "185750": {
+        "market": "KOSPI"
+    },
+    "186230": {
+        "market": "KOSDAQ"
+    },
+    "187220": {
+        "market": "KOSDAQ"
+    },
+    "187270": {
+        "market": "KOSDAQ"
+    },
+    "187420": {
+        "market": "KOSDAQ"
+    },
+    "187790": {
+        "market": "KOSDAQ"
+    },
+    "187870": {
+        "market": "KOSDAQ"
+    },
+    "189300": {
+        "market": "KOSDAQ"
+    },
+    "189400": {
+        "market": "KOSPI"
+    },
+    "189690": {
+        "market": "KOSDAQ"
+    },
+    "189860": {
+        "market": "KOSDAQ"
+    },
+    "189980": {
+        "market": "KOSDAQ"
+    },
+    "190160": {
+        "market": "KOSPI"
+    },
+    "190510": {
+        "market": "KOSDAQ"
+    },
+    "190620": {
+        "market": "KOSPI"
+    },
+    "190650": {
+        "market": "KOSDAQ"
+    },
+    "191410": {
+        "market": "KOSDAQ"
+    },
+    "191420": {
+        "market": "KOSDAQ"
+    },
+    "192080": {
+        "market": "KOSPI"
+    },
+    "192090": {
+        "market": "KOSPI"
+    },
+    "192250": {
+        "market": "KOSDAQ"
+    },
+    "192390": {
+        "market": "KOSDAQ"
+    },
+    "192400": {
+        "market": "KOSPI"
+    },
+    "192410": {
+        "market": "KOSDAQ"
+    },
+    "192440": {
+        "market": "KOSDAQ"
+    },
+    "192650": {
+        "market": "KOSPI"
+    },
+    "192720": {
+        "market": "KOSPI"
+    },
+    "192820": {
+        "market": "KOSPI"
+    },
+    "193250": {
+        "market": "KOSDAQ"
+    },
+    "194370": {
+        "market": "KOSPI"
+    },
+    "194480": {
+        "market": "KOSDAQ"
+    },
+    "194510": {
+        "market": "KOSDAQ"
+    },
+    "194700": {
+        "market": "KOSDAQ"
+    },
+    "195440": {
+        "market": "KOSDAQ"
+    },
+    "195500": {
+        "market": "KOSDAQ"
+    },
+    "195870": {
+        "market": "KOSPI"
+    },
+    "195920": {
+        "market": "KOSPI"
+    },
+    "195930": {
+        "market": "KOSPI"
+    },
+    "195970": {
+        "market": "KOSPI"
+    },
+    "195980": {
+        "market": "KOSPI"
+    },
+    "195990": {
+        "market": "KOSDAQ"
+    },
+    "196030": {
+        "market": "KOSPI"
+    },
+    "196170": {
+        "market": "KOSDAQ"
+    },
+    "196220": {
+        "market": "KOSPI"
+    },
+    "196230": {
+        "market": "KOSPI"
+    },
+    "196300": {
+        "market": "KOSDAQ"
+    },
+    "196450": {
+        "market": "KOSDAQ"
+    },
+    "196490": {
+        "market": "KOSDAQ"
+    },
+    "196700": {
+        "market": "KOSDAQ"
+    },
+    "197140": {
+        "market": "KOSDAQ"
+    },
+    "197210": {
+        "market": "KOSDAQ"
+    },
+    "198080": {
+        "market": "KOSDAQ"
+    },
+    "198440": {
+        "market": "KOSDAQ"
+    },
+    "1990V1": {
+        "market": "KOSDAQ"
+    },
+    "200030": {
+        "market": "KOSPI"
+    },
+    "200130": {
+        "market": "KOSDAQ"
+    },
+    "200230": {
+        "market": "KOSDAQ"
+    },
+    "200250": {
+        "market": "KOSPI"
+    },
+    "200470": {
+        "market": "KOSDAQ"
+    },
+    "200670": {
+        "market": "KOSDAQ"
+    },
+    "200710": {
+        "market": "KOSDAQ"
+    },
+    "200780": {
+        "market": "KOSDAQ"
+    },
+    "200880": {
+        "market": "KOSPI"
+    },
+    "201490": {
+        "market": "KOSDAQ"
+    },
+    "203450": {
+        "market": "KOSDAQ"
+    },
+    "203650": {
+        "market": "KOSDAQ"
+    },
+    "203690": {
+        "market": "KOSDAQ"
+    },
+    "203780": {
+        "market": "KOSPI"
+    },
+    "204020": {
+        "market": "KOSDAQ"
+    },
+    "204210": {
+        "market": "KOSPI"
+    },
+    "204270": {
+        "market": "KOSDAQ"
+    },
+    "204320": {
+        "market": "KOSPI"
+    },
+    "204450": {
+        "market": "KOSPI"
+    },
+    "204480": {
+        "market": "KOSPI"
+    },
+    "204620": {
+        "market": "KOSDAQ"
+    },
+    "204630": {
+        "market": "KOSDAQ"
+    },
+    "204840": {
+        "market": "KOSDAQ"
+    },
+    "204990": {
+        "market": "KOSDAQ"
+    },
+    "205100": {
+        "market": "KOSDAQ"
+    },
+    "205470": {
+        "market": "KOSDAQ"
+    },
+    "205500": {
+        "market": "KOSDAQ"
+    },
+    "205720": {
+        "market": "KOSPI"
+    },
+    "206400": {
+        "market": "KOSDAQ"
+    },
+    "206560": {
+        "market": "KOSDAQ"
+    },
+    "206640": {
+        "market": "KOSDAQ"
+    },
+    "206650": {
+        "market": "KOSDAQ"
+    },
+    "207760": {
+        "market": "KOSDAQ"
+    },
+    "207940": {
+        "market": "KOSPI"
+    },
+    "208140": {
+        "market": "KOSDAQ"
+    },
+    "208340": {
+        "market": "KOSDAQ"
+    },
+    "208350": {
+        "market": "KOSDAQ"
+    },
+    "208370": {
+        "market": "KOSDAQ"
+    },
+    "208470": {
+        "market": "KOSPI"
+    },
+    "208640": {
+        "market": "KOSDAQ"
+    },
+    "208710": {
+        "market": "KOSDAQ"
+    },
+    "208860": {
+        "market": "KOSDAQ"
+    },
+    "210540": {
+        "market": "KOSPI"
+    },
+    "210780": {
+        "market": "KOSPI"
+    },
+    "210980": {
+        "market": "KOSPI"
+    },
+    "210AT1": {
+        "market": "KOSDAQ"
+    },
+    "211210": {
+        "market": "KOSPI"
+    },
+    "211260": {
+        "market": "KOSPI"
+    },
+    "211270": {
+        "market": "KOSDAQ"
+    },
+    "2114A1": {
+        "market": "KOSDAQ"
+    },
+    "211560": {
+        "market": "KOSPI"
+    },
+    "2115T1": {
+        "market": "KOSDAQ"
+    },
+    "211900": {
+        "market": "KOSPI"
+    },
+    "212560": {
+        "market": "KOSDAQ"
+    },
+    "213090": {
+        "market": "KOSDAQ"
+    },
+    "213420": {
+        "market": "KOSDAQ"
+    },
+    "213500": {
+        "market": "KOSPI"
+    },
+    "213610": {
+        "market": "KOSPI"
+    },
+    "213630": {
+        "market": "KOSPI"
+    },
+    "214150": {
+        "market": "KOSDAQ"
+    },
+    "214180": {
+        "market": "KOSDAQ"
+    },
+    "214260": {
+        "market": "KOSDAQ"
+    },
+    "214270": {
+        "market": "KOSDAQ"
+    },
+    "214310": {
+        "market": "KOSDAQ"
+    },
+    "214320": {
+        "market": "KOSPI"
+    },
+    "214330": {
+        "market": "KOSPI"
+    },
+    "214370": {
+        "market": "KOSDAQ"
+    },
+    "214390": {
+        "market": "KOSPI"
+    },
+    "214420": {
+        "market": "KOSPI"
+    },
+    "214430": {
+        "market": "KOSDAQ"
+    },
+    "214450": {
+        "market": "KOSDAQ"
+    },
+    "214680": {
+        "market": "KOSDAQ"
+    },
+    "214870": {
+        "market": "KOSDAQ"
+    },
+    "214980": {
+        "market": "KOSPI"
+    },
+    "215000": {
+        "market": "KOSDAQ"
+    },
+    "215090": {
+        "market": "KOSDAQ"
+    },
+    "215100": {
+        "market": "KOSDAQ"
+    },
+    "215200": {
+        "market": "KOSDAQ"
+    },
+    "215360": {
+        "market": "KOSDAQ"
+    },
+    "215380": {
+        "market": "KOSDAQ"
+    },
+    "215480": {
+        "market": "KOSDAQ"
+    },
+    "215600": {
+        "market": "KOSDAQ"
+    },
+    "215620": {
+        "market": "KOSPI"
+    },
+    "215790": {
+        "market": "KOSDAQ"
+    },
+    "216050": {
+        "market": "KOSDAQ"
+    },
+    "216080": {
+        "market": "KOSDAQ"
+    },
+    "217190": {
+        "market": "KOSDAQ"
+    },
+    "217270": {
+        "market": "KOSDAQ"
+    },
+    "217330": {
+        "market": "KOSDAQ"
+    },
+    "217480": {
+        "market": "KOSDAQ"
+    },
+    "217500": {
+        "market": "KOSDAQ"
+    },
+    "217600": {
+        "market": "KOSDAQ"
+    },
+    "217620": {
+        "market": "KOSDAQ"
+    },
+    "217730": {
+        "market": "KOSDAQ"
+    },
+    "217770": {
+        "market": "KOSPI"
+    },
+    "217780": {
+        "market": "KOSPI"
+    },
+    "217790": {
+        "market": "KOSPI"
+    },
+    "217820": {
+        "market": "KOSDAQ"
+    },
+    "218150": {
+        "market": "KOSDAQ"
+    },
+    "218410": {
+        "market": "KOSDAQ"
+    },
+    "218420": {
+        "market": "KOSPI"
+    },
+    "219130": {
+        "market": "KOSDAQ"
+    },
+    "219390": {
+        "market": "KOSPI"
+    },
+    "219420": {
+        "market": "KOSDAQ"
+    },
+    "219480": {
+        "market": "KOSPI"
+    },
+    "219550": {
+        "market": "KOSDAQ"
+    },
+    "219750": {
+        "market": "KOSDAQ"
+    },
+    "219900": {
+        "market": "KOSPI"
+    },
+    "220100": {
+        "market": "KOSDAQ"
+    },
+    "220130": {
+        "market": "KOSPI"
+    },
+    "220180": {
+        "market": "KOSDAQ"
+    },
+    "220260": {
+        "market": "KOSDAQ"
+    },
+    "220630": {
+        "market": "KOSDAQ"
+    },
+    "221610": {
+        "market": "KOSDAQ"
+    },
+    "221840": {
+        "market": "KOSDAQ"
+    },
+    "221980": {
+        "market": "KOSDAQ"
+    },
+    "222040": {
+        "market": "KOSDAQ"
+    },
+    "222080": {
+        "market": "KOSDAQ"
+    },
+    "222110": {
+        "market": "KOSDAQ"
+    },
+    "222180": {
+        "market": "KOSPI"
+    },
+    "222190": {
+        "market": "KOSPI"
+    },
+    "222200": {
+        "market": "KOSPI"
+    },
+    "222420": {
+        "market": "KOSDAQ"
+    },
+    "222800": {
+        "market": "KOSDAQ"
+    },
+    "222810": {
+        "market": "KOSDAQ"
+    },
+    "222980": {
+        "market": "KOSDAQ"
+    },
+    "223190": {
+        "market": "KOSPI"
+    },
+    "223310": {
+        "market": "KOSDAQ"
+    },
+    "224060": {
+        "market": "KOSDAQ"
+    },
+    "224110": {
+        "market": "KOSDAQ"
+    },
+    "225030": {
+        "market": "KOSPI"
+    },
+    "225040": {
+        "market": "KOSPI"
+    },
+    "225050": {
+        "market": "KOSPI"
+    },
+    "225060": {
+        "market": "KOSPI"
+    },
+    "225130": {
+        "market": "KOSPI"
+    },
+    "225190": {
+        "market": "KOSDAQ"
+    },
+    "225330": {
+        "market": "KOSDAQ"
+    },
+    "225430": {
+        "market": "KOSDAQ"
+    },
+    "225530": {
+        "market": "KOSDAQ"
+    },
+    "225570": {
+        "market": "KOSDAQ"
+    },
+    "225590": {
+        "market": "KOSDAQ"
+    },
+    "225800": {
+        "market": "KOSPI"
+    },
+    "226320": {
+        "market": "KOSPI"
+    },
+    "226330": {
+        "market": "KOSDAQ"
+    },
+    "226340": {
+        "market": "KOSDAQ"
+    },
+    "226350": {
+        "market": "KOSDAQ"
+    },
+    "226360": {
+        "market": "KOSDAQ"
+    },
+    "226380": {
+        "market": "KOSPI"
+    },
+    "226400": {
+        "market": "KOSDAQ"
+    },
+    "226440": {
+        "market": "KOSDAQ"
+    },
+    "226490": {
+        "market": "KOSPI"
+    },
+    "226950": {
+        "market": "KOSDAQ"
+    },
+    "226980": {
+        "market": "KOSPI"
+    },
+    "227100": {
+        "market": "KOSDAQ"
+    },
+    "227540": {
+        "market": "KOSPI"
+    },
+    "227550": {
+        "market": "KOSPI"
+    },
+    "227560": {
+        "market": "KOSPI"
+    },
+    "227570": {
+        "market": "KOSPI"
+    },
+    "227610": {
+        "market": "KOSDAQ"
+    },
+    "227830": {
+        "market": "KOSPI"
+    },
+    "227840": {
+        "market": "KOSPI"
+    },
+    "227950": {
+        "market": "KOSDAQ"
+    },
+    "228340": {
+        "market": "KOSDAQ"
+    },
+    "228670": {
+        "market": "KOSDAQ"
+    },
+    "228760": {
+        "market": "KOSDAQ"
+    },
+    "228790": {
+        "market": "KOSPI"
+    },
+    "228800": {
+        "market": "KOSPI"
+    },
+    "228810": {
+        "market": "KOSPI"
+    },
+    "228820": {
+        "market": "KOSPI"
+    },
+    "228850": {
+        "market": "KOSDAQ"
+    },
+    "229200": {
+        "market": "KOSPI"
+    },
+    "229640": {
+        "market": "KOSPI"
+    },
+    "229720": {
+        "market": "KOSPI"
+    },
+    "230240": {
+        "market": "KOSDAQ"
+    },
+    "230360": {
+        "market": "KOSDAQ"
+    },
+    "230480": {
+        "market": "KOSPI"
+    },
+    "230980": {
+        "market": "KOSDAQ"
+    },
+    "232080": {
+        "market": "KOSPI"
+    },
+    "232140": {
+        "market": "KOSDAQ"
+    },
+    "233160": {
+        "market": "KOSPI"
+    },
+    "233740": {
+        "market": "KOSPI"
+    },
+    "234080": {
+        "market": "KOSPI"
+    },
+    "234100": {
+        "market": "KOSDAQ"
+    },
+    "234300": {
+        "market": "KOSDAQ"
+    },
+    "234310": {
+        "market": "KOSPI"
+    },
+    "234340": {
+        "market": "KOSDAQ"
+    },
+    "234690": {
+        "market": "KOSDAQ"
+    },
+    "234920": {
+        "market": "KOSDAQ"
+    },
+    "235980": {
+        "market": "KOSDAQ"
+    },
+    "236200": {
+        "market": "KOSDAQ"
+    },
+    "236350": {
+        "market": "KOSPI"
+    },
+    "236460": {
+        "market": "KOSPI"
+    },
+    "237350": {
+        "market": "KOSPI"
+    },
+    "237370": {
+        "market": "KOSPI"
+    },
+    "237440": {
+        "market": "KOSPI"
+    },
+    "237690": {
+        "market": "KOSDAQ"
+    },
+    "237750": {
+        "market": "KOSDAQ"
+    },
+    "237820": {
+        "market": "KOSDAQ"
+    },
+    "237880": {
+        "market": "KOSDAQ"
+    },
+    "238090": {
+        "market": "KOSDAQ"
+    },
+    "238120": {
+        "market": "KOSDAQ"
+    },
+    "238200": {
+        "market": "KOSDAQ"
+    },
+    "238490": {
+        "market": "KOSDAQ"
+    },
+    "238670": {
+        "market": "KOSPI"
+    },
+    "238720": {
+        "market": "KOSPI"
+    },
+    "239340": {
+        "market": "KOSDAQ"
+    },
+    "239610": {
+        "market": "KOSDAQ"
+    },
+    "239660": {
+        "market": "KOSPI"
+    },
+    "240810": {
+        "market": "KOSDAQ"
+    },
+    "241180": {
+        "market": "KOSPI"
+    },
+    "241390": {
+        "market": "KOSPI"
+    },
+    "241520": {
+        "market": "KOSDAQ"
+    },
+    "241560": {
+        "market": "KOSPI"
+    },
+    "241590": {
+        "market": "KOSPI"
+    },
+    "241690": {
+        "market": "KOSDAQ"
+    },
+    "241710": {
+        "market": "KOSDAQ"
+    },
+    "241770": {
+        "market": "KOSDAQ"
+    },
+    "241790": {
+        "market": "KOSDAQ"
+    },
+    "241820": {
+        "market": "KOSDAQ"
+    },
+    "241840": {
+        "market": "KOSDAQ"
+    },
+    "242040": {
+        "market": "KOSDAQ"
+    },
+    "243070": {
+        "market": "KOSDAQ"
+    },
+    "243840": {
+        "market": "KOSDAQ"
+    },
+    "243880": {
+        "market": "KOSPI"
+    },
+    "243890": {
+        "market": "KOSPI"
+    },
+    "244460": {
+        "market": "KOSDAQ"
+    },
+    "244580": {
+        "market": "KOSPI"
+    },
+    "244620": {
+        "market": "KOSPI"
+    },
+    "244660": {
+        "market": "KOSPI"
+    },
+    "244670": {
+        "market": "KOSPI"
+    },
+    "245340": {
+        "market": "KOSPI"
+    },
+    "245350": {
+        "market": "KOSPI"
+    },
+    "245360": {
+        "market": "KOSPI"
+    },
+    "245620": {
+        "market": "KOSDAQ"
+    },
+    "245710": {
+        "market": "KOSPI"
+    },
+    "246690": {
+        "market": "KOSDAQ"
+    },
+    "246710": {
+        "market": "KOSDAQ"
+    },
+    "246720": {
+        "market": "KOSDAQ"
+    },
+    "246960": {
+        "market": "KOSDAQ"
+    },
+    "247540": {
+        "market": "KOSDAQ"
+    },
+    "247780": {
+        "market": "KOSPI"
+    },
+    "247790": {
+        "market": "KOSPI"
+    },
+    "247800": {
+        "market": "KOSPI"
+    },
+    "248170": {
+        "market": "KOSPI"
+    },
+    "248260": {
+        "market": "KOSPI"
+    },
+    "248270": {
+        "market": "KOSPI"
+    },
+    "249420": {
+        "market": "KOSPI"
+    },
+    "250000": {
+        "market": "KOSDAQ"
+    },
+    "250060": {
+        "market": "KOSDAQ"
+    },
+    "250730": {
+        "market": "KOSPI"
+    },
+    "250780": {
+        "market": "KOSPI"
+    },
+    "250930": {
+        "market": "KOSDAQ"
+    },
+    "251270": {
+        "market": "KOSPI"
+    },
+    "251340": {
+        "market": "KOSPI"
+    },
+    "251350": {
+        "market": "KOSPI"
+    },
+    "251370": {
+        "market": "KOSDAQ"
+    },
+    "251590": {
+        "market": "KOSPI"
+    },
+    "251600": {
+        "market": "KOSPI"
+    },
+    "251630": {
+        "market": "KOSDAQ"
+    },
+    "251890": {
+        "market": "KOSPI"
+    },
+    "251970": {
+        "market": "KOSDAQ"
+    },
+    "252000": {
+        "market": "KOSPI"
+    },
+    "252400": {
+        "market": "KOSPI"
+    },
+    "252410": {
+        "market": "KOSPI"
+    },
+    "252420": {
+        "market": "KOSPI"
+    },
+    "252500": {
+        "market": "KOSDAQ"
+    },
+    "252650": {
+        "market": "KOSPI"
+    },
+    "252670": {
+        "market": "KOSPI"
+    },
+    "252710": {
+        "market": "KOSPI"
+    },
+    "252720": {
+        "market": "KOSPI"
+    },
+    "252730": {
+        "market": "KOSPI"
+    },
+    "253150": {
+        "market": "KOSPI"
+    },
+    "253160": {
+        "market": "KOSPI"
+    },
+    "253230": {
+        "market": "KOSPI"
+    },
+    "253240": {
+        "market": "KOSPI"
+    },
+    "253250": {
+        "market": "KOSPI"
+    },
+    "253280": {
+        "market": "KOSPI"
+    },
+    "253290": {
+        "market": "KOSPI"
+    },
+    "253450": {
+        "market": "KOSDAQ"
+    },
+    "253590": {
+        "market": "KOSDAQ"
+    },
+    "253840": {
+        "market": "KOSDAQ"
+    },
+    "253990": {
+        "market": "KOSPI"
+    },
+    "254120": {
+        "market": "KOSDAQ"
+    },
+    "255220": {
+        "market": "KOSDAQ"
+    },
+    "255440": {
+        "market": "KOSDAQ"
+    },
+    "256150": {
+        "market": "KOSDAQ"
+    },
+    "256440": {
+        "market": "KOSPI"
+    },
+    "256450": {
+        "market": "KOSPI"
+    },
+    "256630": {
+        "market": "KOSDAQ"
+    },
+    "256750": {
+        "market": "KOSPI"
+    },
+    "256840": {
+        "market": "KOSDAQ"
+    },
+    "256940": {
+        "market": "KOSDAQ"
+    },
+    "257370": {
+        "market": "KOSDAQ"
+    },
+    "258610": {
+        "market": "KOSDAQ"
+    },
+    "258790": {
+        "market": "KOSDAQ"
+    },
+    "258830": {
+        "market": "KOSDAQ"
+    },
+    "259630": {
+        "market": "KOSDAQ"
+    },
+    "260200": {
+        "market": "KOSPI"
+    },
+    "260270": {
+        "market": "KOSPI"
+    },
+    "260660": {
+        "market": "KOSDAQ"
+    },
+    "260930": {
+        "market": "KOSDAQ"
+    },
+    "261060": {
+        "market": "KOSPI"
+    },
+    "261070": {
+        "market": "KOSPI"
+    },
+    "261110": {
+        "market": "KOSPI"
+    },
+    "261120": {
+        "market": "KOSPI"
+    },
+    "261140": {
+        "market": "KOSPI"
+    },
+    "261200": {
+        "market": "KOSDAQ"
+    },
+    "261220": {
+        "market": "KOSPI"
+    },
+    "261240": {
+        "market": "KOSPI"
+    },
+    "261250": {
+        "market": "KOSPI"
+    },
+    "261260": {
+        "market": "KOSPI"
+    },
+    "261270": {
+        "market": "KOSPI"
+    },
+    "261920": {
+        "market": "KOSPI"
+    },
+    "263020": {
+        "market": "KOSDAQ"
+    },
+    "263050": {
+        "market": "KOSDAQ"
+    },
+    "263190": {
+        "market": "KOSPI"
+    },
+    "263540": {
+        "market": "KOSDAQ"
+    },
+    "263600": {
+        "market": "KOSDAQ"
+    },
+    "263690": {
+        "market": "KOSDAQ"
+    },
+    "263700": {
+        "market": "KOSDAQ"
+    },
+    "263720": {
+        "market": "KOSDAQ"
+    },
+    "263750": {
+        "market": "KOSDAQ"
+    },
+    "263770": {
+        "market": "KOSDAQ"
+    },
+    "263800": {
+        "market": "KOSDAQ"
+    },
+    "263810": {
+        "market": "KOSDAQ"
+    },
+    "263860": {
+        "market": "KOSDAQ"
+    },
+    "263920": {
+        "market": "KOSDAQ"
+    },
+    "264450": {
+        "market": "KOSDAQ"
+    },
+    "264660": {
+        "market": "KOSDAQ"
+    },
+    "264850": {
+        "market": "KOSDAQ"
+    },
+    "264900": {
+        "market": "KOSPI"
+    },
+    "26490K": {
+        "market": "KOSPI"
+    },
+    "265520": {
+        "market": "KOSDAQ"
+    },
+    "265560": {
+        "market": "KOSDAQ"
+    },
+    "265690": {
+        "market": "KOSPI"
+    },
+    "266140": {
+        "market": "KOSPI"
+    },
+    "266160": {
+        "market": "KOSPI"
+    },
+    "266360": {
+        "market": "KOSPI"
+    },
+    "266370": {
+        "market": "KOSPI"
+    },
+    "266390": {
+        "market": "KOSPI"
+    },
+    "266410": {
+        "market": "KOSPI"
+    },
+    "266420": {
+        "market": "KOSPI"
+    },
+    "266550": {
+        "market": "KOSPI"
+    },
+    "267250": {
+        "market": "KOSPI"
+    },
+    "267260": {
+        "market": "KOSPI"
+    },
+    "267270": {
+        "market": "KOSPI"
+    },
+    "267290": {
+        "market": "KOSPI"
+    },
+    "267300": {
+        "market": "KOSPI"
+    },
+    "267320": {
+        "market": "KOSDAQ"
+    },
+    "267440": {
+        "market": "KOSPI"
+    },
+    "267450": {
+        "market": "KOSPI"
+    },
+    "267490": {
+        "market": "KOSPI"
+    },
+    "267500": {
+        "market": "KOSPI"
+    },
+    "267770": {
+        "market": "KOSPI"
+    },
+    "267790": {
+        "market": "KOSDAQ"
+    },
+    "267850": {
+        "market": "KOSPI"
+    },
+    "267980": {
+        "market": "KOSDAQ"
+    },
+    "268280": {
+        "market": "KOSPI"
+    },
+    "268600": {
+        "market": "KOSDAQ"
+    },
+    "269370": {
+        "market": "KOSPI"
+    },
+    "269420": {
+        "market": "KOSPI"
+    },
+    "269530": {
+        "market": "KOSPI"
+    },
+    "269540": {
+        "market": "KOSPI"
+    },
+    "269620": {
+        "market": "KOSDAQ"
+    },
+    "270520": {
+        "market": "KOSDAQ"
+    },
+    "270800": {
+        "market": "KOSPI"
+    },
+    "270810": {
+        "market": "KOSPI"
+    },
+    "270870": {
+        "market": "KOSDAQ"
+    },
+    "271050": {
+        "market": "KOSPI"
+    },
+    "271060": {
+        "market": "KOSPI"
+    },
+    "271560": {
+        "market": "KOSPI"
+    },
+    "271980": {
+        "market": "KOSPI"
+    },
+    "272110": {
+        "market": "KOSDAQ"
+    },
+    "272210": {
+        "market": "KOSPI"
+    },
+    "272220": {
+        "market": "KOSPI"
+    },
+    "272230": {
+        "market": "KOSPI"
+    },
+    "272290": {
+        "market": "KOSDAQ"
+    },
+    "272450": {
+        "market": "KOSPI"
+    },
+    "272550": {
+        "market": "KOSPI"
+    },
+    "272560": {
+        "market": "KOSPI"
+    },
+    "272570": {
+        "market": "KOSPI"
+    },
+    "272580": {
+        "market": "KOSPI"
+    },
+    "272910": {
+        "market": "KOSPI"
+    },
+    "273060": {
+        "market": "KOSDAQ"
+    },
+    "273130": {
+        "market": "KOSPI"
+    },
+    "273140": {
+        "market": "KOSPI"
+    },
+    "274090": {
+        "market": "KOSDAQ"
+    },
+    "275280": {
+        "market": "KOSPI"
+    },
+    "275290": {
+        "market": "KOSPI"
+    },
+    "275300": {
+        "market": "KOSPI"
+    },
+    "275540": {
+        "market": "KOSPI"
+    },
+    "275630": {
+        "market": "KOSDAQ"
+    },
+    "275750": {
+        "market": "KOSPI"
+    },
+    "275980": {
+        "market": "KOSPI"
+    },
+    "276000": {
+        "market": "KOSPI"
+    },
+    "276650": {
+        "market": "KOSPI"
+    },
+    "276920": {
+        "market": "KOSDAQ"
+    },
+    "276970": {
+        "market": "KOSPI"
+    },
+    "276990": {
+        "market": "KOSPI"
+    },
+    "277070": {
+        "market": "KOSDAQ"
+    },
+    "277410": {
+        "market": "KOSDAQ"
+    },
+    "277480": {
+        "market": "KOSDAQ"
+    },
+    "277540": {
+        "market": "KOSPI"
+    },
+    "277630": {
+        "market": "KOSPI"
+    },
+    "277640": {
+        "market": "KOSPI"
+    },
+    "277650": {
+        "market": "KOSPI"
+    },
+    "278240": {
+        "market": "KOSPI"
+    },
+    "278280": {
+        "market": "KOSDAQ"
+    },
+    "278420": {
+        "market": "KOSPI"
+    },
+    "278530": {
+        "market": "KOSPI"
+    },
+    "278540": {
+        "market": "KOSPI"
+    },
+    "278620": {
+        "market": "KOSPI"
+    },
+    "278650": {
+        "market": "KOSDAQ"
+    },
+    "279410": {
+        "market": "KOSDAQ"
+    },
+    "279530": {
+        "market": "KOSPI"
+    },
+    "279540": {
+        "market": "KOSPI"
+    },
+    "279600": {
+        "market": "KOSDAQ"
+    },
+    "280320": {
+        "market": "KOSPI"
+    },
+    "280360": {
+        "market": "KOSPI"
+    },
+    "280920": {
+        "market": "KOSPI"
+    },
+    "280930": {
+        "market": "KOSPI"
+    },
+    "280940": {
+        "market": "KOSPI"
+    },
+    "281410": {
+        "market": "KOSDAQ"
+    },
+    "281740": {
+        "market": "KOSDAQ"
+    },
+    "281820": {
+        "market": "KOSPI"
+    },
+    "281990": {
+        "market": "KOSPI"
+    },
+    "282000": {
+        "market": "KOSPI"
+    },
+    "282330": {
+        "market": "KOSPI"
+    },
+    "282690": {
+        "market": "KOSPI"
+    },
+    "282880": {
+        "market": "KOSDAQ"
+    },
+    "283580": {
+        "market": "KOSPI"
+    },
+    "283930": {
+        "market": "KOSPI"
+    },
+    "284430": {
+        "market": "KOSPI"
+    },
+    "284620": {
+        "market": "KOSDAQ"
+    },
+    "284740": {
+        "market": "KOSPI"
+    },
+    "284980": {
+        "market": "KOSPI"
+    },
+    "284990": {
+        "market": "KOSPI"
+    },
+    "285000": {
+        "market": "KOSPI"
+    },
+    "285010": {
+        "market": "KOSPI"
+    },
+    "285020": {
+        "market": "KOSPI"
+    },
+    "285130": {
+        "market": "KOSPI"
+    },
+    "28513K": {
+        "market": "KOSPI"
+    },
+    "285490": {
+        "market": "KOSDAQ"
+    },
+    "285690": {
+        "market": "KOSPI"
+    },
+    "286750": {
+        "market": "KOSDAQ"
+    },
+    "286940": {
+        "market": "KOSPI"
+    },
+    "287180": {
+        "market": "KOSPI"
+    },
+    "287300": {
+        "market": "KOSPI"
+    },
+    "287310": {
+        "market": "KOSPI"
+    },
+    "287320": {
+        "market": "KOSPI"
+    },
+    "287330": {
+        "market": "KOSPI"
+    },
+    "287410": {
+        "market": "KOSDAQ"
+    },
+    "288330": {
+        "market": "KOSDAQ"
+    },
+    "288620": {
+        "market": "KOSDAQ"
+    },
+    "289010": {
+        "market": "KOSDAQ"
+    },
+    "289040": {
+        "market": "KOSPI"
+    },
+    "289080": {
+        "market": "KOSDAQ"
+    },
+    "289250": {
+        "market": "KOSPI"
+    },
+    "289260": {
+        "market": "KOSPI"
+    },
+    "289480": {
+        "market": "KOSPI"
+    },
+    "289670": {
+        "market": "KOSPI"
+    },
+    "290080": {
+        "market": "KOSPI"
+    },
+    "290120": {
+        "market": "KOSDAQ"
+    },
+    "290130": {
+        "market": "KOSPI"
+    },
+    "290270": {
+        "market": "KOSDAQ"
+    },
+    "290380": {
+        "market": "KOSDAQ"
+    },
+    "290510": {
+        "market": "KOSDAQ"
+    },
+    "290550": {
+        "market": "KOSDAQ"
+    },
+    "290650": {
+        "market": "KOSDAQ"
+    },
+    "290660": {
+        "market": "KOSDAQ"
+    },
+    "290670": {
+        "market": "KOSDAQ"
+    },
+    "290720": {
+        "market": "KOSDAQ"
+    },
+    "290740": {
+        "market": "KOSDAQ"
+    },
+    "291130": {
+        "market": "KOSPI"
+    },
+    "291210": {
+        "market": "KOSDAQ"
+    },
+    "291230": {
+        "market": "KOSDAQ"
+    },
+    "291610": {
+        "market": "KOSPI"
+    },
+    "291620": {
+        "market": "KOSPI"
+    },
+    "291630": {
+        "market": "KOSPI"
+    },
+    "291660": {
+        "market": "KOSPI"
+    },
+    "291680": {
+        "market": "KOSPI"
+    },
+    "291890": {
+        "market": "KOSPI"
+    },
+    "292050": {
+        "market": "KOSPI"
+    },
+    "292100": {
+        "market": "KOSPI"
+    },
+    "292110": {
+        "market": "KOSPI"
+    },
+    "292120": {
+        "market": "KOSPI"
+    },
+    "292130": {
+        "market": "KOSPI"
+    },
+    "292140": {
+        "market": "KOSPI"
+    },
+    "292150": {
+        "market": "KOSPI"
+    },
+    "292160": {
+        "market": "KOSPI"
+    },
+    "292190": {
+        "market": "KOSPI"
+    },
+    "292340": {
+        "market": "KOSPI"
+    },
+    "292500": {
+        "market": "KOSPI"
+    },
+    "292560": {
+        "market": "KOSPI"
+    },
+    "292570": {
+        "market": "KOSPI"
+    },
+    "292580": {
+        "market": "KOSPI"
+    },
+    "292590": {
+        "market": "KOSPI"
+    },
+    "292730": {
+        "market": "KOSPI"
+    },
+    "292750": {
+        "market": "KOSPI"
+    },
+    "292770": {
+        "market": "KOSPI"
+    },
+    "293180": {
+        "market": "KOSPI"
+    },
+    "293480": {
+        "market": "KOSPI"
+    },
+    "293580": {
+        "market": "KOSDAQ"
+    },
+    "293780": {
+        "market": "KOSDAQ"
+    },
+    "293940": {
+        "market": "KOSPI"
+    },
+    "294140": {
+        "market": "KOSDAQ"
+    },
+    "294400": {
+        "market": "KOSPI"
+    },
+    "294630": {
+        "market": "KOSDAQ"
+    },
+    "294870": {
+        "market": "KOSPI"
+    },
+    "295000": {
+        "market": "KOSPI"
+    },
+    "295020": {
+        "market": "KOSPI"
+    },
+    "295040": {
+        "market": "KOSPI"
+    },
+    "295820": {
+        "market": "KOSPI"
+    },
+    "296710": {
+        "market": "KOSPI"
+    },
+    "297090": {
+        "market": "KOSDAQ"
+    },
+    "297570": {
+        "market": "KOSDAQ"
+    },
+    "298000": {
+        "market": "KOSPI"
+    },
+    "298020": {
+        "market": "KOSPI"
+    },
+    "298040": {
+        "market": "KOSPI"
+    },
+    "298050": {
+        "market": "KOSPI"
+    },
+    "298340": {
+        "market": "KOSPI"
+    },
+    "298380": {
+        "market": "KOSDAQ"
+    },
+    "298690": {
+        "market": "KOSPI"
+    },
+    "298770": {
+        "market": "KOSPI"
+    },
+    "299070": {
+        "market": "KOSPI"
+    },
+    "299080": {
+        "market": "KOSPI"
+    },
+    "299170": {
+        "market": "KOSDAQ"
+    },
+    "299660": {
+        "market": "KOSDAQ"
+    },
+    "299900": {
+        "market": "KOSDAQ"
+    },
+    "299910": {
+        "market": "KOSDAQ"
+    },
+    "300080": {
+        "market": "KOSDAQ"
+    },
+    "300120": {
+        "market": "KOSDAQ"
+    },
+    "300280": {
+        "market": "KOSPI"
+    },
+    "300290": {
+        "market": "KOSPI"
+    },
+    "300300": {
+        "market": "KOSPI"
+    },
+    "300310": {
+        "market": "KOSPI"
+    },
+    "300610": {
+        "market": "KOSPI"
+    },
+    "300640": {
+        "market": "KOSPI"
+    },
+    "300720": {
+        "market": "KOSPI"
+    },
+    "300950": {
+        "market": "KOSPI"
+    },
+    "301400": {
+        "market": "KOSPI"
+    },
+    "301410": {
+        "market": "KOSPI"
+    },
+    "301440": {
+        "market": "KOSPI"
+    },
+    "302170": {
+        "market": "KOSPI"
+    },
+    "302180": {
+        "market": "KOSPI"
+    },
+    "302190": {
+        "market": "KOSPI"
+    },
+    "302200": {
+        "market": "KOSPI"
+    },
+    "302210": {
+        "market": "KOSPI"
+    },
+    "302430": {
+        "market": "KOSDAQ"
+    },
+    "302450": {
+        "market": "KOSPI"
+    },
+    "302550": {
+        "market": "KOSDAQ"
+    },
+    "303030": {
+        "market": "KOSDAQ"
+    },
+    "304660": {
+        "market": "KOSPI"
+    },
+    "304670": {
+        "market": "KOSPI"
+    },
+    "304760": {
+        "market": "KOSPI"
+    },
+    "304770": {
+        "market": "KOSPI"
+    },
+    "304780": {
+        "market": "KOSPI"
+    },
+    "304940": {
+        "market": "KOSPI"
+    },
+    "305050": {
+        "market": "KOSPI"
+    },
+    "305080": {
+        "market": "KOSPI"
+    },
+    "305090": {
+        "market": "KOSDAQ"
+    },
+    "305540": {
+        "market": "KOSPI"
+    },
+    "305720": {
+        "market": "KOSPI"
+    },
+    "306040": {
+        "market": "KOSDAQ"
+    },
+    "306200": {
+        "market": "KOSPI"
+    },
+    "306520": {
+        "market": "KOSPI"
+    },
+    "306530": {
+        "market": "KOSPI"
+    },
+    "306540": {
+        "market": "KOSPI"
+    },
+    "306620": {
+        "market": "KOSDAQ"
+    },
+    "306950": {
+        "market": "KOSPI"
+    },
+    "306960": {
+        "market": "KOSPI"
+    },
+    "307010": {
+        "market": "KOSPI"
+    },
+    "307020": {
+        "market": "KOSPI"
+    },
+    "307070": {
+        "market": "KOSDAQ"
+    },
+    "307160": {
+        "market": "KOSDAQ"
+    },
+    "307180": {
+        "market": "KOSDAQ"
+    },
+    "307280": {
+        "market": "KOSDAQ"
+    },
+    "307510": {
+        "market": "KOSPI"
+    },
+    "307520": {
+        "market": "KOSPI"
+    },
+    "307610": {
+        "market": "KOSPI"
+    },
+    "307620": {
+        "market": "KOSPI"
+    },
+    "307750": {
+        "market": "KOSDAQ"
+    },
+    "307870": {
+        "market": "KOSDAQ"
+    },
+    "307930": {
+        "market": "KOSDAQ"
+    },
+    "307950": {
+        "market": "KOSPI"
+    },
+    "308100": {
+        "market": "KOSDAQ"
+    },
+    "308170": {
+        "market": "KOSPI"
+    },
+    "308620": {
+        "market": "KOSPI"
+    },
+    "309170": {
+        "market": "KOSPI"
+    },
+    "309180": {
+        "market": "KOSPI"
+    },
+    "309190": {
+        "market": "KOSPI"
+    },
+    "309200": {
+        "market": "KOSPI"
+    },
+    "309210": {
+        "market": "KOSPI"
+    },
+    "309230": {
+        "market": "KOSPI"
+    },
+    "309930": {
+        "market": "KOSDAQ"
+    },
+    "310080": {
+        "market": "KOSPI"
+    },
+    "310200": {
+        "market": "KOSDAQ"
+    },
+    "310840": {
+        "market": "KOSDAQ"
+    },
+    "310870": {
+        "market": "KOSDAQ"
+    },
+    "310960": {
+        "market": "KOSPI"
+    },
+    "310970": {
+        "market": "KOSPI"
+    },
+    "311270": {
+        "market": "KOSDAQ"
+    },
+    "311390": {
+        "market": "KOSDAQ"
+    },
+    "311690": {
+        "market": "KOSDAQ"
+    },
+    "312610": {
+        "market": "KOSDAQ"
+    },
+    "313750": {
+        "market": "KOSDAQ"
+    },
+    "313760": {
+        "market": "KOSDAQ"
+    },
+    "314250": {
+        "market": "KOSPI"
+    },
+    "314700": {
+        "market": "KOSPI"
+    },
+    "315270": {
+        "market": "KOSPI"
+    },
+    "315480": {
+        "market": "KOSPI"
+    },
+    "315930": {
+        "market": "KOSPI"
+    },
+    "315960": {
+        "market": "KOSPI"
+    },
+    "316140": {
+        "market": "KOSPI"
+    },
+    "316300": {
+        "market": "KOSPI"
+    },
+    "316670": {
+        "market": "KOSPI"
+    },
+    "317030": {
+        "market": "KOSDAQ"
+    },
+    "317120": {
+        "market": "KOSDAQ"
+    },
+    "317240": {
+        "market": "KOSDAQ"
+    },
+    "317320": {
+        "market": "KOSDAQ"
+    },
+    "317330": {
+        "market": "KOSDAQ"
+    },
+    "317400": {
+        "market": "KOSPI"
+    },
+    "317530": {
+        "market": "KOSDAQ"
+    },
+    "317770": {
+        "market": "KOSDAQ"
+    },
+    "317830": {
+        "market": "KOSDAQ"
+    },
+    "317850": {
+        "market": "KOSDAQ"
+    },
+    "317870": {
+        "market": "KOSDAQ"
+    },
+    "318000": {
+        "market": "KOSDAQ"
+    },
+    "318010": {
+        "market": "KOSDAQ"
+    },
+    "319400": {
+        "market": "KOSDAQ"
+    },
+    "319640": {
+        "market": "KOSPI"
+    },
+    "319660": {
+        "market": "KOSDAQ"
+    },
+    "319870": {
+        "market": "KOSPI"
+    },
+    "320000": {
+        "market": "KOSDAQ"
+    },
+    "321260": {
+        "market": "KOSDAQ"
+    },
+    "321410": {
+        "market": "KOSPI"
+    },
+    "321550": {
+        "market": "KOSDAQ"
+    },
+    "322000": {
+        "market": "KOSPI"
+    },
+    "322120": {
+        "market": "KOSPI"
+    },
+    "322130": {
+        "market": "KOSPI"
+    },
+    "322150": {
+        "market": "KOSPI"
+    },
+    "322180": {
+        "market": "KOSDAQ"
+    },
+    "322400": {
+        "market": "KOSPI"
+    },
+    "322410": {
+        "market": "KOSPI"
+    },
+    "322510": {
+        "market": "KOSDAQ"
+    },
+    "322780": {
+        "market": "KOSDAQ"
+    },
+    "323210": {
+        "market": "KOSDAQ"
+    },
+    "323230": {
+        "market": "KOSDAQ"
+    },
+    "323280": {
+        "market": "KOSDAQ"
+    },
+    "323940": {
+        "market": "KOSDAQ"
+    },
+    "325010": {
+        "market": "KOSPI"
+    },
+    "325020": {
+        "market": "KOSPI"
+    },
+    "326230": {
+        "market": "KOSPI"
+    },
+    "326240": {
+        "market": "KOSPI"
+    },
+    "327260": {
+        "market": "KOSDAQ"
+    },
+    "328370": {
+        "market": "KOSPI"
+    },
+    "328380": {
+        "market": "KOSDAQ"
+    },
+    "329200": {
+        "market": "KOSPI"
+    },
+    "329560": {
+        "market": "KOSDAQ"
+    },
+    "329650": {
+        "market": "KOSPI"
+    },
+    "329660": {
+        "market": "KOSPI"
+    },
+    "329670": {
+        "market": "KOSPI"
+    },
+    "329750": {
+        "market": "KOSPI"
+    },
+    "330590": {
+        "market": "KOSPI"
+    },
+    "330990": {
+        "market": "KOSDAQ"
+    },
+    "331380": {
+        "market": "KOSDAQ"
+    },
+    "331520": {
+        "market": "KOSDAQ"
+    },
+    "331910": {
+        "market": "KOSPI"
+    },
+    "332290": {
+        "market": "KOSDAQ"
+    },
+    "332500": {
+        "market": "KOSPI"
+    },
+    "332610": {
+        "market": "KOSPI"
+    },
+    "332620": {
+        "market": "KOSPI"
+    },
+    "332710": {
+        "market": "KOSDAQ"
+    },
+    "332930": {
+        "market": "KOSPI"
+    },
+    "332940": {
+        "market": "KOSPI"
+    },
+    "333050": {
+        "market": "KOSDAQ"
+    },
+    "333430": {
+        "market": "KOSDAQ"
+    },
+    "333940": {
+        "market": "KOSPI"
+    },
+    "333950": {
+        "market": "KOSPI"
+    },
+    "333960": {
+        "market": "KOSPI"
+    },
+    "333970": {
+        "market": "KOSPI"
+    },
+    "333980": {
+        "market": "KOSPI"
+    },
+    "334690": {
+        "market": "KOSPI"
+    },
+    "334700": {
+        "market": "KOSPI"
+    },
+    "335870": {
+        "market": "KOSDAQ"
+    },
+    "335890": {
+        "market": "KOSDAQ"
+    },
+    "336060": {
+        "market": "KOSDAQ"
+    },
+    "336160": {
+        "market": "KOSPI"
+    },
+    "336260": {
+        "market": "KOSPI"
+    },
+    "33626K": {
+        "market": "KOSPI"
+    },
+    "336370": {
+        "market": "KOSPI"
+    },
+    "33637K": {
+        "market": "KOSPI"
+    },
+    "336570": {
+        "market": "KOSDAQ"
+    },
+    "337120": {
+        "market": "KOSPI"
+    },
+    "337140": {
+        "market": "KOSPI"
+    },
+    "337150": {
+        "market": "KOSPI"
+    },
+    "337160": {
+        "market": "KOSPI"
+    },
+    "337450": {
+        "market": "KOSDAQ"
+    },
+    "338100": {
+        "market": "KOSPI"
+    },
+    "339950": {
+        "market": "KOSDAQ"
+    },
+    "340120": {
+        "market": "KOSDAQ"
+    },
+    "340350": {
+        "market": "KOSDAQ"
+    },
+    "340360": {
+        "market": "KOSDAQ"
+    },
+    "340440": {
+        "market": "KOSDAQ"
+    },
+    "341160": {
+        "market": "KOSDAQ"
+    },
+    "342140": {
+        "market": "KOSPI"
+    },
+    "342500": {
+        "market": "KOSPI"
+    },
+    "342550": {
+        "market": "KOSDAQ"
+    },
+    "342600": {
+        "market": "KOSPI"
+    },
+    "342610": {
+        "market": "KOSPI"
+    },
+    "342620": {
+        "market": "KOSPI"
+    },
+    "344050": {
+        "market": "KOSDAQ"
+    },
+    "344820": {
+        "market": "KOSPI"
+    },
+    "346000": {
+        "market": "KOSPI"
+    },
+    "347140": {
+        "market": "KOSDAQ"
+    },
+    "392070": {
+        "market": "KOSDAQ"
+    },
+    "392080": {
+        "market": "KOSDAQ"
+    },
+    "392100": {
+        "market": "KOSDAQ"
+    },
+    "3931T1": {
+        "market": "KOSDAQ"
+    },
+    "500000": {
+        "market": "KOSPI"
+    },
+    "501100": {
+        "market": "KOSPI"
+    },
+    "501300": {
+        "market": "KOSPI"
+    },
+    "501500": {
+        "market": "KOSPI"
+    },
+    "501800": {
+        "market": "KOSPI"
+    },
+    "502100": {
+        "market": "KOSPI"
+    },
+    "502400": {
+        "market": "KOSPI"
+    },
+    "502600": {
+        "market": "KOSPI"
+    },
+    "507100": {
+        "market": "KOSPI"
+    },
+    "512400": {
+        "market": "KOSPI"
+    },
+    "514400": {
+        "market": "KOSPI"
+    },
+    "517400": {
+        "market": "KOSPI"
+    },
+    "521100": {
+        "market": "KOSPI"
+    },
+    "521800": {
+        "market": "KOSPI"
+    },
+    "522100": {
+        "market": "KOSPI"
+    },
+    "522200": {
+        "market": "KOSPI"
+    },
+    "527100": {
+        "market": "KOSPI"
+    },
+    "527400": {
+        "market": "KOSPI"
+    },
+    "5307W1": {
+        "market": "KOSPI"
+    },
+    "531100": {
+        "market": "KOSPI"
+    },
+    "531400": {
+        "market": "KOSPI"
+    },
+    "531800": {
+        "market": "KOSPI"
+    },
+    "532100": {
+        "market": "KOSPI"
+    },
+    "532400": {
+        "market": "KOSPI"
+    },
+    "532600": {
+        "market": "KOSPI"
+    },
+    "536100": {
+        "market": "KOSPI"
+    },
+    "551100": {
+        "market": "KOSPI"
+    },
+    "551200": {
+        "market": "KOSPI"
+    },
+    "551800": {
+        "market": "KOSPI"
+    },
+    "552100": {
+        "market": "KOSPI"
+    },
+    "552400": {
+        "market": "KOSPI"
+    },
+    "552600": {
+        "market": "KOSPI"
+    },
+    "556100": {
+        "market": "KOSPI"
+    },
+    "570000": {
+        "market": "KOSPI"
+    },
+    "571100": {
+        "market": "KOSPI"
+    },
+    "572100": {
+        "market": "KOSPI"
+    },
+    "574100": {
+        "market": "KOSPI"
+    },
+    "574500": {
+        "market": "KOSPI"
+    },
+    "575500": {
+        "market": "KOSPI"
+    },
+    "576100": {
+        "market": "KOSPI"
+    },
+    "581100": {
+        "market": "KOSPI"
+    },
+    "592100": {
+        "market": "KOSPI"
+    },
+    "594100": {
+        "market": "KOSPI"
+    },
+    "595100": {
+        "market": "KOSPI"
+    },
+    "596100": {
+        "market": "KOSPI"
+    },
+    "597100": {
+        "market": "KOSPI"
+    },
+    "652221": {
+        "market": "KOSDAQ"
+    },
+    "701800": {
+        "market": "KOSPI"
+    },
+    "840090": {
+        "market": "KOSDAQ"
+    },
+    "840110": {
+        "market": "KOSDAQ"
+    },
+    "840120": {
+        "market": "KOSDAQ"
+    }
+}

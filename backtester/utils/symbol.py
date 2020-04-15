@@ -1,3 +1,4 @@
+import argparse
 import json
 import requests
 import sys
@@ -30,23 +31,26 @@ def run():
             sys.exit(1)
 
         for symbol in _parse(res):
-            d[symbol] = market
+            d[symbol] = {'market': market}
 
     return d
 
 
-def save(data, filename):
-    with open(filename, 'wt') as f:
+def save(data, filepath):
+    with open(filepath, 'wt') as f:
         json.dump(data, f, indent=4, sort_keys=True)
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-o', '--output', default='config/symbol.json')
+    args = parser.parse_args()
+
     data = run()
     print(data)
 
-    filename = 'config/symbols.json'
-    save(data, filename)
-    print(f'Saved in {filename}')
+    save(data, args.output)
+    print(f'Saved in {args.output}')
 
 """ Codelet for debug
 res = requests.get(URLS['KOSPI'], headers=HEADERS)
