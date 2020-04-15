@@ -2,6 +2,7 @@ import json
 import logging
 from threading import Thread
 from multiprocessing import Manager, Process, Queue, Event
+from os import path
 
 from . import analyzer
 from . import broker
@@ -9,7 +10,7 @@ from . import fetcher
 
 
 def run(config, strategy):
-    logging.config.dictConfig(config['logging'])
+    _init_logger()
 
     manager = Manager()
     cash = manager.Value(float, config['initial_cash'])
@@ -59,6 +60,12 @@ def run(config, strategy):
     [p.join() for p in processes]
     log_queue.put(None)
     [t.join() for t in threads]
+
+
+def _init_logger():
+    here = path.abspath(path.dirname(__file__))
+    with open(path.join(here, 'logging.json')) as f:
+        logging.config.dictConfig(json.load(f))
 
 
 def log_daemon(name, queue):

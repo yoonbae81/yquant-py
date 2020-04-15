@@ -1,7 +1,8 @@
 import argparse
 import json
-import requests
 import sys
+
+import requests
 
 URLS = {
     'KOSPI': 'https://finance.daum.net/api/quotes/stocks?market=KOSPI',

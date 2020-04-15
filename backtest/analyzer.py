@@ -6,6 +6,7 @@ import logging.config
 from collections import defaultdict
 from logging.handlers import QueueHandler
 from multiprocessing import Event
+from os import path
 
 from .data import Stock, Order
 
@@ -13,7 +14,7 @@ logger = logging.getLogger('analyzer')
 
 
 def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queue, done: Event):
-    _init_logger(config, log_queue)
+    _init_logger(log_queue)
 
     stock_dict = defaultdict(Stock)
 
@@ -44,6 +45,9 @@ def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queu
     logger.info(f'Analyzed {count} ticks')
 
 
-def _init_logger(config, log_queue):
-    logging.config.dictConfig(config['logging'])
+def _init_logger(log_queue):
+    here = path.abspath(path.dirname(__file__))
+    with open(path.join(here, 'logging.json')) as f:
+        logging.config.dictConfig(json.load(f))
+
     logging.getLogger('analyzer').addHandler(QueueHandler(log_queue))

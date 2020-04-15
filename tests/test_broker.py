@@ -1,12 +1,12 @@
 import json
 import pytest
 
-import backtester.broker as sut
+import backtest.broker as sut
 
 
 @pytest.fixture(scope='session')
 def config():
-    yield {'market': json.load(open('../config/market.json'))}
+    yield {'market': json.load(open('../demo/config/market.json'))}
 
 
 @pytest.mark.parametrize('input, expected', [

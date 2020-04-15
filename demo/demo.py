@@ -2,7 +2,7 @@ import json
 from multiprocessing import cpu_count
 from types import SimpleNamespace
 
-import backtester
+import backtest
 
 CONFIG = {
     'initial_cash':
@@ -18,13 +18,13 @@ CONFIG = {
         'workers': max(1, cpu_count() - 1),
     },
     'files': {
-        'logging': 'config/logging.json',
         'symbol': 'config/symbol.json',
         'market': 'config/market.json',
     }
 }
 
 
+# will use ta-lib that downloadable from https://www.lfd.uci.edu/~gohlke/pythonlibs/
 def calc_quantity_to_buy(initial_cash, current_cash, holding, stock):
     return 1
 
@@ -47,4 +47,4 @@ if __name__ == '__main__':
         with open(filepath, 'rt') as f:
             CONFIG[key] = json.load(f)
 
-    backtester.run(CONFIG, strategy)
+    backtest.run(CONFIG, strategy)

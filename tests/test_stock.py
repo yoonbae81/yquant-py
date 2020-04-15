@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from backtester.data import Stock
-from backtester.fetcher import Tick
+from backtest.data import Stock
+from backtest.fetcher import Tick
 
 
 def test_size():

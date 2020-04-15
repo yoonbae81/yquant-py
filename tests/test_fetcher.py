@@ -4,7 +4,7 @@ from tempfile import TemporaryDirectory, NamedTemporaryFile
 
 import pytest
 
-import backtester.fetcher as sut
+import backtest.fetcher as sut
 
 
 @pytest.mark.parametrize('input, expected', [
