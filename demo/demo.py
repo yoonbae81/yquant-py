@@ -44,7 +44,7 @@ strategy = SimpleNamespace(
 
 if __name__ == '__main__':
     for key, filepath in CONFIG['files'].items():
-        with open(filepath, 'rt') as f:
+        with open(filepath, 'rt', encoding='utf-8') as f:
             CONFIG[key] = json.load(f)
 
     backtest.run(CONFIG, strategy)
