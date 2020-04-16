@@ -19,7 +19,8 @@ def _parse(res):
     data = json.loads(res.text)['data']
     for item in data:
         symbol = item.pop('code')[3:9]
-        yield symbol
+        name = item.pop('name')
+        yield symbol, name
 
 
 def run():
@@ -31,15 +32,16 @@ def run():
             print('ERROR: HTTP Status Code {}'.format(res.status_code), file=sys.stderr)
             sys.exit(1)
 
-        for symbol in _parse(res):
-            d[symbol] = {'market': market}
+        for symbol, name in _parse(res):
+            d[symbol] = {'name': name,
+                         'market': market}
 
     return d
 
 
 def save(data, filepath):
-    with open(filepath, 'wt') as f:
-        json.dump(data, f, indent=4, sort_keys=True)
+    with open(filepath, 'wt', encoding='utf-8') as f:
+        json.dump(data, f, indent=4, sort_keys=True, ensure_ascii=False)
 
 
 if __name__ == '__main__':
