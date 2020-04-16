@@ -82,24 +82,24 @@ def test_route_1():
     qs = [Queue()]
     route = sut._get_router(qs)
 
-    assert qs[0] == route('AAAAA')
-    assert qs[0] == route('BBBBB')
-    assert qs[0] == route('AAAAA')
-    assert qs[0] == route('CCCCC')
-    assert qs[0] == route('BBBBB')
-    assert qs[0] == route('AAAAA')
+    assert route('AAAAA') == qs[0]
+    assert route('BBBBB') == qs[0]
+    assert route('AAAAA') == qs[0]
+    assert route('CCCCC') == qs[0]
+    assert route('BBBBB') == qs[0]
+    assert route('AAAAA') == qs[0]
 
 
 def test_route_3():
     qs = [Queue() for _ in range(3)]
     route = sut._get_router(qs)
 
-    assert qs[0] == route('AAAAA')
-    assert qs[1] == route('BBBBB')
-    assert qs[0] == route('AAAAA')
-    assert qs[2] == route('CCCCC')
-    assert qs[1] == route('BBBBB')
-    assert qs[0] == route('AAAAA')
+    assert route('AAAAA') == qs[0]
+    assert route('BBBBB') == qs[1]
+    assert route('AAAAA') == qs[0]
+    assert route('CCCCC') == qs[2]
+    assert route('BBBBB') == qs[1]
+    assert route('AAAAA') == qs[0]
 
 
 def test_fetch(tick_file):
