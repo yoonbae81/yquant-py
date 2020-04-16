@@ -13,8 +13,8 @@ from .data import Filled
 logger = logging.getLogger('broker')
 
 
-def run(config, cash, quantity_dict, order_queue, done: Event):
-    ledger = _prepare_ledger(config['broker']['ledger_dir'])
+def run(rules, cash, quantity_dict, order_queue, ledger_dir, done: Event):
+    ledger = _prepare_ledger(ledger_dir)
     print(json.dumps({'cash': cash.value}), file=ledger)
 
     count = 0
@@ -25,7 +25,7 @@ def run(config, cash, quantity_dict, order_queue, done: Event):
         except queue.Empty:
             continue
 
-        filled = _get_filled(config, order)
+        filled = _get_filled(order, rules)
         cash.value -= filled.total_cost()
         quantity_dict[filled.symbol] = quantity_dict.get(filled.symbol, 0) \
                                        + filled.quantity
@@ -38,23 +38,29 @@ def run(config, cash, quantity_dict, order_queue, done: Event):
 
 
 def _prepare_ledger(dir):
-    Path(dir).mkdir(parents=True, exist_ok=True)
-    name = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
+    path = Path(dir)
+    path.mkdir(parents=True, exist_ok=True)
+    filename = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
 
-    return open(join(dir, name), 'wt')
+    return path.joinpath(filename).open('wt')
 
 
-def _get_filled(config, order) -> Filled:
-    market = config['symbol'].get(order.symbol, 'KOSPI')
-    price = _simulate_market_price(config, market, order.price, order.quantity)
-    commission = _calc_commission(config, market, price, order.quantity)
-    tax = _calc_tax(config, market, price, order.quantity)
+def _get_filled(order, rules) -> Filled:
+    price = _simulate_market_price(order.price,
+                                   order.quantity,
+                                   rules[order.market]['price_units'])
+    commission = _calc_commission(price,
+                                  order.quantity,
+                                  rules[order.market]['commission'])
+    tax = _calc_tax(price,
+                    order.quantity,
+                    rules[order.market]['tax'])
 
     return Filled(
         order.symbol,
-        market,
-        order.quantity,
+        order.market,
         price,
+        order.quantity,
         commission,
         tax,
         order.price - price,
@@ -62,34 +68,31 @@ def _get_filled(config, order) -> Filled:
     )
 
 
-def _calc_commission(config, market, price, quantity) -> float:
-    trade = 'buy' if quantity > 0 else 'sell'
-    rate = config['market'][market]['commission'][trade]
-
-    return round(price * abs(quantity) * rate)
-
-
-def _calc_tax(config, market, price, quantity) -> float:
-    trade = 'buy' if quantity > 0 else 'sell'
-    rate = config['market'][market]['tax'][trade]
-
-    return round(price * abs(quantity) * rate)
-
-
-def _simulate_market_price(config, market, price, quantity) -> float:
+def _simulate_market_price(price, quantity, price_units, slippage_stdev=0.7) -> float:
     mean = 0.5 if quantity > 0 else -0.5,
-    stdev = config['broker']['slippage_stdev']
-    offset = int(np.random.normal(mean, stdev))
-
-    price_unit = _get_price_unit(config, market, price)
+    offset = int(np.random.normal(mean, slippage_stdev))
+    price_unit = _get_price_unit(price, price_units)
 
     return price + offset * price_unit
 
 
-def _get_price_unit(config, market, price) -> float:
-    price_units = config['market'][market]['price_units']
+def _get_price_unit(price, price_units) -> float:
     for item in price_units:
         if price < item['price']:
             return item['unit']
 
     return price_units[-1]['unit']
+
+
+def _calc_commission(price, quantity, rates) -> float:
+    trade = 'buy' if quantity > 0 else 'sell'
+    rate = rates[trade]
+
+    return round(price * abs(quantity) * rate)
+
+
+def _calc_tax(price, quantity, rates) -> float:
+    trade = 'buy' if quantity > 0 else 'sell'
+    rate = rates[trade]
+
+    return round(price * abs(quantity) * rate)

@@ -9,8 +9,8 @@ from .data import Tick, RESET
 logger = logging.getLogger('fetcher')
 
 
-def run(ticks_path: str, tick_queues: [], done: Event):
-    files = [ticks_path] if isfile(ticks_path) else _list_dir(ticks_path)
+def run(tick_dir: str, tick_queues: [], done: Event):
+    files = [tick_dir] if isfile(tick_dir) else _list_dir(tick_dir)
     route = _get_router(tick_queues)
 
     count = 0

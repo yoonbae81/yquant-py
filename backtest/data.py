@@ -10,15 +10,15 @@ Tick = namedtuple('Tick',
 RESET = Tick('[RESET]', 0, 0, 0)
 
 Order = namedtuple('Order',
-                   'symbol price quantity timestamp')
+                   'symbol market price quantity timestamp')
 
 
 @dataclass
 class Filled:
     symbol: str
     market: str
-    quantity: float
     price: float
+    quantity: float
     commission: float
     tax: float
     slippage: float
@@ -39,7 +39,9 @@ class Filled:
 
 
 class Stock:
-    def __init__(self, size=100, keep=30):
+    def __init__(self, symbol, market, size=100, keep=30):
+        self.symbol = symbol
+        self.market = market
         self.stoploss = None
 
         self._size = size

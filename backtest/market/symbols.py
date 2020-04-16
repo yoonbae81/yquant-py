@@ -46,7 +46,7 @@ def save(data, filepath):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('-o', '--output', default='symbol.json')
+    parser.add_argument('-o', '--output', default='symbols.json')
     args = parser.parse_args()
 
     data = run()

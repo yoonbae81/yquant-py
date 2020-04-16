@@ -5,28 +5,28 @@ import backtest.broker as sut
 
 
 @pytest.fixture(scope='session')
-def config():
-    yield {'market': json.load(open('../demo/config/market.json'))}
+def rules():
+    yield json.load(open('../demo/market/rules.json'))
 
 
 @pytest.mark.parametrize('input, expected', [
-    (('KOSPI', 10000, 10), 15),
-    (('KOSPI', 10000, -10), 15),
-    (('KOSDAQ', 10000, 10), 15),
-    (('KOSDAQ', 10000, -10), 15),
+    ((10000, 10), 15),
+    ((10000, -10), 15),
+    ((10000, 10), 15),
+    ((10000, -10), 15),
 ])
-def test_commission(config, input, expected):
-    actual = sut._calc_commission(config, *input)
+def test_commission(input, expected, rules):
+    actual = sut._calc_commission(*input, rules['KOSPI']['commission'])
 
     assert actual == expected
 
 
 @pytest.mark.parametrize('input, expected', [
-    (('KOSPI', 10000, 10), 0),
-    (('KOSPI', 10000, -10), 250),
+    ((10000, 10), 0),
+    ((10000, -10), 250),
 ])
-def test_tax(config, input, expected):
-    actual = sut._calc_tax(config, *input)
+def test_tax(input, expected, rules):
+    actual = sut._calc_tax(*input, rules['KOSPI']['tax'])
 
     assert actual == expected
 
@@ -42,9 +42,9 @@ def test_tax(config, input, expected):
     (499999, 500),
     (500000, 1000),
 ])
-def test_get_unit_price_KOSPI(config, input, expected):
+def test_get_unit_price_KOSPI(input, expected, rules):
     market = 'KOSPI'
-    actual = sut._get_price_unit(config, market, input)
+    actual = sut._get_price_unit(input, rules[market]['price_units'])
 
     assert actual == expected
 
@@ -60,9 +60,9 @@ def test_get_unit_price_KOSPI(config, input, expected):
     (499999, 100),
     (500000, 100),
 ])
-def test_get_unit_price_KOSDAQ(config, input, expected):
+def test_get_unit_price_KOSDAQ(input, expected, rules):
     market = 'KOSDAQ'
-    actual = sut._get_price_unit(config, market, input)
+    actual = sut._get_price_unit(input, rules[market]['price_units'])
 
     assert actual == expected
 
@@ -71,9 +71,8 @@ def test_get_unit_price_KOSDAQ(config, input, expected):
     ((100, 10), range(95, 105 + 1, 1)),
     ((10000, 10), range(9750, 10250 + 1, 50)),
 ])
-def test_simulate_market_price(config, input, expected):
-    config['broker'] = {'slippage_stdev': 0.7}
-    market = 'KOSPI'
-    actual = sut._simulate_market_price(config, market, *input)
+def test_simulate_market_price(input, expected, rules):
+    market = 'KOSDAQ'
+    actual = sut._simulate_market_price(*input, rules[market]['price_units'])
 
     assert actual in expected
