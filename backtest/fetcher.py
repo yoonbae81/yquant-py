@@ -4,39 +4,38 @@ from multiprocessing import Event
 from os import listdir
 from os.path import exists, isfile, isdir, join, basename
 
-from .data import Tick
+from .data import Tick, RESET
 
 logger = logging.getLogger('fetcher')
 
 
-def run(ticks_dir: str, tick_queues: [], done: Event):
+def run(ticks_path: str, tick_queues: [], done: Event):
+    files = [ticks_path] if isfile(ticks_path) else _list_dir(ticks_path)
     route = _get_router(tick_queues)
 
     count = 0
-    for t in _get_tick(ticks_dir):
-        queue = route(t.symbol)
-        queue.put(t)
-        count += 1
+    for file in files:
+        for t in _read_tick(file):
+            queue = route(t.symbol)
+            queue.put(t)
+            count += 1
+
+        logger.debug(f'Sending RESET messages (End of {file})')
+        [queue.put(RESET) for queue in tick_queues]
 
     logger.info(f'Fetched {count} ticks')
     time.sleep(2)
     done.set()
 
 
-def _get_tick(path: str) -> Tick:
-    if not exists(path):
-        raise FileNotFoundError(path)
-
-    files = [path] if isfile(path) else _list_dir(path)
-
-    for file in files:
-        with open(file, 'rt') as f:
-            for i, line in enumerate(f, 1):
-                try:
-                    yield _parse(line)
-                except ValueError:
-                    logger.error(f'{basename(file)} line {i} [{line.strip()}]')
-                    continue
+def _read_tick(file):
+    with open(file, 'rt') as f:
+        for i, line in enumerate(f, 1):
+            try:
+                yield _parse(line)
+            except ValueError:
+                logger.error(f'{basename(file)} line {i} [{line.strip()}]')
+                continue
 
 
 def _list_dir(path: str) -> []:

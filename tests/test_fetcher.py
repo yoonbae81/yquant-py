@@ -32,6 +32,8 @@ def test_parse_error(input):
 
 @pytest.fixture(scope='session')
 def tick_file():
+    # with TemporaryDirectory() as temp_dir:
+    # with NamedTemporaryFile('wt', dir=temp_dir, delete=False) as file1:
     with NamedTemporaryFile('wt', delete=False) as file:
         file.write('AAAAA 1000 1 1000000001\n')
         file.write('AAAAA 1100 2 1000000002\n')
@@ -43,37 +45,7 @@ def tick_file():
 
 
 def test_get_tick_file(tick_file):
-    gen = sut._get_tick(tick_file)
-    tick = next(gen)
-    assert tick.symbol == 'AAAAA'
-
-
-@pytest.fixture(scope='session')
-def tick_dir():
-    with TemporaryDirectory() as temp_dir:
-        with NamedTemporaryFile('wt', dir=temp_dir, delete=False) as file1:
-            file1.write('AAAAA 1000 1 1000000001\n')
-            file1.write('AAAAA 1100 2 1000000002\n')
-            file1.write('AAAAA 1100 3 1000000003\n')
-            file1.write('BBBBB 3000 1 1000000004\n')
-
-        with NamedTemporaryFile('wt', dir=temp_dir, delete=False) as file2:
-            file2.write('AAAAA 1000 1 1000000005\n')
-            file2.write('AAAAA 1100 2 1000000006\n')
-            file2.write('AAAAA 1100 3 1000000007\n')
-            file2.write('CCCCC 7000 1 1000000008\n')
-            file2.write('CCCCC 7000 3 1000000008\n')
-
-        yield temp_dir
-
-
-def test_list_dir(tick_dir):
-    files = sut._list_dir(tick_dir)
-    assert len(files) == 2
-
-
-def test_get_tick_dir(tick_dir):
-    gen = sut._get_tick(tick_dir)
+    gen = sut._read_tick(tick_file)
     tick = next(gen)
     assert tick.symbol == 'AAAAA'
 

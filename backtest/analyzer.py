@@ -8,7 +8,7 @@ from logging.handlers import QueueHandler
 from multiprocessing import Event
 from os import path
 
-from .data import Stock, Order
+from .data import Tick, RESET, Stock, Order
 
 logger = logging.getLogger('analyzer')
 
@@ -24,6 +24,10 @@ def run(config, strategy, cash, quantity_dict, tick_queue, order_queue, log_queu
             t = tick_queue.get(block=True, timeout=1)
             count += 1
         except queue.Empty:
+            continue
+
+        if t == RESET:
+            [s.erase_timeseries() for s in stock_dict.values()]
             continue
 
         stock = stock_dict[t.symbol]
@@ -49,5 +53,3 @@ def _init_logger(log_queue):
     here = path.abspath(path.dirname(__file__))
     with open(path.join(here, 'logging.json')) as f:
         logging.config.dictConfig(json.load(f))
-
-    logging.getLogger('analyzer').addHandler(QueueHandler(log_queue))

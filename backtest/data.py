@@ -7,6 +7,8 @@ import numpy as np
 
 Tick = namedtuple('Tick',
                   'symbol price volume timestamp')
+RESET = Tick('[RESET]', 0, 0, 0)
+
 Order = namedtuple('Order',
                    'symbol price quantity timestamp')
 
@@ -50,6 +52,10 @@ class Stock:
     def add_timeseries(self, key):
         self._timeseries[key] = np.zeros(self._size, dtype=float)
 
+    def erase_timeseries(self):
+        for arr in self._timeseries.values():
+            arr[:] = 0
+
     def __getitem__(self, key):
         return self._timeseries[key]
 
@@ -81,8 +87,7 @@ class Stock:
         self._watermark = i
 
     def _erase_old(self):
-        for key in self._timeseries.keys():
-            arr = self._timeseries[key]
+        for arr in self._timeseries.values():
             arr[:self._keep] = arr[-self._keep:]  # bring forward the given number of back items
             arr[self._keep:] = 0  # then make zero the remaining
 
