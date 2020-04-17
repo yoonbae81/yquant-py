@@ -1,7 +1,7 @@
 # Backtest
 A backtest engine for developing algorithmic trading strategy.
 
-![PyPI](https://img.shields.io/pypi/v/backtest?color=%234ec726&style=flat-square)
+[![PyPI](https://img.shields.io/pypi/v/backtest?color=%234ec726&style=flat-square)](https://pypi.org/project/backtest/)
 
 
 ## Table of Contents
