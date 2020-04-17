@@ -14,7 +14,7 @@ A backtest engine for developing algorithmic trading strategy.
 
 ## Installation
 ```
-pip install bactest
+pip install backtest
 ```
 
 ## Usage
