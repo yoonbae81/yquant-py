@@ -1,6 +1,5 @@
 import logging
 import time
-from multiprocessing import Event
 from os import listdir
 from os.path import exists, isfile, isdir, join, basename
 
@@ -9,7 +8,22 @@ from .data import Tick, RESET
 logger = logging.getLogger('fetcher')
 
 
-def run(tick_dir: str, tick_queues: [], done: Event):
+def run(tick_dir, tick_queues, done):
+    """
+    Run fetcher
+
+    Read and parse tick files in *tick_dir*, then put into queue.
+
+    Parameters
+    ----------
+    tick_dir : str
+        Directory that stores tick files.
+    tick_queues : multiprocessing.Queue
+        Queue that connects *Analyzer* module.
+    done : multiprocessing.Event
+        Will be set when there is no more tick.
+
+    """
     files = [tick_dir] if isfile(tick_dir) else _list_dir(tick_dir)
     route = _get_router(tick_queues)
 
