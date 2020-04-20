@@ -15,13 +15,11 @@ import sys
 
 sys.path.insert(0, os.path.abspath('..'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = 'Backtest'
 copyright = '2020, Yoonbae Cho'
 author = 'Yoonbae Cho'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -29,8 +27,9 @@ author = 'Yoonbae Cho'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'autodoc',
     'sphinx_rtd_theme',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.coverage',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -40,7 +39,6 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-
 
 # -- Options for HTML output -------------------------------------------------
 
