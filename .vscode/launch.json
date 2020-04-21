@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "pythonPath": "${config:python.pythonPath}"
+        },
+        {
+            "name": "Demo",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/demo/demo.py",
+            "console": "integratedTerminal",
+            "pythonPath": "${config:python.pythonPath}",
+            "cwd": "${workspaceFolder}/demo",
+            "env": {"PYTHONPATH":"../"}
+        }
+    ]
+}
