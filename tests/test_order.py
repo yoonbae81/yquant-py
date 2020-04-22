@@ -1,6 +1,6 @@
 import pytest
 
-from backtest.data import Filled
+from backtest.data import Order
 
 
 @pytest.mark.parametrize('input, expected', [
@@ -8,5 +8,5 @@ from backtest.data import Filled
     (('AAA', 'KOSPI', 1000, -10, 10, 1, 0, 12345), -10011),
 ])
 def test_total_cost(input, expected):
-    sut = Filled(*input)
+    sut = Order(*input)
     assert sut.total_cost() == expected

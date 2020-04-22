@@ -9,12 +9,12 @@ Tick = namedtuple('Tick',
                   'symbol price volume timestamp')
 RESET = Tick('[RESET]', 0, 0, 0)
 
-Order = namedtuple('Order',
-                   'symbol market price quantity timestamp')
+Signal = namedtuple('Signal',
+                    'symbol market price strength timestamp')
 
 
 @dataclass
-class Filled:
+class Order:
     symbol: str
     market: str
     price: float
@@ -26,10 +26,10 @@ class Filled:
 
     def total_cost(self):
         return copysign(1, self.quantity) \
-               * (abs(self.quantity)
-                  * self.price
-                  + self.commission
-                  + self.tax)
+            * (abs(self.quantity)
+               * self.price
+               + self.commission
+               + self.tax)
 
     def as_dict(self):
         return asdict(self)
@@ -90,7 +90,8 @@ class Stock:
 
     def _erase_old(self):
         for arr in self._timeseries.values():
-            arr[:self._keep] = arr[-self._keep:]  # bring forward the given number of back items
+            # bring forward the given number of back items
+            arr[:self._keep] = arr[-self._keep:]
             arr[self._keep:] = 0  # then make zero the remaining
 
     def __repr__(self):

@@ -8,30 +8,55 @@ from pathlib import Path
 
 import numpy as np
 
-from .data import Filled
+from .data import Order 
 
 logger = logging.getLogger('broker')
 
 
-def run(rules, cash, quantity_dict, order_queue, ledger_dir, done: Event):
+def run(rules, strategy, initial_cash, quantity_dict, signal_queue, ledger_dir, done: Event):
     ledger = _prepare_ledger(ledger_dir)
-    print(json.dumps({'cash': cash.value}), file=ledger)
+    print(json.dumps({'cash': initial_cash}), file=ledger)
+    cash = initial_cash
 
     count = 0
     while not done.is_set():
         try:
-            order = order_queue.get(block=True, timeout=1)
+            signal = signal_queue.get(block=True, timeout=1)
             count += 1
         except queue.Empty:
             continue
 
-        filled = _get_filled(order, rules)
-        cash.value -= filled.total_cost()
-        quantity_dict[filled.symbol] = quantity_dict.get(filled.symbol, 0) \
-                                       + filled.quantity
+        quantity = strategy.calc_quantity(signal, cash, quantity_dict)
 
-        print(filled.as_json(), file=ledger)
-        logger.debug('Wrote ' + repr(filled))
+        price = _simulate_market_price(signal.price,
+                                       quantity,
+                                       rules[signal.market]['price_units'])
+
+        commission = _calc_commission(price,
+                                      quantity,
+                                      rules[signal.market]['commission'])
+
+        tax = _calc_tax(price,
+                        quantity,
+                        rules[signal.market]['tax'])
+
+        order = Order(
+            signal.symbol,
+            signal.market,
+            price,
+            quantity,
+            commission,
+            tax,
+            signal.price - price,
+            signal.timestamp,
+        )
+
+        initial_cash -= order.total_cost()
+        quantity_dict[order.symbol] = quantity_dict.get(signal.symbol, 0) \
+            + order.quantity
+
+        print(order.as_json(), file=ledger)
+        logger.debug('Wrote ' + repr(order))
 
     ledger.close()
     logger.info(f'Processed {count} orders and wrote to {ledger.name}')
@@ -43,29 +68,6 @@ def _prepare_ledger(dir):
     filename = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
 
     return path.joinpath(filename).open('wt')
-
-
-def _get_filled(order, rules) -> Filled:
-    price = _simulate_market_price(order.price,
-                                   order.quantity,
-                                   rules[order.market]['price_units'])
-    commission = _calc_commission(price,
-                                  order.quantity,
-                                  rules[order.market]['commission'])
-    tax = _calc_tax(price,
-                    order.quantity,
-                    rules[order.market]['tax'])
-
-    return Filled(
-        order.symbol,
-        order.market,
-        price,
-        order.quantity,
-        commission,
-        tax,
-        order.price - price,
-        order.timestamp,
-    )
 
 
 def _simulate_market_price(price, quantity, price_units, slippage_stdev=0.7) -> float:

@@ -20,6 +20,9 @@
             "console": "integratedTerminal",
             "pythonPath": "${config:python.pythonPath}",
             "cwd": "${workspaceFolder}/demo",
+            "env": {
+                "PYTHONPATH": ".."
+            }
         }
     ]
 }

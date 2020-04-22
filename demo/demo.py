@@ -6,22 +6,23 @@ import backtest
 
 
 # could use ta-lib that downloadable from https://www.lfd.uci.edu/~gohlke/pythonlibs/
-def calc_quantity_to_buy(current_cash, holding, stock):
-    return 1
-
-
-def calc_quantity_to_sell(holding, stock):
-    return 1
+def calc_strength(stock):
+    return 0
 
 
 def calc_stoploss(stock):
     return 1
 
 
+def calc_quantity(signal, cash, quantity_dict):
+    return 100
+
+
 strategy = SimpleNamespace(
-    calc_quantity_to_buy=calc_quantity_to_buy,
-    calc_quantity_to_sell=calc_quantity_to_sell,
-    calc_stoploss=calc_stoploss)
+    calc_strength=calc_strength,
+    calc_stoploss=calc_stoploss,
+    calc_quantity=calc_quantity)
+
 
 if __name__ == '__main__':
     files = {'symbols': 'market/symbols.json',

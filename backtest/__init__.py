@@ -17,11 +17,10 @@ def run(market, strategy, tick_dir, ledger_dir, initial_cash=1_000_000, num_work
         raise FileNotFoundError(tick_dir)
 
     manager = Manager()
-    cash = manager.Value(float, initial_cash)
     quantity_dict = manager.dict()
 
     tick_queues = [Queue() for _ in range(num_workers - 1)]
-    order_queue = Queue()
+    signal_queue = Queue()
     done = Event()
 
     threads = [
@@ -34,9 +33,10 @@ def run(market, strategy, tick_dir, ledger_dir, initial_cash=1_000_000, num_work
         Thread(target=broker.run,
                name='Broker',
                args=(market['rules'],
-                     cash,
+                     strategy,
+                     initial_cash,
                      quantity_dict,
-                     order_queue,
+                     signal_queue,
                      ledger_dir,
                      done)),
     ]
@@ -47,10 +47,9 @@ def run(market, strategy, tick_dir, ledger_dir, initial_cash=1_000_000, num_work
                     name=f'Analyzer{i}',
                     args=(market['symbols'],
                           strategy,
-                          cash,
                           quantity_dict,
                           tick_queue,
-                          order_queue,
+                          signal_queue,
                           done))
         processes.append(p)
 

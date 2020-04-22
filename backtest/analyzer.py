@@ -5,7 +5,7 @@ import queue
 from multiprocessing import Event
 from pathlib import Path
 
-from .data import Tick, RESET, Stock, Order
+from .data import Tick, RESET, Stock, Signal
 
 with Path(__file__).parent.joinpath('logging.json').open() as f:
     logging.config.dictConfig(json.load(f))
@@ -13,7 +13,7 @@ with Path(__file__).parent.joinpath('logging.json').open() as f:
 logger = logging.getLogger('analyzer')
 
 
-def run(symbols, strategy, cash, quantity_dict, tick_queue, order_queue, done: Event):
+def run(symbols, strategy, quantity_dict, tick_queue, signal_queue, done: Event):
     stock_dict = {}
     count = 0
     while not done.is_set():
@@ -36,16 +36,15 @@ def run(symbols, strategy, cash, quantity_dict, tick_queue, order_queue, done: E
         count += 1
 
         holding = quantity_dict.get(tick.symbol, 0)
-        if holding > 0 and tick.price < stock.stoploss:
-            quantity = strategy.calc_quantity_to_sell(holding, stock)
-        else:
-            quantity = strategy.calc_quantity_to_buy(cash.value, holding, stock)
-
-        if abs(quantity) > 0:
-            order = Order(stock.symbol, stock.market, tick.price, quantity, tick.timestamp)
-            order_queue.put(order)
-
-        if quantity > 0 or holding > 0:
+        if holding > 0:
             stock.stoploss = strategy.calc_stoploss(stock)
+
+        strength = strategy.calc_strength(stock)
+        signal = Signal(stock.symbol,
+                        stock.market,
+                        tick.price,
+                        strength,
+                        tick.timestamp)
+        signal_queue.put(signal)
 
     logger.info(f'Analyzed {count} ticks')
