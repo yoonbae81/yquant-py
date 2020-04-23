@@ -1,19 +1,17 @@
 import json
-import logging.config
 import queue
 
 from multiprocessing import Event
 from pathlib import Path
 
+import logging
 from .data import Tick, RESET, Stock, Signal
-
-with Path(__file__).parent.joinpath('logging.json').open() as f:
-    logging.config.dictConfig(json.load(f))
 
 logger = logging.getLogger('analyzer')
 
 
 def run(symbols, strategy, quantity_dict, tick_queue, signal_queue, done: Event):
+
     stock_dict = {}
     count = 0
     while not done.is_set():
