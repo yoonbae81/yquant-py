@@ -3,14 +3,48 @@ import logging
 import queue
 from datetime import datetime
 from multiprocessing import Value, Event, Queue
+from multiprocessing.connection import Connection
 from os.path import join
 from pathlib import Path
+from threading import Thread
+from typing import Callable, Dict
 
 import numpy as np
 
-from .data import Order 
+from .data import Order, Msg
 
 logger = logging.getLogger('broker')
+
+
+class Broker(Thread):
+    def __init__(self) -> None:
+        super().__init__(name=self.__class__.__name__)
+
+        self.input: Connection
+        self.output: Connection
+
+        # Event loop
+        self._running: bool = False
+
+        self._handlers: Dict[str, Callable[[Msg], None]] = {
+            'SIGNAL': self._handler_signal,
+            'QUIT': self._handler_quit,
+        }
+
+    def run(self):
+        self._running = True
+
+        while self._running:
+            msg = self.input.recv()
+            print(f'{self.name} received: {msg}')
+            self._handlers[msg.type](msg)
+
+    def _handler_signal(self, msg: Msg) -> None:
+        msg.type = 'POSITION'
+        self.output.send(msg)
+
+    def _handler_quit(self, msg: Msg) -> None:
+        self._running = False
 
 
 def run(rules, strategy, initial_cash, quantity_dict, signal_queue, ledger_dir, done: Event):
@@ -53,7 +87,7 @@ def run(rules, strategy, initial_cash, quantity_dict, signal_queue, ledger_dir, 
 
         initial_cash -= order.total_cost()
         quantity_dict[order.symbol] = quantity_dict.get(signal.symbol, 0) \
-            + order.quantity
+                                      + order.quantity
 
         print(order.as_json(), file=ledger)
         logger.debug('Wrote ' + repr(order))

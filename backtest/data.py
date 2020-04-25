@@ -12,6 +12,15 @@ RESET = Tick('[RESET]', 0, 0, 0)
 Signal = namedtuple('Signal',
                     'symbol market price strength timestamp')
 
+@dataclass
+class Msg:
+    type: str = ''
+    symbol: str = ''
+    market: str = ''
+    price: float = 0
+    quantity: float = 0
+    strength: int = 0
+    timestamp: int = 0
 
 @dataclass
 class Order:

@@ -33,4 +33,6 @@ if __name__ == '__main__':
         with Path(__file__).parent.joinpath(path).open(encoding='utf-8') as f:
             market[key] = json.load(f)
 
-    backtest.run(market, strategy, 'ticks/', 'ledger/', initial_cash=1_000_000)
+    # backtest.run(market, strategy, 'ticks/', 'ledger/', initial_cash=1_000_000)
+
+    backtest.run2()

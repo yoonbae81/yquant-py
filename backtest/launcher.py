@@ -1,10 +1,30 @@
 from threading import Thread
 from multiprocessing import Manager, Process, Queue, Event, cpu_count
 from pathlib import Path
+from typing import List, Any
 
 from . import analyzer
 from . import broker
 from . import fetcher
+
+from .analyzer import Analyzer
+from .broker import Broker
+from .fetcher import Fetcher
+from .router import Router
+
+
+def run2():
+    fetcher = Fetcher()
+    analyzers = [Analyzer() for _ in range((cpu_count() or 2) - 1)]
+    broker = Broker()
+    router = Router()
+
+    nodes: List[Any] = [broker, *analyzers, fetcher]
+    [router.connect(node) for node in nodes]
+
+    nodes.insert(0, router)
+    [node.start() for node in nodes]
+    [node.join() for node in reversed(nodes)]
 
 
 def run(market, strategy, tick_dir, ledger_dir, initial_cash=1_000_000, num_workers=cpu_count()):
@@ -52,4 +72,3 @@ def run(market, strategy, tick_dir, ledger_dir, initial_cash=1_000_000, num_work
     [p.start() for p in processes]
     [p.join() for p in processes]
     [t.join() for t in threads]
-

@@ -9,3 +9,4 @@ with Path(__file__).parent.joinpath('logging.json').open() as f:
 
 
 run = launcher.run
+run2 = launcher.run2

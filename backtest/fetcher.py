@@ -1,11 +1,36 @@
 import logging
-import time
+from time import sleep
+from multiprocessing.connection import Connection
 from os import listdir
 from os.path import exists, isfile, isdir, join, basename
+from threading import Thread
 
-from .data import Tick, RESET
+from .data import Tick, RESET, Msg
 
 logger = logging.getLogger('fetcher')
+
+
+class Fetcher(Thread):
+    def __init__(self) -> None:
+        super().__init__(name=self.__class__.__name__)
+
+        self.output: Connection
+        self.logger = logging.getLogger(self.__class__.__name__)
+
+    def run(self) -> None:
+        sleep(0.2)
+        self.logger.debug('Running')
+
+        for i in range(1, 10):
+            msg = Msg('TICK', f's{i}')
+            self.output.send(msg)
+            print(f'Fetcher sent: {msg}')
+
+            if i % 30 == 0:
+                self.output.send(Msg('EOF'))
+
+        sleep(0.2)
+        self.output.send(Msg('EOD'))
 
 
 def run(tick_dir, tick_queues, done):
