@@ -23,28 +23,27 @@ class Broker(Thread):
         self.input: Connection
         self.output: Connection
 
-        # Event loop
-        self._running: bool = False
+        self._loop: bool = True
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'SIGNAL': self._handler_signal,
             'QUIT': self._handler_quit,
         }
 
-    def run(self):
-        self._running = True
+        logger.debug(self._name + ' initialized')
 
-        while self._running:
+    def run(self):
+        while self._loop:
             msg = self.input.recv()
-            print(f'{self.name} received: {msg}')
+            logger.debug(f'{self.name} received: {msg}')
             self._handlers[msg.type](msg)
 
     def _handler_signal(self, msg: Msg) -> None:
-        msg.type = 'POSITION'
+        msg.type = 'QUANTITY'
         self.output.send(msg)
 
     def _handler_quit(self, msg: Msg) -> None:
-        self._running = False
+        self._loop = False
 
 
 def run(rules, strategy, initial_cash, quantity_dict, signal_queue, ledger_dir, done: Event):

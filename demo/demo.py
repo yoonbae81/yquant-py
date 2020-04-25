@@ -35,4 +35,6 @@ if __name__ == '__main__':
 
     # backtest.run(market, strategy, 'ticks/', 'ledger/', initial_cash=1_000_000)
 
-    backtest.run2()
+    ticks = Path('ticks/')
+    symbols = json.load(Path('market/symbols.json').open(encoding='utf-8'))
+    backtest.run(ticks, symbols)

@@ -4,6 +4,8 @@ from multiprocessing.connection import Connection
 from os import listdir
 from os.path import exists, isfile, isdir, join, basename
 from threading import Thread
+from pathlib import Path
+from typing import List, Dict
 
 from .data import Tick, RESET, Msg
 
@@ -11,104 +13,54 @@ logger = logging.getLogger('fetcher')
 
 
 class Fetcher(Thread):
-    def __init__(self) -> None:
+    def __init__(self, ticks: Path) -> None:
         super().__init__(name=self.__class__.__name__)
 
+        self._ticks: Path = ticks
         self.output: Connection
-        self.logger = logging.getLogger(self.__class__.__name__)
+
+        logger.debug(self._name + ' initialized')
 
     def run(self) -> None:
         sleep(0.2)
-        self.logger.debug('Running')
 
-        for i in range(1, 10):
-            msg = Msg('TICK', f's{i}')
-            self.output.send(msg)
-            print(f'Fetcher sent: {msg}')
+        for file in self._get_files():
+            logger.info(f'Loading {file.name}')
 
-            if i % 30 == 0:
-                self.output.send(Msg('EOF'))
+            for i, line in enumerate(file.open('rt').readlines(), 1):
+                try:
+                    msg = self._parse(line)
+
+                except ValueError:
+                    logger.warning(f'{file.name} line {i} [{line.strip()}]')
+                    continue
+
+                self.output.send(msg)
+
+            self.output.send(Msg('EOF'))  # End of file
 
         sleep(0.2)
-        self.output.send(Msg('EOD'))
+        self.output.send(Msg('EOD'))  # End of data
 
+    def _get_files(self) -> List[Path]:
+        if self._ticks.is_file():
+            return [self._ticks]
 
-def run(tick_dir, tick_queues, done):
-    """Run fetcher
+        if self._ticks.is_dir():
+            result = [p for p in self._ticks.iterdir()
+                      if p.is_file()
+                      and p.name.endswith('.txt')]
+            return sorted(result)
 
-    Args:
-        tick_dir (str): Directory that stores tick files.
-        tick_queues (multiprocessing.Queue): Queue that connects *Analyzer* module.
-        done (multiprocessing.Event): Will be set when there is no more tick.
-    
-    Returns:
-        None
-    """
+        logger.error(f'Not found: {self._ticks.name}')
+        return []
 
-    files = [tick_dir] if isfile(tick_dir) else _list_dir(tick_dir)
-    route = _get_router(tick_queues)
+    @staticmethod
+    def _parse(line: str) -> Msg:
+        symbol, price, quantity, timestamp = line.split()
 
-    count = 0
-    for file in files:
-        for t in _read_tick(file):
-            queue = route(t.symbol)
-            queue.put(t)
-            count += 1
-
-        logger.debug(f'Sending RESET messages (End of {file})')
-        [queue.put(RESET) for queue in tick_queues]
-
-    logger.info(f'Fetched {count} ticks')
-    time.sleep(2)
-    done.set()
-
-
-def _read_tick(file):
-    with open(file, 'rt') as f:
-        for i, line in enumerate(f, 1):
-            try:
-                yield _parse(line)
-            except ValueError:
-                logger.error(f'{basename(file)} line {i} [{line.strip()}]')
-                continue
-
-
-def _list_dir(path: str) -> []:
-    assert isdir(path)
-
-    result = []
-    for f in listdir(path):
-        p = join(path, f)
-        if isfile(p):
-            result.append(p)
-
-    return sorted(result)
-
-
-def _parse(line: str) -> Tick:
-    symbol, price, volume, timestamp = line.split()
-
-    return Tick(
-        symbol,
-        float(price),
-        float(volume),
-        int(timestamp)
-    )
-
-
-def _get_router(queues):
-    counter = {queue: 0 for queue in queues}
-    assigned = {}
-
-    def fn(symbol):
-        try:
-            queue = assigned[symbol]
-
-        except KeyError:
-            queue = min(counter, key=counter.get)
-            assigned[symbol] = queue
-            counter[queue] += 1
-
-        return queue
-
-    return fn
+        return Msg('TICK',
+                   symbol=symbol,
+                   price=float(price),
+                   quantity=float(quantity),
+                   timestamp=int(timestamp))

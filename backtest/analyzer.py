@@ -7,7 +7,7 @@ from pathlib import Path
 
 import logging
 from random import randint
-from typing import Dict, Callable
+from typing import Dict, Callable, Set
 
 from .data import Tick, RESET, Stock, Signal, Msg
 
@@ -19,29 +19,29 @@ class Analyzer(Process):
 
     def __init__(self) -> None:
         self.__class__.count += 1
-        super().__init__(name=self.__class__.__name__ + str(self.__class__.count))
+        name: str = self.__class__.__name__ + str(self.__class__.count)
+        super().__init__(name=name)
 
         self.input: Connection
         self.output: Connection
 
-        # Event loop
-        self._running: bool = False
+        self._loop: bool = True
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
-            'POSITION': self._handler_position,
+            'QUANTITY': self._handler_quantity,
             'RESET': self._handler_reset,
             'QUIT': self._handler_quit,
         }
 
-        self._positions: Set[str] = set()
+        self._opened: Set[str] = set()  # Opened positions
+
+        logger.debug(self._name + ' initialized')
 
     def run(self) -> None:
-        self._running = True
-
-        while self._running:
+        while self._loop:
             msg = self.input.recv()
-            print(f'{self.name} received: {msg}')
+            logger.debug(f'{self.name} received: {msg}')
 
             self._handlers[msg.type](msg)
 
@@ -51,17 +51,18 @@ class Analyzer(Process):
 
         self.output.send(msg)
 
-    def _handler_position(self, msg: Msg) -> None:
-        if msg.quantity == 0 and msg.symbol in self._positions:
-            self._positions.remove(msg.symbol)
+    def _handler_quantity(self, msg: Msg) -> None:
+        if msg.quantity == 0 and msg.symbol in self._opened:
+            self._opened.remove(msg.symbol)
         else:
-            self._positions.add(msg.symbol)
+            self._opened.add(msg.symbol)
 
     def _handler_quit(self, msg: Msg) -> None:
-        self._running = False
+        self._loop = False
 
     def _handler_reset(self, msg: Msg) -> None:
         pass
+
 
 def run(symbols, strategy, quantity_dict, tick_queue, signal_queue, done: Event):
     stock_dict = {}

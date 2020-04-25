@@ -1,7 +1,7 @@
 from threading import Thread
 from multiprocessing import Manager, Process, Queue, Event, cpu_count
 from pathlib import Path
-from typing import List, Any
+from typing import List, Any, Dict
 
 from . import analyzer
 from . import broker
@@ -13,8 +13,8 @@ from .fetcher import Fetcher
 from .router import Router
 
 
-def run2():
-    fetcher = Fetcher()
+def run(ticks: Path, symbols: Dict[str, Dict]):
+    fetcher = Fetcher(ticks)
     analyzers = [Analyzer() for _ in range((cpu_count() or 2) - 1)]
     broker = Broker()
     router = Router()
@@ -27,7 +27,7 @@ def run2():
     [node.join() for node in reversed(nodes)]
 
 
-def run(market, strategy, tick_dir, ledger_dir, initial_cash=1_000_000, num_workers=cpu_count()):
+def run_old(market, strategy, tick_dir, ledger_dir, initial_cash=1_000_000, num_workers=cpu_count()):
     if not Path(tick_dir).exists():
         raise FileNotFoundError(tick_dir)
 
