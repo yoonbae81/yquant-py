@@ -13,9 +13,10 @@ from .fetcher import Fetcher
 from .router import Router
 
 
-def run(ticks: Path, symbols: Dict[str, Dict]):
+def run(strategy, ticks: Path, symbols: Dict[str, Dict]):
     fetcher = Fetcher(ticks)
-    analyzers = [Analyzer() for _ in range((cpu_count() or 2) - 1)]
+    analyzers = [Analyzer(strategy, symbols)
+                 for _ in range((cpu_count() or 2) - 1)]
     broker = Broker()
     router = Router()
 

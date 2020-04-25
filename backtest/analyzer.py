@@ -17,15 +17,22 @@ logger = logging.getLogger('analyzer')
 class Analyzer(Process):
     count: int = 0
 
-    def __init__(self) -> None:
+    @classmethod
+    def _get_name(cls) -> str:
+        return cls.__name__ + str(cls.count)
+
+    def __init__(self, strategy, symbols: Dict[str, Dict]) -> None:
         self.__class__.count += 1
-        name: str = self.__class__.__name__ + str(self.__class__.count)
-        super().__init__(name=name)
+        super().__init__(name=self._get_name())
+
+        self._strategy = strategy
+        self._symbols = symbols
 
         self.input: Connection
         self.output: Connection
 
         self._loop: bool = True
+        self._stocks: Dict[str, Stock] = {}
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
@@ -45,9 +52,36 @@ class Analyzer(Process):
 
             self._handlers[msg.type](msg)
 
+    def _get_market(self, msg: Msg) -> str:
+        market: str
+        try:
+            market = self._symbols[msg.symbol]['market']
+        except KeyError:
+            market = 'KOSPI'
+
+        return market
+
+    def _get_stock(self, msg: Msg) -> Stock:
+        stock: Stock
+        try:
+            stock = self._stocks[msg.symbol]
+        except KeyError:
+            stock = Stock(msg.symbol, msg.market)
+            self._stocks[msg.symbol] = stock
+
+        return stock
+
     def _handler_tick(self, msg: Msg) -> None:
+        msg.market = self._get_market(msg)
+        stock = self._get_stock(msg)
+
+        stock += msg
+
+        if msg.symbol in self._opened:
+            stock.stoploss = self._strategy.calc_stoploss(stock)
+
+        msg.strength = self._strategy.calc_strength(stock)
         msg.type = 'SIGNAL'
-        msg.strength = randint(-10, 10)
 
         self.output.send(msg)
 
@@ -57,45 +91,8 @@ class Analyzer(Process):
         else:
             self._opened.add(msg.symbol)
 
-    def _handler_quit(self, msg: Msg) -> None:
+    def _handler_quit(self, _: Msg) -> None:
         self._loop = False
 
-    def _handler_reset(self, msg: Msg) -> None:
-        pass
-
-
-def run(symbols, strategy, quantity_dict, tick_queue, signal_queue, done: Event):
-    stock_dict = {}
-    count = 0
-    while not done.is_set():
-        try:
-            tick = tick_queue.get(block=True, timeout=1)
-        except queue.Empty:
-            continue
-
-        if tick == RESET:
-            [s.erase_timeseries() for s in stock_dict.values()]
-            continue
-
-        try:
-            stock = stock_dict[tick.symbol]
-        except KeyError:
-            stock = Stock(tick.symbol, symbols.get(tick.symbol, 'KOSPI'))
-            stock_dict[tick.symbol] = stock
-
-        stock += tick
-        count += 1
-
-        holding = quantity_dict.get(tick.symbol, 0)
-        if holding > 0:
-            stock.stoploss = strategy.calc_stoploss(stock)
-
-        strength = strategy.calc_strength(stock)
-        signal = Signal(stock.symbol,
-                        stock.market,
-                        tick.price,
-                        strength,
-                        tick.timestamp)
-        signal_queue.put(signal)
-
-    logger.info(f'Analyzed {count} ticks')
+    def _handler_reset(self, _: Msg) -> None:
+        [s.erase_timeseries() for s in self._stocks.values()]

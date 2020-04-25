@@ -6,15 +6,15 @@ import backtest
 
 
 # could use ta-lib that downloadable from https://www.lfd.uci.edu/~gohlke/pythonlibs/
-def calc_strength(stock):
-    return 0
+def calc_strength(stock) -> int:
+    return 2
 
 
-def calc_stoploss(stock):
+def calc_stoploss(stock) -> float:
     return 1
 
 
-def calc_quantity(signal, cash, quantity_dict):
+def calc_quantity(signal, cash, quantity_dict) -> float:
     return 100
 
 
@@ -37,4 +37,4 @@ if __name__ == '__main__':
 
     ticks = Path('ticks/')
     symbols = json.load(Path('market/symbols.json').open(encoding='utf-8'))
-    backtest.run(ticks, symbols)
+    backtest.run(strategy, ticks, symbols)

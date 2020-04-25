@@ -112,11 +112,11 @@ class Router(Thread):
         to_analyzer = self._get_analyzer(msg.symbol)
         to_analyzer.send(msg)
 
-    def _handler_eof(self, msg: Msg) -> None:
+    def _handler_eof(self, _: Msg) -> None:
         for to_analyzer in self._to_analyzers:
             to_analyzer.send(Msg('RESET'))
 
-    def _handler_eod(self, msg: Msg) -> None:
+    def _handler_eod(self, _: Msg) -> None:
         for node in [*self._to_analyzers, self._to_broker]:
             node.send(Msg('QUIT'))
 
