@@ -38,6 +38,8 @@ class Ledger(Thread):
         return dir.joinpath(filename).open('wt')
 
     def run(self) -> None:
+        logger.debug(self.name + ' started')
+
         while self._loop:
             msg = self.input.recv()
             logger.debug(f'{self.name} received: {msg}')

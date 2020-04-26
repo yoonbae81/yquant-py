@@ -1,86 +1,65 @@
-from json import dumps
-from math import copysign
-from collections import namedtuple
-from dataclasses import dataclass, asdict
+from collections import defaultdict
+from dataclasses import dataclass
+from typing import DefaultDict
 
 import numpy as np
-
-Tick = namedtuple('Tick',
-                  'symbol price volume timestamp')
-RESET = Tick('[RESET]', 0, 0, 0)
-
-Signal = namedtuple('Signal',
-                    'symbol market price strength timestamp')
 
 
 @dataclass
 class Msg:
     type: str = ''
     symbol: str = ''
-    market: str = ''
     price: float = 0
     quantity: float = 0
     strength: int = 0  # analyzer
-    cash: float = 0  # broker, ledger
-    commission: float = 0  # broker, ledger
-    tax: float = 0  # broker, ledger
-    slippage: float = 0  # broker, ledger
+    cash: float = 0  # broker
+    commission: float = 0  # broker, ledge
+    tax: float = 0  # broker, ledge
+    slippage: float = 0  # broker, ledge
     timestamp: int = 0
 
 
 @dataclass
-class Order:
-    symbol: str
-    market: str
-    price: float
-    quantity: float
-    commission: float
-    tax: float
-    slippage: float
-    timestamp: int
-
-    def total_cost(self):
-        return copysign(1, self.quantity) \
-               * (abs(self.quantity)
-                  * self.price
-                  + self.commission
-                  + self.tax)
-
-    def as_dict(self):
-        return asdict(self)
-
-    def as_json(self):
-        return dumps(asdict(self))
-
-
 class Stock:
-    def __init__(self, symbol: str, market: str, name: str = '', size: int = 100, keep: int = 30):
-        self.symbol = symbol
-        self.market = market
-        self.name = name
-        self.stoploss = None
+    price: float = 0
+    quantity: float = 0
+    stoploss: float = 0
 
+
+class Positions:
+    def __init__(self) -> None:
+        self._stocks: DefaultDict[str, Stock] = defaultdict(Stock)
+
+    def __getitem__(self, key) -> Stock:
+        return self._stocks[key]
+
+    def total(self) -> float:
+        raise NotImplementedError()
+
+
+class Timeseries:
+    def __init__(self, size: int = 100, keep: int = 30):
         self._size = size
         self._keep = keep
         self._watermark = -1
         self._timestamp = -1
-        self._timeseries = {'price': np.zeros(size, dtype=float),
+        self._data = {'price': np.zeros(size, dtype=float),
                             'quantity': np.zeros(size, dtype=float)}
 
-    def add_timeseries(self, key):
-        self._timeseries[key] = np.zeros(self._size, dtype=float)
+    def add(self, key):
+        self._data[key] = np.zeros(self._size, dtype=float)
 
-    def erase_timeseries(self):
-        for arr in self._timeseries.values():
+    def erase(self):
+        for arr in self._data.values():
             arr[:] = 0
 
     def __getitem__(self, key):
-        return self._timeseries[key]
+        return self._data[key]
 
     def __len__(self):
         return self._size
 
-    def __iadd__(self, msg: Msg) -> 'Stock':
+    def __iadd__(self, msg: Msg) -> 'Timeseries':
         if self._timestamp == msg.timestamp:
             self._update(msg)
         else:
@@ -105,15 +84,14 @@ class Stock:
         self._watermark = i
 
     def _erase_old(self) -> None:
-        for arr in self._timeseries.values():
+        for arr in self._data.values():
             # bring forward the given number of back items
             arr[:self._keep] = arr[-self._keep:]
             arr[self._keep:] = 0  # then make zero the remaining
 
     def __repr__(self) -> str:
         return (f'{self.__class__.__name__}('
-                f'columns={[key for key in self._timeseries]}, '
+                f'columns={[key for key in self._data]}, '
                 f'length={len(self)}, '
-                f'watermark={self._watermark}, '
-                f'stoploss={self.stoploss}'
+                f'watermark={self._watermark}'
                 f')')

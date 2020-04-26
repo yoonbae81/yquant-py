@@ -1,10 +1,11 @@
 import logging
+from importlib import import_module
 from multiprocessing import Process
 from multiprocessing.connection import Connection
 from pathlib import Path
 from typing import Dict, Callable, Set
 
-from .data import Stock, Msg
+from .data import Timeseries, Msg
 
 logger = logging.getLogger(Path(__file__).name)
 
@@ -16,19 +17,19 @@ class Analyzer(Process):
     def _get_name(cls) -> str:
         return cls.__name__ + str(cls.count)
 
-    def __init__(self, strategy, symbols: Dict[str, Dict]) -> None:
+    def __init__(self, strategy) -> None:
         self.__class__.count += 1
         super().__init__(name=self._get_name())
 
-        self._strategy = strategy
-        self._symbols = symbols
+        # self._strategy = strategy
 
         self.input: Connection
         self.output: Connection
 
         self._loop: bool = True
-        self._stocks: Dict[str, Stock] = {}
+        self._stocks: Dict[str, Timeseries] = {}
         self._opened: Set[str] = set()  # Opened positions
+        self._strategy_name: str = strategy
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
@@ -40,35 +41,29 @@ class Analyzer(Process):
         logger.debug(self.name + ' initialized')
 
     def run(self) -> None:
+        logger.debug(self.name + ' started')
+
+        logger.debug(f'Loading strategy: {self._strategy_name}')
+        self._strategy = import_module('strategy.' + self._strategy_name)
+
         while self._loop:
             msg = self.input.recv()
             logger.debug(f'{self.name} received: {msg}')
 
             self._handlers[msg.type](msg)
 
-    def _get_market(self, msg: Msg) -> str:
-        market: str
-        try:
-            market = self._symbols[msg.symbol]['market']
-        except KeyError:
-            market = 'KOSPI'
-
-        return market
-
-    def _get_stock(self, msg: Msg) -> Stock:
-        stock: Stock
+    def _get_stock(self, msg: Msg) -> Timeseries:
+        stock: Timeseries
         try:
             stock = self._stocks[msg.symbol]
         except KeyError:
-            stock = Stock(msg.symbol, msg.market)
+            stock = Timeseries()
             self._stocks[msg.symbol] = stock
 
         return stock
 
     def _handler_tick(self, msg: Msg) -> None:
-        msg.market = self._get_market(msg)
         stock = self._get_stock(msg)
-
         stock += msg
 
         if msg.symbol in self._opened:
@@ -89,4 +84,4 @@ class Analyzer(Process):
         self._loop = False
 
     def _handler_reset(self, _: Msg) -> None:
-        [s.erase_timeseries() for s in self._stocks.values()]
+        [s.erase() for s in self._stocks.values()]

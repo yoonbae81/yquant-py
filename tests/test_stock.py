@@ -1,19 +1,19 @@
 import numpy as np
 import pytest
 
-from backtest.data import Stock
+from backtest.data import Timeseries
 from backtest.fetcher import Tick
 
 
 def test_size():
     size = 10
-    sut = Stock('SYMBOL', 'MARKET', size)
+    sut = Timeseries('SYMBOL', 'MARKET', size)
 
     assert len(sut) == size
 
 
 def test_add():
-    sut = Stock('SYMBOL', 'MARKET')
+    sut = Timeseries('SYMBOL', 'MARKET')
 
     sut += Tick('SYMBOL', 1000, 10, 1)
     assert sut['price'][0] == 1000
@@ -28,7 +28,7 @@ def test_add():
 
 
 def test_add_same_timestamp():
-    sut = Stock('SYMBOL', 'MARKET')
+    sut = Timeseries('SYMBOL', 'MARKET')
 
     sut += Tick('SYMBOL', 1000, 10, 1)
     sut += Tick('SYMBOL', 1000, 10, 1)
@@ -40,7 +40,7 @@ def test_add_same_timestamp():
 def test_overflow():
     size = 10
     keep = 3
-    sut = Stock('SYMBOL', 'MARKET', size, keep)
+    sut = Timeseries('SYMBOL', 'MARKET', size, keep)
 
     for i in range(1, size + keep):
         sut += Tick('SYMBOL', i, i, i)
@@ -57,11 +57,11 @@ def test_overflow():
 
 
 def test_add_timeseries():
-    sut = Stock('SYMBOL', 'MARKET')
+    sut = Timeseries('SYMBOL', 'MARKET')
 
     with pytest.raises(KeyError):
         sut['new']
 
-    sut.add_timeseries('new')  # add new time series data
+    sut.add('new')  # add new time series data
     assert type(sut['new']) == np.ndarray
     assert len(sut['new']) == sut._size

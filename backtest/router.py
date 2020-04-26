@@ -84,6 +84,8 @@ class Router(Thread):
         return True
 
     def run(self):
+        logger.debug(self.name + ' started')
+
         while self._loop:
             for conn in wait([*self._from_analyzers,
                               self._from_broker,

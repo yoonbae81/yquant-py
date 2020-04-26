@@ -21,6 +21,7 @@ class Fetcher(Thread):
         logger.debug(self._name + ' initialized')
 
     def run(self) -> None:
+        logger.debug(self.name + ' started')
         sleep(0.2)
 
         for file in self._get_files():

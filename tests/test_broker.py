@@ -6,7 +6,7 @@ import backtest.broker as sut
 
 @pytest.fixture(scope='session')
 def rules():
-    yield json.load(open('demo/market/rules.json'))
+    yield json.load(open('demo/market/rules_kosdaq.json'))
 
 
 @pytest.mark.parametrize('input, expected', [
