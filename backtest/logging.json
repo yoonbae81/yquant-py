@@ -3,10 +3,10 @@
   "disable_existing_loggers": true,
   "formatters": {
     "thread": {
-      "format": "%(asctime)s %(threadName)-11s %(levelname)-8s %(message)s"
+      "format": "%(asctime)s %(filename)-11s %(levelname)-8s %(message)s"
     },
     "process": {
-      "format": "%(asctime)s %(processName)-11s %(levelname)-8s %(message)s"
+      "format": "%(asctime)s %(filename)-11s %(levelname)-8s %(message)s"
     }
   },
   "handlers": {
@@ -22,6 +22,12 @@
     }
   },
   "loggers": {
+    "main.py": {
+      "level": "DEBUG",
+      "handlers": [
+        "console_thread"
+      ]
+    },
     "router.py": {
       "level": "DEBUG",
       "handlers": [
