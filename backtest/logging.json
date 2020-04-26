@@ -3,10 +3,10 @@
   "disable_existing_loggers": true,
   "formatters": {
     "thread": {
-      "format": "%(asctime)s %(threadName)-9s %(levelname)-8s %(message)s"
+      "format": "%(asctime)s %(filename)-11s %(levelname)-8s %(message)s"
     },
     "process": {
-      "format": "%(asctime)s %(processName)-9s %(levelname)-8s %(message)s"
+      "format": "%(asctime)s %(filename)-11s %(levelname)-8s %(message)s"
     }
   },
   "handlers": {
@@ -22,19 +22,37 @@
     }
   },
   "loggers": {
-    "fetcher": {
+    "main.py": {
       "level": "DEBUG",
       "handlers": [
         "console_thread"
       ]
     },
-    "analyzer": {
+    "router.py": {
+      "level": "DEBUG",
+      "handlers": [
+        "console_thread"
+      ]
+    },
+    "fetcher.py": {
+      "level": "DEBUG",
+      "handlers": [
+        "console_thread"
+      ]
+    },
+    "analyzer.py": {
       "level": "DEBUG",
       "handlers": [
         "console_process"
       ]
     },
-    "broker": {
+    "broker.py": {
+      "level": "DEBUG",
+      "handlers": [
+        "console_thread"
+      ]
+    },
+    "ledger.py": {
       "level": "DEBUG",
       "handlers": [
         "console_thread"

@@ -6,11 +6,13 @@ A backtest engine for developing algorithmic trading strategy.
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Support](#support)
-- [Contributing](#contributing)
-- [Testing](#testing)
+- [Backtest](#backtest)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Support](#support)
+  - [Contributing](#contributing)
+  - [Testing](#testing)
 
 
 ## Installation
@@ -21,12 +23,23 @@ pip install backtest
 
 ## Usage
 
-Simple Statistics
-```python
-import numpy as np
-import backtest 
+The following usage is in `demo/main.py`. 
 
-backtest.run()
+```python
+import backtest
+
+if __name__ == '__main__':
+    market = 'korea'
+    strategy = 'dummy'
+    initial_cash = 1_000_000
+    ticks_dir = 'ticks'
+    ledger_dir = 'ledger'
+
+    backtest.run(market,
+                 strategy,
+                 ticks_dir,
+                 ledger_dir,
+                 initial_cash)
 ```
 
 ## Support
