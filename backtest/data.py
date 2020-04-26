@@ -44,7 +44,7 @@ class Timeseries:
         self._watermark = -1
         self._timestamp = -1
         self._data = {'price': np.zeros(size, dtype=float),
-                            'quantity': np.zeros(size, dtype=float)}
+                      'quantity': np.zeros(size, dtype=float)}
 
     def add(self, key):
         self._data[key] = np.zeros(self._size, dtype=float)
