@@ -1,48 +1,87 @@
-import json
-import queue
-
-from multiprocessing import Event
-from pathlib import Path
-
 import logging
-from .data import Tick, RESET, Stock, Signal
+from importlib import import_module
+from multiprocessing import Process
+from multiprocessing.connection import Connection
+from pathlib import Path
+from typing import Dict, Callable, Set
 
-logger = logging.getLogger('analyzer')
+from .data import Timeseries, Msg
+
+logger = logging.getLogger(Path(__file__).name)
 
 
-def run(symbols, strategy, quantity_dict, tick_queue, signal_queue, done: Event):
+class Analyzer(Process):
+    count: int = 0
 
-    stock_dict = {}
-    count = 0
-    while not done.is_set():
+    @classmethod
+    def _get_name(cls) -> str:
+        return cls.__name__ + str(cls.count)
+
+    def __init__(self, strategy) -> None:
+        self.__class__.count += 1
+        super().__init__(name=self._get_name())
+
+        # self._strategy = strategy
+
+        self.input: Connection
+        self.output: Connection
+
+        self._loop: bool = True
+        self._stocks: Dict[str, Timeseries] = {}
+        self._opened: Set[str] = set()  # Opened positions
+        self._strategy_name: str = strategy
+
+        self._handlers: Dict[str, Callable[[Msg], None]] = {
+            'TICK': self._handler_tick,
+            'QUANTITY': self._handler_quantity,
+            'RESET': self._handler_reset,
+            'QUIT': self._handler_quit,
+        }
+
+        logger.debug(self.name + ' initialized')
+
+    def run(self) -> None:
+        logger.debug(self.name + ' started')
+
+        logger.debug(f'Loading strategy: {self._strategy_name}')
+        self._strategy = import_module('strategy.' + self._strategy_name)
+
+        while self._loop:
+            msg = self.input.recv()
+            logger.debug(f'{self.name} received: {msg}')
+
+            self._handlers[msg.type](msg)
+
+    def _get_stock(self, msg: Msg) -> Timeseries:
+        stock: Timeseries
         try:
-            tick = tick_queue.get(block=True, timeout=1)
-        except queue.Empty:
-            continue
-
-        if tick == RESET:
-            [s.erase_timeseries() for s in stock_dict.values()]
-            continue
-
-        try:
-            stock = stock_dict[tick.symbol]
+            stock = self._stocks[msg.symbol]
         except KeyError:
-            stock = Stock(tick.symbol, symbols.get(tick.symbol, 'KOSPI'))
-            stock_dict[tick.symbol] = stock
+            stock = Timeseries()
+            self._stocks[msg.symbol] = stock
 
-        stock += tick
-        count += 1
+        return stock
 
-        holding = quantity_dict.get(tick.symbol, 0)
-        if holding > 0:
-            stock.stoploss = strategy.calc_stoploss(stock)
+    def _handler_tick(self, msg: Msg) -> None:
+        stock = self._get_stock(msg)
+        stock += msg
 
-        strength = strategy.calc_strength(stock)
-        signal = Signal(stock.symbol,
-                        stock.market,
-                        tick.price,
-                        strength,
-                        tick.timestamp)
-        signal_queue.put(signal)
+        if msg.symbol in self._opened:
+            stock.stoploss = self._strategy.calc_stoploss(stock)
 
-    logger.info(f'Analyzed {count} ticks')
+        msg.strength = self._strategy.calc_strength(stock)
+        msg.type = 'SIGNAL'
+
+        self.output.send(msg)
+
+    def _handler_quantity(self, msg: Msg) -> None:
+        if msg.quantity == 0 and msg.symbol in self._opened:
+            self._opened.remove(msg.symbol)
+        else:
+            self._opened.add(msg.symbol)
+
+    def _handler_quit(self, _: Msg) -> None:
+        self._loop = False
+
+    def _handler_reset(self, _: Msg) -> None:
+        [s.erase() for s in self._stocks.values()]

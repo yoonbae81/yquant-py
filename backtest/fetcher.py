@@ -1,89 +1,66 @@
 import logging
-import time
-from os import listdir
-from os.path import exists, isfile, isdir, join, basename
+from multiprocessing.connection import Connection
+from pathlib import Path
+from threading import Thread
+from time import sleep
+from typing import List
 
-from .data import Tick, RESET
+from .data import Msg
 
-logger = logging.getLogger('fetcher')
-
-
-def run(tick_dir, tick_queues, done):
-    """Run fetcher
-
-    Args:
-        tick_dir (str): Directory that stores tick files.
-        tick_queues (multiprocessing.Queue): Queue that connects *Analyzer* module.
-        done (multiprocessing.Event): Will be set when there is no more tick.
-    
-    Returns:
-        None
-    """
-
-    files = [tick_dir] if isfile(tick_dir) else _list_dir(tick_dir)
-    route = _get_router(tick_queues)
-
-    count = 0
-    for file in files:
-        for t in _read_tick(file):
-            queue = route(t.symbol)
-            queue.put(t)
-            count += 1
-
-        logger.debug(f'Sending RESET messages (End of {file})')
-        [queue.put(RESET) for queue in tick_queues]
-
-    logger.info(f'Fetched {count} ticks')
-    time.sleep(2)
-    done.set()
+logger = logging.getLogger(Path(__file__).name)
 
 
-def _read_tick(file):
-    with open(file, 'rt') as f:
-        for i, line in enumerate(f, 1):
-            try:
-                yield _parse(line)
-            except ValueError:
-                logger.error(f'{basename(file)} line {i} [{line.strip()}]')
-                continue
+class Fetcher(Thread):
 
+    def __init__(self, ticks: Path) -> None:
+        super().__init__(name=self.__class__.__name__)
 
-def _list_dir(path: str) -> []:
-    assert isdir(path)
+        self._ticks: Path = ticks
+        self.output: Connection
 
-    result = []
-    for f in listdir(path):
-        p = join(path, f)
-        if isfile(p):
-            result.append(p)
+        logger.debug(self._name + ' initialized')
 
-    return sorted(result)
+    def run(self) -> None:
+        logger.debug(self.name + ' started')
+        sleep(0.2)
 
+        for file in self._get_files():
+            logger.info(f'Loading {file.name}')
 
-def _parse(line: str) -> Tick:
-    symbol, price, volume, timestamp = line.split()
+            for i, line in enumerate(file.open('rt').readlines(), 1):
+                try:
+                    msg = self._parse(line)
 
-    return Tick(
-        symbol,
-        float(price),
-        float(volume),
-        int(timestamp)
-    )
+                except ValueError:
+                    logger.warning(f'{file.name} line {i} [{line.strip()}]')
+                    continue
 
+                self.output.send(msg)
 
-def _get_router(queues):
-    counter = {queue: 0 for queue in queues}
-    assigned = {}
+            self.output.send(Msg('EOF'))  # End of file
 
-    def fn(symbol):
-        try:
-            queue = assigned[symbol]
+        sleep(0.2)
+        self.output.send(Msg('EOD'))  # End of data
 
-        except KeyError:
-            queue = min(counter, key=counter.get)
-            assigned[symbol] = queue
-            counter[queue] += 1
+    def _get_files(self) -> List[Path]:
+        if self._ticks.is_file():
+            return [self._ticks]
 
-        return queue
+        if self._ticks.is_dir():
+            result = [p for p in self._ticks.iterdir()
+                      if p.is_file()
+                      and p.name.endswith('.txt')]
+            return sorted(result)
 
-    return fn
+        logger.error(f'Not found: {self._ticks.name}')
+        return []
+
+    @staticmethod
+    def _parse(line: str) -> Msg:
+        symbol, price, quantity, timestamp = line.split()
+
+        return Msg('TICK',
+                   symbol=symbol,
+                   price=float(price),
+                   quantity=float(quantity),
+                   timestamp=int(timestamp))

@@ -1,20 +1,20 @@
-from multiprocessing import Process, Queue, Event
+from multiprocessing import Process, Queue, Event, Pipe
 from os import remove
-from tempfile import TemporaryDirectory, NamedTemporaryFile
+from pathlib import Path
+from tempfile import NamedTemporaryFile
 
 import pytest
 
-import backtest.fetcher as sut
+from backtest.fetcher import Fetcher
 
 
-@pytest.mark.parametrize('input, expected', [
-    ('AAAAA 10000 10 1234512345', ('AAAAA', 10000.0, 10.0, 1234512345)),
-    ('AAAAA 10000 10 12345123\n', ('AAAAA', 10000.0, 10.0, 12345123)),
-    ('AAAAA 10.1 1.1 1234512345', ('AAAAA', 10.1, 1.1, 1234512345)),
-])
-def test_parse(input, expected):
-    tick = sut._parse(input)
-    assert tick == expected
+def test_parse():
+    line = 'AAAAA 10000 10 1234512345'
+    msg = Fetcher._parse(line)
+    assert msg.symbol == 'AAAAA'
+    assert msg.price == 10000
+    assert msg.quantity == 10
+    assert msg.timestamp == 1234512345
 
 
 @pytest.mark.parametrize('input', [
@@ -27,7 +27,7 @@ def test_parse(input, expected):
 ])
 def test_parse_error(input):
     with pytest.raises(ValueError):
-        sut._parse(input)
+        Fetcher._parse(input)
 
 
 @pytest.fixture(scope='session')
@@ -40,48 +40,24 @@ def tick_file():
         file.write('AAAAA 1100 3 1000000003\n')
         file.write('BBBBB 3000 1 1000000004\n')
 
-    yield file.name
+    yield Path(file.name)
     remove(file.name)
 
 
 def test_get_tick_file(tick_file):
-    gen = sut._read_tick(tick_file)
-    tick = next(gen)
-    assert tick.symbol == 'AAAAA'
-
-
-def test_route_1():
-    qs = [Queue()]
-    route = sut._get_router(qs)
-
-    assert route('AAAAA') == qs[0]
-    assert route('BBBBB') == qs[0]
-    assert route('AAAAA') == qs[0]
-    assert route('CCCCC') == qs[0]
-    assert route('BBBBB') == qs[0]
-    assert route('AAAAA') == qs[0]
-
-
-def test_route_3():
-    qs = [Queue() for _ in range(3)]
-    route = sut._get_router(qs)
-
-    assert route('AAAAA') == qs[0]
-    assert route('BBBBB') == qs[1]
-    assert route('AAAAA') == qs[0]
-    assert route('CCCCC') == qs[2]
-    assert route('BBBBB') == qs[1]
-    assert route('AAAAA') == qs[0]
+    sut = Fetcher(tick_file)
+    actual = sut._get_files()
+    assert actual == [tick_file]
 
 
 def test_fetch(tick_file):
-    queues = [Queue() for _ in range(2)]
+    sut = Fetcher(tick_file)
+    reader, sut.output = Pipe()
 
-    p = Process(target=sut.run, args=(tick_file, queues, Event()))
-    p.start()
-    p.join()
+    sut.start()
+    sut.join()
 
-    assert queues[0].get().symbol == "AAAAA"
-    assert queues[0].get().symbol == "AAAAA"
-    assert queues[0].get().symbol == "AAAAA"
-    assert queues[1].get().symbol == "BBBBB"
+    assert reader.recv().symbol == "AAAAA"
+    assert reader.recv().symbol == "AAAAA"
+    assert reader.recv().symbol == "AAAAA"
+    assert reader.recv().symbol == "BBBBB"
