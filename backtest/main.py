@@ -1,3 +1,4 @@
+import logging
 from multiprocessing import cpu_count
 from pathlib import Path
 from typing import List, Any
@@ -8,17 +9,22 @@ from .fetcher import Fetcher
 from .ledger import Ledger
 from .router import Router
 
+logger = logging.getLogger(Path(__file__).name)
+
 
 def run(market,
         strategy: str,
-        ticks_dir: Path,
-        ledger_dir: Path,
+        ticks_dir: str,
+        ledger_dir: str,
         initial_cash: float = 1_000_000):
-    fetcher = Fetcher(ticks_dir)
+
+    logger.debug('Started')
+
+    fetcher = Fetcher(Path(ticks_dir))
     analyzers = [Analyzer(strategy)
                  for _ in range((cpu_count() or 2) - 1)]
     broker = Broker(market, strategy, initial_cash)
-    ledger = Ledger(ledger_dir)
+    ledger = Ledger(Path(ledger_dir))
 
     nodes: List[Any] = [ledger, broker, *analyzers, fetcher]
     router = Router(nodes)
