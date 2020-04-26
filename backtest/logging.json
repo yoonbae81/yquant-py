@@ -22,25 +22,31 @@
     }
   },
   "loggers": {
-    "router": {
+    "router.py": {
       "level": "DEBUG",
       "handlers": [
         "console_thread"
       ]
     },
-    "fetcher": {
+    "fetcher.py": {
       "level": "DEBUG",
       "handlers": [
         "console_thread"
       ]
     },
-    "analyzer": {
+    "analyzer.py": {
       "level": "DEBUG",
       "handlers": [
         "console_process"
       ]
     },
-    "broker": {
+    "broker.py": {
+      "level": "DEBUG",
+      "handlers": [
+        "console_thread"
+      ]
+    },
+    "ledger.py": {
       "level": "DEBUG",
       "handlers": [
         "console_thread"

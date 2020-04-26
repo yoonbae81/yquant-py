@@ -11,17 +11,23 @@ from .analyzer import Analyzer
 from .broker import Broker
 from .fetcher import Fetcher
 from .router import Router
+from .ledger import Ledger
 
 
-def run(strategy, ticks: Path, symbols: Dict[str, Dict]):
-    fetcher = Fetcher(ticks)
+def run(strategy,
+        ticks_dir: Path,
+        ledger_dir: Path,
+        symbols: Dict[str, Dict],
+        rules: Dict[str, Dict],
+        initial_cash: float = 1_000_000):
+    fetcher = Fetcher(ticks_dir)
     analyzers = [Analyzer(strategy, symbols)
                  for _ in range((cpu_count() or 2) - 1)]
-    broker = Broker()
-    router = Router()
+    broker = Broker(strategy, symbols, rules, initial_cash)
+    ledger = Ledger(ledger_dir)
 
-    nodes: List[Any] = [broker, *analyzers, fetcher]
-    [router.connect(node) for node in nodes]
+    nodes: List[Any] = [ledger, broker, *analyzers, fetcher]
+    router = Router(nodes)
 
     nodes.insert(0, router)
     [node.start() for node in nodes]

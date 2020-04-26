@@ -18,12 +18,6 @@ def calc_quantity(signal, cash, quantity_dict) -> float:
     return 100
 
 
-strategy = SimpleNamespace(
-    calc_strength=calc_strength,
-    calc_stoploss=calc_stoploss,
-    calc_quantity=calc_quantity)
-
-
 if __name__ == '__main__':
     files = {'symbols': 'market/symbols.json',
              'rules': 'market/rules.json', }
@@ -35,6 +29,14 @@ if __name__ == '__main__':
 
     # backtest.run(market, strategy, 'ticks/', 'ledger/', initial_cash=1_000_000)
 
-    ticks = Path('ticks/')
+    initial_cash = 1_000_000
+    ticks_dir = Path('ticks/')
+    ledger_dir = Path('ledger/')
     symbols = json.load(Path('market/symbols.json').open(encoding='utf-8'))
-    backtest.run(strategy, ticks, symbols)
+    rules = json.load(Path('market/rules.json').open(encoding='utf-8'))
+    strategy = SimpleNamespace(
+        calc_strength=calc_strength,
+        calc_stoploss=calc_stoploss,
+        calc_quantity=calc_quantity)
+
+    backtest.run(strategy, ticks_dir, ledger_dir, symbols, rules, initial_cash)

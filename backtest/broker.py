@@ -13,36 +13,43 @@ import numpy as np
 
 from .data import Order, Msg
 
-logger = logging.getLogger('broker')
+logger = logging.getLogger(Path(__file__).name)
 
 
 class Broker(Thread):
-    def __init__(self) -> None:
+    def __init__(self, strategy, symbols, rules, initial_cash: float, ) -> None:
         super().__init__(name=self.__class__.__name__)
 
         self.input: Connection
         self.output: Connection
 
         self._loop: bool = True
+        self._initial_cash: float = initial_cash
+        self._quantities: Dict[str, float] = {}
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'SIGNAL': self._handler_signal,
             'QUIT': self._handler_quit,
         }
 
-        logger.debug(self._name + ' initialized')
+        logger.debug(self.name + ' initialized')
 
     def run(self):
+        self.output.send(Msg('CASH', cash=self._initial_cash))
+
         while self._loop:
             msg = self.input.recv()
             logger.debug(f'{self.name} received: {msg}')
             self._handlers[msg.type](msg)
 
     def _handler_signal(self, msg: Msg) -> None:
+        msg.type = 'ORDER'
+        self.output.send(msg)
+
         msg.type = 'QUANTITY'
         self.output.send(msg)
 
-    def _handler_quit(self, msg: Msg) -> None:
+    def _handler_quit(self, _: Msg) -> None:
         self._loop = False
 
 

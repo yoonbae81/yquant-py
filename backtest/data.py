@@ -20,7 +20,11 @@ class Msg:
     market: str = ''
     price: float = 0
     quantity: float = 0
-    strength: int = 0
+    strength: int = 0  # analyzer
+    cash: float = 0  # broker, ledger
+    commission: float = 0  # broker, ledger
+    tax: float = 0  # broker, ledger
+    slippage: float = 0  # broker, ledger
     timestamp: int = 0
 
 

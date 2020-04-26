@@ -1,33 +1,30 @@
 import logging
 from collections import defaultdict
 from multiprocessing.connection import Connection, Pipe, wait
+from pathlib import Path
 from threading import Thread
-from typing import List, Dict, DefaultDict, TypeVar, Callable
+from time import sleep
+from typing import List, Dict, DefaultDict, TypeVar, Callable, Any
 
 from .analyzer import Analyzer
 from .broker import Broker
 from .data import Msg
 from .fetcher import Fetcher
+from .ledger import Ledger
 
 Node = TypeVar('Node', Fetcher, Analyzer, Broker)
 
-logger = logging.getLogger('router')
+logger = logging.getLogger(Path(__file__).name)
 
 
 class Router(Thread):
-    def __init__(self) -> None:
-        self._name = self.__class__.__name__
-
-        super().__init__(name=self._name)
+    def __init__(self, nodes: List[Any]) -> None:
+        super().__init__(name=self.__class__.__name__)
 
         self._loop = True
 
         # Fetcher
         self._from_fetcher: Connection
-
-        # Broker
-        self._from_broker: Connection
-        self._to_broker: Connection
 
         # Analyzer
         self._from_analyzers: List[Connection] = []
@@ -35,9 +32,21 @@ class Router(Thread):
         self._analyzer_counter: Dict[Connection, int] = {}
         self._analyzer_assigned: Dict[str, Connection] = {}
 
+        # Broker
+        self._from_broker: Connection
+        self._to_broker: Connection
+
+        # Ledger
+        self._to_ledger: Connection
+
+        # Connect
+        [self._connect(node) for node in nodes]
+
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
             'SIGNAL': self._handler_signal,
+            'CASH': self._handler_cash,
+            'ORDER': self._handler_order,
             'QUANTITY': self._handler_quantity,
             'EOF': self._handler_eof,
             'EOD': self._handler_eod,
@@ -45,9 +54,9 @@ class Router(Thread):
 
         self._msg_counter: DefaultDict[str, int] = defaultdict(int)
 
-        logger.debug(self._name + ' initialized')
+        logger.debug(self.name + ' initialized')
 
-    def connect(self, node: Node) -> bool:
+    def _connect(self, node: Node) -> bool:
         if isinstance(node, Analyzer):
             from_analyzer, node.output = Pipe(duplex=False)
             self._from_analyzers.append(from_analyzer)
@@ -63,6 +72,9 @@ class Router(Thread):
         elif isinstance(node, Broker):
             self._from_broker, node.output = Pipe(duplex=False)
             node.input, self._to_broker = Pipe(duplex=False)
+
+        elif isinstance(node, Ledger):
+            node.input, self._to_ledger = Pipe(duplex=False)
 
         else:
             raise TypeError(node)
@@ -80,14 +92,11 @@ class Router(Thread):
 
                 msg = conn.recv()
                 self._msg_counter[msg.type] += 1
-                # print(f'{self.name} received: {msg}')
 
                 try:
                     self._handlers[msg.type](msg)
                 except KeyError:
-                    logger.warn('Unknown message ', msg)
-
-        logger.info(self._msg_counter)
+                    logger.warning('Unknown message ', msg)
 
     def _get_analyzer(self, symbol: str) -> Connection:
         try:
@@ -108,6 +117,12 @@ class Router(Thread):
     def _handler_signal(self, msg: Msg) -> None:
         self._to_broker.send(msg)
 
+    def _handler_cash(self, msg: Msg) -> None:
+        self._to_ledger.send(msg)
+
+    def _handler_order(self, msg: Msg) -> None:
+        self._to_ledger.send(msg)
+
     def _handler_quantity(self, msg: Msg) -> None:
         to_analyzer = self._get_analyzer(msg.symbol)
         to_analyzer.send(msg)
@@ -117,7 +132,10 @@ class Router(Thread):
             to_analyzer.send(Msg('RESET'))
 
     def _handler_eod(self, _: Msg) -> None:
-        for node in [*self._to_analyzers, self._to_broker]:
-            node.send(Msg('QUIT'))
-
         self._loop = False
+        for node in [*self._to_analyzers, self._to_broker, self._to_ledger]:
+            node.send(Msg('QUIT'))
+            sleep(0.1)
+
+    def __del__(self) -> None:
+        logger.info(f'Handled messaged: {self._msg_counter}')

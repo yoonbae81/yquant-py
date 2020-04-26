@@ -1,17 +1,12 @@
-import json
-import queue
-
-from multiprocessing import Event, Process
+import logging
+from multiprocessing import Process
 from multiprocessing.connection import Connection
 from pathlib import Path
-
-import logging
-from random import randint
 from typing import Dict, Callable, Set
 
-from .data import Tick, RESET, Stock, Signal, Msg
+from .data import Stock, Msg
 
-logger = logging.getLogger('analyzer')
+logger = logging.getLogger(Path(__file__).name)
 
 
 class Analyzer(Process):
@@ -33,6 +28,7 @@ class Analyzer(Process):
 
         self._loop: bool = True
         self._stocks: Dict[str, Stock] = {}
+        self._opened: Set[str] = set()  # Opened positions
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
@@ -41,9 +37,7 @@ class Analyzer(Process):
             'QUIT': self._handler_quit,
         }
 
-        self._opened: Set[str] = set()  # Opened positions
-
-        logger.debug(self._name + ' initialized')
+        logger.debug(self.name + ' initialized')
 
     def run(self) -> None:
         while self._loop:

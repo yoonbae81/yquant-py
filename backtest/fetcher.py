@@ -1,18 +1,17 @@
 import logging
-from time import sleep
 from multiprocessing.connection import Connection
-from os import listdir
-from os.path import exists, isfile, isdir, join, basename
-from threading import Thread
 from pathlib import Path
-from typing import List, Dict
+from threading import Thread
+from time import sleep
+from typing import List
 
-from .data import Tick, RESET, Msg
+from .data import Msg
 
-logger = logging.getLogger('fetcher')
+logger = logging.getLogger(Path(__file__).name)
 
 
 class Fetcher(Thread):
+
     def __init__(self, ticks: Path) -> None:
         super().__init__(name=self.__class__.__name__)
 
