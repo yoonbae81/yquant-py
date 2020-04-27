@@ -14,17 +14,17 @@ logger = logging.getLogger(Path(__file__).name)
 
 class Broker(Thread):
 
-    def __init__(self, market: str, strategy: str, initial_cash: float) -> None:
+    def __init__(self, market: str, strategy: str, cash: float) -> None:
         super().__init__(name=self.__class__.__name__)
 
         self.input: Connection
         self.output: Connection
 
         self._loop: bool = True
-        self._market_name = market
-        self._strategy_name = strategy
-        self._cash: float = initial_cash
-        self._initial_cash: float = initial_cash
+        self._market: str = market
+        self._strategy: str = strategy
+        self._cash: float = cash
+        self._initial_cash: float = cash
         self._positions: Positions = Positions()
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
@@ -37,11 +37,11 @@ class Broker(Thread):
     def run(self):
         logger.debug(self.name + ' started')
 
-        logger.debug(f'Loading market: {self._market_name}')
-        self._market = import_module('market.' + self._market_name)
+        logger.debug(f'Loading market module: {self._market}')
+        self._market_module = import_module(self._market)
 
-        logger.debug(f'Loading strategy: {self._strategy_name}')
-        self._strategy = import_module('strategy.' + self._strategy_name)
+        logger.debug(f'Loading strategy: {self._strategy}')
+        self._strategy_module = import_module(self._strategy)
 
         self.output.send(Msg('CASH', cash=self._initial_cash))
 
@@ -51,24 +51,24 @@ class Broker(Thread):
             self._handlers[msg.type](msg)
 
     def _handler_signal(self, msg: Msg) -> None:
-        quantity = self._strategy.calc_quantity(
+        quantity = self._strategy_module.calc_quantity(
             msg.strength,
             self._cash,
             self._positions)
 
-        market = self._market.get_market(msg.symbol)
+        market = self._market_module.get_market(msg.symbol)
 
-        price = self._market.simulate_price(
+        price = self._market_module.simulate_price(
             market,
             msg.price,
             quantity)
 
-        commission = self._market.calc_commission(
+        commission = self._market_module.calc_commission(
             market,
             price,
             quantity)
 
-        tax = self._market.calc_tax(
+        tax = self._market_module.calc_tax(
             market,
             price,
             quantity)

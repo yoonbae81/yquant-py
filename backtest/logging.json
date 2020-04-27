@@ -22,7 +22,7 @@
     }
   },
   "loggers": {
-    "main.py": {
+    "__main__.py": {
       "level": "DEBUG",
       "handlers": [
         "console_thread"

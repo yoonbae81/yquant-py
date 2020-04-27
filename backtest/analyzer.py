@@ -17,7 +17,7 @@ class Analyzer(Process):
     def _get_name(cls) -> str:
         return cls.__name__ + str(cls.count)
 
-    def __init__(self, strategy) -> None:
+    def __init__(self, strategy: str) -> None:
         self.__class__.count += 1
         super().__init__(name=self._get_name())
 
@@ -29,7 +29,7 @@ class Analyzer(Process):
         self._loop: bool = True
         self._stocks: Dict[str, Timeseries] = {}
         self._opened: Set[str] = set()  # Opened positions
-        self._strategy_name: str = strategy
+        self._strategy: str = strategy
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
@@ -43,8 +43,8 @@ class Analyzer(Process):
     def run(self) -> None:
         logger.debug(self.name + ' started')
 
-        logger.debug(f'Loading strategy: {self._strategy_name}')
-        self._strategy = import_module('strategy.' + self._strategy_name)
+        logger.debug(f'Loading strategy: {self._strategy}')
+        self._strategy_module = import_module(self._strategy)
 
         while self._loop:
             msg = self.input.recv()
@@ -67,9 +67,9 @@ class Analyzer(Process):
         stock += msg
 
         if msg.symbol in self._opened:
-            stock.stoploss = self._strategy.calc_stoploss(stock)
+            stock.stoploss = self._strategy_module.calc_stoploss(stock)
 
-        msg.strength = self._strategy.calc_strength(stock)
+        msg.strength = self._strategy_module.calc_strength(stock)
         msg.type = 'SIGNAL'
 
         self.output.send(msg)

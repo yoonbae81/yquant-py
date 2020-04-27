@@ -1,0 +1,7 @@
+{
+    "market": "market.korea",
+    "strategy": "strategy.dummy",
+    "ticks_dir": "ticks",
+    "ledger_dir": "ledger",
+    "cash": 1000000
+}
