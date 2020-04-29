@@ -49,10 +49,10 @@ class Positions:
 
 class Timeseries:
     def __init__(self, size: int = 100, keep: int = 30) -> None:
-        self._size = size
-        self._keep = keep
-        self._watermark = -1
-        self._timestamp = -1
+        self._size: int = size
+        self._keep: int = keep
+        self._watermark: int = -1
+        self._timestamp: int = None
         self._data = {'price': np.zeros(size, dtype=float),
                       'quantity': np.zeros(size, dtype=float)}
 
