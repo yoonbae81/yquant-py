@@ -1,6 +1,6 @@
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import DefaultDict
+from typing import DefaultDict, Optional
 
 import numpy as np
 
@@ -17,6 +17,8 @@ class Msg:
     tax: float = 0  # broker, ledge
     slippage: float = 0  # broker, ledge
     timestamp: int = 0
+
+
 
 
 @dataclass
@@ -38,7 +40,7 @@ class Positions:
 
 
 class Timeseries:
-    def __init__(self, size: int = 100, keep: int = 30):
+    def __init__(self, size: int = 100, keep: int = 30) -> None:
         self._size = size
         self._keep = keep
         self._watermark = -1
@@ -46,17 +48,17 @@ class Timeseries:
         self._data = {'price': np.zeros(size, dtype=float),
                       'quantity': np.zeros(size, dtype=float)}
 
-    def add(self, key):
+    def add(self, key: str) -> None:
         self._data[key] = np.zeros(self._size, dtype=float)
 
-    def erase(self):
+    def erase(self) -> None:
         for arr in self._data.values():
             arr[:] = 0
 
-    def __getitem__(self, key):
+    def __getitem__(self, key) -> np.ndarray:
         return self._data[key]
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self._size
 
     def __iadd__(self, msg: Msg) -> 'Timeseries':

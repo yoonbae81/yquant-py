@@ -28,7 +28,7 @@ class Ledger(Thread):
             'QUIT': self._handler_quit,
         }
 
-        logger.debug(self.name + ' initialized')
+        logger.debug('Initialized')
 
     @staticmethod
     def _open_file(dir: Path) -> TextIO:
@@ -38,11 +38,11 @@ class Ledger(Thread):
         return dir.joinpath(filename).open('wt')
 
     def run(self) -> None:
-        logger.debug(self.name + ' started')
+        logger.debug('Started')
 
         while self._loop:
             msg = self.input.recv()
-            logger.debug(f'{self.name} received: {msg}')
+            logger.debug(f'Received: {msg}')
             self._handlers[msg.type](msg)
 
     def _handler_cash(self, msg: Msg) -> None:

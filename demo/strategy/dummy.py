@@ -1,3 +1,4 @@
+from typing import Optional
 
 from backtest.data import Timeseries, Positions
 
@@ -7,11 +8,9 @@ def calc_strength(ts: Timeseries) -> int:
     return 2
 
 
-def calc_stoploss(ts: Timeseries) -> float:
+def calc_stoploss(ts: Timeseries, original: Optional[float] = None) -> float:
     return 1
 
 
-def calc_quantity(strength: int, cash: float, positions: Positions) -> float:
+def calc_quantity(price: float, strength: int, cash: float, positions: Positions) -> float:
     return 100
-
-

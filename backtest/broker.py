@@ -11,6 +11,9 @@ from .data import Msg, Positions
 
 logger = logging.getLogger(Path(__file__).name)
 
+market = None
+strategy = None
+
 
 class Broker(Thread):
 
@@ -32,52 +35,54 @@ class Broker(Thread):
             'QUIT': self._handler_quit,
         }
 
-        logger.debug(self.name + ' initialized')
+        logger.debug('Initialized')
 
     def run(self):
-        logger.debug(self.name + ' started')
+        logger.debug('Started')
 
+        global market
         logger.debug(f'Loading market module: {self._market}')
-        self._market_module = import_module(self._market)
+        market = import_module(f'.{self._market}', 'market')
 
-        logger.debug(f'Loading strategy: {self._strategy}')
-        self._strategy_module = import_module(self._strategy)
+        global strategy
+        logger.debug(f'Loading strategy module: {self._strategy}')
+        strategy = import_module(f'.{self._strategy}', 'strategy')
 
         self.output.send(Msg('CASH', cash=self._initial_cash))
 
         while self._loop:
             msg = self.input.recv()
-            logger.debug(f'{self.name} received: {msg}')
+            logger.debug(f'Received: {msg}')
             self._handlers[msg.type](msg)
 
     def _handler_signal(self, msg: Msg) -> None:
-        quantity = self._strategy_module.calc_quantity(
+        quantity = strategy.calc_quantity(
+            msg.price,
             msg.strength,
             self._cash,
             self._positions)
 
-        market = self._market_module.get_market(msg.symbol)
+        exchange = market.get_exchange(msg.symbol)
 
-        price = self._market_module.simulate_price(
-            market,
+        price = market.simulate_price(
+            exchange,
             msg.price,
             quantity)
 
-        commission = self._market_module.calc_commission(
-            market,
+        commission = market.calc_commission(
+            exchange,
             price,
             quantity)
 
-        tax = self._market_module.calc_tax(
-            market,
+        tax = market.calc_tax(
+            exchange,
             price,
             quantity)
 
         self._cash -= self._calc_total_cost(price, quantity, commission, tax)
         self._positions[msg.symbol].quantity += quantity
 
-        self.output.send(
-            Msg("ORDER",
+        o = Msg("ORDER",
                 symbol=msg.symbol,
                 price=price,
                 quantity=quantity,
@@ -86,12 +91,13 @@ class Broker(Thread):
                 tax=tax,
                 slippage=msg.price - price,
                 cash=self._cash,
-                timestamp=msg.timestamp))
+                timestamp=msg.timestamp)
+        self.output.send(o)
 
-        self.output.send(
-            Msg('QUANTITY',
+        q = Msg('QUANTITY',
                 symbol=msg.symbol,
-                quantity=self._positions[msg.symbol].quantity))
+                quantity=self._positions[msg.symbol].quantity)
+        self.output.send(q)
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
