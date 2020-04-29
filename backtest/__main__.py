@@ -1,7 +1,9 @@
 import json
 import logging
+from collections import defaultdict
 from multiprocessing import cpu_count
 from pathlib import Path
+from time import time
 from typing import List, Any
 
 import argparse
@@ -12,7 +14,7 @@ from .fetcher import Fetcher
 from .ledger import Ledger
 from .router import Router
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
 
 
 def run(market: str,

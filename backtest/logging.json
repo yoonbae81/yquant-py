@@ -14,7 +14,7 @@
     }
   },
   "loggers": {
-    "__main__.py": {
+    "__main__": {
       "level": "DEBUG",
       "handlers": [
         "console"

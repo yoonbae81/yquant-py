@@ -22,7 +22,6 @@ class Fetcher(Thread):
 
     def run(self) -> None:
         logger.debug('Started')
-        sleep(0.2)
 
         for file in self._get_files():
             logger.info(f'Loading {file.name}')

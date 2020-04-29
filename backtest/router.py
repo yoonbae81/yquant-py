@@ -3,6 +3,7 @@ from collections import defaultdict
 from multiprocessing.connection import Connection, Pipe, wait
 from pathlib import Path
 from threading import Thread
+from time import time
 from typing import List, Dict, DefaultDict, TypeVar, Callable, Any
 
 from .analyzer import Analyzer
@@ -41,6 +42,9 @@ class Router(Thread):
         # Connect
         [self._connect(node) for node in nodes]
 
+        # Timer
+        self._start_time: float = 0
+
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
             'SIGNAL': self._handler_signal,
@@ -58,6 +62,7 @@ class Router(Thread):
     def run(self):
         logger.debug('Started')
 
+        self._start_time = time()
         while self._loop:
             for conn in wait([*self._from_analyzers,
                               self._from_broker,
@@ -141,4 +146,11 @@ class Router(Thread):
             node.send(Msg('QUIT'))
 
     def __del__(self) -> None:
-        logger.info(f'Handled messaged: {self._msg_counter}')
+
+        tick_cnt = self._msg_counter.get('TICK', 0)
+        delay_sec = self._msg_counter.get('EOD', 0) * 1
+        elapsed_time = time() - self._start_time
+
+        logger.info(f'Handled: {dict(self._msg_counter)}')
+        logger.info(f'Elapsed: {elapsed_time:.2f} sec '
+                    f'({(elapsed_time - delay_sec) / tick_cnt * 1000:.2f} ms/msg)')
