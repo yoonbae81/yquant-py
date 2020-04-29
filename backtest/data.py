@@ -1,5 +1,5 @@
 from collections import defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from typing import DefaultDict, Optional
 
 import numpy as np
@@ -7,25 +7,33 @@ import numpy as np
 
 @dataclass
 class Msg:
-    type: str = ''
-    symbol: str = ''
-    price: float = 0
-    quantity: float = 0
-    strength: int = 0  # analyzer
-    cash: float = 0  # broker
-    commission: float = 0  # broker, ledge
-    tax: float = 0  # broker, ledge
-    slippage: float = 0  # broker, ledge
-    timestamp: int = 0
+    type: str
+    symbol: Optional[str] = None
+    price: Optional[float] = None
+    quantity: Optional[float] = None
+    strength: Optional[int] = None  # analyzer
+    cash: Optional[float] = None  # broker
+    commission: Optional[float] = None  # broker, ledge
+    tax: Optional[float] = None  # broker, ledge
+    slippage: Optional[float] = None  # broker, ledge
+    timestamp: Optional[int] = None
 
+    def __repr__(self):
+        l = []
+        for k, v in asdict(self).items():
+            if v:
+                v = f"'{v}'" if isinstance(v, str) else v
+                l.append(f'{k}={v}')
 
+        return (f'{self.__class__.__name__}('
+                + ', '.join(l)
+                + f')')
 
 
 @dataclass
 class Stock:
     price: float = 0
     quantity: float = 0
-    stoploss: float = 0
 
 
 class Positions:
