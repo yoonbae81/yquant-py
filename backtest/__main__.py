@@ -29,9 +29,10 @@ def run(market: str,
                  for _ in range((cpu_count() or 2) - 1)]
     broker = Broker(market, strategy, cash)
     ledger = Ledger(Path(ledger_dir))
-
     nodes: List[Any] = [ledger, broker, *analyzers, fetcher]
-    router = Router(nodes)
+
+    router = Router()
+    router.connect(nodes)
 
     nodes.insert(0, router)
     [node.start() for node in nodes]

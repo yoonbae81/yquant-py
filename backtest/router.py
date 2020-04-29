@@ -18,7 +18,7 @@ logger = logging.getLogger(Path(__file__).stem)
 
 
 class Router(Thread):
-    def __init__(self, nodes: List[Any]) -> None:
+    def __init__(self) -> None:
         super().__init__(name=self.__class__.__name__)
 
         self._loop = True
@@ -38,9 +38,6 @@ class Router(Thread):
 
         # Ledger
         self._to_ledger: Connection
-
-        # Connect
-        [self._connect(node) for node in nodes]
 
         # Timer
         self._start_time: float = 0
@@ -76,6 +73,9 @@ class Router(Thread):
                     self._handlers[msg.type](msg)
                 except KeyError:
                     logger.warning('Unknown message ', msg)
+
+    def connect(self, nodes: List[Any]) -> None:
+        [self._connect(node) for node in nodes]
 
     def _connect(self, node: Node) -> bool:
         if isinstance(node, Analyzer):
@@ -154,3 +154,7 @@ class Router(Thread):
         logger.info(f'Handled: {dict(self._msg_counter)}')
         logger.info(f'Elapsed: {elapsed_time:.2f} sec '
                     f'({(elapsed_time - delay_sec) / tick_cnt * 1000:.2f} ms/msg)')
+
+        assert self._msg_counter['TICK'] \
+               == self._msg_counter['SIGNAL'] \
+               == self._msg_counter['ORDER']
