@@ -1,7 +1,10 @@
 import json
+import logging
 from pathlib import Path
 
 import numpy as np
+
+logger = logging.getLogger('strategy')
 
 FILES = {'symbols':
              {'kospi': 'symbols_kospi.json',
@@ -31,8 +34,10 @@ def simulate_price(exchange, price, quantity) -> float:
     offset = int(np.random.normal(mean, slippage_stdev))
 
     unit = get_unit(exchange, price)
+    result = price + offset * unit
+    logger.debug('Simulated price')
 
-    return price + offset * unit
+    return result
 
 
 def get_unit(exchange, price) -> float:
@@ -47,12 +52,16 @@ def get_unit(exchange, price) -> float:
 def calc_commission(exchange, price, quantity) -> float:
     trade = 'buy' if quantity > 0 else 'sell'
     rate = rules[exchange]['commission'][trade]
+    result = round(price * abs(quantity) * rate)
+    logger.debug(f'Calculated commission')
 
-    return round(price * abs(quantity) * rate)
+    return result
 
 
 def calc_tax(exchange, price, quantity) -> float:
     trade = 'buy' if quantity > 0 else 'sell'
     rate = rules[exchange]['tax'][trade]
+    result = round(price * abs(quantity) * rate)
+    logger.debug(f'Calculated tax')
 
-    return round(price * abs(quantity) * rate)
+    return result

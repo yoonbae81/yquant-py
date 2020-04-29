@@ -9,7 +9,7 @@ from typing import Callable, Dict, DefaultDict
 
 from .data import Msg, Positions
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
 
 market = None
 strategy = None

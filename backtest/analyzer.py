@@ -1,4 +1,5 @@
 import logging
+import os
 from collections import defaultdict
 from importlib import import_module
 from multiprocessing import Process
@@ -8,7 +9,7 @@ from typing import Dict, Callable, Set, DefaultDict
 
 from .data import Timeseries, Msg
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
 
 strategy = None
 
@@ -29,7 +30,7 @@ class Analyzer(Process):
 
         self._strategy: str = strategy
         self._loop: bool = True
-        self._stoploss: DefaultDict[str, float] = defaultdict(float)
+        self._stoploss: Dict = {}
         self._timeseries: DefaultDict[str, Timeseries] = defaultdict(Timeseries)
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
@@ -42,7 +43,7 @@ class Analyzer(Process):
         logger.debug('Initialized ' + self.name)
 
     def run(self) -> None:
-        logger.debug(self.name + ' started')
+        logger.debug(self.name + f' started (pid:{os.getpid()})')
 
         global strategy
         logger.debug(f'Loading strategy module: {self._strategy}')
@@ -59,17 +60,19 @@ class Analyzer(Process):
         ts += msg
 
         if msg.symbol in self._stoploss:
-            original = self._stoploss[msg.symbol]
-            self._stoploss[msg.symbol] = strategy.calc_stoploss(ts, original)
+            stoploss_orig = self._stoploss[msg.symbol]
+            self._stoploss[msg.symbol] = strategy.calc_stoploss(ts, stoploss_orig)
 
-            # TODO let broker knows when price hit the stoploss
+        strength = strategy.calc_strength(
+            ts,
+            self._stoploss.get(msg.symbol, None))
 
-        strength = strategy.calc_strength(ts)
         s = Msg('SIGNAL',
                 symbol=msg.symbol,
                 price=msg.price,
                 strength=strength,
                 timestamp=msg.timestamp)
+
         self.output.send(s)
 
     def _handler_quantity(self, msg: Msg) -> None:
@@ -77,8 +80,8 @@ class Analyzer(Process):
             del self._stoploss[msg.symbol]
         else:
             ts = self._timeseries[msg.symbol]
-            stoploss = strategy.calc_stoploss(ts)
-            self._stoploss[msg.symbol] = stoploss
+            stoploss_orig = self._stoploss.get(msg.symbol, None)
+            self._stoploss[msg.symbol] = strategy.calc_stoploss(ts, stoploss_orig)
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False

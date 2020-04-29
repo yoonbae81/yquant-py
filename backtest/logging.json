@@ -3,7 +3,7 @@
   "disable_existing_loggers": true,
   "formatters": {
     "default": {
-      "format": "%(asctime)s %(filename)-11s %(levelname)-8s %(message)s"
+      "format": "%(asctime)s %(levelname)-8s %(filename)-11s %(message)s"
     }
   },
   "handlers": {
@@ -20,31 +20,37 @@
         "console"
       ]
     },
-    "router.py": {
+    "router": {
       "level": "DEBUG",
       "handlers": [
         "console"
       ]
     },
-    "fetcher.py": {
+    "fetcher": {
       "level": "DEBUG",
       "handlers": [
         "console"
       ]
     },
-    "analyzer.py": {
+    "analyzer": {
       "level": "DEBUG",
       "handlers": [
         "console"
       ]
     },
-    "broker.py": {
+    "broker": {
       "level": "DEBUG",
       "handlers": [
         "console"
       ]
     },
-    "ledger.py": {
+    "ledger": {
+      "level": "DEBUG",
+      "handlers": [
+        "console"
+      ]
+    },
+    "strategy": {
       "level": "DEBUG",
       "handlers": [
         "console"

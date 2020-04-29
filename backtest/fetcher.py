@@ -7,7 +7,7 @@ from typing import List
 
 from .data import Msg
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
 
 
 class Fetcher(Thread):

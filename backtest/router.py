@@ -13,7 +13,7 @@ from .ledger import Ledger
 
 Node = TypeVar('Node', Fetcher, Analyzer, Broker)
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
 
 
 class Router(Thread):

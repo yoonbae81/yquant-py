@@ -44,9 +44,9 @@ def validate(**config):
         return False
 
     dirs = {key: config[key] for key in config if key.endswith('_dir')}
-    for key, dir in dirs.items():
-        if not Path(dir).exists():
-            print(f'{key}: {dir} not found')
+    for k, v in dirs.items():
+        if not Path(v).exists():
+            print(f'{k}: {v} not found')
             return False
 
     return True

@@ -9,7 +9,7 @@ from typing import Dict, Callable, TextIO
 
 from .data import Msg
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
 
 
 class Ledger(Thread):
