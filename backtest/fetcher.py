@@ -39,7 +39,6 @@ class Fetcher(Thread):
             sleep(1)
             self.output.send(Msg('EOF'))  # End of file
 
-        sleep(1)
         self.output.send(Msg('EOD'))  # End of data
 
     def _get_files(self) -> List[Path]:

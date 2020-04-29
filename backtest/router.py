@@ -3,7 +3,6 @@ from collections import defaultdict
 from multiprocessing.connection import Connection, Pipe, wait
 from pathlib import Path
 from threading import Thread
-from time import sleep
 from typing import List, Dict, DefaultDict, TypeVar, Callable, Any
 
 from .analyzer import Analyzer
@@ -140,7 +139,6 @@ class Router(Thread):
         self._loop = False
         for node in [*self._to_analyzers, self._to_broker, self._to_ledger]:
             node.send(Msg('QUIT'))
-            sleep(0.1)
 
     def __del__(self) -> None:
         logger.info(f'Handled messaged: {self._msg_counter}')
