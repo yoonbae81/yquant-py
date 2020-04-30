@@ -1,7 +1,9 @@
 # Backtest
-A backtest engine for developing algorithmic trading strategy.
 
-[![PyPI](https://img.shields.io/pypi/v/backtest?color=%234ec726&style=flat-square)](https://pypi.org/project/backtest/)
+[![PyPI version](https://badge.fury.io/py/backtest.svg)](https://badge.fury.io/py/backtest)
+[![CircleCI](https://circleci.com/gh/yoonbae81/backtest.svg?style=shield)](https://circleci.com/gh/yoonbae81/backtest)
+
+A backtest engine for developing algorithmic trading strategy.
 
 
 ## Table of Contents
@@ -23,23 +25,20 @@ pip install backtest
 
 ## Usage
 
-The following usage is in `demo/main.py`. 
-
+The following will execute the backtest after loading configuration file, `config.json` in same directory.
 ```python
-import backtest
+python -m backtest
+````
 
-if __name__ == '__main__':
-    market = 'korea'
-    strategy = 'dummy'
-    initial_cash = 1_000_000
-    ticks_dir = 'ticks'
-    ledger_dir = 'ledger'
-
-    backtest.run(market,
-                 strategy,
-                 ticks_dir,
-                 ledger_dir,
-                 initial_cash)
+Sample content of `config.json`
+```json
+{
+    "market": "korea",
+    "strategy": "dummy",
+    "ticks_dir": "ticks",
+    "ledger_dir": "ledger",
+    "cash": 1000000
+}
 ```
 
 ## Support
