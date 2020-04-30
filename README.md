@@ -1,7 +1,6 @@
 # Backtest
 
 [![PyPI version](https://badge.fury.io/py/backtest.svg)](https://badge.fury.io/py/backtest)
-[![CircleCI](https://circleci.com/gh/yoonbae81/backtest.svg?style=shield)](https://circleci.com/gh/yoonbae81/backtest)
 
 A backtest engine for developing algorithmic trading strategy.
 
