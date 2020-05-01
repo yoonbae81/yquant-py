@@ -1,13 +1,17 @@
 import logging
+import os
+from collections import defaultdict
 from importlib import import_module
 from multiprocessing import Process
 from multiprocessing.connection import Connection
 from pathlib import Path
-from typing import Dict, Callable, Set
+from typing import Dict, Callable, Set, DefaultDict
 
 from .data import Timeseries, Msg
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
+
+strategy = None
 
 
 class Analyzer(Process):
@@ -17,19 +21,17 @@ class Analyzer(Process):
     def _get_name(cls) -> str:
         return cls.__name__ + str(cls.count)
 
-    def __init__(self, strategy) -> None:
+    def __init__(self, strategy: str) -> None:
         self.__class__.count += 1
         super().__init__(name=self._get_name())
-
-        # self._strategy = strategy
 
         self.input: Connection
         self.output: Connection
 
+        self._strategy: str = strategy
         self._loop: bool = True
-        self._stocks: Dict[str, Timeseries] = {}
-        self._opened: Set[str] = set()  # Opened positions
-        self._strategy_name: str = strategy
+        self._stoploss: Dict = {}
+        self._timeseries: DefaultDict[str, Timeseries] = defaultdict(Timeseries)
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
@@ -38,13 +40,14 @@ class Analyzer(Process):
             'QUIT': self._handler_quit,
         }
 
-        logger.debug(self.name + ' initialized')
+        logger.debug('Initialized ' + self.name)
 
     def run(self) -> None:
-        logger.debug(self.name + ' started')
+        logger.debug(self.name + f' started (pid:{os.getpid()})')
 
-        logger.debug(f'Loading strategy: {self._strategy_name}')
-        self._strategy = import_module('strategy.' + self._strategy_name)
+        global strategy
+        logger.debug(f'Loading strategy module: {self._strategy}')
+        strategy = import_module(f'.{self._strategy}', 'strategy')
 
         while self._loop:
             msg = self.input.recv()
@@ -52,36 +55,36 @@ class Analyzer(Process):
 
             self._handlers[msg.type](msg)
 
-    def _get_stock(self, msg: Msg) -> Timeseries:
-        stock: Timeseries
-        try:
-            stock = self._stocks[msg.symbol]
-        except KeyError:
-            stock = Timeseries()
-            self._stocks[msg.symbol] = stock
-
-        return stock
-
     def _handler_tick(self, msg: Msg) -> None:
-        stock = self._get_stock(msg)
-        stock += msg
+        ts = self._timeseries[msg.symbol]
+        ts += msg
 
-        if msg.symbol in self._opened:
-            stock.stoploss = self._strategy.calc_stoploss(stock)
+        if msg.symbol in self._stoploss:
+            stoploss_orig = self._stoploss[msg.symbol]
+            self._stoploss[msg.symbol] = strategy.calc_stoploss(ts, stoploss_orig)
 
-        msg.strength = self._strategy.calc_strength(stock)
-        msg.type = 'SIGNAL'
+        strength = strategy.calc_strength(
+            ts,
+            self._stoploss.get(msg.symbol, None))
 
-        self.output.send(msg)
+        s = Msg('SIGNAL',
+                symbol=msg.symbol,
+                price=msg.price,
+                strength=strength,
+                timestamp=msg.timestamp)
+
+        self.output.send(s)
 
     def _handler_quantity(self, msg: Msg) -> None:
-        if msg.quantity == 0 and msg.symbol in self._opened:
-            self._opened.remove(msg.symbol)
+        if msg.quantity == 0 and msg.symbol in self._stoploss:
+            del self._stoploss[msg.symbol]
         else:
-            self._opened.add(msg.symbol)
+            ts = self._timeseries[msg.symbol]
+            stoploss_orig = self._stoploss.get(msg.symbol, None)
+            self._stoploss[msg.symbol] = strategy.calc_stoploss(ts, stoploss_orig)
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
 
     def _handler_reset(self, _: Msg) -> None:
-        [s.erase() for s in self._stocks.values()]
+        [s.erase() for s in self._timeseries.values()]

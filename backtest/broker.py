@@ -9,22 +9,25 @@ from typing import Callable, Dict, DefaultDict
 
 from .data import Msg, Positions
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
+
+market = None
+strategy = None
 
 
 class Broker(Thread):
 
-    def __init__(self, market: str, strategy: str, initial_cash: float) -> None:
+    def __init__(self, market: str, strategy: str, cash: float) -> None:
         super().__init__(name=self.__class__.__name__)
 
         self.input: Connection
         self.output: Connection
 
         self._loop: bool = True
-        self._market_name = market
-        self._strategy_name = strategy
-        self._cash: float = initial_cash
-        self._initial_cash: float = initial_cash
+        self._market: str = market
+        self._strategy: str = strategy
+        self._cash: float = cash
+        self._initial_cash: float = cash
         self._positions: Positions = Positions()
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
@@ -32,52 +35,54 @@ class Broker(Thread):
             'QUIT': self._handler_quit,
         }
 
-        logger.debug(self.name + ' initialized')
+        logger.debug('Initialized')
 
     def run(self):
-        logger.debug(self.name + ' started')
+        logger.debug('Started')
 
-        logger.debug(f'Loading market: {self._market_name}')
-        self._market = import_module('market.' + self._market_name)
+        global market
+        logger.debug(f'Loading market module: {self._market}')
+        market = import_module(f'.{self._market}', 'market')
 
-        logger.debug(f'Loading strategy: {self._strategy_name}')
-        self._strategy = import_module('strategy.' + self._strategy_name)
+        global strategy
+        logger.debug(f'Loading strategy module: {self._strategy}')
+        strategy = import_module(f'.{self._strategy}', 'strategy')
 
         self.output.send(Msg('CASH', cash=self._initial_cash))
 
         while self._loop:
             msg = self.input.recv()
-            logger.debug(f'{self.name} received: {msg}')
+            logger.debug(f'Received: {msg}')
             self._handlers[msg.type](msg)
 
     def _handler_signal(self, msg: Msg) -> None:
-        quantity = self._strategy.calc_quantity(
+        quantity = strategy.calc_quantity(
+            msg.price,
             msg.strength,
             self._cash,
             self._positions)
 
-        market = self._market.get_market(msg.symbol)
+        exchange = market.get_exchange(msg.symbol)
 
-        price = self._market.simulate_price(
-            market,
+        price = market.simulate_price(
+            exchange,
             msg.price,
             quantity)
 
-        commission = self._market.calc_commission(
-            market,
+        commission = market.calc_commission(
+            exchange,
             price,
             quantity)
 
-        tax = self._market.calc_tax(
-            market,
+        tax = market.calc_tax(
+            exchange,
             price,
             quantity)
 
         self._cash -= self._calc_total_cost(price, quantity, commission, tax)
         self._positions[msg.symbol].quantity += quantity
 
-        self.output.send(
-            Msg("ORDER",
+        o = Msg("ORDER",
                 symbol=msg.symbol,
                 price=price,
                 quantity=quantity,
@@ -86,12 +91,13 @@ class Broker(Thread):
                 tax=tax,
                 slippage=msg.price - price,
                 cash=self._cash,
-                timestamp=msg.timestamp))
+                timestamp=msg.timestamp)
+        self.output.send(o)
 
-        self.output.send(
-            Msg('QUANTITY',
+        q = Msg('QUANTITY',
                 symbol=msg.symbol,
-                quantity=self._positions[msg.symbol].quantity))
+                quantity=self._positions[msg.symbol].quantity)
+        self.output.send(q)
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False

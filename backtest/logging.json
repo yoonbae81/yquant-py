@@ -2,60 +2,58 @@
   "version": 1,
   "disable_existing_loggers": true,
   "formatters": {
-    "thread": {
-      "format": "%(asctime)s %(filename)-11s %(levelname)-8s %(message)s"
-    },
-    "process": {
-      "format": "%(asctime)s %(filename)-11s %(levelname)-8s %(message)s"
+    "default": {
+      "format": "%(asctime)s %(levelname)-8s %(filename)-11s %(message)s"
     }
   },
   "handlers": {
-    "console_thread": {
+    "console": {
       "class": "logging.StreamHandler",
       "level": "DEBUG",
-      "formatter": "thread"
-    },
-    "console_process": {
-      "class": "logging.StreamHandler",
-      "level": "DEBUG",
-      "formatter": "process"
+      "formatter": "default"
     }
   },
   "loggers": {
-    "main.py": {
+    "__main__": {
       "level": "DEBUG",
       "handlers": [
-        "console_thread"
+        "console"
       ]
     },
-    "router.py": {
+    "router": {
       "level": "DEBUG",
       "handlers": [
-        "console_thread"
+        "console"
       ]
     },
-    "fetcher.py": {
+    "fetcher": {
       "level": "DEBUG",
       "handlers": [
-        "console_thread"
+        "console"
       ]
     },
-    "analyzer.py": {
+    "analyzer": {
       "level": "DEBUG",
       "handlers": [
-        "console_process"
+        "console"
       ]
     },
-    "broker.py": {
+    "broker": {
       "level": "DEBUG",
       "handlers": [
-        "console_thread"
+        "console"
       ]
     },
-    "ledger.py": {
+    "ledger": {
       "level": "DEBUG",
       "handlers": [
-        "console_thread"
+        "console"
+      ]
+    },
+    "strategy": {
+      "level": "DEBUG",
+      "handlers": [
+        "console"
       ]
     }
   }

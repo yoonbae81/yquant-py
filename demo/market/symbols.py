@@ -23,9 +23,9 @@ def _parse(res):
         yield symbol, name
 
 
-def run(market):
+def run(exchange):
     d = {}
-    res = requests.get(URLS[market], headers=HEADERS)
+    res = requests.get(URLS[exchange], headers=HEADERS)
 
     if res.status_code != 200:
         print('ERROR: HTTP Status Code {}'.format(res.status_code), file=sys.stderr)
@@ -47,12 +47,12 @@ def save(data, file):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('market')
+    parser.add_argument('exchange')
     parser.add_argument('output', nargs='?', type=argparse.FileType('wt', encoding='utf-8'),
                         default=sys.stdout)
     args = parser.parse_args()
 
-    data = run(args.market)
+    data = run(args.exchange)
     save(data, args.output)
 
     if args.output is not sys.stdout:

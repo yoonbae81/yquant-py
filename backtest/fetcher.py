@@ -7,7 +7,7 @@ from typing import List
 
 from .data import Msg
 
-logger = logging.getLogger(Path(__file__).name)
+logger = logging.getLogger(Path(__file__).stem)
 
 
 class Fetcher(Thread):
@@ -18,11 +18,10 @@ class Fetcher(Thread):
         self._ticks: Path = ticks
         self.output: Connection
 
-        logger.debug(self._name + ' initialized')
+        logger.debug('Initialized')
 
     def run(self) -> None:
-        logger.debug(self.name + ' started')
-        sleep(0.2)
+        logger.debug('Started')
 
         for file in self._get_files():
             logger.info(f'Loading {file.name}')
@@ -33,13 +32,12 @@ class Fetcher(Thread):
 
                 except ValueError:
                     logger.warning(f'{file.name} line {i} [{line.strip()}]')
-                    continue
 
                 self.output.send(msg)
 
+            sleep(1)
             self.output.send(Msg('EOF'))  # End of file
 
-        sleep(0.2)
         self.output.send(Msg('EOD'))  # End of data
 
     def _get_files(self) -> List[Path]:

@@ -1,7 +1,12 @@
 # Backtest
-A backtest engine for developing algorithmic trading strategy.
 
-[![PyPI](https://img.shields.io/pypi/v/backtest?color=%234ec726&style=flat-square)](https://pypi.org/project/backtest/)
+[![PyPI version](https://img.shields.io/pypi/v/backtest.svg)](https://pypi.org/project/backtest/)
+[![Python version](https://img.shields.io/pypi/pyversions/backtest.svg)](https://pypi.org/project/backtest/)
+[![Test](https://github.com/yoonbae81/backtest/workflows/test/badge.svg)](https://github.com/yoonbae81/backtest)
+[![Coverage](https://codecov.io/gh/yoonbae81/backtest/graph/badge.svg)](http://codecov.io/gh/yoonbae81/backtest)
+[![Docs](https://readthedocs.org/projects/backtest/badge/?version=latest)](https://backtest.readthedocs.io/latest)
+
+A backtest engine for developing algorithmic trading strategy.
 
 
 ## Table of Contents
@@ -23,23 +28,20 @@ pip install backtest
 
 ## Usage
 
-The following usage is in `demo/main.py`. 
-
+The following will execute the backtest after loading configuration file, `config.json` in same directory.
 ```python
-import backtest
+python -m backtest
+````
 
-if __name__ == '__main__':
-    market = 'korea'
-    strategy = 'dummy'
-    initial_cash = 1_000_000
-    ticks_dir = 'ticks'
-    ledger_dir = 'ledger'
-
-    backtest.run(market,
-                 strategy,
-                 ticks_dir,
-                 ledger_dir,
-                 initial_cash)
+Sample content of `config.json`
+```json
+{
+    "market": "korea",
+    "strategy": "dummy",
+    "ticks_dir": "ticks",
+    "ledger_dir": "ledger",
+    "cash": 1000000
+}
 ```
 
 ## Support
