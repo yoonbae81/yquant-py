@@ -1,5 +1,4 @@
 import logging
-from pathlib import Path
 from typing import Optional
 
 from backtest.data import Timeseries, Positions
