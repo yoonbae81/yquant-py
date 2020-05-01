@@ -1,0 +1,5 @@
+numpy
+wheel
+requests
+pytest
+pytest-cov
