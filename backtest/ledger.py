@@ -21,7 +21,8 @@ class Ledger(Thread):
 
         self._loop: bool = True
         self._dir: Path = dir
-        self._file: TextIO = None
+        self._file: TextIO = self._open_file()
+        logger.debug(f'Generated file: {self._file.name}')
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'CASH': self._handler_cash,
@@ -31,25 +32,28 @@ class Ledger(Thread):
 
         logger.debug('Initialized')
 
-    @staticmethod
-    def _open_file(dir: Path) -> TextIO:
-        dir.mkdir(parents=True, exist_ok=True)
+    def _open_file(self) -> TextIO:
+        self._dir.mkdir(parents=True, exist_ok=True)
         filename = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
 
-        return dir.joinpath(filename).open('wt')
+        return self._dir.joinpath(filename).open('wt')
 
     def run(self) -> None:
         logger.debug('Starting...')
-
-        self._file = self._open_file(self._dir)
-        logger.debug(f'Generated file: {self._file.name}...')
 
         while self._loop:
             msg = self.input.recv()
             logger.debug(f'Received: {msg}')
             self._handlers[msg.type](msg)
 
+        if self._file and not self._file.closed:
+            logger.info(f'Closing {self._file.name}')
+            self._file.close()
+
     def _handler_cash(self, msg: Msg) -> None:
+        if msg.cash < 0:
+            raise ArithmeticError('Cash should be greater than zero')
+
         json.dump({'cash': msg.cash}, self._file)
         self._file.write('\n')
 
@@ -61,5 +65,4 @@ class Ledger(Thread):
         self._loop = False
 
     def __del__(self) -> None:
-        self._file.close()
-        logger.info(f'Result saved in {self._file.name}')
+        pass
