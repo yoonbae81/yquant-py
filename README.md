@@ -32,7 +32,7 @@ pip install backtest
 
 The following will execute the backtest after loading configuration file, `config.json` in same directory.
 ```python
-python -m backtest
+backtest [--config config.json]
 ````
 
 Sample content of `config.json`
