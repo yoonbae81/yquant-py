@@ -1,12 +1,9 @@
+import argparse
 import json
 import logging
-from collections import defaultdict
 from multiprocessing import cpu_count
 from pathlib import Path
-from time import time
 from typing import List, Any
-
-import argparse
 
 from .analyzer import Analyzer
 from .broker import Broker
@@ -49,7 +46,7 @@ def validate(**config):
     dirs = {key: config[key] for key in config if key.endswith('_dir')}
     for k, v in dirs.items():
         if not Path(v).exists():
-            print(f'{k}: {v} not found')
+            print(f'Not found dir: {v}')
             return False
 
     return True
