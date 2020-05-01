@@ -4,9 +4,8 @@
 name: build
 
 on:
-  push
-#  release:
-#    types: [created]
+  release:
+    types: [created]
 
 jobs:
   deploy:
@@ -31,4 +30,4 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
         python setup.py sdist bdist_wheel
-#        twine upload dist/*
+        twine upload dist/*
