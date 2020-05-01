@@ -34,4 +34,3 @@ jobs:
       with:
         file: ./coverage.xml
         flags: unittests
-        fixes: "::backtest/"
