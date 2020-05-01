@@ -38,15 +38,10 @@ class Broker(Thread):
         logger.debug('Initialized')
 
     def run(self):
-        logger.debug('Started')
+        logger.debug('Starting...')
 
-        global market
-        logger.debug(f'Loading market module: {self._market}')
-        market = import_module(f'.{self._market}', 'market')
-
-        global strategy
-        logger.debug(f'Loading strategy module: {self._strategy}')
-        strategy = import_module(f'.{self._strategy}', 'strategy')
+        logger.debug('Loading modules...')
+        self._load_modules()
 
         self.output.send(Msg('CASH', cash=self._initial_cash))
 
@@ -54,6 +49,15 @@ class Broker(Thread):
             msg = self.input.recv()
             logger.debug(f'Received: {msg}')
             self._handlers[msg.type](msg)
+
+    def _load_modules(self) -> None:
+        global market
+        market = import_module(f'.{self._market}', 'market')
+        logger.debug(f'Loaded market module: {self._market}')
+
+        global strategy
+        strategy = import_module(f'.{self._strategy}', 'strategy')
+        logger.debug(f'Loaded strategy module: {self._strategy}')
 
     def _handler_signal(self, msg: Msg) -> None:
         quantity = strategy.calc_quantity(

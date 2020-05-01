@@ -43,17 +43,20 @@ class Analyzer(Process):
         logger.debug('Initialized ' + self.name)
 
     def run(self) -> None:
-        logger.debug(self.name + f' started (pid:{os.getpid()})')
+        logger.debug(self.name + f' starting (pid:{os.getpid()})...')
 
-        global strategy
-        logger.debug(f'Loading strategy module: {self._strategy}')
-        strategy = import_module(f'.{self._strategy}', 'strategy')
+        self._load_module()
 
         while self._loop:
             msg = self.input.recv()
             logger.debug(f'{self.name} received: {msg}')
 
             self._handlers[msg.type](msg)
+
+    def _load_module(self) -> None:
+        global strategy
+        strategy = import_module(f'.{self._strategy}', 'strategy')
+        logger.debug(f'Loaded strategy module: {self._strategy}')
 
     def _handler_tick(self, msg: Msg) -> None:
         ts = self._timeseries[msg.symbol]

@@ -11,7 +11,6 @@ logger = logging.getLogger(Path(__file__).stem)
 
 
 class Fetcher(Thread):
-
     def __init__(self, ticks: Path) -> None:
         super().__init__(name=self.__class__.__name__)
 
@@ -21,10 +20,10 @@ class Fetcher(Thread):
         logger.debug('Initialized')
 
     def run(self) -> None:
-        logger.debug('Started')
+        logger.debug('Starting...')
 
         for file in self._get_files():
-            logger.info(f'Loading {file.name}')
+            logger.info(f'Loading file: {file.name}')
 
             for i, line in enumerate(file.open('rt').readlines(), 1):
                 try:

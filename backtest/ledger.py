@@ -20,7 +20,8 @@ class Ledger(Thread):
         self.input: Connection
 
         self._loop: bool = True
-        self._file: TextIO = self._open_file(dir)
+        self._dir: Path = dir
+        self._file: TextIO = None
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
             'CASH': self._handler_cash,
@@ -38,7 +39,10 @@ class Ledger(Thread):
         return dir.joinpath(filename).open('wt')
 
     def run(self) -> None:
-        logger.debug('Started')
+        logger.debug('Starting...')
+
+        self._file = self._open_file(self._dir)
+        logger.debug(f'Generated file: {self._file.name}...')
 
         while self._loop:
             msg = self.input.recv()

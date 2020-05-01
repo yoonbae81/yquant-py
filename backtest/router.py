@@ -57,7 +57,7 @@ class Router(Thread):
         logger.debug('Initialized')
 
     def run(self):
-        logger.debug('Started')
+        logger.debug('Starting...')
 
         self._start_time = time()
         while self._loop:
