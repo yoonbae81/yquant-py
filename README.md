@@ -3,6 +3,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/backtest.svg)](https://pypi.org/project/backtest/)
 [![Python version](https://img.shields.io/pypi/pyversions/backtest.svg)](https://pypi.org/project/backtest/)
 [![Test](https://github.com/yoonbae81/backtest/workflows/test/badge.svg)](https://github.com/yoonbae81/backtest)
+[![Build](https://github.com/yoonbae81/backtest/workflows/build/badge.svg)](https://github.com/yoonbae81/backtest)
 [![Coverage](https://codecov.io/gh/yoonbae81/backtest/graph/badge.svg)](http://codecov.io/gh/yoonbae81/backtest)
 [![Docs](https://readthedocs.org/projects/backtest/badge/?version=latest)](https://backtest.readthedocs.io/latest)
 
