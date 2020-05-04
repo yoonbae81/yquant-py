@@ -1,10 +1,9 @@
 import json
-import numbers
 from contextlib import nullcontext as does_not_raise
 from datetime import datetime
+from io import StringIO
 from multiprocessing.connection import Pipe
-from pathlib import Path
-from unittest import mock
+from unittest.mock import patch
 
 import pytest
 
@@ -35,25 +34,19 @@ def test_handler_quit(tmp_path):
 
 
 @pytest.mark.parametrize('input, expected', [
-    ({'cash': 10}, 10),
+    (Msg('CASH', cash=1000), '{"cash": 1000}\n'),
+    (Msg('CASH', cash=0), '{"cash": 0}\n'),
 ])
 def test_handler_cash_ok(tmp_path, input, expected):
     sut = Sut(tmp_path)
-
-    sut._file.close()
-    text = Path(sut._file.name).read_text()
-    assert json.loads(text)['cash'] == expected
-
-
-@mock.patch('ledger.print')
-def test_handler_cash_ok2(tmp_path, mock_print):
-    sut = Sut(tmp_path)
-
-    mock_print.assert_called_once_with('{"cash": 10}')
+    with patch.object(sut, '_file', new_callable=StringIO) as mock_file:
+        sut._handler_cash(input)
+        assert mock_file.getvalue() == expected
 
 
 @pytest.mark.parametrize('input, expected', [
     ({'cash': 10}, does_not_raise()),
+    ({'cash': 0}, does_not_raise()),
     ({'cash': -1}, pytest.raises(ArithmeticError)),
     ({'cash': 'STRING_IS_NOT_ACCEPTABLE'}, pytest.raises(TypeError)),
 ])
@@ -64,5 +57,15 @@ def test_handler_cash_error(tmp_path, input, expected):
         sut._handler_cash(Msg('CASH', **input))
 
 
-def test_handler_order():
-    pass
+@pytest.mark.parametrize('input', [
+    Msg('ORDER', symbol='015760', quantity=1, price=30000)
+])
+def test_handler_order(tmp_path, input):
+    sut = Sut(tmp_path)
+    with patch.object(sut, '_file', new_callable=StringIO) as mock_file:
+        sut._handler_order(input)
+        output = json.loads(mock_file.getvalue())
+
+    assert output['symbol'] == input.symbol
+    assert output['quantity'] == input.quantity
+    assert output['price'] == input.price
