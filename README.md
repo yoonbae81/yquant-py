@@ -2,9 +2,11 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/backtest.svg)](https://pypi.org/project/backtest/)
 [![Python version](https://img.shields.io/pypi/pyversions/backtest.svg)](https://pypi.org/project/backtest/)
-[![Test](https://github.com/yoonbae81/backtest/workflows/test/badge.svg)](https://github.com/yoonbae81/backtest)
+[![Test](https://github.com/yoonbae81/backtest/workflows/test/badge.svg)](https://github.com/yoonbae81/backtest/actions?query=workflow%3Atest)
+[![Build](https://github.com/yoonbae81/backtest/workflows/build/badge.svg)](https://github.com/yoonbae81/backtest/actions?query=workflow%3Abuild)
 [![Coverage](https://codecov.io/gh/yoonbae81/backtest/graph/badge.svg)](http://codecov.io/gh/yoonbae81/backtest)
 [![Docs](https://readthedocs.org/projects/backtest/badge/?version=latest)](https://backtest.readthedocs.io/latest)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 A backtest engine for developing algorithmic trading strategy.
 
@@ -30,7 +32,7 @@ pip install backtest
 
 The following will execute the backtest after loading configuration file, `config.json` in same directory.
 ```python
-python -m backtest
+backtest [--config config.json]
 ````
 
 Sample content of `config.json`
