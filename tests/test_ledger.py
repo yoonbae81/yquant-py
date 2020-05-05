@@ -2,7 +2,6 @@ import json
 from contextlib import nullcontext as does_not_raise
 from datetime import datetime
 from io import StringIO
-from multiprocessing.connection import Pipe
 from unittest.mock import patch
 
 import pytest
@@ -24,11 +23,11 @@ def test_create_file(tmp_path):
 
 def test_handler_quit(tmp_path):
     sut = Sut(tmp_path)
-    sut.input, router = Pipe(duplex=False)
 
-    sut.start()
-    router.send(Msg('QUIT'))
-    sut.join()
+    with patch.object(sut, 'input', create=True) as mock_input:
+        mock_input.recv.return_value = Msg('QUIT')
+        sut.start()
+        sut.join()
 
     assert True
 

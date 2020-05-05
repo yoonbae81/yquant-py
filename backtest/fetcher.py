@@ -37,7 +37,7 @@ class Fetcher(Thread):
             sleep(1)
             self.output.send(Msg('EOF'))  # End of file
 
-        self.output.send(Msg('EOD'))  # End of data
+        self.output.send(Msg('QUIT'))
 
     def _get_files(self) -> List[Path]:
         if self._ticks.is_file():

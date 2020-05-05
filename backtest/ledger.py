@@ -23,18 +23,14 @@ class Ledger(Thread):
         self._file: TextIO = self._create_file(dir)
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
-            'CASH': self._handler_cash,
             'ORDER': self._handler_order,
+            'CASH': self._handler_cash,
             'QUIT': self._handler_quit,
         }
 
-    @staticmethod
-    def _create_file(dir: Path) -> TextIO:
-        dir.mkdir(parents=True, exist_ok=True)
-        filename = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
-        logger.debug(f'Preparing file: {filename}')
-
-        return dir.joinpath(filename).open('w')
+    def __del__(self):
+        if self._file and not self._file.close():
+            self._file.close()
 
     def run(self) -> None:
         while self._loop:
@@ -56,6 +52,10 @@ class Ledger(Thread):
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
 
-    def __del__(self):
-        if self._file and not self._file.close():
-            self._file.close()
+    @staticmethod
+    def _create_file(dir: Path) -> TextIO:
+        dir.mkdir(parents=True, exist_ok=True)
+        filename = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
+        logger.debug(f'Preparing file: {filename}')
+
+        return dir.joinpath(filename).open('w')

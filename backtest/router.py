@@ -49,7 +49,7 @@ class Router(Thread):
             'ORDER': self._handler_order,
             'QUANTITY': self._handler_quantity,
             'EOF': self._handler_eof,
-            'EOD': self._handler_eod,
+            'QUIT': self._handler_quit,
         }
 
         self._msg_counter: DefaultDict[str, int] = defaultdict(int)
@@ -65,26 +65,19 @@ class Router(Thread):
                               self._from_broker,
                               self._from_fetcher],
                              timeout=1):
-
-                msg = conn.recv()
-                self._msg_counter[msg.type] += 1
-
-                try:
-                    self._handlers[msg.type](msg)
-                except KeyError:
-                    logger.warning('Unknown message ', msg)
+                self.handle(conn.recv())
 
     def connect(self, nodes: List[Any]) -> None:
         [self._connect(node) for node in nodes]
 
     def _connect(self, node: Node) -> bool:
         if isinstance(node, Analyzer):
-            from_analyzer, node.output = Pipe(duplex=False)
-            self._from_analyzers.append(from_analyzer)
-
             node.input, to_analyzer = Pipe(duplex=False)
             self._to_analyzers.append(to_analyzer)
             self._analyzer_counter[to_analyzer] = 0
+
+            from_analyzer, node.output = Pipe(duplex=False)
+            self._from_analyzers.append(from_analyzer)
 
         elif isinstance(node, Fetcher):
             # Fetcher does not need to listen from Router
@@ -107,9 +100,17 @@ class Router(Thread):
 
         return True
 
-    def _handler_tick(self, msg: Msg) -> None:
-        to_analyzer = self._get_analyzer(msg.symbol)
-        to_analyzer.send(msg)
+    def handle(self, msg: Msg) -> bool:
+        try:
+            handler = self._handlers[msg.type]
+        except KeyError:
+            logger.warning(f'Unknown: {msg}')
+            return False
+
+        handler(msg)
+        self._msg_counter[msg.type] += 1
+
+        return True
 
     def _get_analyzer(self, symbol: str) -> Connection:
         try:
@@ -122,6 +123,10 @@ class Router(Thread):
             self._analyzer_counter[to_analyzer] += 1
 
         return to_analyzer
+
+    def _handler_tick(self, msg: Msg) -> None:
+        to_analyzer = self._get_analyzer(msg.symbol)
+        to_analyzer.send(msg)
 
     def _handler_signal(self, msg: Msg) -> None:
         self._to_broker.send(msg)
@@ -140,21 +145,17 @@ class Router(Thread):
         for to_analyzer in self._to_analyzers:
             to_analyzer.send(Msg('RESET'))
 
-    def _handler_eod(self, _: Msg) -> None:
+    def _handler_quit(self, msg: Msg) -> None:
         self._loop = False
         for node in [*self._to_analyzers, self._to_broker, self._to_ledger]:
-            node.send(Msg('QUIT'))
+            node.send(msg)
 
-    def __del__(self) -> None:
-
+    def print_result(self) -> None:
         tick_cnt = self._msg_counter.get('TICK', 0)
         delay_sec = self._msg_counter.get('EOD', 0) * 1
         elapsed_time = time() - self._start_time
 
-        logger.info(f'Handled: {dict(self._msg_counter)}')
-        logger.info(f'Elapsed: {elapsed_time:.2f} sec '
-                    f'({(elapsed_time - delay_sec) / tick_cnt * 1000:.2f} ms/msg)')
-
-        assert self._msg_counter['TICK'] \
-               == self._msg_counter['SIGNAL'] \
-               == self._msg_counter['ORDER']
+        if tick_cnt > 0:
+            logger.info(f'Handled: {dict(self._msg_counter)}')
+            logger.info(f'Elapsed: {elapsed_time:.2f} sec '
+                        f'({(elapsed_time - delay_sec) / tick_cnt * 1000:.2f} ms/msg)')
