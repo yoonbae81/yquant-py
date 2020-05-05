@@ -20,46 +20,42 @@ class Ledger(Thread):
         self.input: Connection
 
         self._loop: bool = True
-        self._dir: Path = dir
-        self._file: TextIO = None
+        self._file: TextIO = self._create_file(dir)
 
         self._handlers: Dict[str, Callable[[Msg], None]] = {
-            'CASH': self._handler_cash,
             'ORDER': self._handler_order,
+            'CASH': self._handler_cash,
             'QUIT': self._handler_quit,
         }
 
-        logger.debug('Initialized')
-
-    @staticmethod
-    def _open_file(dir: Path) -> TextIO:
-        dir.mkdir(parents=True, exist_ok=True)
-        filename = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
-
-        return dir.joinpath(filename).open('wt')
+    def __del__(self):
+        if self._file and not self._file.close():
+            self._file.close()
 
     def run(self) -> None:
-        logger.debug('Starting...')
-
-        self._file = self._open_file(self._dir)
-        logger.debug(f'Generated file: {self._file.name}...')
-
         while self._loop:
             msg = self.input.recv()
             logger.debug(f'Received: {msg}')
             self._handlers[msg.type](msg)
 
     def _handler_cash(self, msg: Msg) -> None:
-        json.dump({'cash': msg.cash}, self._file)
-        self._file.write('\n')
+        if msg.cash < 0:
+            raise ArithmeticError('Cash should be greater than zero')
+
+        output = json.dumps({'cash': msg.cash})
+        print(output, file=self._file)
 
     def _handler_order(self, msg: Msg) -> None:
-        json.dump(asdict(msg), self._file)
-        self._file.write('\n')
+        output = json.dumps(asdict(msg))
+        print(output, file=self._file)
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
 
-    def __del__(self) -> None:
-        self._file.close()
-        logger.info(f'Result saved in {self._file.name}')
+    @staticmethod
+    def _create_file(dir: Path) -> TextIO:
+        dir.mkdir(parents=True, exist_ok=True)
+        filename = f'{datetime.now():%Y%m%d%H%M%S}.jsonl'
+        logger.debug(f'Preparing file: {filename}')
+
+        return dir.joinpath(filename).open('w')

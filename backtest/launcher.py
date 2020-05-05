@@ -62,3 +62,8 @@ def main():
 
     if validate(**config):
         run(**config)
+
+
+    # assert self._msg_counter['TICK'] \
+    #        == self._msg_counter['SIGNAL'] \
+    #        == self._msg_counter['ORDER']
