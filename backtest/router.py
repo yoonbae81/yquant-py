@@ -67,6 +67,8 @@ class Router(Thread):
                              timeout=1):
                 self.handle(conn.recv())
 
+        self.print_result()
+
     def connect(self, nodes: List[Any]) -> None:
         [self._connect(node) for node in nodes]
 
@@ -158,4 +160,4 @@ class Router(Thread):
         if tick_cnt > 0:
             logger.info(f'Handled: {dict(self._msg_counter)}')
             logger.info(f'Elapsed: {elapsed_time:.2f} sec '
-                        f'({(elapsed_time - delay_sec) / tick_cnt * 1000:.2f} ms/msg)')
+                        f'({(elapsed_time - delay_sec) / tick_cnt * 1000:.2f} ms/tick)')
