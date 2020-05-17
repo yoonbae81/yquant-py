@@ -10,14 +10,13 @@ from backtest.ledger import Ledger
 from backtest.router import Router as Sut
 
 
-def test_init():
-    sut = Sut()
-    assert sut
-
-
 @pytest.fixture(scope='function')
 def sut():
     yield Sut()
+
+
+def test_init(sut):
+    assert sut
 
 
 @pytest.fixture(scope='function')
