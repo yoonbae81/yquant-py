@@ -30,6 +30,7 @@ Backtest
    :target: https://www.gnu.org/licenses/gpl-3.0
    :alt: License: GPL v3
 
+
 Overview
 ========
 
@@ -38,10 +39,9 @@ Backtest is a backtesting_ framework for developing algorithmic trading strategy
 .. _backtesting: https://en.wikipedia.org/wiki/Backtesting
 
 
-
 Requirements
 ============
-- Python 3.8.3
+- `Python <https://www.python.org/>`__ 3.8.3
 - `Numpy <https://numpy.org/>`__ 1.18.0
 - `Requests <https://requests.readthedocs.io/>`__ 2.23.0
 
@@ -49,18 +49,25 @@ Requirements
 Installation
 ============
 
+The quick way:
+
 .. code:: bash
 
     $ pip install backtest
 
+See the install section in the documentation at
+https://backtest.readthedocs.io/en/latest/intro/install.html for more details.
+
+
 Documentation
 =============
 
-Documentation is available online at https://backtest.readthedocs.io/en/latest/ and in the ``docs``
-directory. (languages: English_, 한국어_)
+Documentation is available online at https://backtest.readthedocs.io/en/latest/
+and in the ``docs`` directory. (English_, 한국어_)
 
 .. _English: https://backtest.readthedocs.io/en/latest/
 .. _한국어: https://backtest.readthedocs.io/ko/latest/
+
 
 Support
 =======
