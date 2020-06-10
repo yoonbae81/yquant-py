@@ -2,13 +2,13 @@
 Backtest
 ========
 
-.. image:: https://img.shields.io/pypi/v/backtest.svg
-   :target: https://pypi.org/project/backtest/
-   :alt: Python
-   
 .. image:: https://img.shields.io/pypi/pyversions/backtest.svg
    :target: https://pypi.org/project/backtest/
-   :alt: PyPI
+   :alt: Python
+
+.. image:: https://img.shields.io/pypi/v/backtest.svg
+   :target: https://pypi.org/project/backtest/
+   :alt: PyPi
 
 .. image:: https://github.com/yoonbae81/backtest/workflows/test/badge.svg
    :target: https://github.com/yoonbae81/backtest/actions?query=workflow%3Atest
