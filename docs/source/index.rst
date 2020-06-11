@@ -8,7 +8,6 @@ Backtest
 
    api
 
-
 Indices and tables
 ==================
 
@@ -17,12 +16,11 @@ Indices and tables
 * :ref:`search`
 
 
-
 Usage
 =====
 
 The following will execute the backtest after loading configuration
-file, ``config.json`` in same directory.
+file, ``config.json`` in same directory. Additional information will be added.
 
 .. code:: bash
 
@@ -40,9 +38,10 @@ Sample content of ``config.json``
         "cash": 1000000
     }
 
-
 Testing
 =======
 
 Test codes are located in *tests/* based on
 `PyTest <https://docs.pytest.org/en/latest/>`__ framework.
+
+
