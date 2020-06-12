@@ -1,5 +1,5 @@
 ====================================
-Backtest
+Backtest documentation
 ====================================
 
 .. toctree::
@@ -16,8 +16,8 @@ Indices and tables
 * :ref:`search`
 
 
-Usage
-=====
+Quick start
+===========
 
 The following will execute the backtest after loading configuration
 file, ``config.json`` in same directory. Additional information will be added.
@@ -37,6 +37,50 @@ Sample content of ``config.json``
         "ledger_dir": "ledger",
         "cash": 1000000
     }
+
+
+Basic concepts
+==============
+
+.. toctree::
+    :caption: Basic concepts
+    :hidden:
+
+    topics/architecture
+    topics/fetcher
+    topics/analyzer
+    topics/broker
+    topics/reporter
+
+:doc:`topics/architecture'
+    Architecture
+
+:doc:`topics/fetcher`
+    Fetcher
+
+:doc:`topics/analyzer'
+    Analyzer
+
+:doc:`topics/broker'
+    Broker
+
+:doc:`topics/reporter'
+    Reporter
+
+
+Developing strategy
+===================
+
+.. toctree::
+    :caption: Developing strategy
+    :hidden:
+
+:doc:`topics/jupyter-notebook`
+    testing on `Jupyter Notebook`_
+
+
+
+
 
 Testing
 =======
