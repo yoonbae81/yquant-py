@@ -1,5 +1,5 @@
 ====================================
-Backtest
+Backtest documentation
 ====================================
 
 .. toctree::
@@ -7,7 +7,6 @@ Backtest
    :caption: Contents:
 
    api
-
 
 Indices and tables
 ==================
@@ -17,12 +16,11 @@ Indices and tables
 * :ref:`search`
 
 
-
-Usage
-=====
+Quick start
+===========
 
 The following will execute the backtest after loading configuration
-file, ``config.json`` in same directory.
+file, ``config.json`` in same directory. Additional information will be added.
 
 .. code:: bash
 
@@ -41,8 +39,53 @@ Sample content of ``config.json``
     }
 
 
+Basic concepts
+==============
+
+.. toctree::
+    :caption: Basic concepts
+    :hidden:
+
+    topics/architecture
+    topics/fetcher
+    topics/analyzer
+    topics/broker
+    topics/reporter
+
+:doc:`topics/architecture'
+    Architecture
+
+:doc:`topics/fetcher`
+    Fetcher
+
+:doc:`topics/analyzer'
+    Analyzer
+
+:doc:`topics/broker'
+    Broker
+
+:doc:`topics/reporter'
+    Reporter
+
+
+Developing strategy
+===================
+
+.. toctree::
+    :caption: Developing strategy
+    :hidden:
+
+:doc:`topics/jupyter-notebook`
+    testing on `Jupyter Notebook`_
+
+
+
+
+
 Testing
 =======
 
 Test codes are located in *tests/* based on
 `PyTest <https://docs.pytest.org/en/latest/>`__ framework.
+
+
