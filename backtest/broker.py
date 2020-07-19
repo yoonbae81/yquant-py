@@ -1,11 +1,10 @@
 import logging
-from collections import defaultdict
 from importlib import import_module
 from math import copysign
 from multiprocessing.connection import Connection
 from pathlib import Path
 from threading import Thread
-from typing import Callable, Dict, DefaultDict
+from typing import Callable, DefaultDict
 
 from .data import Msg, Positions
 
@@ -30,7 +29,7 @@ class Broker(Thread):
         self._initial_cash: float = cash
         self._positions: Positions = Positions()
 
-        self._handlers: Dict[str, Callable[[Msg], None]] = {
+        self._handlers: dict[str, Callable[[Msg], None]] = {
             'SIGNAL': self._handler_signal,
             'QUIT': self._handler_quit,
         }

@@ -3,7 +3,7 @@ import json
 import logging
 from multiprocessing import cpu_count
 from pathlib import Path
-from typing import List, Any
+from typing import Any
 
 from .analyzer import Analyzer
 from .broker import Broker
@@ -26,7 +26,7 @@ def run(market: str,
                  for _ in range((cpu_count() or 2) - 1)]
     broker = Broker(market, strategy, cash)
     ledger = Ledger(Path(ledger_dir))
-    nodes: List[Any] = [ledger, broker, *analyzers, fetcher]
+    nodes: list[Any] = [ledger, broker, *analyzers, fetcher]
 
     router = Router()
     router.connect(nodes)

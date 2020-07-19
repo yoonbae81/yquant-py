@@ -5,7 +5,7 @@ from datetime import datetime
 from multiprocessing.connection import Connection
 from pathlib import Path
 from threading import Thread
-from typing import Dict, Callable, TextIO
+from typing import Callable, TextIO
 
 from .data import Msg
 
@@ -22,7 +22,7 @@ class Ledger(Thread):
         self._loop: bool = True
         self._file: TextIO = self._create_file(dir)
 
-        self._handlers: Dict[str, Callable[[Msg], None]] = {
+        self._handlers: dict[str, Callable[[Msg], None]] = {
             'ORDER': self._handler_order,
             'CASH': self._handler_cash,
             'QUIT': self._handler_quit,

@@ -3,7 +3,6 @@ from multiprocessing.connection import Connection
 from pathlib import Path
 from threading import Thread
 from time import sleep
-from typing import List
 
 from .data import Msg
 
@@ -39,7 +38,7 @@ class Fetcher(Thread):
 
         self.output.send(Msg('QUIT'))
 
-    def _get_files(self) -> List[Path]:
+    def _get_files(self) -> list[Path]:
         if self._ticks.is_file():
             return [self._ticks]
 

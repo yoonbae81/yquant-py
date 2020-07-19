@@ -41,7 +41,7 @@ Backtest is a backtesting_ framework for developing algorithmic trading strategy
 
 Requirements
 ============
-- `Python <https://www.python.org/>`__ 3.8.3
+- `Python <https://www.python.org/>`__ 3.9
 - `Numpy <https://numpy.org/>`__ 1.18.0
 - `Requests <https://requests.readthedocs.io/>`__ 2.23.0
 

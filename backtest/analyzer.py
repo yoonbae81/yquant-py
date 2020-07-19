@@ -5,7 +5,7 @@ from importlib import import_module
 from multiprocessing import Process
 from multiprocessing.connection import Connection
 from pathlib import Path
-from typing import Dict, Callable, Set, DefaultDict
+from typing import Callable, DefaultDict
 
 from .data import Timeseries, Msg
 
@@ -21,19 +21,19 @@ class Analyzer(Process):
     def _get_name(cls) -> str:
         return cls.__name__ + str(cls.count)
 
-    def __init__(self, strategy: str) -> None:
+    def __init__(self, strategy_name: str) -> None:
         self.__class__.count += 1
         super().__init__(name=self._get_name())
 
         self.input: Connection
         self.output: Connection
 
-        self._strategy: str = strategy
         self._loop: bool = True
-        self._stoploss: Dict = {}
+        self._strategy_name: str = strategy_name
+        self._stoploss: dict = {}
         self._timeseries: DefaultDict[str, Timeseries] = defaultdict(Timeseries)
 
-        self._handlers: Dict[str, Callable[[Msg], None]] = {
+        self._handlers: dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
             'QUANTITY': self._handler_quantity,
             'RESET': self._handler_reset,
@@ -55,8 +55,8 @@ class Analyzer(Process):
 
     def _load_module(self) -> None:
         global strategy
-        strategy = import_module(f'.{self._strategy}', 'strategy')
-        logger.debug(f'Loaded strategy module: {self._strategy}')
+        strategy = import_module(f'.{self._strategy_name}', 'strategy')
+        logger.debug(f'Loaded strategy module: {self._strategy_name}')
 
     def _handler_tick(self, msg: Msg) -> None:
         ts = self._timeseries[msg.symbol]

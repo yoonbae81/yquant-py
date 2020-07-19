@@ -4,7 +4,7 @@ from multiprocessing.connection import Connection, Pipe, wait
 from pathlib import Path
 from threading import Thread
 from time import time
-from typing import List, Dict, DefaultDict, TypeVar, Callable, Any
+from typing import DefaultDict, TypeVar, Callable, Any
 
 from .analyzer import Analyzer
 from .broker import Broker
@@ -27,10 +27,10 @@ class Router(Thread):
         self._from_fetcher: Connection
 
         # Analyzer
-        self._from_analyzers: List[Connection] = []
-        self._to_analyzers: List[Connection] = []
-        self._analyzer_counter: Dict[Connection, int] = {}
-        self._analyzer_assigned: Dict[str, Connection] = {}
+        self._from_analyzers: list[Connection] = []
+        self._to_analyzers: list[Connection] = []
+        self._analyzer_counter: dict[Connection, int] = {}
+        self._analyzer_assigned: dict[str, Connection] = {}
 
         # Broker
         self._from_broker: Connection
@@ -42,7 +42,7 @@ class Router(Thread):
         # Timer
         self._start_time: float = 0
 
-        self._handlers: Dict[str, Callable[[Msg], None]] = {
+        self._handlers: dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
             'SIGNAL': self._handler_signal,
             'CASH': self._handler_cash,
@@ -69,7 +69,7 @@ class Router(Thread):
 
         self.print_result()
 
-    def connect(self, nodes: List[Any]) -> None:
+    def connect(self, nodes: list[Any]) -> None:
         [self._connect(node) for node in nodes]
 
     def _connect(self, node: Node) -> bool:
