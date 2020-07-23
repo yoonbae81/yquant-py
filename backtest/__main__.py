@@ -1,4 +1,4 @@
 import sys
-from .launcher import main
+from .main import main
 
 sys.exit(main())

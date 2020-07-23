@@ -176,7 +176,7 @@ setup(
     # executes the function `main` from this package when invoked:
     entry_points={  # Optional
         'console_scripts': [
-            'backtest=backtest.launcher:main',
+            'backtest=backtest.main:main',
         ],
     },
 
