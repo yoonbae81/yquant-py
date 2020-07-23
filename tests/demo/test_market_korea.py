@@ -1,6 +1,6 @@
 import pytest
 
-import demo.market.korea as sut
+import backtest.market.korea as sut
 
 
 @pytest.mark.parametrize('input, expected', [
