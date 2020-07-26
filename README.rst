@@ -59,6 +59,17 @@ See the install section in the documentation at
 https://backtest.readthedocs.io/en/latest/intro/install.html for more details.
 
 
+Preparation
+===========
+
+Fetching symbols:
+.. code:: python3
+
+    $ python -m backtest.utils.symbols_krx symbols.json
+    Fetched 2,820 symbols
+    Saved in symbols.json
+
+
 Documentation
 =============
 

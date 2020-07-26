@@ -1,6 +1,5 @@
 # Project specific
 demo/ledger/
-#demo/ticks/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

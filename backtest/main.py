@@ -15,7 +15,7 @@ logger = logging.getLogger(Path(__file__).stem)
 
 
 def validate(**config):
-    required = {'market', 'strategy', 'ticks_dir', 'ledger_dir', 'cash'}
+    required = {'exchanges', 'strategy', 'ticks_dir', 'ledger_dir', 'cash'}
 
     if missing := required - set(config):
         print('Missing: ' + ', '.join(missing))
@@ -30,17 +30,19 @@ def validate(**config):
     return True
 
 
-def run(market: str,
-        strategy: str,
+def run(cash: float,
         ticks_dir: str,
         ledger_dir: str,
-        cash: float = 1_000_000):
+        symbols_file: str,
+        strategy: str,
+        exchanges: list,
+        ):
     logger.info('Started')
 
     fetcher = Fetcher(Path(ticks_dir))
     analyzers = [Analyzer(strategy)
                  for _ in range((cpu_count() or 2) - 1)]
-    broker = Broker(market, strategy, cash)
+    broker = Broker(cash, symbols_file, exchanges, strategy)
     ledger = Ledger(Path(ledger_dir))
     nodes: list[Any] = [ledger, broker, *analyzers, fetcher]
 
@@ -62,8 +64,3 @@ def main():
 
     if validate(**config):
         run(**config)
-
-
-    # assert self._msg_counter['TICK'] \
-    #        == self._msg_counter['SIGNAL'] \
-    #        == self._msg_counter['ORDER']

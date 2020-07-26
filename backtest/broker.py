@@ -1,30 +1,36 @@
+import json
 import logging
 from importlib import import_module
 from math import copysign
 from multiprocessing.connection import Connection
 from pathlib import Path
 from threading import Thread
-from typing import Callable, DefaultDict
+from typing import Callable
 
 from .data import Msg, Positions
 
 logger = logging.getLogger(Path(__file__).stem)
 
-market = None
-strategy = None
-
 
 class Broker(Thread):
 
-    def __init__(self, market: str, strategy: str, cash: float) -> None:
+    def __init__(self, cash: float, symbols_file: str, exchanges: list, strategy_name: str, ) -> None:
         super().__init__(name=self.__class__.__name__)
 
         self.input: Connection
         self.output: Connection
 
+        logger.debug('Loading symbols file...')
+        with Path(symbols_file).open('rt', encoding='utf-8') as f:
+            self.symbols = json.load(f)
+
+        logger.debug('Loading modules...')
+        self.exchanges = {}
+        for exchange in exchanges:
+            self.exchanges[exchange] = import_module(f'{exchange}')
+        self.strategy = import_module(f'{strategy_name}')
+
         self._loop: bool = True
-        self._market: str = market
-        self._strategy: str = strategy
         self._cash: float = cash
         self._initial_cash: float = cash
         self._positions: Positions = Positions()
@@ -39,9 +45,6 @@ class Broker(Thread):
     def run(self):
         logger.debug('Starting...')
 
-        logger.debug('Loading modules...')
-        self._load_modules()
-
         self.output.send(Msg('CASH', cash=self._initial_cash))
 
         while self._loop:
@@ -49,36 +52,31 @@ class Broker(Thread):
             logger.debug(f'Received: {msg}')
             self._handlers[msg.type](msg)
 
-    def _load_modules(self) -> None:
-        global market
-        market = import_module(f'.{self._market}', 'market')
-        logger.debug(f'Loaded market module: {self._market}')
-
-        global strategy
-        strategy = import_module(f'.{self._strategy}', 'strategy')
-        logger.debug(f'Loaded strategy module: {self._strategy}')
+    def _get_exchange(self, symbol):
+        try:
+            return self.exchanges[self.symbols[symbol]['exchange']]
+        except KeyError:
+            logger.warning(f'Unknown symbol: {symbol}')
+            return next(iter(self.exchanges.values()))   # return the first one
 
     def _handler_signal(self, msg: Msg) -> None:
-        quantity = strategy.calc_quantity(
+        quantity = self.strategy.calc_quantity(
             msg.price,
             msg.strength,
             self._cash,
             self._positions)
 
-        exchange = market.get_exchange(msg.symbol)
+        exchange = self._get_exchange(msg.symbol)
 
-        price = market.simulate_price(
-            exchange,
+        price = exchange.simulate_price(
             msg.price,
             quantity)
 
-        commission = market.calc_commission(
-            exchange,
+        commission = exchange.calc_commission(
             price,
             quantity)
 
-        tax = market.calc_tax(
-            exchange,
+        tax = exchange.calc_tax(
             price,
             quantity)
 

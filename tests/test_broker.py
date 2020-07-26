@@ -3,8 +3,12 @@ import pytest
 from backtest.broker import Broker as Sut
 
 
-def test_init():
-    sut = Sut('korea', 'dummy', 1000)
+def test_ctor():
+    sut = Sut(1000,
+              '../demo/symbols.json',
+              ['backtest.exchanges.kospi',
+               'backtest.exchanges.kosdaq',],
+              'backtest.strategies.dummy')
     assert sut
 
 

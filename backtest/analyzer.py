@@ -55,8 +55,8 @@ class Analyzer(Process):
 
     def _load_module(self) -> None:
         global strategy
-        strategy = import_module(f'.{self._strategy_name}', 'strategy')
-        logger.debug(f'Loaded strategy module: {self._strategy_name}')
+        strategy = import_module(f'{self._strategy_name}')
+        logger.debug(f'Loaded strategies module: {self._strategy_name}')
 
     def _handler_tick(self, msg: Msg) -> None:
         ts = self._timeseries[msg.symbol]
