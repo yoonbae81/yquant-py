@@ -5,7 +5,7 @@ from backtest.broker import Broker as Sut
 
 def test_ctor():
     sut = Sut(1000,
-              '../demo/symbols.json',
+              'demo/symbols.json',
               ['backtest.exchanges.kospi',
                'backtest.exchanges.kosdaq',],
               'backtest.strategies.dummy')
