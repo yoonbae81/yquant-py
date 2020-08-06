@@ -44,6 +44,7 @@ class Positions:
         return self._stocks[key]
 
     def total(self) -> float:
+        # todo
         raise NotImplementedError()
 
 
