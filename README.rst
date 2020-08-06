@@ -34,7 +34,7 @@ Backtest
 Overview
 ========
 
-Backtest is a backtesting_ framework for developing algorithmic trading strategy.
+Backtest is a backtesting_ engine for developing algorithmic trading strategy.
 
 .. _backtesting: https://en.wikipedia.org/wiki/Backtesting
 
@@ -62,8 +62,9 @@ https://backtest.readthedocs.io/en/latest/intro/install.html for more details.
 Preparation
 ===========
 
-Fetching symbols:
-.. code:: python3
+Fetching symbols of KOSPI and KOSDAQ exchanges:
+
+.. code:: bash
 
     $ python -m backtest.utils.symbols_krx symbols.json
     Fetched 2,820 symbols
@@ -73,10 +74,9 @@ Fetching symbols:
 Documentation
 =============
 
-Documentation is available online at https://backtest.readthedocs.io/en/latest/
-and in the ``docs`` directory. (English_, 한국어_)
+Documentation is available online_ and in the ``docs`` directory. (also in 한국어_)
 
-.. _English: https://backtest.readthedocs.io/en/latest/
+.. _online: https://backtest.readthedocs.io/en/latest/
 .. _한국어: https://backtest.readthedocs.io/ko/latest/
 
 

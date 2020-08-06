@@ -1,5 +1,6 @@
-numpy
-pytest
-requests
 setuptools
 wheel
+numpy
+requests
+pytest
+pytest-cov

@@ -1,8 +1,9 @@
 import logging
+from pathlib import Path
 
 import numpy as np
 
-logger = logging.getLogger('kospi')
+logger = logging.getLogger(Path(__file__).stem)
 
 RULES = {
     'commission': {

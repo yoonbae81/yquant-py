@@ -42,7 +42,12 @@ def run(cash: float,
     fetcher = Fetcher(Path(ticks_dir))
     analyzers = [Analyzer(strategy)
                  for _ in range((cpu_count() or 2) - 1)]
-    broker = Broker(cash, symbols_file, exchanges, strategy)
+
+    logger.debug('Loading symbols file...')
+    with Path(symbols_file).open('rt', encoding='utf-8') as f:
+        symbols = json.load(f)
+
+    broker = Broker(cash, symbols, exchanges, strategy)
     ledger = Ledger(Path(ledger_dir))
     nodes: list[Any] = [ledger, broker, *analyzers, fetcher]
 

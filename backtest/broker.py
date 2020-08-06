@@ -14,15 +14,11 @@ logger = logging.getLogger(Path(__file__).stem)
 
 class Broker(Thread):
 
-    def __init__(self, cash: float, symbols_file: str, exchanges: list, strategy_name: str, ) -> None:
+    def __init__(self, cash: float, symbols: dict, exchanges: list, strategy_name: str, ) -> None:
         super().__init__(name=self.__class__.__name__)
 
         self.input: Connection
         self.output: Connection
-
-        logger.debug('Loading symbols file...')
-        with Path(symbols_file).open('rt', encoding='utf-8') as f:
-            self.symbols = json.load(f)
 
         logger.debug('Loading modules...')
         self.exchanges = {}
@@ -34,6 +30,7 @@ class Broker(Thread):
         self._cash: float = cash
         self._initial_cash: float = cash
         self._positions: Positions = Positions()
+        self._symbols: dict = symbols
 
         self._handlers: dict[str, Callable[[Msg], None]] = {
             'SIGNAL': self._handler_signal,
@@ -54,7 +51,8 @@ class Broker(Thread):
 
     def _get_exchange(self, symbol):
         try:
-            return self.exchanges[self.symbols[symbol]['exchange']]
+            exchange = self._symbols[symbol]['exchange']
+            return self.exchanges[exchange]
         except KeyError:
             logger.warning(f'Unknown symbol: {symbol}')
             return next(iter(self.exchanges.values()))   # return the first one
@@ -80,7 +78,14 @@ class Broker(Thread):
             price,
             quantity)
 
-        self._cash -= self._calc_total_cost(price, quantity, commission, tax)
+        cost = self._calc_total_cost(
+            price,
+            quantity,
+            commission,
+            tax)
+
+        self._cash -= cost
+
         self._positions[msg.symbol].quantity += quantity
 
         o = Msg("ORDER",

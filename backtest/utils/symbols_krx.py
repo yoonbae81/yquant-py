@@ -19,7 +19,8 @@ def _parse(res):
 
 
 def _fetch(exchange):
-    res = requests.get(URLS[exchange], headers={
+    url = URLS[exchange]
+    res = requests.get(url, headers={
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
         'referer': 'https://finance.daum.net/domestic/all_quotes',
     })
@@ -43,7 +44,7 @@ def run():
     return data
 
 
-def main():
+def _main():
     parser = argparse.ArgumentParser()
     parser.add_argument('output',
                         nargs='?',
@@ -64,4 +65,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    _main()
