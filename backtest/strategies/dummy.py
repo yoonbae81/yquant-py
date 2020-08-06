@@ -6,7 +6,7 @@ from backtest.data import Timeseries, Positions
 logger = logging.getLogger('strategy')
 
 
-# could use ta-lib that downloadable from https://www.lfd.uci.edu/~gohlke/pythonlibs/
+# use ta-lib that downloadable from https://www.lfd.uci.edu/~gohlke/pythonlibs/
 def calc_strength(ts: Timeseries, stoploss: Optional[float] = None) -> int:
     logger.debug('Calculated strength')
     return 2

@@ -14,23 +14,24 @@ logger = logging.getLogger(Path(__file__).stem)
 
 class Broker(Thread):
 
-    def __init__(self, cash: float, symbols: dict, exchanges: list, strategy_name: str, ) -> None:
+    def __init__(self, cash: float, symbols: dict, exchanges: list, calc_quantity) -> None:
         super().__init__(name=self.__class__.__name__)
 
         self.input: Connection
         self.output: Connection
 
+        self.calc_quantity = calc_quantity
+
         logger.debug('Loading modules...')
         self.exchanges = {}
         for exchange in exchanges:
             self.exchanges[exchange] = import_module(f'{exchange}')
-        self.strategy = import_module(f'{strategy_name}')
 
         self._loop: bool = True
         self._cash: float = cash
         self._initial_cash: float = cash
         self._positions: Positions = Positions()
-        self._symbols: dict = symbols
+        self._symbols: dict[str, dict] = symbols
 
         self._handlers: dict[str, Callable[[Msg], None]] = {
             'SIGNAL': self._handler_signal,
@@ -55,10 +56,10 @@ class Broker(Thread):
             return self.exchanges[exchange]
         except KeyError:
             logger.warning(f'Unknown symbol: {symbol}')
-            return next(iter(self.exchanges.values()))   # return the first one
+            return next(iter(self.exchanges.values()))  # return the first one
 
     def _handler_signal(self, msg: Msg) -> None:
-        quantity = self.strategy.calc_quantity(
+        quantity = self.calc_quantity(
             msg.price,
             msg.strength,
             self._cash,
