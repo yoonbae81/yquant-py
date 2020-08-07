@@ -44,7 +44,7 @@ def run():
     return data
 
 
-def _main():
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('output',
                         nargs='?',
@@ -65,4 +65,4 @@ def _main():
 
 
 if __name__ == '__main__':
-    _main()
+    main()

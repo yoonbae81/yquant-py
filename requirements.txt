@@ -1,6 +1,3 @@
 setuptools
-wheel
 numpy
 requests
-pytest
-pytest-cov
