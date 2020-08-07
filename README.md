@@ -8,7 +8,7 @@
 [![Docs](https://readthedocs.org/projects/backtest/badge/?version=latest)](https://backtest.readthedocs.io/latest)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A [backtest](https://en.wikipedia.org/wiki/Backtesting) engine for developing algorithmic trading strategy.
+A [backtest](https://en.wikipedia.org/wiki/Backtesting) engine for developing [algorithmic trading](https://en.wikipedia.org/wiki/Algorithmic_trading) strategy.
 
 
 ## Table of Contents
@@ -25,6 +25,7 @@ A [backtest](https://en.wikipedia.org/wiki/Backtesting) engine for developing al
 ## Installation
 
     $ pip install backtest
+
 
 ## Preparation 
 
@@ -45,13 +46,18 @@ The following will execute the backtest after loading configuration file, `confi
 Sample content of `config.json`
 ```json
 {
-    "market": "korea",
-    "strategy": "dummy",
-    "ticks_dir": "ticks",
-    "ledger_dir": "ledger",
-    "cash": 1000001
+  "cash": 1000000,
+  "ticks_dir": "ticks",
+  "ledger_dir": "ledger",
+  "symbols_file": "symbols.json",
+  "strategy": "backtest.strategies.dummy",
+  "exchanges": [
+    "backtest.exchanges.kospi",
+    "backtest.exchanges.kosdaq"
+  ]
 }
 ```
+
 
 ## Support
 
