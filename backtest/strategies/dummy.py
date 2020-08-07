@@ -1,9 +1,10 @@
 import logging
+from pathlib import Path
 from typing import Optional
 
 from backtest.data import Timeseries, Positions
 
-logger = logging.getLogger('strategy')
+logger = logging.getLogger(Path(__file__).stem)
 
 
 # use ta-lib that downloadable from https://www.lfd.uci.edu/~gohlke/pythonlibs/
