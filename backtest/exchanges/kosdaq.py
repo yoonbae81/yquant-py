@@ -5,15 +5,7 @@ import numpy as np
 
 logger = logging.getLogger(Path(__file__).stem)
 
-RULES = {
-    'commission': {
-        'buy': 0.00015,
-        'sell': 0.00015
-    },
-    'tax': {
-        'buy': 0,
-        'sell': 0.0025
-    },
+DEFAULTS = {
     'price_units': [
         {'price': 1000, 'unit': 1},
         {'price': 5000, 'unit': 5},
@@ -24,26 +16,8 @@ RULES = {
 }
 
 
-def calc_commission(price, quantity) -> float:
-    trade = 'buy' if quantity > 0 else 'sell'
-    rate = RULES['commission'][trade]
-    result = round(price * abs(quantity) * rate)
-    logger.debug(f'Calculated commission')
-
-    return result
-
-
-def calc_tax(price, quantity) -> float:
-    trade = 'buy' if quantity > 0 else 'sell'
-    rate = RULES['tax'][trade]
-    result = round(price * abs(quantity) * rate)
-    logger.debug(f'Calculated tax')
-
-    return result
-
-
 def get_unit(price) -> float:
-    items = RULES['price_units']
+    items = DEFAULTS['price_units']
     for item in items:
         if price < item['price']:
             return item['unit']

@@ -1,6 +1,7 @@
 from collections import defaultdict
 from dataclasses import dataclass, asdict
-from typing import DefaultDict, Optional
+from typing import Optional
+from math import copysign
 
 import numpy as np
 
@@ -30,18 +31,12 @@ class Msg:
                 + f')')
 
 
-@dataclass
-class Position:
-    price: float = 0
-    quantity: float = 0
-
-
 class Timeseries:
     def __init__(self, size: int = 100, keep: int = 30) -> None:
         self._size: int = size
         self._keep: int = keep
         self._watermark: int = -1
-        self._timestamp: int = None
+        self._timestamp: int = 0
         self._data = {'price': np.zeros(size, dtype=float),
                       'quantity': np.zeros(size, dtype=float)}
 
@@ -94,3 +89,42 @@ class Timeseries:
                 f'length={len(self)}, '
                 f'watermark={self._watermark}'
                 f')')
+
+
+@dataclass
+class Position:
+    price: float
+    quantity: float
+
+    # TODO 수량추가 메서드
+
+
+@dataclass
+class Order:
+    symbol: str
+    price: float
+    quantity: float
+    rates: dict
+
+    @property
+    def tax(self) -> float:
+        trade = 'buy' if self.quantity > 0 else 'sell'
+        rate = self.rates['tax'][trade]
+        result = round(self.price * abs(self.quantity) * rate)
+
+        return result
+
+    @property
+    def commission(self) -> float:
+        trade = 'buy' if self.quantity > 0 else 'sell'
+        rate = self.rates['commission'][trade]
+        result = round(self.price * abs(self.quantity) * rate)
+
+        return result
+
+    @property
+    def total_cost(self) -> float:
+        return copysign(1, self.quantity) \
+               * (abs(self.quantity) * self.price
+                  + self.commission
+                  + self.tax)

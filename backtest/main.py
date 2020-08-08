@@ -17,7 +17,7 @@ logger = logging.getLogger(Path(__file__).stem)
 
 
 def validate(**config):
-    required = {'exchanges', 'strategy', 'ticks_dir', 'ledger_dir', 'cash'}
+    required = {'exchanges', 'strategy', 'ticks_dir', 'ledger_dir', 'cash', 'rates'}
 
     if missing := required - set(config):
         print('Missing key(s) in configuration: ' + ', '.join(missing))
@@ -38,6 +38,8 @@ def run(cash: float,
         symbols_file: str,
         strategy: ModuleType,
         exchanges: list,
+        rates: dict,
+        slippage: dict,
         ):
     logger.info('Started')
 
@@ -47,13 +49,14 @@ def run(cash: float,
                           strategy.calc_stoploss)
                  for _ in range((cpu_count() or 2) - 1)]
 
-    logger.debug('Loading symbols file...')
+    logger.debug('Loading utils file...')
     with Path(symbols_file).open('rt', encoding='utf-8') as f:
         symbols = json.load(f)
 
     broker = Broker(cash,
                     symbols,
                     exchanges,
+                    rates,
                     strategy.calc_quantity)
 
     ledger = Ledger(Path(ledger_dir))
@@ -75,10 +78,10 @@ def load_strategy(name: str) -> ModuleType:
     return import_module(name)
 
 
-def main():
+def main(argv: list[str]):
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', default='config.json')
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     with Path(args.config).open('rt', encoding='utf8') as f:
         config = json.load(f)
@@ -93,4 +96,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main(sys.argv[1:]))

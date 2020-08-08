@@ -10,7 +10,7 @@ logger = logging.getLogger(Path(__file__).stem)
 def evaluate(tick_files, ledger_file, benchmark_symbol, factors=[]):
     return {
         'profit': 99,
-        'symbols': {
+        'utils': {
             'A': 79,
             'B': 19
         },

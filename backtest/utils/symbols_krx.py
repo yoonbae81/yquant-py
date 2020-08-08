@@ -18,7 +18,7 @@ def _parse(res):
         yield symbol, name
 
 
-def _fetch(exchange):
+def _fetch(exchange: str) -> dict:
     url = URLS[exchange]
     res = requests.get(url, headers={
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
@@ -31,12 +31,12 @@ def _fetch(exchange):
 
     d = {}
     for symbol, name in _parse(res):
-        d[symbol] = {'exchange': exchange, 'name': name}
+        d[symbol] = {'name': name, 'exchange': exchange}
 
     return d
 
 
-def run():
+def run() -> dict:
     data = {}
     for exchange in URLS:
         data |= _fetch(exchange)
@@ -44,13 +44,13 @@ def run():
     return data
 
 
-def main():
+def main(argv: list[str]):
     parser = argparse.ArgumentParser()
     parser.add_argument('output',
                         nargs='?',
                         type=argparse.FileType('wt', encoding='utf-8'),
                         default=sys.stdout)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     data = run()
 
     json.dump(data,
@@ -65,4 +65,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main(sys.argv[1:]))

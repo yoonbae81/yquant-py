@@ -4,26 +4,6 @@ import backtest.exchanges.kosdaq as sut
 
 
 @pytest.mark.parametrize('input, expected', [
-    ({'price': 10000, 'quantity': 10}, 15),
-    ({'price': 10000, 'quantity': -10}, 15),
-])
-def test_commission(input, expected):
-    actual = sut.calc_commission(**input)
-
-    assert actual == expected
-
-
-@pytest.mark.parametrize('input, expected', [
-    ({'price': 10000, 'quantity': 10}, 0),
-    ({'price': 10000, 'quantity': -10}, 250),
-])
-def test_tax(input, expected):
-    actual = sut.calc_tax(**input)
-
-    assert actual == expected
-
-
-@pytest.mark.parametrize('input, expected', [
     (999, 1),
     (1_000, 5),
     (4_999, 5),

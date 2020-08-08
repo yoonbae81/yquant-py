@@ -1,3 +1,5 @@
 setuptools
 numpy
 requests
+
+pytest

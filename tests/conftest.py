@@ -1,6 +1,6 @@
 import pytest
 
-import backtest.symbols.krx as symbols_krx
+import backtest.utils.symbols_krx as symbols_krx
 
 
 @pytest.fixture(scope="session")
