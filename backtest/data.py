@@ -31,21 +31,9 @@ class Msg:
 
 
 @dataclass
-class Stock:
+class Position:
     price: float = 0
     quantity: float = 0
-
-
-class Positions:
-    def __init__(self) -> None:
-        self._stocks: DefaultDict[str, Stock] = defaultdict(Stock)
-
-    def __getitem__(self, key) -> Stock:
-        return self._stocks[key]
-
-    def total(self) -> float:
-        # todo
-        raise NotImplementedError()
 
 
 class Timeseries:

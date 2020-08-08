@@ -1,13 +1,13 @@
-import json
 import logging
+from collections import defaultdict
 from importlib import import_module
 from math import copysign
 from multiprocessing.connection import Connection
 from pathlib import Path
 from threading import Thread
-from typing import Callable
+from typing import Callable, DefaultDict
 
-from .data import Msg, Positions
+from .data import Msg, Position
 
 logger = logging.getLogger(Path(__file__).stem)
 
@@ -30,7 +30,7 @@ class Broker(Thread):
         self._loop: bool = True
         self._cash: float = cash
         self._initial_cash: float = cash
-        self._positions: Positions = Positions()
+        self._positions: DefaultDict[str, Position] = defaultdict(Position)
         self._symbols: dict[str, dict] = symbols
 
         self._handlers: dict[str, Callable[[Msg], None]] = {

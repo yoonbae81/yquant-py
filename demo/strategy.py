@@ -1,8 +1,9 @@
 import logging
+from collections import defaultdict
 from pathlib import Path
-from typing import Optional
+from typing import Optional, DefaultDict
 
-from backtest.data import Timeseries, Positions
+from backtest.data import Timeseries, Position
 
 logger = logging.getLogger(Path(__file__).stem)
 
@@ -18,6 +19,6 @@ def calc_stoploss(ts: Timeseries, orig: Optional[float] = None) -> float:
     return 1
 
 
-def calc_quantity(price: float, strength: int, cash: float, positions: Positions) -> float:
+def calc_quantity(price: float, strength: int, cash: float, positions: DefaultDict[str, Position]) -> float:
     logger.debug('Calculated quantity')
     return 100
