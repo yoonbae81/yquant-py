@@ -50,7 +50,7 @@ Sample content of `config.json`
   "ticks_dir": "ticks",
   "ledger_dir": "ledger",
   "symbols_file": "symbols.json",
-  "strategy": "backtest.strategies.dummy",
+  "strategy": "strategy",
   "exchanges": [
     "backtest.exchanges.kospi",
     "backtest.exchanges.kosdaq"

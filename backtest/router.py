@@ -4,7 +4,7 @@ from multiprocessing.connection import Connection, Pipe, wait
 from pathlib import Path
 from threading import Thread
 from time import time
-from typing import DefaultDict, TypeVar, Callable, Any
+from typing import DefaultDict, TypeVar, Callable
 
 from .analyzer import Analyzer
 from .broker import Broker
@@ -69,7 +69,7 @@ class Router(Thread):
 
         self.print_result()
 
-    def connect(self, nodes: list[Any]) -> None:
+    def connect(self, nodes: list[Node]) -> None:
         [self._connect(node) for node in nodes]
 
     def _connect(self, node: Node) -> bool:

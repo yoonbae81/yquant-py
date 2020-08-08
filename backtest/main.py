@@ -1,9 +1,11 @@
 import argparse
 import json
 import logging
+import sys
 from importlib import import_module
 from multiprocessing import cpu_count
 from pathlib import Path
+from types import ModuleType
 
 from .analyzer import Analyzer
 from .broker import Broker
@@ -34,18 +36,15 @@ def run(cash: float,
         ticks_dir: str,
         ledger_dir: str,
         symbols_file: str,
-        strategy: str,
+        strategy: ModuleType,
         exchanges: list,
         ):
     logger.info('Started')
 
     fetcher = Fetcher(Path(ticks_dir))
 
-    logger.debug('Loading strategy module...')
-    strategy_module = import_module(strategy)
-
-    analyzers = [Analyzer(strategy_module.calc_strength,
-                          strategy_module.calc_stoploss)
+    analyzers = [Analyzer(strategy.calc_strength,
+                          strategy.calc_stoploss)
                  for _ in range((cpu_count() or 2) - 1)]
 
     logger.debug('Loading symbols file...')
@@ -55,7 +54,7 @@ def run(cash: float,
     broker = Broker(cash,
                     symbols,
                     exchanges,
-                    strategy_module.calc_quantity)
+                    strategy.calc_quantity)
 
     ledger = Ledger(Path(ledger_dir))
 
@@ -69,6 +68,13 @@ def run(cash: float,
     [node.join() for node in reversed(nodes)]
 
 
+def load_strategy(name: str) -> ModuleType:
+    sys.path.insert(0, '.')
+    logger.debug('Loading strategy module...')
+
+    return import_module(name)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--config', default='config.json')
@@ -77,5 +83,14 @@ def main():
     with Path(args.config).open('rt', encoding='utf8') as f:
         config = json.load(f)
 
+    # TODO strategy 모듈을 run에 this로 전달해도 실행하게끔
+
+    strategy = load_strategy(config['strategy'])
+    config['strategy'] = strategy
+
     if validate(**config):
         run(**config)
+
+
+if __name__ == '__main__':
+    main()
