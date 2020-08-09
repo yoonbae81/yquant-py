@@ -1,6 +1,7 @@
 from collections import defaultdict
 from dataclasses import dataclass, asdict
-from typing import DefaultDict, Optional
+from typing import Optional
+from multiprocessing import Value
 
 import numpy as np
 
@@ -30,29 +31,12 @@ class Msg:
                 + f')')
 
 
-@dataclass
-class Stock:
-    price: float = 0
-    quantity: float = 0
-
-
-class Positions:
-    def __init__(self) -> None:
-        self._stocks: DefaultDict[str, Stock] = defaultdict(Stock)
-
-    def __getitem__(self, key) -> Stock:
-        return self._stocks[key]
-
-    def total(self) -> float:
-        raise NotImplementedError()
-
-
 class Timeseries:
     def __init__(self, size: int = 100, keep: int = 30) -> None:
         self._size: int = size
         self._keep: int = keep
         self._watermark: int = -1
-        self._timestamp: int = None
+        self._timestamp: int = 0
         self._data = {'price': np.zeros(size, dtype=float),
                       'quantity': np.zeros(size, dtype=float)}
 
@@ -105,3 +89,23 @@ class Timeseries:
                 f'length={len(self)}, '
                 f'watermark={self._watermark}'
                 f')')
+
+
+@dataclass
+class Position:
+    price: float = 0
+    quantity: float = 0
+    stoploss: float = 0
+
+    def add(self, price, quantity) -> None:
+        if quantity > 0:  # opened additional positions
+            orig_price = self.price
+            orig_quantity = self.quantity
+
+            self.price = (orig_price * orig_quantity +
+                          price * quantity) / \
+                         (orig_quantity + quantity)
+            self.quantity += quantity
+
+        else:  # closed positions
+            self.quantity += quantity

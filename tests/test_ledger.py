@@ -62,7 +62,7 @@ def test_handler_cash_error(tmp_path, input, expected):
 def test_handler_order(tmp_path, input):
     sut = Sut(tmp_path)
     with patch.object(sut, '_file', new_callable=StringIO) as mock_file:
-        sut._handler_order(input)
+        sut._handler_fill(input)
         output = json.loads(mock_file.getvalue())
 
     assert output['symbol'] == input.symbol

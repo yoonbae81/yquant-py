@@ -27,11 +27,10 @@ class Fetcher(Thread):
             for i, line in enumerate(file.open('rt').readlines(), 1):
                 try:
                     msg = self._parse(line)
+                    self.output.send(msg)
 
                 except ValueError:
                     logger.warning(f'{file.name} line {i} [{line.strip()}]')
-
-                self.output.send(msg)
 
             sleep(1)
             self.output.send(Msg('EOF'))  # End of file

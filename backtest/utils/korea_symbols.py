@@ -5,8 +5,8 @@ import sys
 import requests
 
 URLS = {
-    'kospi': 'https://finance.daum.net/api/quotes/stocks?market=KOSPI',
-    'kosdaq': 'https://finance.daum.net/api/quotes/stocks?market=KOSDAQ'
+    'KOSPI': 'https://finance.daum.net/api/quotes/stocks?market=KOSPI',
+    'KOSDAQ': 'https://finance.daum.net/api/quotes/stocks?market=KOSDAQ'
 }
 
 
@@ -18,8 +18,8 @@ def _parse(res):
         yield symbol, name
 
 
-def _fetch(exchange):
-    url = URLS[exchange]
+def _fetch(market: str) -> dict:
+    url = URLS[market]
     res = requests.get(url, headers={
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
         'referer': 'https://finance.daum.net/domestic/all_quotes',
@@ -31,12 +31,12 @@ def _fetch(exchange):
 
     d = {}
     for symbol, name in _parse(res):
-        d[symbol] = {'exchange': exchange, 'name': name}
+        d[symbol] = {'name': name, 'market': market}
 
     return d
 
 
-def run():
+def run() -> dict:
     data = {}
     for exchange in URLS:
         data |= _fetch(exchange)
@@ -44,13 +44,13 @@ def run():
     return data
 
 
-def _main():
+def main(argv: list[str]):
     parser = argparse.ArgumentParser()
     parser.add_argument('output',
                         nargs='?',
                         type=argparse.FileType('wt', encoding='utf-8'),
                         default=sys.stdout)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     data = run()
 
     json.dump(data,
@@ -65,4 +65,4 @@ def _main():
 
 
 if __name__ == '__main__':
-    _main()
+    sys.exit(main(sys.argv[1:]))

@@ -4,7 +4,7 @@ from multiprocessing.connection import Connection, Pipe, wait
 from pathlib import Path
 from threading import Thread
 from time import time
-from typing import DefaultDict, TypeVar, Callable, Any
+from typing import DefaultDict, TypeVar, Callable
 
 from .analyzer import Analyzer
 from .broker import Broker
@@ -44,9 +44,9 @@ class Router(Thread):
 
         self._handlers: dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
-            'SIGNAL': self._handler_signal,
-            'CASH': self._handler_cash,
             'ORDER': self._handler_order,
+            'CASH': self._handler_cash,
+            'FILL': self._handler_fill,
             'QUANTITY': self._handler_quantity,
             'EOF': self._handler_eof,
             'QUIT': self._handler_quit,
@@ -69,10 +69,7 @@ class Router(Thread):
 
         self.print_result()
 
-    def connect(self, nodes: list[Any]) -> None:
-        [self._connect(node) for node in nodes]
-
-    def _connect(self, node: Node) -> bool:
+    def connect(self, node: Node) -> bool:
         if isinstance(node, Analyzer):
             node.input, to_analyzer = Pipe(duplex=False)
             self._to_analyzers.append(to_analyzer)
@@ -130,13 +127,13 @@ class Router(Thread):
         to_analyzer = self._get_analyzer(msg.symbol)
         to_analyzer.send(msg)
 
-    def _handler_signal(self, msg: Msg) -> None:
+    def _handler_order(self, msg: Msg) -> None:
         self._to_broker.send(msg)
 
     def _handler_cash(self, msg: Msg) -> None:
         self._to_ledger.send(msg)
 
-    def _handler_order(self, msg: Msg) -> None:
+    def _handler_fill(self, msg: Msg) -> None:
         self._to_ledger.send(msg)
 
     def _handler_quantity(self, msg: Msg) -> None:
