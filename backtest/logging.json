@@ -14,7 +14,7 @@
     }
   },
   "loggers": {
-    "__main__": {
+    "main": {
       "level": "DEBUG",
       "handlers": [
         "console"

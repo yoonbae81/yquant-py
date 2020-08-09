@@ -1,4 +1,5 @@
 import logging
+from copy import copy
 from enum import IntEnum
 from math import copysign
 from pathlib import Path
@@ -62,19 +63,19 @@ class KoreaExchange:
         self.slippage_mean = slippage_mean
         self.slippage_stdev = slippage_stdev
 
-    def order(self, symbol: str, price: float, quantity: float) -> Msg:
-        market: str = self._get_market(symbol)
-        trade: Trade = Trade.BUY if quantity >= 0 else Trade.Sell
-        slippage: float = self._simulate_slippage(market, trade, price)
+    def execute_order(self, order: Msg) -> Msg:
+        market: str = self._get_market(order.symbol)
+        trade: Trade = Trade.BUY if order.quantity >= 0 else Trade.Sell
+        slippage: float = self._simulate_slippage(market, trade, order.price)
 
-        msg: Msg = Msg('FILL', symbol)
-        msg.price = price + slippage
-        msg.quantity = quantity
-        msg.tax = self._calc_tax(trade, price, quantity)
-        msg.commission = self._calc_commission(trade, price, quantity)
-        msg.slippage = slippage
+        fill: Msg = copy(order)
+        fill.type = 'FILL'
+        fill.price += slippage
+        fill.tax = self._calc_tax(trade, fill.price, fill.quantity)
+        fill.commission = self._calc_commission(trade, fill.price, fill.quantity)
+        fill.slippage = slippage
 
-        return msg
+        return fill
 
     def _get_market(self, symbol: str, default: str = 'KOSDAQ') -> str:
         try:

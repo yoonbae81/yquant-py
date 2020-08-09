@@ -3,7 +3,7 @@ import json
 import logging
 import sys
 from importlib import import_module
-from multiprocessing import cpu_count
+from multiprocessing import cpu_count, Value
 from pathlib import Path
 from types import ModuleType
 
@@ -18,9 +18,9 @@ logger = logging.getLogger(Path(__file__).stem)
 
 DEFAULTS = {
     'cash': 1_000_000,
-    'ticks_dir': 'ticks',
-    'ledger_dir': 'ledger',
-    'symbols_json': 'symbols.json',
+    'ticks': './ticks',
+    'ledger': './ledger',
+    'symbolsn': './symbols.json',
     'strategy': 'strategy',
     'exchange': 'backtest.exchanges.korea_exchange'
 }
@@ -42,23 +42,32 @@ def validate(**config):
     return True
 
 
-def run(config: dict, strategy: ModuleType):
-    logger.info('Started')
+def run(config: dict):
+    config = DEFAULTS | config
+    logger.info('Starting')
+    logger.debug(f'config: {config}')
 
-    fetcher = Fetcher(Path(config['ticks_dir']))
+    sys.path.insert(0, '.')
+    logger.debug('Loading strategy module...')
+    strategy = import_module(config['strategy'])
 
-    analyzers = [Analyzer(strategy.calc_strength,
+    logger.debug('Loading exchange module...')
+    exchange: Exchange = load_exchange(config['exchange'], config['symbolsn'])
+
+    cash = Value('d', config['cash'])
+
+    fetcher = Fetcher(Path(config['ticks']))
+
+    analyzers = [Analyzer(cash,
+                          strategy.calc_strength,
                           strategy.calc_stoploss)
                  for _ in range((cpu_count() or 2) - 1)]
 
-    logger.debug('Loading exchange module...')
-    exchange: Exchange = load_exchange(config['exchange'], config['symbols_json'])
-
-    broker = Broker(config['cash'],
+    broker = Broker(cash,
                     exchange,
                     strategy.calc_quantity)
 
-    ledger = Ledger(Path(config['ledger_dir']))
+    ledger = Ledger(Path(config['ledger']))
 
     nodes: list = [ledger, broker, *analyzers, fetcher]
 
@@ -76,6 +85,7 @@ def load_exchange(exchange_path: str, symbols_path: str) -> Exchange:
 
     exchange_module = import_module(exchange_path)
 
+    # TODO Generalize ctor's name
     return exchange_module.KoreaExchange(symbols)
 
 
@@ -87,14 +97,8 @@ def main(argv: list[str]):
     with Path(args.config).open('rt', encoding='utf8') as f:
         config: dict = json.load(f)
 
-    config = DEFAULTS | config
-
-    sys.path.insert(0, '.')
-    logger.debug('Loading strategy module...')
-    strategy = import_module(config['strategy'])
-
     # if validate(**config):
-    run(config, strategy)
+    run(config)
 
 
 if __name__ == '__main__':
