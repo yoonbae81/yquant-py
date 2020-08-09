@@ -1,7 +1,6 @@
 import logging
 import os
 from collections import defaultdict
-from importlib import import_module
 from multiprocessing import Process, Value
 from multiprocessing.connection import Connection
 from pathlib import Path
@@ -21,7 +20,7 @@ class Analyzer(Process):
     def _get_name(cls) -> str:
         return cls.__name__ + str(cls.count)
 
-    def __init__(self, cash: Value, calc_strength, calc_stoploss) -> None:
+    def __init__(self, cash: Value, calc_strength, calc_stoploss, calc_quantity):
         self.__class__.count += 1
         super().__init__(name=self._get_name())
 
@@ -29,6 +28,7 @@ class Analyzer(Process):
         self.initial_cash: float = cash.value
         self.calc_strength = calc_strength
         self.calc_stoploss = calc_stoploss
+        self.calc_quantity = calc_quantity
 
         self.input: Connection
         self.output: Connection
@@ -67,13 +67,19 @@ class Analyzer(Process):
             ts,
             self._stoploss.get(msg.symbol, None))
 
-        s = Msg('SIGNAL',
-                symbol=msg.symbol,
-                price=msg.price,
-                strength=strength,
-                timestamp=msg.timestamp)
+        order = Msg('ORDER',
+                    symbol=msg.symbol,
+                    price=msg.price,
+                    strength=strength,
+                    timestamp=msg.timestamp)
 
-        self.output.send(s)
+        order.quantity = self.calc_quantity(
+            msg.price,
+            msg.strength,
+            self.initial_cash,
+            self.cash.value)
+
+        self.output.send(order)
 
     def _handler_quantity(self, msg: Msg) -> None:
         if msg.quantity == 0 and msg.symbol in self._stoploss:

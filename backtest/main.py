@@ -60,12 +60,12 @@ def run(config: dict):
 
     analyzers = [Analyzer(cash,
                           strategy.calc_strength,
-                          strategy.calc_stoploss)
+                          strategy.calc_stoploss,
+                          strategy.calc_quantity)
                  for _ in range((cpu_count() or 2) - 1)]
 
     broker = Broker(cash,
-                    exchange,
-                    strategy.calc_quantity)
+                    exchange)
 
     ledger = Ledger(Path(config['ledger']))
 

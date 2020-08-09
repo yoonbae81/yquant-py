@@ -97,20 +97,5 @@ class Position:
     stoploss: float = 0
     quantity: float = 0
 
-
-class Asset:
-    def __init__(self, cash: Value):
-        self.cash = cash
-        self.initial_cash: float = cash.value
-
-        self.positions: dict[str, Position] = defaultdict(Position)
-
-    @property
-    def current_cash(self):
-        return self.cash.value
-
     # TODO 수량추가 메서드
 
-    @property
-    def exposed_risk(self):
-        return max(0, self.initial_cash - self.cash.value)

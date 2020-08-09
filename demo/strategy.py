@@ -19,6 +19,6 @@ def calc_stoploss(ts: Timeseries, orig: Optional[float] = None) -> float:
     return 1
 
 
-def calc_quantity(price: float, strength: int, cash: float, positions: DefaultDict[str, Position]) -> float:
+def calc_quantity(price: float, strength: int, initial_cash: float, cash: float) -> float:
     logger.debug('Calculated quantity')
     return 100

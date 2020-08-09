@@ -44,7 +44,7 @@ class Router(Thread):
 
         self._handlers: dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
-            'SIGNAL': self._handler_signal,
+            'ORDER': self._handler_order,
             'CASH': self._handler_cash,
             'FILL': self._handler_fill,
             'QUANTITY': self._handler_quantity,
@@ -127,7 +127,7 @@ class Router(Thread):
         to_analyzer = self._get_analyzer(msg.symbol)
         to_analyzer.send(msg)
 
-    def _handler_signal(self, msg: Msg) -> None:
+    def _handler_order(self, msg: Msg) -> None:
         self._to_broker.send(msg)
 
     def _handler_cash(self, msg: Msg) -> None:
