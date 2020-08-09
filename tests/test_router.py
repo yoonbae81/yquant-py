@@ -34,8 +34,8 @@ def nodes():
 
 
 def test_connect(sut, nodes):
-    sut.connect(nodes.values())
-    sut.connect((sut,))  # Router will ignore connection to router
+    [sut.connect(node) for node in nodes.values()]
+    sut.connect(sut)  # Router will ignore connection to router
 
 
 def test_connect_error(sut):
@@ -44,7 +44,7 @@ def test_connect_error(sut):
 
 
 def test_get_analyzers(sut, nodes):
-    sut.connect(nodes.values())
+    [sut.connect(node) for node in nodes.values()]
 
     assert sut._get_analyzer('A') == sut._to_analyzers[0]
     assert sut._get_analyzer('B') == sut._to_analyzers[1]
@@ -56,18 +56,18 @@ def test_get_analyzers(sut, nodes):
     (Msg('TICK', symbol='A'), 'Analyzer1'),
     (Msg('SIGNAL'), 'Broker'),
     (Msg('CASH'), 'Ledger'),
-    (Msg('ORDER'), 'Ledger'),
+    (Msg('FILL'), 'Ledger'),
     (Msg('QUANTITY', symbol='A'), 'Analyzer1'),
 ])
 def test_handler_msg(sut, nodes, msg, target):
-    sut.connect(nodes.values())
+    [sut.connect(node) for node in nodes.values()]
     sut.handle(msg)
 
     assert nodes[target].input.recv() == msg
 
 
 def test_handler_eof(sut, nodes):
-    sut.connect(nodes.values())
+    [sut.connect(node) for node in nodes.values()]
     sut.handle(Msg('EOF'))
 
     for t in ['Analyzer1', 'Analyzer2', 'Analyzer3']:
@@ -76,7 +76,7 @@ def test_handler_eof(sut, nodes):
 
 def test_handler_quit(sut, nodes):
     del nodes['Fetcher']
-    sut.connect(nodes.values())
+    [sut.connect(node) for node in nodes.values()]
 
     msg = Msg('QUIT')
     sut.handle(msg)

@@ -1,7 +1,6 @@
 from collections import defaultdict
 from dataclasses import dataclass, asdict
 from typing import Optional
-from math import copysign
 
 import numpy as np
 
@@ -98,33 +97,3 @@ class Position:
 
     # TODO 수량추가 메서드
 
-
-@dataclass
-class Order:
-    symbol: str
-    price: float
-    quantity: float
-    rates: dict
-
-    @property
-    def tax(self) -> float:
-        trade = 'buy' if self.quantity > 0 else 'sell'
-        rate = self.rates['tax'][trade]
-        result = round(self.price * abs(self.quantity) * rate)
-
-        return result
-
-    @property
-    def commission(self) -> float:
-        trade = 'buy' if self.quantity > 0 else 'sell'
-        rate = self.rates['commission'][trade]
-        result = round(self.price * abs(self.quantity) * rate)
-
-        return result
-
-    @property
-    def total_cost(self) -> float:
-        return copysign(1, self.quantity) \
-               * (abs(self.quantity) * self.price
-                  + self.commission
-                  + self.tax)

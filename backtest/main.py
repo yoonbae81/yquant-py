@@ -12,8 +12,18 @@ from .broker import Broker
 from .fetcher import Fetcher
 from .ledger import Ledger
 from .router import Router
+from .exchanges import Exchange
 
 logger = logging.getLogger(Path(__file__).stem)
+
+DEFAULTS = {
+    'cash': 1_000_000,
+    'ticks_dir': 'ticks',
+    'ledger_dir': 'ledger',
+    'symbols_json': 'symbols.json',
+    'strategy': 'strategy',
+    'exchange': 'backtest.exchanges.korea_exchange'
+}
 
 
 def validate(**config):
@@ -32,50 +42,41 @@ def validate(**config):
     return True
 
 
-def run(cash: float,
-        ticks_dir: str,
-        ledger_dir: str,
-        symbols_file: str,
-        strategy: ModuleType,
-        exchanges: list,
-        rates: dict,
-        slippage: dict,
-        ):
+def run(config: dict, strategy: ModuleType):
     logger.info('Started')
 
-    fetcher = Fetcher(Path(ticks_dir))
+    fetcher = Fetcher(Path(config['ticks_dir']))
 
     analyzers = [Analyzer(strategy.calc_strength,
                           strategy.calc_stoploss)
                  for _ in range((cpu_count() or 2) - 1)]
 
-    logger.debug('Loading utils file...')
-    with Path(symbols_file).open('rt', encoding='utf-8') as f:
-        symbols = json.load(f)
+    logger.debug('Loading exchange module...')
+    exchange: Exchange = load_exchange(config['exchange'], config['symbols_json'])
 
-    broker = Broker(cash,
-                    symbols,
-                    exchanges,
-                    rates,
+    broker = Broker(config['cash'],
+                    exchange,
                     strategy.calc_quantity)
 
-    ledger = Ledger(Path(ledger_dir))
+    ledger = Ledger(Path(config['ledger_dir']))
 
     nodes: list = [ledger, broker, *analyzers, fetcher]
 
     router = Router()
-    router.connect(nodes)
+    [router.connect(node) for node in nodes]
 
     nodes.insert(0, router)
     [node.start() for node in nodes]
     [node.join() for node in reversed(nodes)]
 
 
-def load_strategy(name: str) -> ModuleType:
-    sys.path.insert(0, '.')
-    logger.debug('Loading strategy module...')
+def load_exchange(exchange_path: str, symbols_path: str) -> Exchange:
+    with Path(symbols_path).open('rt', encoding='utf-8') as f:
+        symbols = json.load(f)
 
-    return import_module(name)
+    exchange_module = import_module(exchange_path)
+
+    return exchange_module.KoreaExchange(symbols)
 
 
 def main(argv: list[str]):
@@ -84,15 +85,16 @@ def main(argv: list[str]):
     args = parser.parse_args(argv)
 
     with Path(args.config).open('rt', encoding='utf8') as f:
-        config = json.load(f)
+        config: dict = json.load(f)
 
-    # TODO strategy 모듈을 run에 this로 전달해도 실행하게끔
+    config = DEFAULTS | config
 
-    strategy = load_strategy(config['strategy'])
-    config['strategy'] = strategy
+    sys.path.insert(0, '.')
+    logger.debug('Loading strategy module...')
+    strategy = import_module(config['strategy'])
 
-    if validate(**config):
-        run(**config)
+    # if validate(**config):
+    run(config, strategy)
 
 
 if __name__ == '__main__':

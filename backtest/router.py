@@ -46,7 +46,7 @@ class Router(Thread):
             'TICK': self._handler_tick,
             'SIGNAL': self._handler_signal,
             'CASH': self._handler_cash,
-            'ORDER': self._handler_order,
+            'FILL': self._handler_fill,
             'QUANTITY': self._handler_quantity,
             'EOF': self._handler_eof,
             'QUIT': self._handler_quit,
@@ -69,10 +69,7 @@ class Router(Thread):
 
         self.print_result()
 
-    def connect(self, nodes: list[Node]) -> None:
-        [self._connect(node) for node in nodes]
-
-    def _connect(self, node: Node) -> bool:
+    def connect(self, node: Node) -> bool:
         if isinstance(node, Analyzer):
             node.input, to_analyzer = Pipe(duplex=False)
             self._to_analyzers.append(to_analyzer)
@@ -136,7 +133,7 @@ class Router(Thread):
     def _handler_cash(self, msg: Msg) -> None:
         self._to_ledger.send(msg)
 
-    def _handler_order(self, msg: Msg) -> None:
+    def _handler_fill(self, msg: Msg) -> None:
         self._to_ledger.send(msg)
 
     def _handler_quantity(self, msg: Msg) -> None:

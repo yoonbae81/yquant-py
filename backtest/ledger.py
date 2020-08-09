@@ -23,7 +23,7 @@ class Ledger(Thread):
         self._file: TextIO = self._create_file(dir)
 
         self._handlers: dict[str, Callable[[Msg], None]] = {
-            'ORDER': self._handler_order,
+            'FILL': self._handler_fill,
             'CASH': self._handler_cash,
             'QUIT': self._handler_quit,
         }
@@ -45,7 +45,7 @@ class Ledger(Thread):
         output = json.dumps({'cash': msg.cash})
         print(output, file=self._file)
 
-    def _handler_order(self, msg: Msg) -> None:
+    def _handler_fill(self, msg: Msg) -> None:
         output = json.dumps(asdict(msg))
         print(output, file=self._file)
 

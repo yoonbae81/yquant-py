@@ -2,42 +2,7 @@
   "cash": 1000000,
   "ticks_dir": "ticks",
   "ledger_dir": "ledger",
-  "symbols_file": "symbols.json",
+  "symbols_json": "symbols.json",
   "strategy": "strategy",
-  "exchanges": [
-    "backtest.exchanges.kospi",
-    "backtest.exchanges.kosdaq"
-  ],
-  "rates": {
-    "tax": {
-      "buy": 0,
-      "sell": 0.0025
-    },
-    "commission": {
-      "buy": 0.00015,
-      "sell": 0.00015
-    }
-  },
-  "slippage": {
-    "mean": 0.5,
-    "stdev": 0.7,
-    "price_unit": {
-      "kospi": [
-        { "price": 1000, "unit": 1 },
-        { "price": 5000, "unit": 5 },
-        { "price": 10000, "unit": 10 },
-        { "price": 50000, "unit": 50 },
-        { "price": 100000, "unit": 100 },
-        { "price": 500000, "unit": 500 },
-        { "price": 999999999, "unit": 1000 }
-      ],
-      "kosdaq": [
-        { "price": 1000, "unit": 1 },
-        { "price": 5000, "unit": 5 },
-        { "price": 10000, "unit": 10 },
-        { "price": 50000, "unit": 50 },
-        { "price": 999999999, "unit": 100 }
-      ]
-    }
-  }
+  "exchange": "backtest.exchanges.korea_exchange"
 }

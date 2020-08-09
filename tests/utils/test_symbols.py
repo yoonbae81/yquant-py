@@ -2,9 +2,9 @@ import pytest
 
 
 @pytest.mark.parametrize('symbol, record', [
-    ('005930', {'exchange': 'kospi',
+    ('005930', {'market': 'KOSPI',
                 'name': '삼성전자'}),
-    ('091990', {'exchange': 'kosdaq',
+    ('091990', {'market': 'KOSDAQ',
                 'name': '셀트리온헬스케어'}),
 ])
 def test_record(symbols, symbol, record):

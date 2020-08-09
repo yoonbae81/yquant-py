@@ -5,8 +5,8 @@ import sys
 import requests
 
 URLS = {
-    'kospi': 'https://finance.daum.net/api/quotes/stocks?market=KOSPI',
-    'kosdaq': 'https://finance.daum.net/api/quotes/stocks?market=KOSDAQ'
+    'KOSPI': 'https://finance.daum.net/api/quotes/stocks?market=KOSPI',
+    'KOSDAQ': 'https://finance.daum.net/api/quotes/stocks?market=KOSDAQ'
 }
 
 
@@ -18,8 +18,8 @@ def _parse(res):
         yield symbol, name
 
 
-def _fetch(exchange: str) -> dict:
-    url = URLS[exchange]
+def _fetch(market: str) -> dict:
+    url = URLS[market]
     res = requests.get(url, headers={
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36',
         'referer': 'https://finance.daum.net/domestic/all_quotes',
@@ -31,7 +31,7 @@ def _fetch(exchange: str) -> dict:
 
     d = {}
     for symbol, name in _parse(res):
-        d[symbol] = {'name': name, 'exchange': exchange}
+        d[symbol] = {'name': name, 'market': market}
 
     return d
 
