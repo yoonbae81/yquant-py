@@ -94,8 +94,18 @@ class Timeseries:
 @dataclass
 class Position:
     price: float = 0
-    stoploss: float = 0
     quantity: float = 0
+    stoploss: float = 0
 
-    # TODO 수량추가 메서드
+    def add(self, price, quantity) -> None:
+        if quantity > 0:  # opened additional positions
+            orig_price = self.price
+            orig_quantity = self.quantity
 
+            self.price = (orig_price * orig_quantity +
+                          price * quantity) / \
+                         (orig_quantity + quantity)
+            self.quantity += quantity
+
+        else:  # closed positions
+            self.quantity += quantity

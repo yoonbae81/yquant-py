@@ -54,7 +54,7 @@ def test_get_analyzers(sut, nodes):
 
 @pytest.mark.parametrize('msg, target', [
     (Msg('TICK', symbol='A'), 'Analyzer1'),
-    (Msg('SIGNAL'), 'Broker'),
+    (Msg('ORDER'), 'Broker'),
     (Msg('CASH'), 'Ledger'),
     (Msg('FILL'), 'Ledger'),
     (Msg('QUANTITY', symbol='A'), 'Analyzer1'),

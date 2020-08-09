@@ -1,15 +1,15 @@
-import logging
-from collections import defaultdict
+from logging import getLogger
+from math import copysign
 from multiprocessing import Value
 from multiprocessing.connection import Connection
 from pathlib import Path
 from threading import Thread
-from typing import Callable, DefaultDict
+from typing import Callable
 
-from .data import Msg, Position
+from .data import Msg
 from .exchanges import Exchange
 
-logger = logging.getLogger(Path(__file__).stem)
+logger = getLogger(Path(__file__).stem)
 
 
 class Broker(Thread):
@@ -21,13 +21,10 @@ class Broker(Thread):
         self.initial_cash: float = cash.value
         self.exchange = exchange
 
-        self._loop: bool = True
-
         self.input: Connection
         self.output: Connection
 
-        self.positions: DefaultDict[str, Position] = defaultdict(Position)
-
+        self._loop: bool = True
         self._handlers: dict[str, Callable[[Msg], None]] = {
             'ORDER': self._handler_order,
             'QUIT': self._handler_quit,
@@ -46,24 +43,27 @@ class Broker(Thread):
             self._handlers[msg.type](msg)
 
     def _handler_order(self, msg: Msg) -> None:
-        # self.cash -= order.total_cost
-        # self.positions[msg.symbol].quantity += quantity
-
+        fill = self.exchange.execute_order(msg)
         # A fill is the result of an order execution to buy or sell securities in the market.
-        fill: Msg = self.exchange.execute_order(msg)
-        fill.cash = self.cash.value
+
+        cost = self._calc_order_cost(fill)
+
+        with self.cash.get_lock():
+            self.cash.value -= cost
+            fill.cash = self.cash.value
+
         self.output.send(fill)
 
-        # q: Msg = Msg('QUANTITY',
-        #         symbol=msg.symbol,
-        #         quantity=self._positions[msg.symbol].quantity)
-        # self.output.send(q)
+        self.output.send(
+            Msg('QUANTITY',
+                symbol=fill.symbol, price=fill.price, quantity=fill.quantity))
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
 
-    # def total_cost(self) -> float:
-    #     return copysign(1, self.quantity) \
-    #            * (abs(self.quantity) * self.price
-    #               + self.commission
-    #               + self.tax)
+    @staticmethod
+    def _calc_order_cost(msg: Msg) -> float:
+        return copysign(1, msg.quantity) \
+               * (abs(msg.quantity) * msg.price
+                  + msg.commission
+                  + msg.tax)

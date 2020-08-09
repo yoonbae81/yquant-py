@@ -1,14 +1,14 @@
-import logging
 import os
+from logging import getLogger
 from collections import defaultdict
 from multiprocessing import Process, Value
 from multiprocessing.connection import Connection
 from pathlib import Path
 from typing import Callable, DefaultDict
 
-from .data import Timeseries, Msg
+from .data import Timeseries, Msg, Position
 
-logger = logging.getLogger(Path(__file__).stem)
+logger = getLogger(Path(__file__).stem)
 
 strategy = None
 
@@ -33,10 +33,11 @@ class Analyzer(Process):
         self.input: Connection
         self.output: Connection
 
-        self._loop: bool = True
         self._stoploss: dict[str, float] = {}
-        self._timeseries: DefaultDict[str, Timeseries] = defaultdict(Timeseries)
+        self.positions: dict[str, Position] = {}
+        self.timeseries: DefaultDict[str, Timeseries] = defaultdict(Timeseries)
 
+        self._loop: bool = True
         self._handlers: dict[str, Callable[[Msg], None]] = {
             'TICK': self._handler_tick,
             'QUANTITY': self._handler_quantity,
@@ -56,12 +57,14 @@ class Analyzer(Process):
             self._handlers[msg.type](msg)
 
     def _handler_tick(self, msg: Msg) -> None:
-        ts = self._timeseries[msg.symbol]
+
+        position = self.positions.get(msg.symbol, None)
+
+        ts = self.timeseries[msg.symbol]
         ts += msg
 
-        if msg.symbol in self._stoploss:
-            stoploss_orig = self._stoploss[msg.symbol]
-            self._stoploss[msg.symbol] = self.calc_stoploss(ts, stoploss_orig)
+        if position:
+            position.stoploss = self.calc_stoploss(ts, position.stoploss)
 
         strength = self.calc_strength(
             ts,
@@ -82,15 +85,21 @@ class Analyzer(Process):
         self.output.send(order)
 
     def _handler_quantity(self, msg: Msg) -> None:
-        if msg.quantity == 0 and msg.symbol in self._stoploss:
-            del self._stoploss[msg.symbol]
+        position = self.positions.get(msg.symbol, None)
+
+        if not position:  # newly opened positions
+            position = Position(msg.price, msg.quantity)
+            self.positions[msg.symbol] = position
         else:
-            ts = self._timeseries[msg.symbol]
-            stoploss_orig = self._stoploss.get(msg.symbol, None)
-            self._stoploss[msg.symbol] = self.calc_stoploss(ts, stoploss_orig)
+            position.add(msg.price, msg.quantity)
+
+        if position.quantity == 0:  # closed all positions
+            del self.positions[msg.symbol]
+
+        logger.debug(f'{msg.symbol}: {self.positions.get(msg.symbol, None)}')
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
 
     def _handler_reset(self, _: Msg) -> None:
-        [s.erase() for s in self._timeseries.values()]
+        [s.erase() for s in self.timeseries.values()]
