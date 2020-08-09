@@ -2,7 +2,7 @@
   "cash": 1000000,
   "ticks": "./ticks",
   "ledger": "./ledger",
-  "symbols": "symbols.json",
+  "symbols": "./symbols.json",
   "strategy": "strategy",
   "exchange": "backtest.exchanges.korea_exchange"
 }

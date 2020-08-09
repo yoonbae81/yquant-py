@@ -47,14 +47,11 @@ Sample content of `config.json`
 ```json
 {
   "cash": 1000000,
-  "ticks_dir": "ticks",
-  "ledger_dir": "ledger",
-  "symbols_file": "symbols.json",
+  "ticks": "./ticks",
+  "ledger": "./ledger",
+  "symbols": "./symbols.json",
   "strategy": "strategy",
-  "exchanges": [
-    "backtest.exchanges.kospi",
-    "backtest.exchanges.kosdaq"
-  ]
+  "exchange": "backtest.exchanges.korea_exchange"
 }
 ```
 
