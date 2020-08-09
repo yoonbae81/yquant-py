@@ -2,7 +2,7 @@ import logging
 import os
 from collections import defaultdict
 from importlib import import_module
-from multiprocessing import Process
+from multiprocessing import Process, Value
 from multiprocessing.connection import Connection
 from pathlib import Path
 from typing import Callable, DefaultDict
@@ -21,15 +21,17 @@ class Analyzer(Process):
     def _get_name(cls) -> str:
         return cls.__name__ + str(cls.count)
 
-    def __init__(self, calc_strength, calc_stoploss) -> None:
+    def __init__(self, cash: Value, calc_strength, calc_stoploss) -> None:
         self.__class__.count += 1
         super().__init__(name=self._get_name())
 
+        self.cash = cash
+        self.initial_cash: float = cash.value
+        self.calc_strength = calc_strength
+        self.calc_stoploss = calc_stoploss
+
         self.input: Connection
         self.output: Connection
-
-        self._calc_strength = calc_strength
-        self._calc_stoploss = calc_stoploss
 
         self._loop: bool = True
         self._stoploss: dict[str, float] = {}
@@ -59,9 +61,9 @@ class Analyzer(Process):
 
         if msg.symbol in self._stoploss:
             stoploss_orig = self._stoploss[msg.symbol]
-            self._stoploss[msg.symbol] = self._calc_stoploss(ts, stoploss_orig)
+            self._stoploss[msg.symbol] = self.calc_stoploss(ts, stoploss_orig)
 
-        strength = self._calc_strength(
+        strength = self.calc_strength(
             ts,
             self._stoploss.get(msg.symbol, None))
 
@@ -79,7 +81,7 @@ class Analyzer(Process):
         else:
             ts = self._timeseries[msg.symbol]
             stoploss_orig = self._stoploss.get(msg.symbol, None)
-            self._stoploss[msg.symbol] = self._calc_stoploss(ts, stoploss_orig)
+            self._stoploss[msg.symbol] = self.calc_stoploss(ts, stoploss_orig)
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
