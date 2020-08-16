@@ -7,12 +7,12 @@ from multiprocessing import cpu_count, Value
 from pathlib import Path
 from types import ModuleType
 
-from backtest.analyzer import Analyzer
-from backtest.broker import Broker
-from backtest.fetcher import Fetcher
-from backtest.ledger import Ledger
-from backtest.router import Router
-from backtest.exchanges import Exchange
+from .analyzer import Analyzer
+from .broker import Broker
+from .fetcher import Fetcher
+from .ledger import Ledger
+from .router import Router
+from .exchanges import Exchange
 
 logger = logging.getLogger(Path(__file__).stem)
 
@@ -99,6 +99,8 @@ def main(argv: list[str]):
 
     # if validate(**config):
     run(config)
+
+    return 0
 
 
 if __name__ == '__main__':

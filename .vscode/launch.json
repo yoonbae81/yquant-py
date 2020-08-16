@@ -5,11 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Demo",
+            "name": "Run Demo",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/backtest/main.py",
-            "console": "integratedTerminal",
+            "module": "backtest.main",
             "cwd": "${workspaceFolder}/demo",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
