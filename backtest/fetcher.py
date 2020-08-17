@@ -43,8 +43,7 @@ class Fetcher(Thread):
 
         if self._ticks.is_dir():
             result = [p for p in self._ticks.iterdir()
-                      if p.is_file()
-                      and p.name.endswith('.txt')]
+                      if p.is_file() and p.name.endswith('.txt')]
             return sorted(result)
 
         logger.error(f'Not found: {self._ticks.name}')

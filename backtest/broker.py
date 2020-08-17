@@ -44,7 +44,7 @@ class Broker(Thread):
 
     def _handler_order(self, msg: Msg) -> None:
         fill = self.exchange.execute_order(msg)
-        # A fill is the result of an order execution to buy or sell securities in the market.
+        # The fill is the result of an order execution to buy or sell securities in the market.
 
         cost = self._calc_order_cost(fill)
 
@@ -53,10 +53,10 @@ class Broker(Thread):
             fill.cash = self.cash.value
 
         self.output.send(fill)
-
-        self.output.send(
-            Msg('QUANTITY',
-                symbol=fill.symbol, price=fill.price, quantity=fill.quantity))
+        self.output.send(Msg('QUANTITY',
+                             symbol=fill.symbol,
+                             price=fill.price,
+                             quantity=fill.quantity))
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
@@ -64,6 +64,4 @@ class Broker(Thread):
     @staticmethod
     def _calc_order_cost(msg: Msg) -> float:
         return copysign(1, msg.quantity) \
-               * (abs(msg.quantity) * msg.price
-                  + msg.commission
-                  + msg.tax)
+            * (abs(msg.quantity) * msg.price + msg.commission + msg.tax)

@@ -72,7 +72,8 @@ class KoreaExchange:
         fill.type = 'FILL'
         fill.price += slippage
         fill.tax = self._calc_tax(trade, fill.price, fill.quantity)
-        fill.commission = self._calc_commission(trade, fill.price, fill.quantity)
+        fill.commission = self._calc_commission(
+            trade, fill.price, fill.quantity)
         fill.slippage = slippage
 
         return fill
