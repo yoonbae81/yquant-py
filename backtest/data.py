@@ -98,9 +98,8 @@ class Position:
             orig_price = self.price
             orig_quantity = self.quantity
 
-            self.price = (orig_price * orig_quantity + 
-                          price * quantity) / \
-                         (orig_quantity + quantity)
+            self.price = (orig_price * orig_quantity + price * quantity) \
+                / (orig_quantity + quantity)
             self.quantity += quantity
 
         else:  # closed positions

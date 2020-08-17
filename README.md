@@ -39,26 +39,41 @@ Fetching symbols of KOSPI and KOSDAQ exchanges:
 
 ## Usage
 
-The following will execute the backtest after loading configuration file, `config.json` in same directory.
+The following will execute the backtest with the symbols file, `symbols.json` in the same directory.
 
-    python -m backtest
+    $ python momentum.py -s symbols.json
 
-Sample content of `config.json`
-```json
-{
-  "cash": 1000000,
-  "ticks": "./ticks",
-  "ledger": "./ledger",
-  "symbols": "./symbols.json",
-  "strategy": "strategy",
-  "exchange": "backtest.exchanges.korea_exchange"
-}
+Sample output as follows:
+```
+21:00:43,051 DEBUG    fetcher.py  Initialized
+21:00:43,052 DEBUG    analyzer.py Initialized Analyzer1
+21:00:43,052 DEBUG    analyzer.py Initialized Analyzer2
+21:00:43,052 DEBUG    broker.py   Initialized
+21:00:43,053 DEBUG    ledger.py   Preparing file: ledger/043.jsonl
+21:00:43,053 DEBUG    router.py   Initialized
+21:00:43,054 DEBUG    router.py   Connected to Ledger
+21:00:43,055 DEBUG    router.py   Connected to Broker
+21:00:43,055 DEBUG    router.py   Connected to Analyzer1
+21:00:43,055 DEBUG    router.py   Connected to Analyzer2
+21:00:43,056 DEBUG    router.py   Connected to Fetcher
+21:00:43,057 DEBUG    router.py   Starting...
+21:00:43,057 DEBUG    broker.py   Starting...
+21:00:43,082 DEBUG    fetcher.py  Starting...
+21:00:43,126 INFO     fetcher.py  Loading file: ticks/5.txt
+21:00:43,545 DEBUG    analyzer.py Analyzer2 starting (pid:8628)
+21:00:43,546 DEBUG    analyzer.py Analyzer2 received: Msg', symbol='015760', price=100.0, quantity=2.0, 234512343)
+21:00:43,546 DEBUG    analyzer.py Analyzer2 received: Msg', symbol='015760', price=200.0, quantity=2.0, 234512345)
+21:00:43,546 DEBUG    broker.py   Received: Msg(type='ORDER', symbol='015760', price=100.0, quantity=100, strength=2, timestamp=1234512343)
+...
+21:09:14,057 DEBUG    ledger.py   Received: Msg(type='FILL', symbol='015760', price=200.0, quantity=100, strength=2, cash=130669.0, commission=3, timestamp=1234512345)
+21:09:14,057 DEBUG    analyzer.py 015760: Position(price=150.0, quantity=200, stoploss=0)
+21:09:14,798 INFO     router.py   Elapsed: 1.04 sec (207.18 ms/tick)
 ```
 
 
 ## Support
 
-Please [open an issue](https://github.com/yoonbae82/backtest/issues/new) for support.
+Please [open an issue](https://github.com/yoonbae81/backtest/issues/new) for support.
 
 
 ## Contributing

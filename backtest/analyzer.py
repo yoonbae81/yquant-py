@@ -1,12 +1,13 @@
 import os
-from logging import getLogger
 from collections import defaultdict
+from logging import getLogger
 from multiprocessing import Process, Value
 from multiprocessing.connection import Connection
 from pathlib import Path
 from typing import Callable, DefaultDict
 
-from .data import Timeseries, Msg, Position
+from .data import Msg, Position, Timeseries
+from .strategies import Strategy
 
 logger = getLogger(Path(__file__).stem)
 
@@ -20,7 +21,7 @@ class Analyzer(Process):
     def _get_name(cls) -> str:
         return cls.__name__ + str(cls.count)
 
-    def __init__(self, cash: Value, strategy):
+    def __init__(self, cash: Value, strategy: Strategy):
         self.__class__.count += 1
         super().__init__(name=self._get_name())
 
@@ -31,9 +32,9 @@ class Analyzer(Process):
         self.input: Connection
         self.output: Connection
 
-        self._stoploss: dict[str, float] = {}
-        self.positions: dict[str, Position] = {}
-        self.timeseries: DefaultDict[str, Timeseries] = defaultdict(Timeseries)
+        self.position_dict: DefaultDict[str, Position] = defaultdict(Position)
+        self.timeseries_dict: DefaultDict[str,
+                                          Timeseries] = defaultdict(Timeseries)
 
         self._loop: bool = True
         self._handlers: dict[str, Callable[[Msg], None]] = {
@@ -55,50 +56,30 @@ class Analyzer(Process):
             self._handlers[msg.type](msg)
 
     def _handler_tick(self, msg: Msg) -> None:
-        position = self.positions.get(msg.symbol)
+        timeseries = self.timeseries_dict[msg.symbol]
+        timeseries += msg
 
-        ts = self.timeseries[msg.symbol]
-        ts += msg
+        position = self.position_dict[msg.symbol]
 
-        if position:
-            position.stoploss = self.strategy.calc_stoploss(
-                ts, position.stoploss)
-
-        strength = self.strategy.calc_strength(
-            ts,
-            self._stoploss.get(msg.symbol, None))
-
-        quantity = self.strategy.calc_quantity(
-            msg.price,
-            msg.strength,
-            self.initial_cash,
-            self.cash.value)
-
-        order = Msg('ORDER',
-                    symbol=msg.symbol,
-                    price=msg.price,
-                    quantity=quantity,
-                    strength=strength,
-                    timestamp=msg.timestamp)
-
-        self.output.send(order)
+        if order := self.strategy.handle(msg, self.cash.value, timeseries, position):
+            self.output.send(order)
 
     def _handler_quantity(self, msg: Msg) -> None:
-        position = self.positions.get(msg.symbol, None)
+        position = self.position_dict.get(msg.symbol, None)
 
         if not position:  # newly opened positions
             position = Position(msg.price, msg.quantity)
-            self.positions[msg.symbol] = position
+            self.position_dict[msg.symbol] = position
         else:
             position.add(msg.price, msg.quantity)
 
         if position.quantity == 0:  # closed all positions
-            del self.positions[msg.symbol]
+            del self.position_dict[msg.symbol]
 
-        logger.debug(f'{msg.symbol}: {self.positions.get(msg.symbol, None)}')
+        logger.debug(f'{msg.symbol}: {self.position_dict.get(msg.symbol)}')
 
     def _handler_quit(self, _: Msg) -> None:
         self._loop = False
 
     def _handler_reset(self, _: Msg) -> None:
-        [s.erase() for s in self.timeseries.values()]
+        [s.erase() for s in self.timeseries_dict.values()]

@@ -1,44 +1,66 @@
+import argparse
 import logging
 import json
+import sys
 from pathlib import Path
-from types import SimpleNamespace
 from typing import Optional
 
 import backtest.launcher
-from backtest.data import Timeseries
+from backtest.data import Msg, Timeseries, Position
+from backtest.strategies import Strategy
+from backtest.exchanges import Exchange
 from backtest.exchanges.korea_exchange import KoreaExchange
 
 logger = logging.getLogger(Path(__file__).stem)
 
 
-def calc_strength(ts: Timeseries, stoploss: Optional[float] = None) -> int:
-    """ use ta-lib that downloadable from https://www.lfd.uci.edu/~gohlke/pythonlibs/
-    """
-    logger.debug('Calculated strength')
-    return 2
+class MomentumStrategy():
+    def __init__(self):
+        pass
+
+    def handle(self, msg: Msg, cash: float, timeseries: Timeseries, position: Position) -> Msg:
+        if position.quantity > 0:
+            position.stoploss = self.calc_stoploss(
+                timeseries, position.stoploss)
+
+        strength = self.calc_strength(
+            timeseries,
+            position.stoploss)
+
+        quantity = self.calc_quantity(
+            msg.price,
+            msg.strength,
+            cash)
+
+        order = Msg('ORDER',
+                    symbol=msg.symbol,
+                    price=msg.price,
+                    quantity=quantity,
+                    strength=strength,
+                    timestamp=msg.timestamp)
+
+        return order
+
+    def calc_strength(self, ts: Timeseries, stoploss: Optional[float] = None) -> int:
+        logger.debug('Calculated strength')
+        return 2
+
+    def calc_stoploss(self, ts: Timeseries, orig: Optional[float] = None) -> float:
+        logger.debug('Calculated stoploss')
+        return 1
+
+    def calc_quantity(self, price: float, strength: int, cash: float) -> float:
+        # TODO Required initial cash
+        logger.debug('Calculated quantity')
+        return 100
 
 
-def calc_stoploss(ts: Timeseries, orig: Optional[float] = None) -> float:
-    logger.debug('Calculated stoploss')
-    return 1
-
-
-def calc_quantity(price: float, strength: int, initial_cash: float, cash: float) -> float:
-    logger.debug('Calculated quantity')
-    return 100
-
-
-if __name__ == '__main__':
-    symbols_json = 'symbols.json'
-    with Path(symbols_json).open('rt', encoding='utf-8') as f:
+def main(args):
+    with Path(args.symbols_json).open('rt', encoding='utf-8') as f:
         symbols = json.load(f)
 
-    exchange = KoreaExchange(symbols)
-    strategy = SimpleNamespace(
-        calc_strength=calc_strength,
-        calc_stoploss=calc_stoploss,
-        calc_quantity=calc_quantity
-    )
+    exchange: Exchange = KoreaExchange(symbols)
+    strategy: Strategy = MomentumStrategy()
 
     backtest.launcher.run(
         exchange,
@@ -47,3 +69,11 @@ if __name__ == '__main__':
         'ticks/',
         'ledger/'
     )
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--symbols_json', default='symbols.json')
+    args = parser.parse_args(sys.argv[1:])
+
+    sys.exit(main(args))
