@@ -20,15 +20,13 @@ class Analyzer(Process):
     def _get_name(cls) -> str:
         return cls.__name__ + str(cls.count)
 
-    def __init__(self, cash: Value, calc_strength, calc_stoploss, calc_quantity):
+    def __init__(self, cash: Value, strategy):
         self.__class__.count += 1
         super().__init__(name=self._get_name())
 
         self.cash = cash
         self.initial_cash: float = cash.value
-        self.calc_strength = calc_strength
-        self.calc_stoploss = calc_stoploss
-        self.calc_quantity = calc_quantity
+        self.strategy = strategy
 
         self.input: Connection
         self.output: Connection
@@ -57,30 +55,31 @@ class Analyzer(Process):
             self._handlers[msg.type](msg)
 
     def _handler_tick(self, msg: Msg) -> None:
-
-        position = self.positions.get(msg.symbol, None)
+        position = self.positions.get(msg.symbol)
 
         ts = self.timeseries[msg.symbol]
         ts += msg
 
         if position:
-            position.stoploss = self.calc_stoploss(ts, position.stoploss)
+            position.stoploss = self.strategy.calc_stoploss(
+                ts, position.stoploss)
 
-        strength = self.calc_strength(
+        strength = self.strategy.calc_strength(
             ts,
             self._stoploss.get(msg.symbol, None))
 
-        order = Msg('ORDER',
-                    symbol=msg.symbol,
-                    price=msg.price,
-                    strength=strength,
-                    timestamp=msg.timestamp)
-
-        order.quantity = self.calc_quantity(
+        quantity = self.strategy.calc_quantity(
             msg.price,
             msg.strength,
             self.initial_cash,
             self.cash.value)
+
+        order = Msg('ORDER',
+                    symbol=msg.symbol,
+                    price=msg.price,
+                    quantity=quantity,
+                    strength=strength,
+                    timestamp=msg.timestamp)
 
         self.output.send(order)
 

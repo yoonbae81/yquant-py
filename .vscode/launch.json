@@ -8,11 +8,8 @@
             "name": "Run Demo",
             "type": "python",
             "request": "launch",
-            "module": "backtest.main",
-            "cwd": "${workspaceFolder}/demo",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
-        }
+            "program": "momentum.py",
+            "cwd": "${workspaceFolder}/demo"
+        },
     ]
 }

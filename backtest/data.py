@@ -1,7 +1,5 @@
-from collections import defaultdict
 from dataclasses import dataclass, asdict
 from typing import Optional
-from multiprocessing import Value
 
 import numpy as np
 
@@ -20,15 +18,13 @@ class Msg:
     timestamp: Optional[int] = None
 
     def __repr__(self):
-        l = []
+        pairs = []
         for k, v in asdict(self).items():
             if v:
                 v = f"'{v}'" if isinstance(v, str) else v
-                l.append(f'{k}={v}')
+                pairs.append(f'{k}={v}')
 
-        return (f'{self.__class__.__name__}('
-                + ', '.join(l)
-                + f')')
+        return (f'{self.__class__.__name__}(' + ', '.join(pairs) + ')')
 
 
 class Timeseries:
@@ -102,7 +98,7 @@ class Position:
             orig_price = self.price
             orig_quantity = self.quantity
 
-            self.price = (orig_price * orig_quantity +
+            self.price = (orig_price * orig_quantity + 
                           price * quantity) / \
                          (orig_quantity + quantity)
             self.quantity += quantity

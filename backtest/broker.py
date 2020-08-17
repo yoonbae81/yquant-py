@@ -64,6 +64,4 @@ class Broker(Thread):
     @staticmethod
     def _calc_order_cost(msg: Msg) -> float:
         return copysign(1, msg.quantity) \
-               * (abs(msg.quantity) * msg.price
-                  + msg.commission
-                  + msg.tax)
+            * (abs(msg.quantity) * msg.price + msg.commission + msg.tax)
