@@ -16,6 +16,7 @@ A [backtest](https://en.wikipedia.org/wiki/Backtesting) engine for developing [a
 - [Backtest](#backtest)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
+  - [Preparation](#preparation)
   - [Usage](#usage)
   - [Support](#support)
   - [Contributing](#contributing)
@@ -32,7 +33,7 @@ A [backtest](https://en.wikipedia.org/wiki/Backtesting) engine for developing [a
 Fetching symbols of KOSPI and KOSDAQ exchanges:
 
 
-    $ python -m backtest.utils.symbols_krx symbols.json
+    $ python -m backtest.symbols.korea_symbols.json
     Fetched 2,820 symbols
     Saved in symbols.json
 
@@ -84,4 +85,3 @@ Please contribute using [Github Flow](https://guides.github.com/introduction/flo
 ## Testing
 
 Test codes are prepared in _tests/_ based on [PyTest](https://docs.pytest.org/en/latest/) framework.
-
