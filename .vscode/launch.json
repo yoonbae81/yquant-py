@@ -8,7 +8,7 @@
             "name": "Python: Entrypoint",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/src/entrypoints/run.py",
+            "program": "${workspaceFolder}/demo/ib21.py",
             "console": "integratedTerminal"
         }
     ]
