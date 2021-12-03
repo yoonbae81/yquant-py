@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run Demo",
+            "name": "Python: Entrypoint",
             "type": "python",
             "request": "launch",
-            "program": "momentum.py",
-            "cwd": "${workspaceFolder}/demo"
-        },
+            "program": "${workspaceFolder}/src/entrypoints/run.py",
+            "console": "integratedTerminal"
+        }
     ]
 }

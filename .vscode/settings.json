@@ -2,8 +2,26 @@
     "python.testing.pytestArgs": [
         "tests"
     ],
+    "python.formatting.provider": "yapf",
+    "window.zoomLevel": 0,
+    "editor.fontSize": 18,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true,
     "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.terminal.executeInFileDir": true,
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontSize": 16,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/*.pyc": {"when": "$(basename).py"},
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    },
+    "python.pythonPath": "venv\\Scripts\\python.exe",
 }

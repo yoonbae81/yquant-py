@@ -1,5 +1,0 @@
-setuptools
-numpy
-requests
-
-pytest

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "disable_existing_loggers": false,
+  "formatters": {
+    "verbose": {
+      "format": "%(asctime)s %(levelname)-5.5s %(filename)-15s %(message)s"
+    },
+    "simple": {
+      "format": "%(levelname)-5.5s %(name)-30.30s %(message)s"
+    }
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "formatter": "simple"
+    }
+  },
+  "root": {
+    "level": "DEBUG",
+    "handlers": ["console"]
+  },
+  "loggers": {
+    "monitor": { "level": "DEBUG" },
+    "analyzer": { "level": "DEBUG" }
+  }
+}
