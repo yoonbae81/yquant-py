@@ -9,7 +9,7 @@
             "command": "pytest",
             "args": [],
             "group": {
-                "kind": "test",
+                "kind": "build",
                 "isDefault": true
             },
             "options": {
@@ -19,6 +19,26 @@
             },
             "problemMatcher": []
         },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "build"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Publish",
+            "type": "shell",
+            "command": "twine",
+            "args": [
+                "upload",
+                "dist/*"
+            ],
+            "problemMatcher": []
+        }
     ],
     "typescript.tsc.autoDetect": "off",
     "grunt.autoDetect": "off",
