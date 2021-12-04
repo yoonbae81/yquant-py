@@ -1,8 +1,10 @@
-from yquant.backtest import bootstrap
+import yquant
 
-def calc_strength():
+def calc_strength(
+    market,
+    timeseries,
+):
     pass
-
 
 def calc_quantity():
     pass
@@ -10,4 +12,6 @@ def calc_quantity():
 
 
 
-yquant.backtest()
+if __name__ == '__main__':
+
+    yquant.run()
